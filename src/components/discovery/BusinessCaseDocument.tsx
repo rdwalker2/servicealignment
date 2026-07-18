@@ -711,7 +711,22 @@ export function BusinessCaseDocument({
       {predictiveData?.properties?.length > 1 && gated('hero', 'Satellite Feed', (
         <section className="page w-full max-w-[1100px] mx-auto px-4 md:px-12 pt-10 md:pt-16" id="satellite-feed" style={{ border: 'none', background: 'transparent', boxShadow: 'none', contentVisibility: 'auto', containIntrinsicSize: 'auto none auto 800px' }}>
           
-          <div className="relative z-10 w-full mb-6 group/radar-hud">
+          <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <div style={{ fontSize: '0.65rem', fontWeight: 800, letterSpacing: '0.15em', color: '#ef4444', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 8, textTransform: 'uppercase' }}>
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)] animate-pulse"></span>
+                Predictive Threat Radar
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black text-zinc-900 tracking-tight leading-tight">
+                Live Portfolio Monitoring
+              </h2>
+            </div>
+            <p className="text-[0.8rem] font-medium text-zinc-500 max-w-xs md:text-right leading-relaxed">
+              Geospatial tracking of high-risk weather events approaching your properties. <strong className="text-zinc-700">Assets at risk are highlighted below.</strong>
+            </p>
+          </div>
+
+          <div className="relative z-10 w-full mb-3 group/radar-hud">
             {/* Dark premium container */}
             <div className="flex items-center gap-3 w-full bg-zinc-950 border border-zinc-800 shadow-2xl shadow-zinc-900/20 rounded-2xl p-2.5 text-white overflow-hidden relative transition-all duration-500 hover:border-zinc-700">
               {/* Subtle background glow effect */}

@@ -646,7 +646,7 @@ export function BusinessCaseDocument({
                     <input 
                       type="tel" 
                       placeholder="Enter mobile number" 
-                      className="bg-white/60 backdrop-blur-md border border-zinc-200 rounded-full pl-4 pr-12 py-2.5 text-[0.8rem] font-medium outline-none focus:border-zinc-400 focus:bg-white focus:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all w-[190px] focus:w-[220px] placeholder:text-zinc-400" 
+                      className="bg-white/60 backdrop-blur-md border border-zinc-200 rounded-full pl-4 pr-12 py-2.5 text-[0.8rem] font-medium outline-none focus:border-zinc-400 focus:bg-white focus:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all w-full max-w-[220px] placeholder:text-zinc-400" 
                     />
                     <button 
                       type="button"

@@ -125,13 +125,13 @@ export const PortfolioWeatherMap: React.FC<PortfolioWeatherMapProps> = ({ predic
   return (
     <div className="premium-map-container" style={{ width: '100%', height: '500px', borderRadius: '16px', border: '1px solid #e7e5e4', position: 'relative', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)' }}>
       {/* HUD Overlay */}
-      <div style={{ position: 'absolute', top: 20, left: 20, zIndex: 10, background: 'rgba(0,0,0,0.8)', color: '#fff', padding: '12px 16px', borderRadius: 8, backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.1)' }}>
-        <div style={{ fontSize: '0.65rem', fontWeight: 800, letterSpacing: '0.15em', color: '#ef4444', marginBottom: 4, display: 'flex', alignItems: 'center', gap: 6, textTransform: 'uppercase' }}>
-          <span style={{ display: 'inline-block', width: 6, height: 6, backgroundColor: 'currentColor', borderRadius: '50%', animation: 'pulse 2s infinite' }}></span>
+      <div className="absolute top-3 left-3 md:top-5 md:left-5 z-10 bg-black/80 text-white p-2.5 md:p-3 rounded-lg backdrop-blur-md border border-white/10 shadow-xl max-w-[calc(100%-24px)] pointer-events-none">
+        <div className="text-[0.55rem] md:text-[0.65rem] font-extrabold tracking-[0.15em] text-red-500 mb-1 flex items-center gap-1.5 uppercase">
+          <span className="inline-block w-1.5 h-1.5 bg-current rounded-full animate-pulse"></span>
           Live Satellite Uplink
         </div>
-        <div style={{ fontSize: '0.9rem', fontWeight: 700 }}>Property Portfolio Monitor</div>
-        <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)' }}>Predictive Doppler Radar Active (T+30m Forecast)</div>
+        <div className="text-sm md:text-[0.9rem] font-bold leading-tight">Property Portfolio Monitor</div>
+        <div className="text-[0.65rem] md:text-[0.75rem] text-white/60 mt-0.5">Predictive Doppler Radar Active (T+30m Forecast)</div>
       </div>
 
       <MapGL

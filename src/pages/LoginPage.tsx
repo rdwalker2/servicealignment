@@ -68,8 +68,8 @@ export default function LoginPage() {
       >
         {/* Logo / Title */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#F43F85] mb-5 shadow-md">
-            <img src="/favicon.svg" alt="Service Alignment" className="w-14 h-14 rounded-2xl" />
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white border border-stone-100 mb-5 shadow-sm p-1">
+            <img src="/favicon.svg" alt="Service Alignment" className="w-full h-full" />
           </div>
           <h1 className="text-2xl font-bold text-stone-900 tracking-tight">
             Service Alignment GTM Workspace

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import './BusinessCaseDocument.css';
 import type { DiscoverySession, MAPMilestone } from '../../lib/discoveryDatabase';
 import type { RoomVisibility } from './RoomSections';
@@ -228,6 +229,22 @@ export function BusinessCaseDocument({
   const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(null);
   const [isGlobalModalOpen, setIsGlobalModalOpen] = useState(false);
 
+  // ── Scroll Tracking & Parallax ──
+  const { scrollYProgress } = useScroll();
+  const [showStickyBar, setShowStickyBar] = useState(false);
+  const heroParallaxY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+
+  useEffect(() => {
+    return scrollYProgress.onChange((latest) => {
+      // Show sticky bar after scrolling past ~600px (hero section)
+      if (latest > 0.05 && !showStickyBar) {
+        setShowStickyBar(true);
+      } else if (latest <= 0.05 && showStickyBar) {
+        setShowStickyBar(false);
+      }
+    });
+  }, [scrollYProgress, showStickyBar]);
+
   // ── Derived values ──
   const accentColor = (session as any)?.cms_accent || themeColor;
   const currentMonth = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' });
@@ -408,9 +425,9 @@ export function BusinessCaseDocument({
           <section className="page hero-page bg-white text-zinc-900 relative overflow-hidden flex items-center w-full min-h-[90vh]" id="portfolio-hero" style={{ padding: 'clamp(4rem,10vw,8rem) clamp(1.5rem,5vw,40px)', border: 'none', boxShadow: 'none', maxWidth: 'none' }}>
             
             {/* Background Satellite Map Effect & Gradients */}
-            <div className="absolute inset-0 opacity-[0.03] mix-blend-multiply">
-               <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Satellite background" className="w-full h-full object-cover grayscale" fetchPriority="high" decoding="sync" />
-            </div>
+            <motion.div className="absolute inset-0 opacity-[0.04] mix-blend-multiply pointer-events-none" style={{ y: heroParallaxY }}>
+               <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Satellite background" className="w-full h-[120%] object-cover grayscale" fetchPriority="high" decoding="sync" style={{ transform: 'translateY(-10%)' }} />
+            </motion.div>
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-zinc-100/80 via-white/90 to-white pointer-events-none"></div>
             
             {/* Ambient glows */}
@@ -571,9 +588,9 @@ export function BusinessCaseDocument({
       })()) : gated('hero', 'Predictive Marketing Hero', (
         <section className="page hero-page bg-white text-zinc-900 relative overflow-hidden flex items-center w-full min-h-[90vh]" id="cover" style={{ padding: 'clamp(4rem,10vw,8rem) clamp(1.5rem,5vw,40px)', border: 'none', boxShadow: 'none', maxWidth: 'none' }}>
           {/* Background Effects */}
-          <div className="absolute inset-0 opacity-[0.03] mix-blend-multiply pointer-events-none">
-             <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Satellite background" className="w-full h-full object-cover grayscale" fetchpriority="high" decoding="sync" />
-          </div>
+          <motion.div className="absolute inset-0 opacity-[0.04] mix-blend-multiply pointer-events-none" style={{ y: heroParallaxY }}>
+             <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Satellite background" className="w-full h-[120%] object-cover grayscale" fetchPriority="high" decoding="sync" style={{ transform: 'translateY(-10%)' }} />
+          </motion.div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-zinc-100/80 via-white/90 to-white pointer-events-none"></div>
           <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] bg-zinc-100/50 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -949,6 +966,42 @@ export function BusinessCaseDocument({
         onClose={() => setIsGlobalModalOpen(false)} 
         propertyName="Your Entire Portfolio"
       />
+
+      {/* Sticky Floating Action Bar */}
+      <AnimatePresence>
+        {showStickyBar && (
+          <motion.div 
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-[600px]"
+          >
+            <div className="bg-white/80 backdrop-blur-xl border border-white/40 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] rounded-2xl p-3 flex items-center justify-between gap-4">
+              
+              <div className="flex items-center gap-4 pl-3">
+                <div className="flex flex-col">
+                  <span className="text-[0.65rem] font-bold text-zinc-500 uppercase tracking-widest">Active Deal Value</span>
+                  <span className="text-sm font-black text-zinc-900">{annualPrice}</span>
+                </div>
+                <div className="w-px h-8 bg-zinc-200 hidden sm:block"></div>
+                <div className="flex flex-col hidden sm:flex">
+                  <span className="text-[0.65rem] font-bold text-zinc-500 uppercase tracking-widest">Critical Roofs</span>
+                  <span className="text-sm font-black text-rose-600 flex items-center gap-1.5"><Activity size={14} /> {(predictiveData?.properties || []).filter((p: any) => (p.healthScore?.health_score ?? 100) < 50).length} Detected</span>
+                </div>
+              </div>
+
+              <button 
+                onClick={() => setIsGlobalModalOpen(true)}
+                className="shrink-0 px-6 py-2.5 bg-zinc-900 hover:bg-black text-white rounded-xl text-sm font-bold uppercase tracking-wider transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              >
+                Book Diagnosis
+              </button>
+
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

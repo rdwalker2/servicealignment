@@ -442,7 +442,7 @@ export function BusinessCaseDocument({
                   System Alert For {companyName}
                 </div>
                 
-                <h1 style={{ fontSize: 'clamp(3.5rem, 5vw, 5rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.03em', color: '#09090b', margin: '0 0 32px 0', animation: 'rise 0.85s cubic-bezier(0.2,0.7,0.2,1) 0.2s forwards', opacity: 0 }}>
+                <h1 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.75rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.03em', color: '#09090b', margin: '0 0 24px 0', animation: 'rise 0.85s cubic-bezier(0.2,0.7,0.2,1) 0.2s forwards', opacity: 0 }}>
                   Your portfolio just <br />
                   <span style={{ 
                     background: 'linear-gradient(to right, #09090b, #52525b, #09090b)',
@@ -454,7 +454,7 @@ export function BusinessCaseDocument({
                   }}>pinged our system.</span>
                 </h1>
                 
-                <p style={{ fontSize: '1.15rem', color: '#a1a1aa', lineHeight: 1.6, maxWidth: 520, fontWeight: 400, animation: 'rise 0.85s cubic-bezier(0.2,0.7,0.2,1) 0.34s forwards', opacity: 0 }}>
+                <p style={{ fontSize: '1.05rem', color: '#a1a1aa', lineHeight: 1.6, maxWidth: 480, fontWeight: 400, animation: 'rise 0.85s cubic-bezier(0.2,0.7,0.2,1) 0.34s forwards', opacity: 0 }}>
                   Our predictive monitoring engine cross-referenced recent severe weather data with satellite imagery of your {totalBuildings} properties. We've detected critical vulnerabilities on <strong style={{ color: '#09090b' }}>{atRiskCount} roofs</strong> that require your immediate review.
                 </p>
                 
@@ -466,11 +466,11 @@ export function BusinessCaseDocument({
                     const el = document.getElementById('portfolio');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }} 
-                  className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-zinc-900 text-white rounded-full font-bold tracking-[0.05em] uppercase text-[0.85rem] sm:text-[0.95rem] overflow-hidden transition-all duration-300 hover:bg-black hover:scale-[1.02] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+                  className="group relative flex items-center justify-center gap-3 px-6 py-3.5 bg-zinc-900 text-white rounded-full font-bold tracking-[0.05em] uppercase text-[0.75rem] sm:text-[0.8rem] overflow-hidden transition-all duration-300 hover:bg-black hover:scale-[1.02] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                     <span>View Damage Report</span>
-                    <ArrowRight size={18} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRight size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-1" />
                   </button>
 
                   <div className="hidden sm:block w-px h-12 bg-black/10"></div>
@@ -482,9 +482,9 @@ export function BusinessCaseDocument({
                       <input 
                         type="tel" 
                         placeholder="Enter mobile number" 
-                        className="bg-white/60 backdrop-blur-md border border-zinc-200 rounded-full pl-5 pr-12 py-3 text-[0.85rem] font-medium outline-none focus:border-zinc-400 focus:bg-white focus:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all w-[200px] focus:w-[230px] placeholder:text-zinc-400" 
+                        className="bg-white/60 backdrop-blur-md border border-zinc-200 rounded-full pl-4 pr-10 py-2.5 text-[0.8rem] font-medium outline-none focus:border-zinc-400 focus:bg-white focus:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all w-[180px] focus:w-[210px] placeholder:text-zinc-400" 
                       />
-                      <button className="absolute right-1.5 w-8 h-8 rounded-full bg-zinc-100 text-zinc-500 group-focus-within/sms:bg-emerald-600 group-focus-within/sms:text-white flex items-center justify-center hover:scale-105 transition-all">
+                      <button className="absolute right-1 w-7 h-7 rounded-full bg-zinc-100 text-zinc-500 group-focus-within/sms:bg-emerald-600 group-focus-within/sms:text-white flex items-center justify-center hover:scale-105 transition-all">
                         <ArrowRight size={14} strokeWidth={2.5} />
                       </button>
                     </div>
@@ -536,7 +536,7 @@ export function BusinessCaseDocument({
                   <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#09090b', marginBottom: 24 }}>Roof Health Score</div>
                   
                   <div style={{ display: 'flex', alignItems: 'flex-end', gap: 12, marginBottom: 24 }}>
-                    <div style={{ fontWeight: 900, fontSize: '6.5rem', lineHeight: 1, letterSpacing: '-0.05em', color: '#09090b', textShadow: '0 4px 24px rgba(0,0,0,0.05)', fontFamily: 'monospace' }}>
+                    <div style={{ fontWeight: 900, fontSize: '5rem', lineHeight: 1, letterSpacing: '-0.05em', color: '#09090b', textShadow: '0 4px 24px rgba(0,0,0,0.05)', fontFamily: 'monospace' }}>
                       {avgScore}
                     </div>
                     <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#71717a', marginBottom: 12, letterSpacing: '0.1em' }}>/ 100</div>
@@ -569,14 +569,14 @@ export function BusinessCaseDocument({
                     </div>
                   </div>
                   
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, borderTop: '1px solid rgba(0,0,0,0.05)', paddingTop: 28 }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, borderTop: '1px solid rgba(0,0,0,0.05)', paddingTop: 24 }}>
                     <div>
-                      <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#09090b', lineHeight: 1, fontFamily: 'monospace' }}>{atRiskCount}</div>
-                      <div style={{ fontSize: '0.7rem', fontWeight: 800, letterSpacing: '0.15em', color: '#18181b', textTransform: 'uppercase', marginTop: 8 }}>Critical Roofs</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#09090b', lineHeight: 1, fontFamily: 'monospace' }}>{atRiskCount}</div>
+                      <div style={{ fontSize: '0.65rem', fontWeight: 800, letterSpacing: '0.15em', color: '#18181b', textTransform: 'uppercase', marginTop: 8 }}>Critical Roofs</div>
                     </div>
                     <div>
-                      <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#09090b', lineHeight: 1, fontFamily: 'monospace' }}>{totalBuildings}</div>
-                      <div style={{ fontSize: '0.7rem', fontWeight: 800, letterSpacing: '0.15em', color: '#71717a', textTransform: 'uppercase', marginTop: 8 }}>Total Monitored</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, color: '#09090b', lineHeight: 1, fontFamily: 'monospace' }}>{totalBuildings}</div>
+                      <div style={{ fontSize: '0.65rem', fontWeight: 800, letterSpacing: '0.15em', color: '#71717a', textTransform: 'uppercase', marginTop: 8 }}>Total Monitored</div>
                     </div>
                   </div>
                 </div>
@@ -603,7 +603,7 @@ export function BusinessCaseDocument({
                 System Alert For {companyName}
               </div>
               
-              <h1 style={{ fontSize: 'clamp(3.5rem, 5vw, 5rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.03em', color: '#09090b', margin: '0 0 32px 0', animation: 'rise 0.85s cubic-bezier(0.2,0.7,0.2,1) 0.2s forwards', opacity: 0 }}>
+              <h1 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.75rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.03em', color: '#09090b', margin: '0 0 24px 0', animation: 'rise 0.85s cubic-bezier(0.2,0.7,0.2,1) 0.2s forwards', opacity: 0 }}>
                 Your roof just <br />
                 <span style={{ 
                   background: 'linear-gradient(to right, #09090b, #52525b, #09090b)',
@@ -615,7 +615,7 @@ export function BusinessCaseDocument({
                 }}>pinged our system.</span>
               </h1>
               
-              <p style={{ fontSize: '1.15rem', color: '#52525b', lineHeight: 1.6, maxWidth: 520, fontWeight: 400, animation: 'rise 0.85s cubic-bezier(0.2,0.7,0.2,1) 0.34s forwards', opacity: 0 }}>
+              <p style={{ fontSize: '1.05rem', color: '#52525b', lineHeight: 1.6, maxWidth: 480, fontWeight: 400, animation: 'rise 0.85s cubic-bezier(0.2,0.7,0.2,1) 0.34s forwards', opacity: 0 }}>
                 Our 24/7 predictive monitoring engine cross-referenced recent severe weather data with satellite imagery of your property. We've detected critical vulnerabilities that require immediate review.
               </p>
               
@@ -627,11 +627,11 @@ export function BusinessCaseDocument({
                   const el = document.getElementById('portfolio');
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }} 
-                className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-zinc-900 text-white rounded-full font-bold tracking-[0.05em] uppercase text-[0.85rem] sm:text-[0.95rem] overflow-hidden transition-all duration-300 hover:bg-black hover:scale-[1.02] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-transparent hover:border-white/10"
+                className="group relative flex items-center justify-center gap-3 px-6 py-3.5 bg-zinc-900 text-white rounded-full font-bold tracking-[0.05em] uppercase text-[0.75rem] sm:text-[0.8rem] overflow-hidden transition-all duration-300 hover:bg-black hover:scale-[1.02] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-transparent hover:border-white/10"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                   <span>Book a Free Diagnosis</span>
-                  <ArrowRight size={18} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  <ArrowRight size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
 
                 <div className="hidden sm:block w-px h-12 bg-black/10"></div>
@@ -643,9 +643,9 @@ export function BusinessCaseDocument({
                     <input 
                       type="tel" 
                       placeholder="Enter mobile number" 
-                      className="bg-white/60 backdrop-blur-md border border-zinc-200 rounded-full pl-5 pr-12 py-3 text-[0.85rem] font-medium outline-none focus:border-zinc-400 focus:bg-white focus:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all w-[200px] focus:w-[230px] placeholder:text-zinc-400" 
+                      className="bg-white/60 backdrop-blur-md border border-zinc-200 rounded-full pl-4 pr-10 py-2.5 text-[0.8rem] font-medium outline-none focus:border-zinc-400 focus:bg-white focus:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all w-[180px] focus:w-[210px] placeholder:text-zinc-400" 
                     />
-                    <button className="absolute right-1.5 w-8 h-8 rounded-full bg-zinc-100 text-zinc-500 group-focus-within/sms:bg-emerald-600 group-focus-within/sms:text-white flex items-center justify-center hover:scale-105 transition-all">
+                    <button className="absolute right-1 w-7 h-7 rounded-full bg-zinc-100 text-zinc-500 group-focus-within/sms:bg-emerald-600 group-focus-within/sms:text-white flex items-center justify-center hover:scale-105 transition-all">
                       <ArrowRight size={14} strokeWidth={2.5} />
                     </button>
                   </div>

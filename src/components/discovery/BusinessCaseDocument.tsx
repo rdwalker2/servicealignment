@@ -727,15 +727,18 @@ export function BusinessCaseDocument({
           </div>
 
           <div className="relative w-full mb-4">
-            <div className="flex items-center w-full bg-white border border-zinc-200 shadow-sm rounded-xl overflow-hidden">
+            <div className="flex items-center w-full bg-white border border-zinc-200 shadow-sm rounded-xl overflow-hidden relative">
               
               <div className="flex items-center gap-2 px-4 py-3 shrink-0 bg-zinc-50 border-r border-zinc-200 z-10 shadow-[4px_0_12px_rgba(0,0,0,0.02)]">
                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse" />
                  <span className="text-[0.65rem] font-black uppercase tracking-widest text-zinc-500">Live Assets</span>
               </div>
               
+              {/* Right edge fade out to avoid harsh scroll cutoff */}
+              <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none z-20"></div>
+
               {/* Ticker Container */}
-              <div className="flex overflow-x-auto scrollbar-hide flex-grow items-center px-2 py-2 gap-2" style={{ scrollSnapType: 'x mandatory' }}>
+              <div className="flex overflow-x-auto scrollbar-hide flex-grow items-center pl-3 pr-12 py-2.5 gap-2" style={{ scrollSnapType: 'x mandatory' }}>
                 {predictiveData?.properties?.map((p: any) => {
                   const score = p.healthScore?.health_score ?? 100;
                   let scoreColor = 'text-emerald-600';
@@ -758,8 +761,6 @@ export function BusinessCaseDocument({
                         const el = document.getElementById(`property-${p.property?.id}`);
                         if (el) {
                           el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                          el.classList.add('animate-pulse-green');
-                          setTimeout(() => el.classList.remove('animate-pulse-green'), 2400);
                         }
                       }}
                       className={`flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg border ${bgColor} transition-colors duration-200 cursor-pointer scroll-snap-align-start`}

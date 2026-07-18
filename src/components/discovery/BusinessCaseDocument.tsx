@@ -726,33 +726,27 @@ export function BusinessCaseDocument({
             </p>
           </div>
 
-          <div className="relative z-10 w-full mb-3 group/radar-hud">
-            {/* Dark premium container */}
-            <div className="flex items-center gap-3 w-full bg-zinc-950 border border-zinc-800 shadow-2xl shadow-zinc-900/20 rounded-2xl p-2.5 text-white overflow-hidden relative transition-all duration-500 hover:border-zinc-700">
-              {/* Subtle background glow effect */}
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/30 via-zinc-950 to-zinc-950 opacity-60"></div>
+          <div className="relative w-full mb-4">
+            <div className="flex items-center w-full bg-white border border-zinc-200 shadow-sm rounded-xl overflow-hidden">
               
-              <div className="relative flex items-center gap-2 px-3 shrink-0 z-10">
-                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
-                 <span className="text-[0.65rem] font-black uppercase tracking-widest text-zinc-400">Live Assets</span>
+              <div className="flex items-center gap-2 px-4 py-3 shrink-0 bg-zinc-50 border-r border-zinc-200 z-10 shadow-[4px_0_12px_rgba(0,0,0,0.02)]">
+                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse" />
+                 <span className="text-[0.65rem] font-black uppercase tracking-widest text-zinc-500">Live Assets</span>
               </div>
               
-              <div className="relative w-px h-5 bg-zinc-800 shrink-0 z-10"></div>
-              
-              <div className="relative flex overflow-x-auto scrollbar-hide gap-2 flex-grow pr-2 z-10" style={{ scrollSnapType: 'x mandatory' }}>
+              {/* Ticker Container */}
+              <div className="flex overflow-x-auto scrollbar-hide flex-grow items-center px-2 py-2 gap-2" style={{ scrollSnapType: 'x mandatory' }}>
                 {predictiveData?.properties?.map((p: any) => {
                   const score = p.healthScore?.health_score ?? 100;
-                  let scoreColor = 'text-emerald-400';
-                  let bgColor = 'bg-emerald-500/10 border-emerald-500/20 hover:border-emerald-500/50';
-                  let pulseGlow = '';
+                  let scoreColor = 'text-emerald-600';
+                  let bgColor = 'bg-emerald-50 border-emerald-200 hover:bg-emerald-100 hover:border-emerald-300';
                   
                   if (score < 50) {
-                    scoreColor = 'text-rose-400';
-                    bgColor = 'bg-rose-500/10 border-rose-500/30 hover:border-rose-500/60 hover:bg-rose-500/20';
-                    pulseGlow = 'shadow-[0_0_15px_rgba(244,63,94,0.15)]';
+                    scoreColor = 'text-rose-600';
+                    bgColor = 'bg-rose-50 border-rose-200 hover:bg-rose-100 hover:border-rose-300';
                   } else if (score < 75) {
-                    scoreColor = 'text-amber-400';
-                    bgColor = 'bg-amber-500/10 border-amber-500/30 hover:border-amber-500/60 hover:bg-amber-500/20';
+                    scoreColor = 'text-amber-600';
+                    bgColor = 'bg-amber-50 border-amber-200 hover:bg-amber-100 hover:border-amber-300';
                   }
                   
                   const name = p.property?.property_name?.split('-')[0]?.trim() || p.property?.legal_owner_name || 'Property';
@@ -768,12 +762,12 @@ export function BusinessCaseDocument({
                           setTimeout(() => el.classList.remove('animate-pulse-green'), 2400);
                         }
                       }}
-                      className={`flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-full border ${bgColor} ${pulseGlow} transition-all duration-300 cursor-pointer scroll-snap-align-start`}
+                      className={`flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg border ${bgColor} transition-colors duration-200 cursor-pointer scroll-snap-align-start`}
                       style={{ scrollSnapAlign: 'start' }}
                     >
                       <Activity size={13} className={scoreColor} />
-                      <span className="text-[0.7rem] font-semibold text-zinc-200 whitespace-nowrap">{name}</span>
-                      <div className={`px-1.5 py-0.5 rounded pl-2 border-l border-white/10 text-[0.65rem] font-black ${scoreColor}`}>
+                      <span className="text-[0.75rem] font-bold text-zinc-700 whitespace-nowrap">{name}</span>
+                      <div className={`px-1.5 py-0.5 rounded ml-1 bg-white/60 text-[0.65rem] font-black ${scoreColor}`}>
                         {score}
                       </div>
                     </button>

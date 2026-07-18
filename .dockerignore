@@ -4,8 +4,4 @@ node_modules
 .env
 .env.local
 .DS_Store
-src
-public
-vite.config.ts
-tsconfig*.json
 *.md

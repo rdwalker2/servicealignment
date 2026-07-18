@@ -711,28 +711,61 @@ export function BusinessCaseDocument({
       {predictiveData?.properties?.length > 1 && gated('hero', 'Satellite Feed', (
         <section className="page w-full max-w-[1100px] mx-auto px-4 md:px-12 pt-10 md:pt-16" id="satellite-feed" style={{ border: 'none', background: 'transparent', boxShadow: 'none', contentVisibility: 'auto', containIntrinsicSize: 'auto none auto 800px' }}>
           
-          <div className="flex overflow-x-auto scrollbar-hide gap-3 mb-6 pb-2 w-full max-w-full">
-            {predictiveData?.properties?.map((p: any) => {
-              const score = p.healthScore?.health_score ?? 100;
-              let scoreColor = 'text-emerald-500';
-              let bgColor = 'bg-emerald-500/10 border-emerald-500/20';
-              if (score < 50) {
-                scoreColor = 'text-rose-500';
-                bgColor = 'bg-rose-500/10 border-rose-500/20';
-              } else if (score < 75) {
-                scoreColor = 'text-amber-500';
-                bgColor = 'bg-amber-500/10 border-amber-500/20';
-              }
-              const name = p.property?.property_name?.split('-')[0]?.trim() || p.property?.legal_owner_name || 'Property';
+          <div className="relative z-10 w-full mb-6 group/radar-hud">
+            {/* Dark premium container */}
+            <div className="flex items-center gap-3 w-full bg-zinc-950 border border-zinc-800 shadow-2xl shadow-zinc-900/20 rounded-2xl p-2.5 text-white overflow-hidden relative transition-all duration-500 hover:border-zinc-700">
+              {/* Subtle background glow effect */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/30 via-zinc-950 to-zinc-950 opacity-60"></div>
               
-              return (
-                <div key={p.property?.id || Math.random()} className={`flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-full border ${bgColor}`}>
-                  <Activity size={14} className={scoreColor} />
-                  <span className="text-xs font-semibold text-zinc-700">{name}</span>
-                  <span className={`text-xs font-bold ${scoreColor}`}>{score}</span>
-                </div>
-              );
-            })}
+              <div className="relative flex items-center gap-2 px-3 shrink-0 z-10">
+                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
+                 <span className="text-[0.65rem] font-black uppercase tracking-widest text-zinc-400">Live Assets</span>
+              </div>
+              
+              <div className="relative w-px h-5 bg-zinc-800 shrink-0 z-10"></div>
+              
+              <div className="relative flex overflow-x-auto scrollbar-hide gap-2 flex-grow pr-2 z-10" style={{ scrollSnapType: 'x mandatory' }}>
+                {predictiveData?.properties?.map((p: any) => {
+                  const score = p.healthScore?.health_score ?? 100;
+                  let scoreColor = 'text-emerald-400';
+                  let bgColor = 'bg-emerald-500/10 border-emerald-500/20 hover:border-emerald-500/50';
+                  let pulseGlow = '';
+                  
+                  if (score < 50) {
+                    scoreColor = 'text-rose-400';
+                    bgColor = 'bg-rose-500/10 border-rose-500/30 hover:border-rose-500/60 hover:bg-rose-500/20';
+                    pulseGlow = 'shadow-[0_0_15px_rgba(244,63,94,0.15)]';
+                  } else if (score < 75) {
+                    scoreColor = 'text-amber-400';
+                    bgColor = 'bg-amber-500/10 border-amber-500/30 hover:border-amber-500/60 hover:bg-amber-500/20';
+                  }
+                  
+                  const name = p.property?.property_name?.split('-')[0]?.trim() || p.property?.legal_owner_name || 'Property';
+                  
+                  return (
+                    <button 
+                      key={p.property?.id || Math.random()} 
+                      onClick={() => {
+                        const el = document.getElementById(`property-${p.property?.id}`);
+                        if (el) {
+                          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          el.classList.add('animate-pulse-green');
+                          setTimeout(() => el.classList.remove('animate-pulse-green'), 2400);
+                        }
+                      }}
+                      className={`flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-full border ${bgColor} ${pulseGlow} transition-all duration-300 cursor-pointer scroll-snap-align-start`}
+                      style={{ scrollSnapAlign: 'start' }}
+                    >
+                      <Activity size={13} className={scoreColor} />
+                      <span className="text-[0.7rem] font-semibold text-zinc-200 whitespace-nowrap">{name}</span>
+                      <div className={`px-1.5 py-0.5 rounded pl-2 border-l border-white/10 text-[0.65rem] font-black ${scoreColor}`}>
+                        {score}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
           <PortfolioWeatherMap predictiveData={predictiveData} />

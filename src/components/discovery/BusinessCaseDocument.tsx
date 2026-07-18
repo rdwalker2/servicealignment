@@ -477,18 +477,21 @@ export function BusinessCaseDocument({
 
                   {/* SMS Alternative */}
                   <div className="flex flex-col gap-1.5">
-                    <span className="text-[0.65rem] font-bold text-zinc-500 uppercase tracking-widest pl-4">Prefer text alerts?</span>
+                    <span className="text-[0.65rem] font-bold text-zinc-500 uppercase tracking-widest pl-1">Prefer text alerts?</span>
                     <div className="relative flex items-center group/sms">
                       <input 
                         type="tel" 
                         placeholder="Enter mobile number" 
-                        className="bg-white/60 backdrop-blur-md border border-zinc-200 rounded-full pl-4 pr-10 py-2.5 text-[0.8rem] font-medium outline-none focus:border-zinc-400 focus:bg-white focus:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all w-[180px] focus:w-[210px] placeholder:text-zinc-400" 
+                        className="bg-white/60 backdrop-blur-md border border-zinc-200 rounded-full pl-4 pr-12 py-2.5 text-[0.8rem] font-medium outline-none focus:border-zinc-400 focus:bg-white focus:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all w-[190px] focus:w-[220px] placeholder:text-zinc-400" 
                       />
-                      <button className="absolute right-1 w-7 h-7 rounded-full bg-zinc-100 text-zinc-500 group-focus-within/sms:bg-emerald-600 group-focus-within/sms:text-white flex items-center justify-center hover:scale-105 transition-all">
+                      <button 
+                        type="button"
+                        className="absolute right-1.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-zinc-100 text-zinc-500 group-focus-within/sms:bg-emerald-600 group-focus-within/sms:text-white flex items-center justify-center hover:scale-105 transition-all outline-none focus:outline-none shadow-sm group-focus-within/sms:shadow-md"
+                      >
                         <ArrowRight size={14} strokeWidth={2.5} />
                       </button>
                     </div>
-                    <div className="flex items-center gap-1.5 pl-4 text-[0.65rem] font-medium text-zinc-400">
+                    <div className="flex items-center gap-1.5 pl-1 text-[0.65rem] font-medium text-zinc-400">
                       <Lock size={10} /> 
                       <span>Secure. <span className="text-zinc-400/80">No spam.</span></span>
                     </div>
@@ -638,18 +641,21 @@ export function BusinessCaseDocument({
 
                 {/* SMS Alternative */}
                 <div className="flex flex-col gap-1.5">
-                  <span className="text-[0.65rem] font-bold text-zinc-500 uppercase tracking-widest pl-4">Prefer text alerts?</span>
+                  <span className="text-[0.65rem] font-bold text-zinc-500 uppercase tracking-widest pl-1">Prefer text alerts?</span>
                   <div className="relative flex items-center group/sms">
                     <input 
                       type="tel" 
                       placeholder="Enter mobile number" 
-                      className="bg-white/60 backdrop-blur-md border border-zinc-200 rounded-full pl-4 pr-10 py-2.5 text-[0.8rem] font-medium outline-none focus:border-zinc-400 focus:bg-white focus:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all w-[180px] focus:w-[210px] placeholder:text-zinc-400" 
+                      className="bg-white/60 backdrop-blur-md border border-zinc-200 rounded-full pl-4 pr-12 py-2.5 text-[0.8rem] font-medium outline-none focus:border-zinc-400 focus:bg-white focus:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all w-[190px] focus:w-[220px] placeholder:text-zinc-400" 
                     />
-                    <button className="absolute right-1 w-7 h-7 rounded-full bg-zinc-100 text-zinc-500 group-focus-within/sms:bg-emerald-600 group-focus-within/sms:text-white flex items-center justify-center hover:scale-105 transition-all">
+                    <button 
+                      type="button"
+                      className="absolute right-1.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-zinc-100 text-zinc-500 group-focus-within/sms:bg-emerald-600 group-focus-within/sms:text-white flex items-center justify-center hover:scale-105 transition-all outline-none focus:outline-none shadow-sm group-focus-within/sms:shadow-md"
+                    >
                       <ArrowRight size={14} strokeWidth={2.5} />
                     </button>
                   </div>
-                  <div className="flex items-center gap-1.5 pl-4 text-[0.65rem] font-medium text-zinc-400">
+                  <div className="flex items-center gap-1.5 pl-1 text-[0.65rem] font-medium text-zinc-400">
                     <Lock size={10} /> 
                     <span>Secure. <span className="text-zinc-400/80">No spam.</span></span>
                   </div>

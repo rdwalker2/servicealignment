@@ -174,6 +174,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (email: string): Promise<{ success: boolean; error?: string; magicLinkSent?: boolean }> => {
     const normalizedEmail = email.toLowerCase().trim();
 
+    // TEMPORARY LOCKDOWN: Only allow Ryan to log in
+    if (!['ryan@servicealignment.com', 'ryan.walker@servicealignment.com'].includes(normalizedEmail)) {
+      return { success: false, error: 'Login is temporarily restricted to administrators only.' };
+    }
+
     if (AUTH_MODE === 'dev') {
       setUser(DEV_SUPER_ADMIN);
       localStorage.setItem('scc_session', JSON.stringify(DEV_SUPER_ADMIN));

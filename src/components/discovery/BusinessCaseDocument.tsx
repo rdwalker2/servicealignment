@@ -873,7 +873,7 @@ export function BusinessCaseDocument({
                   WebkitBackdropFilter: 'blur(10px)',
                   borderRadius: 16, 
                   overflow: 'hidden', 
-                  boxShadow: `0 4px 24px -6px ${bandColor}15, 0 1px 3px rgba(0,0,0,0.02)`, 
+                  boxShadow: '0 8px 30px -6px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.02)', 
                   border: `1px solid rgba(0,0,0,0.04)`, 
                   borderTop: `4px solid ${bandColor}`,
                   display: 'flex', 

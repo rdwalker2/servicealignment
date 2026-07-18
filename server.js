@@ -140,6 +140,7 @@ app.post('/api/webhook/clay', async (req, res) => {
 
 // ── Native Contact Discovery (Apollo) ──
 import { discoverContacts } from './apollo_discovery.js';
+import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 
 app.post('/api/discovery/apollo-search', async (req, res) => {
   try {
@@ -151,6 +152,90 @@ app.post('/api/discovery/apollo-search', async (req, res) => {
     res.status(200).json(result);
   } catch (err) {
     console.error('[Discovery Error]', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// ── Predictive Portfolio API (Bypasses RLS for Public Prospect Rooms) ──
+app.get('/api/discovery/portfolio', async (req, res) => {
+  try {
+    const { token, company } = req.query;
+    
+    const sbUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
+    const sbKey = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
+    
+    if (!sbUrl || !sbKey) {
+      console.error('[Predictive API] Missing Supabase credentials');
+      return res.status(500).json({ error: 'Server missing Supabase credentials' });
+    }
+    
+    const sbAdmin = createSupabaseClient(sbUrl, sbKey);
+    
+    if (token) {
+      const { data: campaigns, error: campaignError } = await sbAdmin
+        .from('campaign_outreach')
+        .select('*')
+        .eq('prospect_room_token', token);
+        
+      if (campaignError || !campaigns || campaigns.length === 0) {
+        return res.status(404).json({ error: 'Not found' });
+      }
+      
+      const propertyIds = campaigns.map(c => c.property_id);
+      
+      const { data: properties } = await sbAdmin.from('roof_properties').select('*').in('id', propertyIds);
+      const { data: signals } = await sbAdmin.from('roof_signals').select('*').in('property_id', propertyIds).order('detected_at', { ascending: false });
+      const { data: healthScores } = await sbAdmin.from('roof_health_scores').select('*').in('property_id', propertyIds).order('calculated_at', { ascending: false });
+      
+      const portfolioProperties = campaigns.map(campaign => {
+        const prop = properties?.find(p => p.id === campaign.property_id);
+        if (!prop) return null;
+        return {
+          campaign,
+          property: prop,
+          signals: signals?.filter(s => s.property_id === campaign.property_id) || [],
+          healthScore: healthScores?.find(s => s.property_id === campaign.property_id) || null,
+        };
+      }).filter(Boolean);
+      
+      return res.json({ token, properties: portfolioProperties });
+    }
+    
+    if (company) {
+      const searchTerm = company.split(' ')[0];
+      const { data: properties } = await sbAdmin
+        .from('roof_properties')
+        .select(`*, property_managers!inner (management_companies!inner (company_name))`)
+        .ilike('property_managers.management_companies.company_name', `%${searchTerm}%`);
+        
+      let finalProps = properties || [];
+      if (finalProps.length === 0) {
+        const { data: fallbackProps } = await sbAdmin
+          .from('roof_properties')
+          .select('*')
+          .ilike('legal_owner_name', `%${searchTerm}%`);
+        finalProps = fallbackProps || [];
+      }
+      
+      if (finalProps.length === 0) return res.status(404).json({ error: 'Not found' });
+      
+      const propertyIds = finalProps.map(p => p.id);
+      const { data: signals } = await sbAdmin.from('roof_signals').select('*').in('property_id', propertyIds).order('detected_at', { ascending: false });
+      const { data: healthScores } = await sbAdmin.from('roof_health_scores').select('*').in('property_id', propertyIds).order('calculated_at', { ascending: false });
+      
+      const portfolioProperties = finalProps.map(prop => ({
+        campaign: { id: `mock-${prop.id}`, property_id: prop.id, campaign_name: 'Direct Discovery', status: 'active', prospect_room_token: 'dynamic' },
+        property: prop,
+        signals: signals?.filter(s => s.property_id === prop.id) || [],
+        healthScore: healthScores?.find(s => s.property_id === prop.id) || null,
+      }));
+      
+      return res.json({ token: `company-${searchTerm}`, properties: portfolioProperties });
+    }
+    
+    res.status(400).json({ error: 'token or company query param required' });
+  } catch (err) {
+    console.error('[Predictive API Error]', err);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

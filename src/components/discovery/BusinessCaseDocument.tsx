@@ -981,8 +981,10 @@ export function BusinessCaseDocument({
               
               <div className="flex items-center gap-4 pl-3">
                 <div className="flex flex-col">
-                  <span className="text-[0.65rem] font-bold text-zinc-500 uppercase tracking-widest">Active Deal Value</span>
-                  <span className="text-sm font-black text-zinc-900">{annualPrice}</span>
+                  <span className="text-[0.65rem] font-bold text-zinc-500 uppercase tracking-widest">System Status</span>
+                  <span className="text-sm font-black text-emerald-600 flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div> Active
+                  </span>
                 </div>
                 <div className="w-px h-8 bg-zinc-200 hidden sm:block"></div>
                 <div className="flex flex-col hidden sm:flex">

@@ -704,6 +704,31 @@ export function BusinessCaseDocument({
           ═══════════════════════════════════════════ */}
       {predictiveData?.properties?.length > 1 && gated('hero', 'Satellite Feed', (
         <section className="page w-full max-w-[1100px] mx-auto px-4 md:px-12 pt-10 md:pt-16" id="satellite-feed" style={{ border: 'none', background: 'transparent', boxShadow: 'none', contentVisibility: 'auto', containIntrinsicSize: 'auto none auto 800px' }}>
+          
+          <div className="flex overflow-x-auto scrollbar-hide gap-3 mb-6 pb-2 w-full max-w-full">
+            {predictiveData?.properties?.map((p: any) => {
+              const score = p.healthScore?.health_score ?? 100;
+              let scoreColor = 'text-emerald-500';
+              let bgColor = 'bg-emerald-500/10 border-emerald-500/20';
+              if (score < 50) {
+                scoreColor = 'text-rose-500';
+                bgColor = 'bg-rose-500/10 border-rose-500/20';
+              } else if (score < 75) {
+                scoreColor = 'text-amber-500';
+                bgColor = 'bg-amber-500/10 border-amber-500/20';
+              }
+              const name = p.property?.property_name?.split('-')[0]?.trim() || p.property?.legal_owner_name || 'Property';
+              
+              return (
+                <div key={p.property?.id || Math.random()} className={`flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-full border ${bgColor}`}>
+                  <Activity size={14} className={scoreColor} />
+                  <span className="text-xs font-semibold text-zinc-700">{name}</span>
+                  <span className={`text-xs font-bold ${scoreColor}`}>{score}</span>
+                </div>
+              );
+            })}
+          </div>
+
           <PortfolioWeatherMap predictiveData={predictiveData} />
         </section>
       ))}

@@ -1,0 +1,53 @@
+import { DocHeader, DocSection } from '../../../components/process/DocComponents';
+import { TrendingUp } from 'lucide-react';
+
+export default function FunnelMath() {
+  return (
+    <div className="p-10 max-w-4xl mx-auto h-full overflow-y-auto pb-32">
+      <DocHeader
+        title="The Funnel Math"
+        subtitle="Where Your Number Comes From"
+        icon={<TrendingUp size={24} className="text-white" />}
+        gradient="from-blue-500 to-indigo-700"
+      />
+
+      <DocSection title="The Formula">
+        <div className="rounded-2xl border border-stone-200 bg-white shadow-sm overflow-hidden mt-4">
+          <div className="px-6 py-5 border-b border-stone-100 bg-stone-50">
+            <p className="text-[12px] font-bold text-stone-600">Q3 Target: $15,000/month · 3 deals · $5K avg deal</p>
+          </div>
+          <div className="p-6">
+            <div className="space-y-3">
+              {[
+                { metric: '48 Conversations/month',    detail: '12/week. A "conversation" = 2+ min with the right person where you explored pain.', rate: '', color: 'bg-blue-500' },
+                { metric: '× 33% scheduling rate',     detail: '= 16 meetings set. Nicolas runs 34.9%. Your team avg is 28%. This is the Three Waves gap.', rate: '16 set', color: 'bg-indigo-500' },
+                { metric: '× 80% show rate',           detail: '= 13 meetings held. Your team is at 50%. The accept-on-phone technique is the fix.', rate: '13 held', color: 'bg-violet-500' },
+                { metric: '× 75% demo-to-proposal',    detail: '= 10 proposals sent. You\'re already here — no changes needed.', rate: '10 proposals', color: 'bg-purple-500' },
+                { metric: '× 30% close rate',          detail: '= 3 deals won. Tyler is at 29% — proof it\'s achievable. BAP scorecard drives this.', rate: '3 deals', color: 'bg-[#FF2A7F]' },
+                { metric: '× $5,000 avg deal',         detail: '= $15,000/month. The goal. The math works if the inputs work.', rate: '$15,000', color: 'bg-emerald-600' },
+              ].map((row, i) => (
+                <div key={i} className="flex items-center gap-4">
+                  <div className={`w-2 h-10 rounded-full ${row.color} shrink-0`} />
+                  <div className="flex-1">
+                    <p className="text-[13px] font-bold text-stone-900">{row.metric}</p>
+                    <p className="text-[11px] text-stone-500">{row.detail}</p>
+                  </div>
+                  {row.rate && (
+                    <div className="text-right shrink-0">
+                      <span className="text-[14px] font-black text-stone-800">{row.rate}</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="px-6 py-4 bg-gradient-to-r from-[#FF2A7F]/10 to-rose-50 border-t border-rose-100">
+            <p className="text-[12px] text-stone-600 leading-relaxed">
+              <strong className="text-stone-900">The bottom line:</strong> We're not asking you to become superhuman. Fix two numbers — your <strong>show rate</strong> (50% → 80%) and your <strong>scheduling consistency</strong> (28% → 33%). If those two move, the revenue follows automatically.
+            </p>
+          </div>
+        </div>
+      </DocSection>
+    </div>
+  );
+}

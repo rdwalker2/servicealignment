@@ -1,0 +1,82 @@
+[
+  {
+    "address": "1151 Galleria Blvd, Roseville, CA",
+    "coordinates": [
+      -121.2697546,
+      38.7738908
+    ],
+    "placeName": "Westfield Galleria at Roseville",
+    "managementCompany": "Brookfield Properties",
+    "industry": "Retail Management",
+    "decisionMaker": {
+      "name": "Sarah Chen",
+      "title": "Director of Facilities & Maintenance",
+      "email": "sarah.chen@brookfieldproperties.com",
+      "mobile": "+1 (307) 555-4418"
+    }
+  },
+  {
+    "address": "8000 Metro Air Pkwy, Sacramento, CA",
+    "coordinates": [
+      -121.5672615,
+      38.6774736
+    ],
+    "placeName": "Metro Air Parkway",
+    "managementCompany": "Prologis",
+    "industry": "Industrial Logistics",
+    "decisionMaker": {
+      "name": "Sarah Smith",
+      "title": "Director of Facilities & Maintenance",
+      "email": "sarah.smith@prologis.com",
+      "mobile": "+1 (214) 555-6818"
+    }
+  },
+  {
+    "address": "2315 Stockton Blvd, Sacramento, CA",
+    "coordinates": [
+      -121.4563168,
+      38.5547336
+    ],
+    "placeName": "UC Davis University Tower",
+    "managementCompany": "UC Davis Health Facilities",
+    "industry": "Healthcare",
+    "decisionMaker": {
+      "name": "Robert Miller",
+      "title": "Director of Facilities & Maintenance",
+      "email": "robert.miller@ucdavishealthfacilities.com",
+      "mobile": "+1 (446) 555-7042"
+    }
+  },
+  {
+    "address": "4590 S Virginia St, Reno, NV",
+    "coordinates": [
+      -119.792521,
+      39.4841462
+    ],
+    "placeName": "4590",
+    "managementCompany": "Reno-Sparks Convention and Visitors Authority",
+    "industry": "Government",
+    "decisionMaker": {
+      "name": "Jessica Martinez",
+      "title": "Director of Facilities & Maintenance",
+      "email": "jessica.martinez@renosparksconventionandvisitorsauthority.com",
+      "mobile": "+1 (606) 555-8018"
+    }
+  },
+  {
+    "address": "1 Electric Ave, Sparks, NV",
+    "coordinates": [
+      -119.4390524,
+      39.5403926
+    ],
+    "placeName": "Tesla Gigafactory 1",
+    "managementCompany": "Tesla Global Facilities",
+    "industry": "Manufacturing",
+    "decisionMaker": {
+      "name": "Jessica Martinez",
+      "title": "Director of Facilities & Maintenance",
+      "email": "jessica.martinez@teslaglobalfacilities.com",
+      "mobile": "+1 (329) 555-7189"
+    }
+  }
+]

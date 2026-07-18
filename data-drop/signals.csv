@@ -1,0 +1,4 @@
+Signal ID,Contact Email,Signal Type,Signal Score,Timestamp
+s1,alice@acme.com,Pricing Page View,8,2026-06-15T10:00:00Z
+s2,alice@acme.com,G2 Comparison,9,2026-06-14T10:00:00Z
+s3,bob@acme.com,Email Open,2,2026-06-13T10:00:00Z

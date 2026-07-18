@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI in Recruiting: Open vs. Closed — Scout Clinical</title>
+  <meta name="description" content="How Teamtailor's open MCP protocol compares to ClearCompany's closed AI agents — prepared for Scout Clinical.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-primary: #6366f1;
+      --color-primary-light: #818cf8;
+      --color-primary-dark: #4f46e5;
+      --color-primary-bg: #eef2ff;
+      --color-primary-bg-subtle: #f5f7ff;
+      --color-accent: #8b5cf6;
+      --color-success: #10b981;
+      --color-success-bg: #ecfdf5;
+      --color-danger: #ef4444;
+      --color-danger-bg: #fef2f2;
+      --color-warning: #f59e0b;
+      --color-warning-bg: #fffbeb;
+      --color-text: #1e1b4b;
+      --color-text-secondary: #4b5563;
+      --color-text-muted: #6b7280;
+      --color-border: #e5e7eb;
+      --color-border-light: #f3f4f6;
+      --color-bg: #ffffff;
+      --color-bg-subtle: #f9fafb;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
+      --shadow-xl: 0 20px 60px rgba(0,0,0,0.1);
+    }
+    html { font-size: 15px; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--color-text);
+      background: #e8e8ec;
+      line-height: 1.7;
+    }
+
+    /* ── Page Cards ── */
+    .page {
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 64px 72px;
+      background: var(--color-bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .section-number {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--color-primary);
+      margin-bottom: 8px;
+      opacity: 0.7;
+    }
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+
+    /* ── Cover Page ── */
+    .cover-page {
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0;
+      background: linear-gradient(160deg, #1e1b4b 0%, #312e81 35%, #4338ca 100%);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      position: relative;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+    }
+    .cover-page::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cover-badge {
+      position: absolute;
+      top: 32px; right: 40px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 6px 16px;
+      border-radius: 100px;
+    }
+    .cover-content {
+      flex: 1;
+      padding: 72px 72px 40px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .cover-logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+    .cover-from {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.04em;
+    }
+    .cover-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .cover-subtitle {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 400;
+      margin-bottom: 40px;
+      max-width: 500px;
+    }
+    .cover-divider {
+      width: 64px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-primary-light), var(--color-accent));
+      border-radius: 2px;
+      margin-bottom: 28px;
+    }
+    .cover-for {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 36px;
+    }
+    .cover-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .cover-company {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .cover-meta {
+      display: flex;
+      gap: 40px;
+    }
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .cover-meta-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .cover-meta-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+    }
+    .cover-footer {
+      padding: 20px 72px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      z-index: 1;
+    }
+    .cover-footer span {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── Comparison Cards ── */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 8px;
+    }
+    .compare-card {
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      border: 1px solid var(--color-border);
+    }
+    .compare-card.theirs {
+      background: var(--color-danger-bg);
+      border-color: #fecaca;
+    }
+    .compare-card.ours {
+      background: var(--color-primary-bg);
+      border-color: #c7d2fe;
+    }
+    .compare-card .card-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .compare-card.theirs .card-label { color: var(--color-danger); }
+    .compare-card.ours .card-label { color: var(--color-primary); }
+    .compare-card .tag-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+    }
+    .compare-card.theirs .tag-dot { background: var(--color-danger); opacity: 0.6; }
+    .compare-card.ours .tag-dot { background: var(--color-success); }
+    .compare-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .compare-card li {
+      font-size: 0.88rem;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      padding-left: 18px;
+      position: relative;
+    }
+    .compare-card li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 7px;
+      width: 6px; height: 6px;
+      border-radius: 1px;
+    }
+    .compare-card.theirs li::before { background: rgba(239,68,68,0.3); }
+    .compare-card.ours li::before { background: rgba(99,102,241,0.4); }
+    .compare-card li strong { color: var(--color-text); font-weight: 600; }
+    .compare-card.theirs li em { color: var(--color-danger); font-style: normal; font-weight: 500; }
+    .compare-card.ours li em { color: var(--color-primary); font-style: normal; font-weight: 600; }
+
+    /* ── Use Cases Grid ── */
+    .use-cases-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .use-case {
+      padding: 22px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border-light);
+      background: var(--color-bg-subtle);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .use-case:hover {
+      border-color: var(--color-primary-light);
+      box-shadow: var(--shadow-sm);
+    }
+    .use-case .uc-icon {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .use-case .uc-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 4px;
+    }
+    .use-case .uc-desc {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── Summary Box ── */
+    .summary-box {
+      margin-top: 36px;
+      padding: 28px 32px;
+      background: linear-gradient(135deg, #1e1b4b, #312e81);
+      border-radius: var(--radius-md);
+      color: #fff;
+    }
+    .summary-box h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: rgba(255,255,255,0.95);
+    }
+    .summary-box p {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+    }
+    .summary-box p strong {
+      color: rgba(255,255,255,0.95);
+      font-weight: 600;
+    }
+
+    /* ── Why It Matters ── */
+    .matters-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .matters-item {
+      padding: 22px 20px;
+      border-radius: var(--radius-sm);
+      background: var(--color-primary-bg-subtle);
+      border: 1px solid #e0e7ff;
+    }
+    .matters-item h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      margin-bottom: 6px;
+    }
+    .matters-item p {
+      font-size: 0.82rem;
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ── Big Idea Steps ── */
+    .idea-steps {
+      margin-top: 8px;
+    }
+    .idea-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 18px 0;
+    }
+    .idea-step + .idea-step {
+      border-top: 1px solid var(--color-border-light);
+    }
+    .idea-step .step-icon {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      background: var(--color-primary-bg);
+      border: 1px solid #e0e7ff;
+    }
+    .idea-step p {
+      font-size: 0.95rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+    .idea-step p strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    /* ── Screenshot Gallery ── */
+    .screenshot-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-top: 12px;
+    }
+    .screenshot-item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .screenshot-item img {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-md);
+    }
+    .screenshot-caption {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 720px) {
+      .page { padding: 40px 28px; margin: 20px 16px; }
+      .cover-content { padding: 48px 28px 28px; }
+      .cover-footer { padding: 16px 28px; }
+      .cover-title { font-size: 2rem; }
+      .comparison-grid, .use-cases-grid { grid-template-columns: 1fr; }
+      .matters-grid { grid-template-columns: 1fr; }
+      .cover-meta { flex-direction: column; gap: 16px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { box-shadow: none; margin: 0 auto; break-inside: avoid; }
+      .cover-page { break-after: page; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ COVER PAGE ═══ -->
+  <section class="cover-page">
+    <div class="cover-badge">CONFIDENTIAL</div>
+    <div class="cover-content">
+      <div class="cover-logo-area">
+        <svg width="40" height="40" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="12" fill="url(#g1)"/><path d="M14 24L22 32L34 16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs></svg>
+        <span class="cover-from">Prepared by Teamtailor</span>
+      </div>
+      <h1 class="cover-title">AI in Recruiting:<br>Open vs. Closed</h1>
+      <p class="cover-subtitle">How two platforms approach AI — and what it means for your team</p>
+      <div class="cover-divider"></div>
+      <div class="cover-for">
+        <span class="cover-label">Prepared for</span>
+        <span class="cover-company">Scout Clinical</span>
+      </div>
+      <div class="cover-meta">
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Date</span>
+          <span class="cover-meta-value">June 2026</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Contact</span>
+          <span class="cover-meta-value">Jack Luther</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Executive Sponsor</span>
+          <span class="cover-meta-value">Ryan Walker</span>
+        </div>
+      </div>
+    </div>
+    <div class="cover-footer">
+      <span>© 2026 Teamtailor — This document is confidential and intended solely for Scout Clinical.</span>
+    </div>
+  </section>
+
+  <!-- ═══ 01 — THE BIG IDEA ═══ -->
+  <section class="page">
+    <div class="section-number">01</div>
+    <h2 class="section-title">Both Platforms Have AI. The Question Is: What Kind?</h2>
+    <p class="section-subtitle">ClearCompany and Teamtailor both use AI in their platforms today. The difference is in how each is building what comes next.</p>
+
+    <div class="idea-steps">
+      <div class="idea-step">
+        <div class="step-icon">🤖</div>
+        <p><strong>What both platforms already do:</strong> Both ClearCompany and Teamtailor have AI built into the product — resume parsing, candidate matching, job description writing, screening recommendations. This isn't new. Teamtailor has shipped its integrated <strong>Copilot</strong> since 2023, covering everything from AI-generated job ads to candidate summaries to smart screening.</p>
+      </div>
+      <div class="idea-step">
+        <div class="step-icon">🔒</div>
+        <p><strong>ClearCompany's next step — Closed Agents:</strong> ClearCompany is building 5 proprietary AI agents that run inside their platform. You use ClearCo's agents, on ClearCo's models, at ClearCo's pace. It's a closed system — powerful if they build exactly what you need, limiting if they don't.</p>
+      </div>
+      <div class="idea-step">
+        <div class="step-icon">🔓</div>
+        <p><strong>Teamtailor's next step — Open Protocol:</strong> Teamtailor took a different approach. On top of the Copilot that's already built into every workflow, they added <strong>MCP</strong> (Model Context Protocol) — an open standard that lets <strong>any AI tool you already use</strong> (ChatGPT, Claude, Gemini) connect directly to your ATS data. We built our own AI, <em>and</em> we know when to partner with the industry leaders for the best result.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 02 — SIDE-BY-SIDE ═══ -->
+  <section class="page">
+    <div class="section-number">02</div>
+    <h2 class="section-title">Side-by-Side: What's New From Each Platform</h2>
+    <p class="section-subtitle">Both have existing AI. Here's how each is expanding it.</p>
+
+    <div class="comparison-grid">
+      <div class="compare-card theirs">
+        <div class="card-label"><span class="tag-dot"></span>ClearCompany AI Agents</div>
+        <ul>
+          <li><strong>Existing AI:</strong> Resume parsing, candidate matching, basic screening — standard ATS features</li>
+          <li><strong>What's new:</strong> 5 proprietary AI agents (Sourcing, Screening, Scheduling, Engagement, Compliance)</li>
+          <li>Agents run on <em>ClearCo's models</em> inside <em>ClearCo's platform</em></li>
+          <li>Pricing unclear — <em>consumption-based with no published cap</em></li>
+          <li>You're limited to what ClearCo decides to build</li>
+          <li>When a better AI model launches, <em>you wait for ClearCo to adopt it</em></li>
+        </ul>
+      </div>
+      <div class="compare-card ours">
+        <div class="card-label"><span class="tag-dot"></span>Teamtailor Copilot + MCP</div>
+        <ul>
+          <li><strong>Existing AI (Copilot, since 2023):</strong> AI job ads, candidate summaries, smart screening, AI-assisted search — built into every workflow</li>
+          <li><strong>What's new:</strong> MCP — connect <strong>any</strong> external AI tool (ChatGPT, Claude, Gemini) directly to your ATS data</li>
+          <li>Built on the same <strong>open standard</strong> used by Salesforce, HubSpot, and Notion</li>
+          <li><strong>Free add-on</strong> — included in your subscription, no consumption fees</li>
+          <li><em>You</em> choose the AI. <em>You</em> own the workflow.</li>
+          <li>When a better AI model launches, <em>you just plug it in</em></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 03 — WHAT MCP ADDS ON TOP OF COPILOT ═══ -->
+  <section class="page">
+    <div class="section-number">03</div>
+    <h2 class="section-title">What MCP Adds On Top of Copilot</h2>
+    <p class="section-subtitle">Copilot handles AI inside Teamtailor. MCP lets you bring your own AI tools to the table.</p>
+
+    <div class="use-cases-grid">
+      <div class="use-case">
+        <span class="uc-icon">🔍</span>
+        <div class="uc-title">"Show me my open positions"</div>
+        <p class="uc-desc">Ask ChatGPT or Claude to pull up all active jobs with status, applicant counts, and posting dates — without opening Teamtailor.</p>
+      </div>
+      <div class="use-case">
+        <span class="uc-icon">👤</span>
+        <div class="uc-title">"Summarize this candidate"</div>
+        <p class="uc-desc">Get an AI summary of any candidate's application, resume, and notes — right in the AI tool you're already using.</p>
+      </div>
+      <div class="use-case">
+        <span class="uc-icon">✍️</span>
+        <div class="uc-title">"Update this job description"</div>
+        <p class="uc-desc">Edit and publish job postings through your AI assistant without switching tabs.</p>
+      </div>
+      <div class="use-case">
+        <span class="uc-icon">📊</span>
+        <div class="uc-title">"How's our pipeline looking?"</div>
+        <p class="uc-desc">Real-time pipeline analytics — who's in review, interviewing, or needs follow-up.</p>
+      </div>
+      <div class="use-case">
+        <span class="uc-icon">📋</span>
+        <div class="uc-title">"Find candidates for this role"</div>
+        <p class="uc-desc">Your AI searches your existing talent pool and surfaces matches from past applicants.</p>
+      </div>
+      <div class="use-case">
+        <span class="uc-icon">🤖</span>
+        <div class="uc-title">"Run my morning briefing"</div>
+        <p class="uc-desc">Set up a daily prompt that summarizes new applicants, upcoming interviews, and stale candidates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 04 — SEE IT IN ACTION ═══ -->
+  <section class="page">
+    <div class="section-number">04</div>
+    <h2 class="section-title">See It In Action</h2>
+    <p class="section-subtitle">Real screenshots from Teamtailor’s MCP integration running inside ChatGPT.</p>
+
+    <div class="screenshot-gallery">
+      <div class="screenshot-item">
+        <img src="images/mcp-page3-img2.jpeg" alt="Teamtailor MCP authorization screen in ChatGPT" />
+        <p class="screenshot-caption">One-click authorization — connect ChatGPT to Teamtailor with Read and Create permissions, scoped to your divisions.</p>
+      </div>
+      <div class="screenshot-item">
+        <img src="images/mcp-page4-img2.jpeg" alt="ChatGPT listing open positions from Teamtailor" />
+        <p class="screenshot-caption">“Give me a list of my open positions” — ChatGPT pulls all 25 active jobs directly from Teamtailor in seconds.</p>
+      </div>
+      <div class="screenshot-item">
+        <img src="images/mcp-page6-img2.jpeg" alt="ChatGPT summarizing a candidate application from Teamtailor" />
+        <p class="screenshot-caption">“Bring me up to speed on Julie’s application” — Full candidate summary with stage, interview activity, timeline, and next steps.</p>
+      </div>
+      <div class="screenshot-item">
+        <img src="images/mcp-page7-img2.jpeg" alt="ChatGPT updating a job description in Teamtailor" />
+        <p class="screenshot-caption">“Update the Business Analyst job description” — ChatGPT writes and publishes the change directly to your live ATS.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 05 — WHY IT MATTERS + BOTTOM LINE ═══ -->
+  <section class="page">
+    <div class="section-number">05</div>
+    <h2 class="section-title">Why This Matters</h2>
+    <p class="section-subtitle">The AI model that's best today won't be best in 12 months. Your ATS architecture should account for that.</p>
+
+    <div class="matters-grid">
+      <div class="matters-item">
+        <h4>No Vendor Lock-In</h4>
+        <p>MCP is an open standard — not proprietary tech. If you switch AI tools, your ATS connection stays the same.</p>
+      </div>
+      <div class="matters-item">
+        <h4>You Own Your Workflows</h4>
+        <p>Build AI workflows that match how <em>you</em> recruit — not how a vendor thinks you should.</p>
+      </div>
+      <div class="matters-item">
+        <h4>Future-Proof by Design</h4>
+        <p>When GPT-5 or Claude 5 launches, you connect it to Teamtailor the same day. No waiting, no upgrade fees.</p>
+      </div>
+    </div>
+
+    <div class="summary-box">
+      <h3>The Bottom Line</h3>
+      <p>
+        Both platforms have AI built in. ClearCompany is adding proprietary agents that only work inside their system.
+        Teamtailor already ships Copilot across every workflow — <strong>and</strong> opens the door for you to connect any external AI tool through MCP.
+      </p>
+      <p style="margin-top: 12px;">
+        We built our own AI. We also know when to partner with the industry leaders for the best result. <strong>That's the difference.</strong>
+      </p>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-12 Power Table — Teamtailor US Prospecting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border: #e2e8f0;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --text-muted: #94a3b8;
+      --accent-blue: #3b82f6;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      --accent-purple: #8b5cf6;
+      --accent-cyan: #06b6d4;
+      --gradient-1: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      --gradient-2: linear-gradient(135deg, #10b981, #06b6d4);
+      --gradient-gold: linear-gradient(135deg, #f59e0b, #ef4444);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .noise {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    .container { max-width: 1700px; margin: 0 auto; padding: 24px; position: relative; z-index: 1; }
+
+    /* Header */
+    .header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 24px; flex-wrap: wrap; gap: 16px;
+    }
+    .header-left { display: flex; align-items: center; gap: 16px; }
+    .logo {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--gradient-1); display: flex; align-items: center; justify-content: center;
+      font-size: 24px; font-weight: 900; color: white;
+    }
+    .header h1 {
+      font-size: 24px; font-weight: 800;
+      background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .header-subtitle { color: var(--text-muted); font-size: 13px; margin-top: 2px; }
+
+    /* Loading */
+    .loading-overlay {
+      position: fixed; inset: 0; background: var(--bg-dark); z-index: 9999;
+      display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px;
+    }
+    .loading-overlay.hidden { display: none; }
+    .spinner {
+      width: 48px; height: 48px; border: 3px solid var(--border);
+      border-top-color: var(--accent-blue); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { color: var(--text-secondary); font-size: 14px; }
+
+    /* Stats bar */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px; margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 16px 20px; transition: all 0.2s;
+    }
+    .stat-card:hover { border-color: var(--accent-blue); transform: translateY(-1px); }
+    .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 4px; }
+    .stat-value { font-size: 28px; font-weight: 800; }
+    .stat-value.blue { color: var(--accent-blue); }
+    .stat-value.green { color: var(--accent-green); }
+    .stat-value.amber { color: var(--accent-amber); }
+    .stat-value.red { color: var(--accent-red); }
+    .stat-value.purple { color: var(--accent-purple); }
+    .stat-value.cyan { color: var(--accent-cyan); }
+    .stat-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+    /* Filters */
+    .filters-section {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 20px; margin-bottom: 20px;
+    }
+    .filters-header {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
+    }
+    .filters-header h3 { font-size: 14px; font-weight: 600; color: var(--text-secondary); }
+    .filters-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px;
+    }
+    .filter-group label {
+      display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--text-muted); margin-bottom: 6px; font-weight: 600;
+    }
+    .filter-group select, .filter-group input {
+      width: 100%; padding: 8px 12px; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--bg-dark); color: var(--text-primary);
+      font-size: 13px; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s;
+    }
+    .filter-group select:focus, .filter-group input:focus { border-color: var(--accent-blue); }
+
+    .btn-reset {
+      padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border);
+      background: transparent; color: var(--text-secondary); font-size: 12px;
+      cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s;
+    }
+    .btn-reset:hover { border-color: var(--accent-red); color: var(--accent-red); }
+
+    /* Quick filter pills */
+    .quick-filters { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    .pill {
+      padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 500;
+      border: 1px solid var(--border); background: var(--bg-card); color: var(--text-secondary);
+      cursor: pointer; transition: all 0.2s; user-select: none;
+    }
+    .pill:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+    .pill.active {
+      background: var(--accent-blue); border-color: var(--accent-blue); color: white;
+    }
+    .pill.green.active { background: var(--accent-green); border-color: var(--accent-green); }
+    .pill.amber.active { background: var(--accent-amber); border-color: var(--accent-amber); }
+    .pill.purple.active { background: var(--accent-purple); border-color: var(--accent-purple); }
+    .pill.cyan.active { background: var(--accent-cyan); border-color: var(--accent-cyan); }
+
+    /* State heat map */
+    .heatmap-section {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 20px; margin-bottom: 20px;
+    }
+    .heatmap-section h3 { font-size: 14px; font-weight: 600; color: var(--text-secondary); margin-bottom: 12px; }
+    .state-grid {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .state-chip {
+      padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s; border: 1px solid transparent;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .state-chip:hover { transform: scale(1.05); }
+    .state-chip.selected { border-color: #1e293b; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
+    .state-chip .count { opacity: 0.7; font-weight: 400; }
+
+    /* Table */
+    .table-wrapper {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      overflow: hidden;
+    }
+    .table-header-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; border-bottom: 1px solid var(--border);
+    }
+    .table-header-bar h3 { font-size: 14px; font-weight: 600; }
+    .result-count { font-size: 12px; color: var(--text-muted); }
+    .btn-export {
+      padding: 8px 16px; border-radius: 8px; border: none;
+      background: var(--gradient-1); color: white; font-size: 12px; font-weight: 600;
+      cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.2s;
+    }
+    .btn-export:hover { opacity: 0.9; }
+    .export-menu.show { display: block !important; }
+    .export-menu button:hover { background: var(--bg-card-hover); }
+
+    .table-scroll { overflow-x: auto; max-height: 70vh; overflow-y: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead { position: sticky; top: 0; z-index: 2; }
+    th {
+      padding: 10px 14px; text-align: left; font-size: 11px; text-transform: uppercase;
+      letter-spacing: 0.5px; color: var(--text-muted); font-weight: 600;
+      background: #f1f5f9; border-bottom: 1px solid var(--border);
+      cursor: pointer; user-select: none; white-space: nowrap; transition: color 0.2s;
+    }
+    th:hover { color: var(--accent-blue); }
+    th.sorted { color: var(--accent-blue); }
+    th .sort-arrow { margin-left: 4px; font-size: 10px; }
+    td {
+      padding: 10px 14px; border-bottom: 1px solid var(--border);
+      white-space: nowrap; transition: background 0.15s;
+    }
+    tr:hover td { background: var(--bg-card-hover); }
+
+    /* Badges */
+    .badge {
+      display: inline-block; padding: 3px 8px; border-radius: 4px;
+      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;
+    }
+    .badge.hot { background: rgba(6, 182, 212, 0.12); color: #0891b2; }
+    .badge.high { background: rgba(16, 185, 129, 0.12); color: #059669; }
+    .badge.medium { background: rgba(245, 158, 11, 0.12); color: var(--accent-amber); }
+    .badge.low { background: rgba(100, 116, 139, 0.12); color: var(--text-muted); }
+
+    .badge.ats-none { background: rgba(16, 185, 129, 0.12); color: #059669; }
+    .badge.ats-paper { background: rgba(251, 146, 60, 0.15); color: #ea580c; font-weight: 600; }
+    .badge.ats-legacy { background: rgba(245, 158, 11, 0.12); color: #d97706; }
+    .badge.ats-modern { background: rgba(239, 68, 68, 0.12); color: #dc2626; }
+    .badge.ats-unknown { background: rgba(100, 116, 139, 0.1); color: var(--text-muted); }
+    .badge.ats-tt { background: rgba(139, 92, 246, 0.15); color: #7c3aed; }
+
+    .badge.locale-city { background: rgba(59, 130, 246, 0.12); color: #2563eb; }
+    .badge.locale-suburb { background: rgba(139, 92, 246, 0.12); color: #7c3aed; }
+    .badge.locale-town { background: rgba(245, 158, 11, 0.12); color: #d97706; }
+    .badge.locale-rural { background: rgba(16, 185, 129, 0.12); color: #059669; }
+
+    .badge.icp-a { background: rgba(16, 185, 129, 0.12); color: #059669; }
+    .badge.icp-b { background: rgba(6, 182, 212, 0.12); color: #0891b2; }
+    .badge.icp-c { background: rgba(245, 158, 11, 0.12); color: #d97706; }
+    .badge.icp-d { background: rgba(100, 116, 139, 0.1); color: var(--text-muted); }
+
+    .trend-up { color: #059669; font-weight: 600; }
+    .trend-down { color: #dc2626; font-weight: 600; }
+    .trend-flat { color: var(--text-muted); }
+
+    .badge.customer { background: rgba(139, 92, 246, 0.15); color: #7c3aed; }
+    .badge.near-cust { background: rgba(6, 182, 212, 0.12); color: #0891b2; font-size: 10px; }
+    .badge.apptegy { background: rgba(236, 72, 153, 0.12); color: #db2777; }
+    .badge.cms-modern { background: rgba(52, 211, 153, 0.12); color: #059669; }
+    .badge.cms-none { background: rgba(100, 116, 139, 0.12); color: #64748b; }
+    .badge.hr-sis { background: rgba(251, 191, 36, 0.12); color: #d97706; }
+    .badge.hr-none { background: rgba(100, 116, 139, 0.1); color: #94a3b8; }
+
+    .district-link {
+      font-weight: 600; color: var(--text-primary); text-decoration: none;
+      transition: color 0.15s;
+    }
+    .district-link:hover { color: var(--accent-blue); text-decoration: underline; }
+    .district-name { font-weight: 600; color: var(--text-primary); }
+    tr.is-customer td { background: rgba(139, 92, 246, 0.04); }
+    tr.is-customer:hover td { background: rgba(139, 92, 246, 0.08); }
+    .state-abbr { color: var(--text-muted); font-weight: 500; }
+
+    /* Pagination */
+    .pagination {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 16px; border-top: 1px solid var(--border);
+    }
+    .page-btn {
+      padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border);
+      background: transparent; color: var(--text-secondary); font-size: 12px;
+      cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s;
+    }
+    .page-btn:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+    .page-btn.active { background: var(--accent-blue); border-color: var(--accent-blue); color: white; }
+    .page-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .page-info { font-size: 12px; color: var(--text-muted); }
+
+    @media (max-width: 768px) {
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .filters-grid { grid-template-columns: 1fr; }
+      .header h1 { font-size: 18px; }
+    }
+
+    /* ======================== */
+    /* DISTRICT DRAWER          */
+    /* ======================== */
+    .drawer-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3); z-index: 900; opacity: 0;
+      pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+    .drawer {
+      position: fixed; top: 0; right: -500px; width: 480px; height: 100vh;
+      background: #ffffff; border-left: 1px solid var(--border);
+      z-index: 1000; transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto; box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+    }
+    .drawer.open { right: 0; }
+
+    .drawer-close {
+      position: absolute; top: 16px; right: 16px; width: 32px; height: 32px;
+      border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card);
+      color: var(--text-secondary); font-size: 16px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+    }
+    .drawer-close:hover { background: var(--accent-red); color: white; border-color: var(--accent-red); }
+
+    .drawer-header {
+      padding: 24px 24px 16px; border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(59,130,246,0.05) 0%, transparent 100%);
+    }
+    .drawer-district-name {
+      font-size: 18px; font-weight: 700; color: var(--text-primary);
+      margin-bottom: 4px; line-height: 1.3; padding-right: 40px;
+    }
+    .drawer-location { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
+    .drawer-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .drawer-badges .badge { font-size: 11px; }
+
+    .drawer-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    }
+    .drawer-stat {
+      background: var(--bg-card); border-radius: 8px; padding: 10px;
+      text-align: center; border: 1px solid var(--border);
+    }
+    .drawer-stat-value { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+    .drawer-stat-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+    .drawer-section {
+      padding: 16px 24px; border-bottom: 1px solid var(--border);
+    }
+    .drawer-section-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--text-muted); margin-bottom: 12px;
+    }
+
+    .contact-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 14px; margin-bottom: 8px;
+      transition: border-color 0.15s;
+    }
+    .contact-card:hover { border-color: var(--accent-blue); }
+    .contact-role {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.8px; margin-bottom: 6px;
+    }
+    .contact-role.decision_maker { color: #f59e0b; }
+    .contact-role.champion { color: #8b5cf6; }
+    .contact-role.gatekeeper { color: #06b6d4; }
+    .contact-name { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+    .contact-name-link {
+      font-size: 14px; font-weight: 600; color: var(--text-primary);
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      transition: color 0.15s;
+    }
+    .contact-name-link:hover { color: var(--accent-blue); }
+    .li-badge {
+      font-size: 9px; font-weight: 700; color: white;
+      background: #0a66c2; border-radius: 3px; padding: 1px 4px;
+      letter-spacing: -0.5px; line-height: 1;
+    }
+    .contact-title { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+    .contact-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .contact-action {
+      font-size: 11px; padding: 4px 10px; border-radius: 6px;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--text-secondary); cursor: pointer; text-decoration: none;
+      transition: all 0.15s; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .contact-action:hover { background: var(--accent-blue); color: white; border-color: var(--accent-blue); }
+
+    .intel-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0; border-bottom: 1px solid rgba(226,232,240,0.8);
+      font-size: 13px;
+    }
+    .intel-row:last-child { border-bottom: none; }
+    .intel-label { color: var(--text-muted); }
+    .intel-value { color: var(--text-primary); font-weight: 500; }
+
+    .jobs-banner {
+      background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(249,115,22,0.15));
+      border: 1px solid rgba(239,68,68,0.3); border-radius: 10px;
+      padding: 14px; text-align: center;
+    }
+    .jobs-count { font-size: 24px; font-weight: 800; color: #ef4444; }
+    .jobs-label { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+    .jobs-link {
+      display: inline-block; margin-top: 8px; font-size: 12px;
+      color: var(--accent-blue); text-decoration: none;
+    }
+    .jobs-link:hover { text-decoration: underline; }
+    .jobs-none {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px; text-align: center;
+      color: var(--text-muted); font-size: 13px;
+    }
+
+    .quick-actions {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;
+      padding: 16px 24px 24px;
+    }
+    .quick-action-btn {
+      padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--bg-card); color: var(--text-primary);
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      transition: all 0.15s; display: flex; align-items: center;
+      justify-content: center; gap: 6px; text-decoration: none;
+    }
+    .quick-action-btn:hover { background: var(--accent-blue); border-color: var(--accent-blue); color: white; }
+    .quick-action-btn.primary { background: var(--accent-blue); border-color: var(--accent-blue); }
+    .quick-action-btn.primary:hover { background: #2563eb; }
+    .copy-feedback {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      background: var(--accent-green); color: white; padding: 10px 20px;
+      border-radius: 8px; font-size: 13px; font-weight: 600;
+      opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 2000;
+    }
+    .copy-feedback.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="loading-overlay" id="loading">
+    <div class="spinner"></div>
+    <div class="loading-text">Loading 9,451 districts…</div>
+  </div>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-left">
+        <a href="/team" style="text-decoration:none;display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-secondary);font-size:12px;font-weight:500;transition:all 0.2s;" onmouseover="this.style.borderColor='#FF2A7F';this.style.color='#FF2A7F'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">← Sales Command</a>
+        <div class="logo">K</div>
+        <div>
+          <h1>K-12 District Power Table</h1>
+          <div class="header-subtitle">Teamtailor US AE Prospecting — NCES 2024-25 Master Dataset</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Heat Map -->
+    <div class="heatmap-section">
+      <h3>📍 State Heat Map <span style="font-weight:400;color:var(--text-muted)">(click to filter)</span></h3>
+      <div class="state-grid" id="state-grid"></div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters-section">
+      <div class="filters-header">
+        <h3>🔍 Filters</h3>
+        <button class="btn-reset" onclick="resetFilters()">Reset All</button>
+      </div>
+      <div class="filters-grid">
+        <div class="filter-group">
+          <label>Search District</label>
+          <input type="text" id="search" placeholder="Type district name…" oninput="applyFilters()">
+        </div>
+        <div class="filter-group">
+          <label>State</label>
+          <select id="filter-state" onchange="applyFilters()"><option value="">All States</option></select>
+        </div>
+        <div class="filter-group">
+          <label>Current ATS</label>
+          <select id="filter-ats" onchange="applyFilters()">
+            <option value="">All ATS</option>
+            <option value="_no-ats">🟢 No ATS / Unknown</option>
+            <option value="_legacy">🟡 All Legacy ATS</option>
+            <option value="_modern">🔴 All Modern ATS</option>
+            <optgroup label="── Specific Platform ──" id="ats-options"></optgroup>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Website CMS</label>
+          <select id="filter-cms" onchange="applyFilters()">
+            <option value="">All CMS</option>
+            <option value="_has-cms">✅ Has CMS detected</option>
+            <option value="_no-cms">❌ No CMS detected</option>
+            <optgroup label="── Specific CMS ──" id="cms-options"></optgroup>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>HR/SIS Platform</label>
+          <select id="filter-hr" onchange="applyFilters()">
+            <option value="">All HR/SIS</option>
+            <option value="_has-hr">✅ Has HR/SIS detected</option>
+            <option value="_no-hr">❌ No HR/SIS detected</option>
+            <optgroup label="── Specific Platform ──" id="hr-options"></optgroup>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Locale Type</label>
+          <select id="filter-locale" onchange="applyFilters()">
+            <option value="">All Locales</option>
+            <option value="City">City</option>
+            <option value="Suburb">Suburb</option>
+            <option value="Town">Town</option>
+            <option value="Rural">Rural</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Staff Growth</label>
+          <select id="filter-growth" onchange="applyFilters()">
+            <option value="">All</option>
+            <option value="fast">🚀 Fast Growing (>5%)</option>
+            <option value="growing">📈 Growing (>0%)</option>
+            <option value="stable">➖ Stable (±1%)</option>
+            <option value="declining">📉 Declining (<0%)</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Revenue / Pupil</label>
+          <select id="filter-revenue" onchange="applyFilters()">
+            <option value="">All</option>
+            <option value="under15">Under $15K</option>
+            <option value="15to25">$15K – $25K</option>
+            <option value="over25">$25K+</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Min Staff</label>
+          <input type="number" id="filter-min-staff" placeholder="e.g. 100" oninput="applyFilters()">
+        </div>
+        <div class="filter-group">
+          <label>Max Staff</label>
+          <input type="number" id="filter-max-staff" placeholder="e.g. 1500" oninput="applyFilters()">
+        </div>
+        <div class="filter-group">
+          <label>Proximity to Customer</label>
+          <select id="filter-proximity" onchange="applyFilters()">
+            <option value="">All Districts</option>
+            <option value="near">📍 Near a Customer (any)</option>
+            <option value="25">📍 Within 25 miles</option>
+            <option value="50">📍 Within 50 miles</option>
+            <option value="100">📍 Within 100 miles</option>
+            <option value="customers">⭐ Customers Only</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrapper">
+      <div class="table-header-bar">
+        <div>
+          <h3>Target Districts</h3>
+          <div class="result-count" id="result-count"></div>
+        </div>
+        <div class="export-dropdown" style="position:relative;display:inline-block">
+          <button class="btn-export" onclick="this.nextElementSibling.classList.toggle('show')">⬇ Export ▾</button>
+          <div class="export-menu" style="display:none;position:absolute;right:0;top:110%;min-width:220px;background:#fff;border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:100;overflow:hidden">
+            <button onclick="exportAccountsCSV();this.parentElement.classList.remove('show')" style="display:block;width:100%;padding:10px 16px;border:none;background:none;text-align:left;font-size:13px;font-family:Inter,sans-serif;cursor:pointer;color:var(--text-primary);border-bottom:1px solid var(--border)">📊 Accounts CSV <span style="display:block;font-size:11px;color:var(--text-muted)">Salesforce Account import</span></button>
+            <button onclick="exportContactsCSV();this.parentElement.classList.remove('show')" style="display:block;width:100%;padding:10px 16px;border:none;background:none;text-align:left;font-size:13px;font-family:Inter,sans-serif;cursor:pointer;color:var(--text-primary);border-bottom:1px solid var(--border)">👥 Contacts CSV <span style="display:block;font-size:11px;color:var(--text-muted)">Salesforce Contact import</span></button>
+            <button onclick="exportBundleCSV();this.parentElement.classList.remove('show')" style="display:block;width:100%;padding:10px 16px;border:none;background:none;text-align:left;font-size:13px;font-family:Inter,sans-serif;cursor:pointer;color:var(--text-primary);border-bottom:1px solid var(--border)">📦 Full Bundle (Both) <span style="display:block;font-size:11px;color:var(--text-muted)">Accounts + Contacts in ZIP</span></button>
+            <button onclick="exportCSV();this.parentElement.classList.remove('show')" style="display:block;width:100%;padding:10px 16px;border:none;background:none;text-align:left;font-size:13px;font-family:Inter,sans-serif;cursor:pointer;color:var(--text-muted)">📋 Legacy CSV <span style="display:block;font-size:11px;color:var(--text-muted)">Original flat format</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead id="table-head"></thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </div>
+
+  <!-- District Detail Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+  <div class="drawer" id="drawer">
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+    <div id="drawerContent"></div>
+  </div>
+  <div class="copy-feedback" id="copyFeedback">✅ Sales brief copied to clipboard</div>
+
+  <script>
+    let allData = [];
+    let filtered = [];
+    let sortCol = 'priority_score';
+    let sortDir = -1;
+    let page = 0;
+    const PAGE_SIZE = 20;
+    let selectedState = null;
+    let activeQuickFilter = null;
+    let drawerDistrict = null;
+
+    // ========================
+    // CONTACT OVERRIDES (localStorage)
+    // ========================
+    const OVERRIDES_KEY = 'k12_contact_overrides';
+
+    function loadOverrides() {
+      try { return JSON.parse(localStorage.getItem(OVERRIDES_KEY) || '{}'); } catch { return {}; }
+    }
+
+    function saveOverrides(overrides) {
+      localStorage.setItem(OVERRIDES_KEY, JSON.stringify(overrides));
+    }
+
+    function getContacts(d) {
+      const overrides = loadOverrides();
+      if (overrides[d.nces_id]) return overrides[d.nces_id];
+      return d.contacts || [];
+    }
+
+    function saveContactsForDistrict(ncesId, contacts) {
+      const overrides = loadOverrides();
+      overrides[ncesId] = contacts;
+      saveOverrides(overrides);
+    }
+
+    function deleteOverrideForDistrict(ncesId) {
+      const overrides = loadOverrides();
+      delete overrides[ncesId];
+      saveOverrides(overrides);
+    }
+
+    // Close export dropdown on click outside
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.export-dropdown')) {
+        document.querySelectorAll('.export-menu').forEach(m => m.classList.remove('show'));
+      }
+    });
+
+    // --- ATS classification sets ---
+    const LEGACY_ATS = new Set([
+      'Frontline/AppliTrack', 'TalentEd/PowerSchool', 'SchoolSpring',
+      'OLAS', 'RecruitFront', 'RedRover'
+    ]);
+    const JOBBOARD_ATS = new Set([
+      'EdJoin (Job Board)', 'EdJoin + NEOGOV', 'EdJoin', 'EDJOIN', 'Nimble'
+    ]);
+    const MODERN_ATS = new Set([
+      'Greenhouse', 'Lever', 'Workday', 'SmartRecruiters', 'JazzHR',
+      'BambooHR', 'Breezy HR', 'iCIMS', 'Jobvite', 'NEOGOV',
+      'ADP/Workforce Now', 'Paycom', 'UltiPro/UKG', 'ApplicantPro', 'Hireology'
+    ]);
+    const NO_ATS_VALUES = new Set([
+      'Unknown', 'Not Scanned', 'No ATS Detected', ''
+    ]);
+
+    // --- Columns ---
+    const COLUMNS = [
+      { key: 'priority_score', label: 'Priority', width: '85px' },
+      { key: 'name',           label: 'District Name', width: '240px' },
+      { key: 'location',       label: 'Location', width: '140px' },
+      { key: 'locale_type',    label: 'Locale', width: '80px' },
+      { key: 'current_ats',    label: 'Current ATS', width: '150px' },
+      { key: 'website_platform', label: 'Website CMS', width: '120px' },
+      { key: 'hr_sis_platform', label: 'HR/SIS', width: '130px' },
+      { key: 'total_staff_2025', label: 'Total Staff', width: '90px' },
+      { key: 'staff_trend_pct', label: 'Staff Trend', width: '90px' },
+      { key: 'students_2025',  label: 'Students', width: '85px' },
+      { key: 'enrollment_trend_pct', label: 'Enroll Trend', width: '95px' },
+      { key: 'total_schools',  label: 'Schools', width: '65px' },
+      { key: 'total_revenue_per_pupil', label: 'Rev/Pupil', width: '95px' },
+      { key: 'target_persona', label: 'Who to Call', width: '160px' },
+      { key: 'icp_score',      label: 'ICP Fit', width: '70px' },
+    ];
+
+    // ========================
+    // PRIORITY SCORING
+    // ========================
+    function computePriority(d) {
+      let score = 0;
+      const ats = d.current_ats || '';
+
+      // Customer = max priority
+      if (d.is_customer) return 100;
+
+      // ATS scoring — Paper/Manual is the HOTTEST lead
+      if (ats === 'Paper/Manual') score += 30;
+      else if (NO_ATS_VALUES.has(ats) || JOBBOARD_ATS.has(ats)) score += 25;
+      else if (LEGACY_ATS.has(ats)) score += 15;
+
+      // Staff growth
+      const sg = d.staff_trend_pct || 0;
+      if (sg > 5) score += 20;
+      else if (sg > 0) score += 10;
+
+      // Locale
+      const loc = d.locale_type || '';
+      if (loc === 'Suburb') score += 10;
+      else if (loc === 'City') score += 5;
+
+      // Revenue per pupil
+      const rev = d.total_revenue_per_pupil || 0;
+      if (rev > 30000) score += 15;
+      else if (rev > 20000) score += 10;
+
+      // Staff size (ICP sweet spot)
+      const staff = d.total_staff_2025 || 0;
+      if (staff >= 100 && staff <= 500) score += 15;
+      else if (staff > 500 && staff <= 1500) score += 10;
+
+      // Near customer bonus
+      if (d.near_customer) score += 10;
+
+      // Apptegy user bonus (modern brand, no ATS)
+      if (d.uses_apptegy) score += 8;
+
+      // Has website
+      if (d.website) score += 2;
+
+      return score;
+    }
+
+    // ========================
+    // ICP FIT SCORING
+    // ========================
+    function computeICP(d) {
+      const staff = d.total_staff_2025 || 0;
+      const loc = d.locale_type || '';
+      const isSuburbOrCity = (loc === 'Suburb' || loc === 'City');
+
+      if (staff >= 100 && staff <= 1500 && isSuburbOrCity) return { label: 'A', score: 4 };
+      if (staff >= 100 && staff <= 1500) return { label: 'B', score: 3 };
+      if (staff > 1500 && staff <= 5000 && isSuburbOrCity) return { label: 'B', score: 3 };
+      if (staff >= 50 && staff < 100) return { label: 'C', score: 2 };
+      if (staff > 5000) return { label: 'C', score: 2 };
+      return { label: 'D', score: 1 };
+    }
+
+    // ========================
+    // DATA LOADING
+    // ========================
+    async function loadData() {
+      const resp = await fetch('/data/k12_master.json');
+      allData = await resp.json();
+
+      // Enrich each record
+      allData.forEach(d => {
+        d.priority_score = computePriority(d);
+        const icp = computeICP(d);
+        d.icp_label = icp.label;
+        d.icp_score = icp.score;
+        // Normalize missing
+        if (!d.current_ats) d.current_ats = 'Not Scanned';
+        if (!d.locale_type) d.locale_type = 'Unknown';
+        // Build location sort key
+        d.location = (d.city || '') + ', ' + (d.state || '');
+      });
+
+      document.getElementById('loading').classList.add('hidden');
+      init();
+    }
+
+    function init() {
+      renderStateHeatMap(allData);
+      // Update header with actual district count
+      const districtCount = allData.filter(d => !d.entity_type || d.entity_type === 'district').length;
+      document.querySelector('.header-subtitle').textContent = `Teamtailor US AE Prospecting — NCES 2024-25 Master Dataset · ${districtCount.toLocaleString()} Districts`;
+      populateStateFilter();
+      renderTableHead();
+      applyFilters();
+    }
+
+
+
+    // ========================
+    // STATE HEAT MAP
+    // ========================
+    function renderStateHeatMap(data) {
+      // Only count real districts (matching the table filter)
+      const districtData = data.filter(d => !d.entity_type || d.entity_type === 'district');
+      const stateCounts = {};
+      districtData.forEach(d => {
+        if (!stateCounts[d.state]) stateCounts[d.state] = { total: 0, highPri: 0 };
+        stateCounts[d.state].total++;
+        if (d.priority_score >= 50) stateCounts[d.state].highPri++;
+      });
+
+      const sorted = Object.entries(stateCounts).sort((a, b) => b[1].total - a[1].total);
+      const maxCount = Math.max(...sorted.map(([, v]) => v.total), 1);
+
+      const grid = document.getElementById('state-grid');
+      grid.innerHTML = sorted.map(([state, info]) => {
+        const intensity = info.total / maxCount;
+        const r = Math.round(59 + (16 - 59) * intensity);
+        const g = Math.round(130 + (185 - 130) * intensity);
+        const b = Math.round(246 + (129 - 246) * intensity);
+        const bg = `rgba(${r}, ${g}, ${b}, ${0.15 + intensity * 0.3})`;
+        const color = `rgb(${r}, ${g}, ${b})`;
+        return `<div class="state-chip" 
+                     style="background:${bg};color:${color}" 
+                     onclick="toggleState('${state}')"
+                     data-state="${state}">
+          ${state} <span class="count">${info.total}</span>
+        </div>`;
+      }).join('');
+    }
+
+    function toggleState(state) {
+      const chips = document.querySelectorAll('.state-chip');
+      if (selectedState === state) {
+        selectedState = null;
+        chips.forEach(c => c.classList.remove('selected'));
+        document.getElementById('filter-state').value = '';
+      } else {
+        selectedState = state;
+        chips.forEach(c => c.classList.toggle('selected', c.dataset.state === state));
+        document.getElementById('filter-state').value = state;
+      }
+      applyFilters();
+    }
+
+
+
+
+    // ========================
+    // POPULATE FILTERS
+    // ========================
+    function populateStateFilter() {
+      const states = [...new Set(allData.map(d => d.state))].sort();
+      const sel = document.getElementById('filter-state');
+      states.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s; opt.textContent = s;
+        sel.appendChild(opt);
+      });
+      populateDynamicDropdown('ats-options', d => d.current_ats, NO_ATS_VALUES);
+      populateDynamicDropdown('cms-options', d => d.website_platform);
+      populateDynamicDropdown('hr-options', d => d.hr_sis_platform);
+    }
+
+    function populateDynamicDropdown(containerId, accessor, excludeSet) {
+      const counts = {};
+      allData.forEach(d => {
+        const val = accessor(d);
+        if (!val || val === '' || (excludeSet && excludeSet.has(val))) return;
+        counts[val] = (counts[val] || 0) + 1;
+      });
+      const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+      const container = document.getElementById(containerId);
+      sorted.forEach(([name, count]) => {
+        const opt = document.createElement('option');
+        opt.value = name;
+        opt.textContent = `${name} (${count})`;
+        container.appendChild(opt);
+      });
+    }
+
+    // ========================
+    // TABLE HEAD
+    // ========================
+    function renderTableHead() {
+      document.getElementById('table-head').innerHTML = `<tr>${
+        COLUMNS.map(c => `<th onclick="setSort('${c.key}')" data-col="${c.key}" style="min-width:${c.width}">
+          ${c.label}<span class="sort-arrow"></span>
+        </th>`).join('')
+      }</tr>`;
+      updateSortIndicators();
+    }
+
+    function setSort(col) {
+      if (sortCol === col) sortDir *= -1;
+      else { sortCol = col; sortDir = (col === 'name' || col === 'location' || col === 'locale_type' || col === 'current_ats') ? 1 : -1; }
+      updateSortIndicators();
+      page = 0;
+      renderFiltered();
+    }
+
+    function updateSortIndicators() {
+      document.querySelectorAll('th').forEach(th => {
+        const col = th.dataset.col;
+        th.classList.toggle('sorted', col === sortCol);
+        const arrow = th.querySelector('.sort-arrow');
+        if (col === sortCol) arrow.textContent = sortDir > 0 ? ' ↑' : ' ↓';
+        else arrow.textContent = '';
+      });
+    }
+
+    // ========================
+    // FILTERS
+    // ========================
+    function applyFilters() {
+      const search = document.getElementById('search').value.toLowerCase();
+      const state = selectedState || document.getElementById('filter-state').value;
+      const locale = document.getElementById('filter-locale').value;
+      const atsFilter = document.getElementById('filter-ats').value;
+      const cmsFilter = document.getElementById('filter-cms').value;
+      const hrFilter = document.getElementById('filter-hr').value;
+      const growth = document.getElementById('filter-growth').value;
+      const revenue = document.getElementById('filter-revenue').value;
+      const minStaff = parseInt(document.getElementById('filter-min-staff').value) || 0;
+      const maxStaff = parseInt(document.getElementById('filter-max-staff').value) || Infinity;
+      const proximity = document.getElementById('filter-proximity').value;
+
+      filtered = allData.filter(d => {
+        // Hide non-district entities by default (county offices, service agencies, etc.)
+        if (d.entity_type && d.entity_type !== 'district') return false;
+
+        if (search && !d.name.toLowerCase().includes(search)) return false;
+        if (state && d.state !== state) return false;
+        if (locale && d.locale_type !== locale) return false;
+
+        // ATS filter
+        if (atsFilter === '_no-ats' && !NO_ATS_VALUES.has(d.current_ats) && !JOBBOARD_ATS.has(d.current_ats)) return false;
+        if (atsFilter === '_legacy' && !LEGACY_ATS.has(d.current_ats)) return false;
+        if (atsFilter === '_modern' && !MODERN_ATS.has(d.current_ats)) return false;
+        if (atsFilter && !atsFilter.startsWith('_') && d.current_ats !== atsFilter) return false;
+
+        // CMS filter
+        if (cmsFilter === '_has-cms' && !d.website_platform) return false;
+        if (cmsFilter === '_no-cms' && d.website_platform) return false;
+        if (cmsFilter && !cmsFilter.startsWith('_') && d.website_platform !== cmsFilter) return false;
+
+        // HR/SIS filter
+        if (hrFilter === '_has-hr' && !d.hr_sis_platform) return false;
+        if (hrFilter === '_no-hr' && d.hr_sis_platform) return false;
+        if (hrFilter && !hrFilter.startsWith('_') && d.hr_sis_platform !== hrFilter) return false;
+
+        // Staff growth filter
+        const sg = d.staff_trend_pct || 0;
+        if (growth === 'fast' && sg <= 5) return false;
+        if (growth === 'growing' && sg <= 0) return false;
+        if (growth === 'stable' && (sg > 1 || sg < -1)) return false;
+        if (growth === 'declining' && sg >= 0) return false;
+
+        // Revenue filter
+        const rev = d.total_revenue_per_pupil || 0;
+        if (revenue === 'under15' && rev >= 15000) return false;
+        if (revenue === '15to25' && (rev < 15000 || rev >= 25000)) return false;
+        if (revenue === 'over25' && rev < 25000) return false;
+
+        // Staff range
+        const staff = d.total_staff_2025 || 0;
+        if (staff < minStaff || staff > maxStaff) return false;
+
+        // Proximity to customer
+        if (proximity === 'near' && !d.near_customer) return false;
+        if (proximity === 'customers' && !d.is_customer) return false;
+        if (proximity === '25' && (!d.near_customer || (d.nearest_customer_dist || Infinity) > 25)) return false;
+        if (proximity === '50' && (!d.near_customer || (d.nearest_customer_dist || Infinity) > 50)) return false;
+        if (proximity === '100' && (!d.near_customer || (d.nearest_customer_dist || Infinity) > 100)) return false;
+
+        return true;
+      });
+
+      page = 0;
+      renderFiltered();
+    }
+
+    // ========================
+    // RENDER TABLE
+    // ========================
+    function renderFiltered() {
+      // Sort
+      filtered.sort((a, b) => {
+        let va = a[sortCol], vb = b[sortCol];
+        if (va == null) va = sortCol === 'name' ? '' : -Infinity;
+        if (vb == null) vb = sortCol === 'name' ? '' : -Infinity;
+        if (typeof va === 'string') return sortDir * va.localeCompare(vb);
+        return sortDir * ((va || 0) - (vb || 0));
+      });
+
+      // Update count
+      document.getElementById('result-count').textContent =
+        `Showing ${filtered.length.toLocaleString()} of ${allData.length.toLocaleString()} districts`;
+
+      // Paginate
+      const start = page * PAGE_SIZE;
+      const pageData = filtered.slice(start, start + PAGE_SIZE);
+
+      // Render rows
+      const tbody = document.getElementById('table-body');
+      tbody.innerHTML = pageData.map((d, i) => {
+        // Priority badge
+        const ps = d.priority_score;
+        let priBadge;
+        if (d.is_customer) priBadge = `<span class="badge customer">⭐ ${ps}</span>`;
+        else if (ps >= 60) priBadge = `<span class="badge hot">🎯 ${ps}</span>`;
+        else if (ps >= 40) priBadge = `<span class="badge high">${ps}</span>`;
+        else if (ps >= 25) priBadge = `<span class="badge medium">${ps}</span>`;
+        else priBadge = `<span class="badge low">${ps}</span>`;
+
+        // District name (clickable if website exists)
+        let nameHtml = d.website
+          ? `<a class="district-link" href="${d.website}" target="_blank" rel="noopener">${escHtml(d.name)}</a>`
+          : `<span class="district-name">${escHtml(d.name)}</span>`;
+        // Add annotations
+        if (d.is_customer) nameHtml += ' <span class="badge customer">CUSTOMER</span>';
+        if (d.near_customer) {
+          const custShort = (d.nearest_customer_name || '').replace(/ (UNIFIED|ELEMENTARY|SCHOOL DISTRICT|UNION FREE|PUBLIC SCHOOLS|DISTRICT)/gi, '').trim();
+          nameHtml += ` <span class="badge near-cust">📍 ${Math.round(d.nearest_customer_dist)}mi from ${custShort}</span>`;
+        }
+
+        // Location
+        const city = d.city ? titleCase(d.city) : '';
+        const locHtml = `${city ? city + ', ' : ''}<span class="state-abbr">${d.state}</span>`;
+
+        // Locale badge
+        const localeClass = 'locale-' + (d.locale_type || 'rural').toLowerCase();
+        const localeBadge = `<span class="badge ${localeClass}">${d.locale_type || '—'}</span>`;
+
+        // ATS badge
+        const ats = d.current_ats || 'Not Scanned';
+        let atsBadgeClass = 'ats-unknown';
+        if (ats === 'Teamtailor') atsBadgeClass = 'ats-tt';
+        else if (ats === 'Paper/Manual') atsBadgeClass = 'ats-paper';
+        else if (JOBBOARD_ATS.has(ats)) atsBadgeClass = 'ats-none';
+        else if (NO_ATS_VALUES.has(ats)) atsBadgeClass = 'ats-none';
+        else if (LEGACY_ATS.has(ats)) atsBadgeClass = 'ats-legacy';
+        else if (MODERN_ATS.has(ats)) atsBadgeClass = 'ats-modern';
+        const atsLabel = (ats === 'Not Scanned' || ats === '') ? 'No ATS' : ats;
+        const atsBadge = `<span class="badge ${atsBadgeClass}">${atsLabel}</span>`;
+
+        // Staff
+        const staff = d.total_staff_2025 ? Math.round(d.total_staff_2025).toLocaleString() : '—';
+
+        // Staff trend
+        const st = d.staff_trend_pct;
+        const staffTrend = formatTrend(st);
+
+        // Students
+        const students = d.students_2025 ? d.students_2025.toLocaleString() : '—';
+
+        // Enrollment trend
+        const et = d.enrollment_trend_pct;
+        const enrollTrend = formatTrend(et);
+
+        // Schools
+        const schools = d.total_schools || '—';
+
+        // Revenue per pupil
+        const rev = d.total_revenue_per_pupil
+          ? '$' + Math.round(d.total_revenue_per_pupil).toLocaleString()
+          : '—';
+
+        // Target persona
+        const persona = d.target_persona || '—';
+
+        // Website platform / CMS
+        const cms = d.website_platform || (d.uses_apptegy ? 'Apptegy' : null);
+        let cmsBadge;
+        if (cms) cmsBadge = `<span class="badge cms-modern">${cms}</span>`;
+        else cmsBadge = `<span class="badge cms-none">—</span>`;
+
+        // HR/SIS platform
+        const hrSis = d.hr_sis_platform || null;
+        let hrBadge;
+        if (hrSis) hrBadge = `<span class="badge hr-sis">${hrSis}</span>`;
+        else hrBadge = `<span class="badge hr-none">—</span>`;
+
+        // ICP badge
+        const icpClass = 'icp-' + (d.icp_label || 'd').toLowerCase();
+        const icpBadge = `<span class="badge ${icpClass}">${d.icp_label || '—'}</span>`;
+
+        const rowClass = d.is_customer ? 'is-customer' : '';
+        return `<tr class="${rowClass}" onclick="openDrawer(${start + i})" style="cursor:pointer">
+          <td>${priBadge}</td>
+          <td>${nameHtml}</td>
+          <td>${locHtml}</td>
+          <td>${localeBadge}</td>
+          <td>${atsBadge}</td>
+          <td>${cmsBadge}</td>
+          <td>${hrBadge}</td>
+          <td>${staff}</td>
+          <td>${staffTrend}</td>
+          <td>${students}</td>
+          <td>${enrollTrend}</td>
+          <td>${schools}</td>
+          <td>${rev}</td>
+          <td style="font-size:11px">${persona}</td>
+          <td>${icpBadge}</td>
+        </tr>`;
+      }).join('');
+
+      renderPagination();
+    }
+
+    // ========================
+    // HELPERS
+    // ========================
+    function formatTrend(val) {
+      if (val == null) return `<span class="trend-flat">—</span>`;
+      if (Math.abs(val) < 1) return `<span class="trend-flat">${val > 0 ? '+' : ''}${val.toFixed(1)}%</span>`;
+      if (val > 0) return `<span class="trend-up">+${val.toFixed(1)}%</span>`;
+      return `<span class="trend-down">${val.toFixed(1)}%</span>`;
+    }
+
+    function escHtml(s) {
+      const d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    function titleCase(s) {
+      return s.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    // ========================
+    // PAGINATION
+    // ========================
+    function renderPagination() {
+      const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+      const pag = document.getElementById('pagination');
+      if (totalPages <= 1) { pag.innerHTML = ''; return; }
+
+      let html = `<button class="page-btn" onclick="goPage(0)" ${page === 0 ? 'disabled' : ''}>⏮</button>`;
+      html += `<button class="page-btn" onclick="goPage(${page - 1})" ${page === 0 ? 'disabled' : ''}>← Prev</button>`;
+
+      const maxButtons = 5;
+      let startP = Math.max(0, page - Math.floor(maxButtons / 2));
+      let endP = Math.min(totalPages, startP + maxButtons);
+      if (endP - startP < maxButtons) startP = Math.max(0, endP - maxButtons);
+
+      for (let i = startP; i < endP; i++) {
+        html += `<button class="page-btn ${i === page ? 'active' : ''}" onclick="goPage(${i})">${i + 1}</button>`;
+      }
+
+      html += `<button class="page-btn" onclick="goPage(${page + 1})" ${page >= totalPages - 1 ? 'disabled' : ''}>Next →</button>`;
+      html += `<button class="page-btn" onclick="goPage(${totalPages - 1})" ${page >= totalPages - 1 ? 'disabled' : ''}>⏭</button>`;
+      html += `<span class="page-info">Page ${page + 1} of ${totalPages}</span>`;
+      pag.innerHTML = html;
+    }
+
+    function goPage(p) {
+      const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+      if (p < 0 || p >= totalPages) return;
+      page = p;
+      renderFiltered();
+      document.querySelector('.table-scroll').scrollTop = 0;
+    }
+
+    // ========================
+    // RESET
+    // ========================
+    function resetFiltersQuiet() {
+      document.getElementById('search').value = '';
+      document.getElementById('filter-state').value = '';
+      document.getElementById('filter-ats').value = '';
+      document.getElementById('filter-locale').value = '';
+      document.getElementById('filter-growth').value = '';
+      document.getElementById('filter-revenue').value = '';
+      document.getElementById('filter-min-staff').value = '';
+      document.getElementById('filter-max-staff').value = '';
+      document.getElementById('filter-proximity').value = '';
+      selectedState = null;
+      document.querySelectorAll('.state-chip').forEach(c => c.classList.remove('selected'));
+    }
+
+    function resetFilters() {
+      resetFiltersQuiet();
+      activeQuickFilter = null;
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      applyFilters();
+    }
+
+    // ========================
+    // CSV EXPORT
+    // ========================
+    function exportCSV() {
+      const headers = [
+        'District Name','State','City','County','NCES ID',
+        'Locale','Locale Type','Current ATS','Website CMS','Tech Ecosystem',
+        'Careers URL','Website','Phone',
+        'Who to Call','Target Persona','Contacts',
+        'Total Staff 2025','Total Staff 2024','Staff Trend %',
+        'Classified Staff','Classified Ratio %',
+        'Students 2025','Students 2024','Enrollment Trend %',
+        'Schools','FTE Teachers','Pupil/Teacher Ratio',
+        'Revenue/Pupil','Total Revenue','Total Expenditures',
+        'Salary Spend','Salary % of Total',
+        'Local Rev %','State Rev %','Federal Rev %',
+        'Priority Score','ICP Fit',
+        'Is Customer','Uses Apptegy','Near Customer','Nearest Customer Distance',
+        'Active Jobs','LinkedIn URL',
+        'Latitude','Longitude'
+      ];
+      const rows = filtered.map(d => [
+        d.name, d.state, d.city, d.county, d.nces_id,
+        d.locale, d.locale_type, d.current_ats, d.website_platform, d.tech_ecosystem,
+        d.careers_url, d.website, d.phone_formatted,
+        d.target_persona, d.target_persona,
+        getContacts(d).map(c=>`${c.name} (${c.title})`).join('; '),
+        d.total_staff_2025, d.total_staff_2024, d.staff_trend_pct,
+        d.classified_staff, d.classified_ratio,
+        d.students_2025, d.students_2024, d.enrollment_trend_pct,
+        d.total_schools, d.fte_teachers_2025, d.pupil_teacher_ratio,
+        d.total_revenue_per_pupil, d.total_revenue, d.total_expenditures,
+        d.total_salary_spend, d.salary_pct_of_total,
+        d.local_revenue_pct, d.state_revenue_pct, d.federal_revenue_pct,
+        d.priority_score, d.icp_label,
+        d.is_customer, d.uses_apptegy, d.near_customer, d.nearest_customer_dist,
+        d.active_jobs_count, d.linkedin_url,
+        d.lat, d.lon
+      ]);
+      const csv = [headers, ...rows].map(r => r.map(v => `"${v == null ? '' : v}"`).join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `k12_power_table_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+    }
+
+    // ========================
+    // NAME SPLITTING
+    // ========================
+    function splitName(fullName) {
+      if (!fullName || !fullName.trim()) return { first: '', last: '' };
+      let name = fullName.trim();
+      // Remove prefixes
+      const prefixes = ['Dr.', 'Dr', 'Mr.', 'Mr', 'Mrs.', 'Mrs', 'Ms.', 'Ms', 'Rev.', 'Rev', 'Prof.', 'Prof'];
+      for (const p of prefixes) {
+        if (name.toLowerCase().startsWith(p.toLowerCase() + ' ')) {
+          name = name.slice(p.length).trim();
+        }
+      }
+      // Remove suffixes
+      const suffixes = ['Jr.', 'Jr', 'Sr.', 'Sr', 'III', 'II', 'IV', 'Ed.D.', 'Ed.D', 'Ph.D.', 'Ph.D', 'M.Ed.', 'M.Ed', 'MBA', 'Esq.', 'Esq'];
+      for (const s of suffixes) {
+        if (name.endsWith(' ' + s) || name.endsWith(', ' + s)) {
+          name = name.replace(new RegExp('[, ]*' + s.replace('.', '\\.') + '$'), '').trim();
+        }
+      }
+      const parts = name.split(/\s+/);
+      if (parts.length === 0) return { first: '', last: '' };
+      if (parts.length === 1) return { first: parts[0], last: parts[0] };
+      return { first: parts[0], last: parts[parts.length - 1] };
+    }
+
+    function csvEscape(v) {
+      if (v == null || v === '') return '""';
+      return '"' + String(v).replace(/"/g, '""') + '"';
+    }
+
+    function downloadCSV(filename, headers, rows) {
+      const csv = [headers.map(csvEscape), ...rows.map(r => r.map(csvEscape))].map(r => r.join(',')).join('\n');
+      const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      a.click();
+    }
+
+    // ========================
+    // SALESFORCE ACCOUNTS CSV
+    // ========================
+    function exportAccountsCSV() {
+      const date = new Date().toISOString().slice(0, 10);
+      const headers = [
+        'NCES_ID', 'Account_Name', 'Website', 'Phone', 'City', 'State',
+        'Industry', 'Employees', 'Type', 'Locale_Type',
+        'Current_ATS', 'Website_CMS', 'HR_SIS_Platform',
+        'Student_Count', 'Revenue_Per_Pupil', 'Staff_Growth_Pct',
+        'Priority_Score', 'ICP_Fit', 'Near_Customer', 'Nearest_Customer'
+      ];
+      const rows = filtered.map(d => [
+        d.nces_id,
+        titleCase(d.name),
+        d.website || '',
+        d.phone_formatted || '',
+        d.city ? titleCase(d.city) : '',
+        d.state || '',
+        'Primary/Secondary Education',
+        d.total_staff_2025 ? Math.round(d.total_staff_2025) : '',
+        d.is_customer ? 'Customer' : 'Prospect',
+        d.locale_type || '',
+        d.current_ats || '',
+        d.website_platform || '',
+        d.hr_sis_platform || '',
+        d.students_2025 || '',
+        d.total_revenue_per_pupil ? Math.round(d.total_revenue_per_pupil) : '',
+        d.staff_trend_pct != null ? d.staff_trend_pct.toFixed(1) : '',
+        d.priority_score || '',
+        d.icp_label || '',
+        d.near_customer ? 'Yes' : 'No',
+        d.nearest_customer_name || ''
+      ]);
+      downloadCSV(`k12_accounts_${date}.csv`, headers, rows);
+    }
+
+    // ========================
+    // SALESFORCE CONTACTS CSV
+    // ========================
+    function exportContactsCSV() {
+      const date = new Date().toISOString().slice(0, 10);
+      const headers = [
+        'Account_NCES_ID', 'Account_Name', 'First_Name', 'Last_Name',
+        'Title', 'Email', 'Email_Verified', 'Phone', 'Phone_Is_Main_Line',
+        'Mobile', 'LinkedIn_URL', 'Contact_Role'
+      ];
+      const rows = [];
+      filtered.forEach(d => {
+        const contacts = getContacts(d);
+        contacts.forEach(c => {
+          if (!c.name || !c.name.trim()) return;
+          const { first, last } = splitName(c.name);
+          rows.push([
+            d.nces_id,
+            titleCase(d.name),
+            first,
+            last,
+            c.title || '',
+            c.email || '',
+            c.email_inferred ? 'Inferred' : (c.email ? 'Yes' : 'No'),
+            c.phone || '',
+            c.phone_is_main ? 'Yes' : 'No',
+            c.mobile || '',
+            c.linkedin_url || '',
+            c.role || ''
+          ]);
+        });
+      });
+      downloadCSV(`k12_contacts_${date}.csv`, headers, rows);
+    }
+
+    // ========================
+    // BUNDLE EXPORT (ZIP)
+    // ========================
+    function exportBundleCSV() {
+      // Just download both separately (ZIP requires a library)
+      exportAccountsCSV();
+      setTimeout(() => exportContactsCSV(), 500);
+    }
+
+    // ========================
+    // DISTRICT DRAWER
+    // ========================
+    function openDrawer(filteredIdx) {
+      const d = filtered[filteredIdx];
+      if (!d) return;
+      drawerDistrict = d;
+
+      const phone = d.phone_formatted || '';
+      const city = d.city ? titleCase(d.city) : '';
+      const loc = city ? `${city}, ${d.state}` : d.state;
+
+      // Badges
+      let badges = '';
+      if (d.is_customer) badges += '<span class="badge customer">CUSTOMER</span> ';
+      const atsVal = d.current_ats || 'Not Scanned';
+      const atsLbl = (atsVal === 'Not Scanned' || atsVal === '') ? 'No ATS' : atsVal;
+      let atsC = 'ats-none';
+      if (LEGACY_ATS.has(atsVal)) atsC = 'ats-legacy';
+      else if (atsVal === 'Teamtailor') atsC = 'ats-tt';
+      badges += `<span class="badge ${atsC}">${atsLbl}</span> `;
+      if (d.website_platform) badges += `<span class="badge cms-modern">${d.website_platform}</span> `;
+      if (d.near_customer) {
+        const custShort = (d.nearest_customer_name || '').replace(/ (UNIFIED|ELEMENTARY|SCHOOL DISTRICT|UNION FREE|PUBLIC SCHOOLS|DISTRICT)/gi, '').trim();
+        badges += `<span class="badge near-cust">📍 ${Math.round(d.nearest_customer_dist)}mi from ${custShort}</span> `;
+      }
+      const icpClass2 = 'icp-' + (d.icp_label || 'd').toLowerCase();
+      badges += `<span class="badge ${icpClass2}">ICP: ${d.icp_label || '—'}</span>`;
+
+      // Stats
+      const dStaff = d.total_staff_2025 ? d.total_staff_2025.toLocaleString() : '—';
+      const dStudents = d.students_2025 ? d.students_2025.toLocaleString() : '—';
+      const dRev = d.total_revenue_per_pupil ? '$' + Math.round(d.total_revenue_per_pupil).toLocaleString() : '—';
+
+      // Contacts — with add/edit/delete support
+      let contactsHtml = '';
+      const contacts = getContacts(d);
+      const hasContacts = contacts.length > 0;
+      
+      if (hasContacts) {
+        contacts.forEach((c, idx) => {
+          const roleLabel = c.role === 'decision_maker' ? 'Decision Maker' :
+                           c.role === 'champion' ? 'Champion' :
+                           c.role === 'gatekeeper' ? 'Gatekeeper' : 'Contact';
+          const roleClass = c.role || 'contact';
+          
+          const nameHtml = c.linkedin_url 
+            ? `<a href="${c.linkedin_url}" target="_blank" class="contact-name-link">${escHtml(c.name)} <span class="li-badge">in</span></a>`
+            : `<span class="contact-name">${escHtml(c.name)}</span>`;
+          
+          const contactPhone = c.phone && c.phone !== d.phone ? c.phone : null;
+          const emailBadge = c.email_inferred ? ' <span style="font-size:10px;color:var(--accent-amber);font-weight:500">(inferred)</span>' : '';
+          
+          contactsHtml += `
+            <div class="contact-card" style="position:relative">
+              <div class="contact-role ${roleClass}">${roleLabel}</div>
+              ${nameHtml}
+              <div class="contact-title">${escHtml(c.title || '')}</div>
+              <div class="contact-actions">
+                ${contactPhone ? `<a href="tel:${contactPhone}" class="contact-action">📞 ${contactPhone}</a>` : ''}
+                ${c.phone_is_main && c.phone ? `<span class="contact-action" style="color:var(--text-muted)">📞 Main line</span>` : ''}
+                ${c.email ? `<a href="mailto:${c.email}" class="contact-action">✉️ ${c.email}${emailBadge}</a>` : ''}
+              </div>
+              <div style="position:absolute;top:8px;right:8px;display:flex;gap:4px">
+                <button onclick="editContact(${idx})" style="background:none;border:none;cursor:pointer;font-size:12px;padding:2px 4px;border-radius:4px;color:var(--text-muted)" title="Edit">✏️</button>
+                <button onclick="deleteContact(${idx})" style="background:none;border:none;cursor:pointer;font-size:12px;padding:2px 4px;border-radius:4px;color:var(--text-muted)" title="Delete">🗑️</button>
+              </div>
+            </div>`;
+        });
+      } else {
+        contactsHtml = `
+          <div class="contact-card">
+            <div class="contact-role decision_maker">Decision Maker</div>
+            <span class="contact-name" style="color: var(--text-muted); font-style: italic">Name not found</span>
+            <div class="contact-title">${d.target_persona || 'Director of HR / Superintendent'}</div>
+          </div>`;
+      }
+      // Add "+ Add Contact" button
+      contactsHtml += `
+        <button onclick="showAddContactForm()" style="width:100%;margin-top:8px;padding:10px;border:2px dashed var(--border);border-radius:10px;background:none;color:var(--text-secondary);font-size:13px;font-family:Inter,sans-serif;cursor:pointer;transition:all 0.2s"
+          onmouseover="this.style.borderColor='var(--accent-blue)';this.style.color='var(--accent-blue)'"
+          onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'"
+        >+ Add Contact</button>
+        <div id="addContactForm" style="display:none;margin-top:12px;padding:16px;border-radius:10px;border:1px solid var(--border);background:var(--bg-card-hover)"></div>`;
+
+      // Jobs
+      let jobsHtml;
+      if (d.active_jobs_count != null && d.active_jobs_count > 0) {
+        jobsHtml = `<div class="jobs-banner"><div class="jobs-count">${d.active_jobs_count}</div><div class="jobs-label">Active Job Postings</div>${d.active_jobs_url ? `<a href="${d.active_jobs_url}" target="_blank" class="jobs-link">View open positions →</a>` : ''}</div>`;
+      } else if (d.careers_url) {
+        jobsHtml = `<div class="jobs-none">Check <a href="${d.careers_url}" target="_blank" style="color:var(--accent-blue)">careers page</a> for openings</div>`;
+      } else {
+        jobsHtml = '<div class="jobs-none">No careers page detected</div>';
+      }
+
+      // Intel
+      const techEco = d.tech_ecosystem || '—';
+      const techDot = techEco === 'Google Workspace' ? '<span style="color:#34a853">●</span>' : techEco === 'Microsoft 365' ? '<span style="color:#0078d4">●</span>' : '<span style="color:#64748b">●</span>';
+      const dLocale = d.locale_type || '—';
+      const dSchools = d.total_schools || '—';
+      const dStaffTrend = d.staff_trend_pct != null ? (d.staff_trend_pct > 0 ? '+' : '') + d.staff_trend_pct.toFixed(1) + '%' : '—';
+      const dEnrollTrend = d.enrollment_trend_pct != null ? (d.enrollment_trend_pct > 0 ? '+' : '') + d.enrollment_trend_pct.toFixed(1) + '%' : '—';
+      const salaryPct = d.salary_pct_of_total ? d.salary_pct_of_total.toFixed(0) + '%' : '—';
+      const hrSisDrawer = d.hr_sis_platform || null;
+
+      document.getElementById('drawerContent').innerHTML = `
+        <div class="drawer-header">
+          <div class="drawer-district-name">${escHtml(d.name)}</div>
+          <div class="drawer-location">${loc} · ${dLocale} · ${dSchools} school${dSchools !== 1 ? 's' : ''}</div>
+          <div class="drawer-badges">${badges}</div>
+          <div class="drawer-stats">
+            <div class="drawer-stat"><div class="drawer-stat-value">${dStaff}</div><div class="drawer-stat-label">Staff</div></div>
+            <div class="drawer-stat"><div class="drawer-stat-value">${dStudents}</div><div class="drawer-stat-label">Students</div></div>
+            <div class="drawer-stat"><div class="drawer-stat-value">${dRev}</div><div class="drawer-stat-label">Rev/Pupil</div></div>
+          </div>
+        </div>
+        <div class="drawer-section">
+          <div class="drawer-section-title">Contacts</div>
+          ${phone ? `<div style="margin-bottom:12px;font-size:13px;color:var(--text-secondary)">Main line: <a href="tel:${d.phone}" style="color:var(--accent-blue);text-decoration:none">${phone}</a></div>` : ''}
+          ${contactsHtml}
+        </div>
+        <div class="drawer-section">
+          <div class="drawer-section-title">Active Openings</div>
+          ${jobsHtml}
+        </div>
+        <div class="drawer-section">
+          <div class="drawer-section-title">Intel</div>
+          <div class="intel-row"><span class="intel-label">Tech Ecosystem</span><span class="intel-value">${techDot} ${techEco}</span></div>
+          ${hrSisDrawer ? `<div class="intel-row"><span class="intel-label">HR/SIS Platform</span><span class="intel-value">${hrSisDrawer}</span></div>` : ''}
+          <div class="intel-row"><span class="intel-label">Staff Trend (3yr)</span><span class="intel-value">${dStaffTrend}</span></div>
+          <div class="intel-row"><span class="intel-label">Enrollment Trend</span><span class="intel-value">${dEnrollTrend}</span></div>
+          <div class="intel-row"><span class="intel-label">Salary % of Budget</span><span class="intel-value">${salaryPct}</span></div>
+          <div class="intel-row"><span class="intel-label">County</span><span class="intel-value">${d.county || '—'}</span></div>
+          <div class="intel-row"><span class="intel-label">NCES ID</span><span class="intel-value">${d.nces_id || '—'}</span></div>
+          ${d.linkedin_url ? `<div class="intel-row"><span class="intel-label">LinkedIn</span><span class="intel-value"><a href="${d.linkedin_url}" target="_blank" style="color:var(--accent-blue)">View Page →</a></span></div>` : ''}
+        </div>
+        <div class="quick-actions">
+          ${phone ? `<a href="tel:${d.phone}" class="quick-action-btn primary">Call</a>` : '<span></span>'}
+          ${d.website ? `<a href="${d.website}" target="_blank" class="quick-action-btn">Website</a>` : '<span></span>'}
+          <button class="quick-action-btn" onclick="copySalesBrief()">Copy Brief</button>
+        </div>
+      `;
+      document.getElementById('drawer').classList.add('open');
+      document.getElementById('drawerOverlay').classList.add('open');
+    }
+
+    function closeDrawer() {
+      document.getElementById('drawer').classList.remove('open');
+      document.getElementById('drawerOverlay').classList.remove('open');
+      drawerDistrict = null;
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+    function copySalesBrief() {
+      const d = drawerDistrict;
+      if (!d) return;
+      const phone = d.phone_formatted || 'N/A';
+      const atsVal = (d.current_ats && d.current_ats !== 'Not Scanned' && d.current_ats !== '') ? d.current_ats : 'No ATS';
+      const cms = d.website_platform || 'Unknown';
+      const tech = d.tech_ecosystem || 'Unknown';
+      const contactLines = getContacts(d).map(c => `  • ${c.name} — ${c.title} (${c.role})${c.email ? ' | ' + c.email : ''}`).join('\n');
+      const city = d.city ? titleCase(d.city) : '';
+      const loc = city ? `${city}, ${d.state}` : d.state;
+
+      let brief = `🏫 ${d.name}\n📍 ${loc} · ${d.locale_type || ''} · ${d.total_schools || '?'} schools\n📞 ${phone}\n`;
+      brief += `\n--- QUICK STATS ---\nStaff: ${d.total_staff_2025?.toLocaleString() || '?'} (${d.staff_trend_pct != null ? (d.staff_trend_pct > 0 ? '+' : '') + d.staff_trend_pct.toFixed(1) + '%' : '?'} trend)\n`;
+      brief += `Students: ${d.students_2025?.toLocaleString() || '?'}\nRev/Pupil: $${d.total_revenue_per_pupil ? Math.round(d.total_revenue_per_pupil).toLocaleString() : '?'}\n`;
+      brief += `\n--- TECH STACK ---\nATS: ${atsVal}\nWebsite CMS: ${cms}\nEmail: ${tech}\n`;
+      if (contactLines) brief += `\n--- CONTACTS ---\n${contactLines}\n`;
+      brief += `\n--- WHO TO CALL ---\n${d.target_persona || 'Director of HR'}\n`;
+      if (d.near_customer) {
+        const custShort = (d.nearest_customer_name || '').replace(/ (UNIFIED|ELEMENTARY|SCHOOL DISTRICT|UNION FREE|PUBLIC SCHOOLS|DISTRICT)/gi, '').trim();
+        brief += `\n🎯 REFERENCE: ${custShort} (${Math.round(d.nearest_customer_dist)}mi away)\n`;
+      }
+      if (d.active_jobs_count) brief += `\n🔥 ${d.active_jobs_count} ACTIVE JOB POSTINGS\n`;
+
+      navigator.clipboard.writeText(brief).then(() => {
+        const fb = document.getElementById('copyFeedback');
+        fb.classList.add('show');
+        setTimeout(() => fb.classList.remove('show'), 2000);
+      });
+    }
+
+    // ========================
+    // CONTACT MANAGEMENT
+    // ========================
+    function showAddContactForm() {
+      const form = document.getElementById('addContactForm');
+      form.style.display = 'block';
+      form.innerHTML = `
+        <div style="font-weight:600;font-size:13px;margin-bottom:12px;color:var(--text-primary)">New Contact</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <input id="ac-name" placeholder="Full Name" style="padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:white">
+          <input id="ac-title" placeholder="Title (e.g. HR Director)" style="padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:white">
+          <input id="ac-email" placeholder="Email" style="padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:white">
+          <input id="ac-phone" placeholder="Direct Phone" style="padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:white">
+          <input id="ac-linkedin" placeholder="LinkedIn URL" style="padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:white">
+          <select id="ac-role" style="padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:white">
+            <option value="decision_maker">Decision Maker</option>
+            <option value="champion">Champion</option>
+            <option value="gatekeeper">Gatekeeper</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button onclick="saveNewContact()" style="flex:1;padding:8px;border:none;border-radius:6px;background:var(--accent-blue);color:white;font-size:12px;font-weight:600;font-family:Inter,sans-serif;cursor:pointer">Save Contact</button>
+          <button onclick="document.getElementById('addContactForm').style.display='none'" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:6px;background:white;color:var(--text-secondary);font-size:12px;font-weight:500;font-family:Inter,sans-serif;cursor:pointer">Cancel</button>
+        </div>
+      `;
+    }
+
+    function saveNewContact() {
+      const d = drawerDistrict;
+      if (!d) return;
+      const name = document.getElementById('ac-name').value.trim();
+      const title = document.getElementById('ac-title').value.trim();
+      if (!name) { alert('Name is required'); return; }
+      
+      const newContact = {
+        name,
+        title,
+        email: document.getElementById('ac-email').value.trim(),
+        phone: document.getElementById('ac-phone').value.trim(),
+        linkedin_url: document.getElementById('ac-linkedin').value.trim(),
+        role: document.getElementById('ac-role').value,
+        manually_added: true
+      };
+      
+      const contacts = [...getContacts(d), newContact];
+      saveContactsForDistrict(d.nces_id, contacts);
+      // Re-open drawer to refresh
+      const idx = filtered.indexOf(d);
+      if (idx !== -1) openDrawer(idx);
+    }
+
+    function editContact(contactIdx) {
+      const d = drawerDistrict;
+      if (!d) return;
+      const contacts = getContacts(d);
+      const c = contacts[contactIdx];
+      if (!c) return;
+      
+      const form = document.getElementById('addContactForm');
+      form.style.display = 'block';
+      form.innerHTML = `
+        <div style="font-weight:600;font-size:13px;margin-bottom:12px;color:var(--text-primary)">Edit Contact</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <input id="ac-name" value="${escHtml(c.name || '')}" placeholder="Full Name" style="padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:white">
+          <input id="ac-title" value="${escHtml(c.title || '')}" placeholder="Title" style="padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:white">
+          <input id="ac-email" value="${escHtml(c.email || '')}" placeholder="Email" style="padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:white">
+          <input id="ac-phone" value="${escHtml(c.phone || '')}" placeholder="Direct Phone" style="padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:white">
+          <input id="ac-linkedin" value="${escHtml(c.linkedin_url || '')}" placeholder="LinkedIn URL" style="padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:white">
+          <select id="ac-role" style="padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:white">
+            <option value="decision_maker" ${c.role === 'decision_maker' ? 'selected' : ''}>Decision Maker</option>
+            <option value="champion" ${c.role === 'champion' ? 'selected' : ''}>Champion</option>
+            <option value="gatekeeper" ${c.role === 'gatekeeper' ? 'selected' : ''}>Gatekeeper</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button onclick="updateContact(${contactIdx})" style="flex:1;padding:8px;border:none;border-radius:6px;background:var(--accent-blue);color:white;font-size:12px;font-weight:600;font-family:Inter,sans-serif;cursor:pointer">Update</button>
+          <button onclick="document.getElementById('addContactForm').style.display='none'" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:6px;background:white;color:var(--text-secondary);font-size:12px;font-weight:500;font-family:Inter,sans-serif;cursor:pointer">Cancel</button>
+        </div>
+      `;
+    }
+
+    function updateContact(contactIdx) {
+      const d = drawerDistrict;
+      if (!d) return;
+      const contacts = [...getContacts(d)];
+      
+      contacts[contactIdx] = {
+        ...contacts[contactIdx],
+        name: document.getElementById('ac-name').value.trim(),
+        title: document.getElementById('ac-title').value.trim(),
+        email: document.getElementById('ac-email').value.trim(),
+        phone: document.getElementById('ac-phone').value.trim(),
+        linkedin_url: document.getElementById('ac-linkedin').value.trim(),
+        role: document.getElementById('ac-role').value
+      };
+      
+      saveContactsForDistrict(d.nces_id, contacts);
+      const idx = filtered.indexOf(d);
+      if (idx !== -1) openDrawer(idx);
+    }
+
+    function deleteContact(contactIdx) {
+      const d = drawerDistrict;
+      if (!d) return;
+      if (!confirm('Delete this contact?')) return;
+      const contacts = [...getContacts(d)];
+      contacts.splice(contactIdx, 1);
+      if (contacts.length === 0) {
+        deleteOverrideForDistrict(d.nces_id);
+      } else {
+        saveContactsForDistrict(d.nces_id, contacts);
+      }
+      const idx = filtered.indexOf(d);
+      if (idx !== -1) openDrawer(idx);
+    }
+
+    // ========================
+    // BOOT
+    // ========================
+    loadData();
+  </script>
+</body>
+</html>
+

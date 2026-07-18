@@ -1,0 +1,1362 @@
+[
+  {
+    "company_name": "Sherwin-Williams",
+    "company_domain": "sherwin-williams.com",
+    "employee_count": 61000,
+    "industry": "Manufacturing - Paints & Coatings",
+    "hq_location": "Cleveland, OH",
+    "source": "Dayforce customer story / press release",
+    "confidence": "high",
+    "evidence": "Chose Dayforce in 2018 for global payroll and time & attendance management"
+  },
+  {
+    "company_name": "Costa Coffee",
+    "company_domain": "costa.co.uk",
+    "employee_count": 18000,
+    "industry": "Food & Beverage - Coffee",
+    "hq_location": "Dunstable, UK",
+    "source": "BusinessWire press release / Dayforce case study",
+    "confidence": "high",
+    "evidence": "Implemented Dayforce for 18,000 employees to unify HR, payroll, recruiting, and WFM"
+  },
+  {
+    "company_name": "Henkel",
+    "company_domain": "henkel.com",
+    "employee_count": 50000,
+    "industry": "Manufacturing - Consumer Goods",
+    "hq_location": "Düsseldorf, Germany",
+    "source": "Dayforce official customer stories page",
+    "confidence": "high",
+    "evidence": "Featured on dayforce.com customer stories for continuous calculation and global reporting"
+  },
+  {
+    "company_name": "SunOpta",
+    "company_domain": "sunopta.com",
+    "employee_count": 3000,
+    "industry": "Food & Beverage - Organic Foods",
+    "hq_location": "Eden Prairie, MN",
+    "source": "Dayforce official customer stories page",
+    "confidence": "high",
+    "evidence": "Uses Dayforce as single source of truth for payroll, recruiting, and workforce management"
+  },
+  {
+    "company_name": "MercyCare",
+    "company_domain": "mercycare.com.au",
+    "employee_count": 1500,
+    "industry": "Healthcare - Aged Care",
+    "hq_location": "Perth, Australia",
+    "source": "Dayforce official customer stories page",
+    "confidence": "high",
+    "evidence": "Featured for shift bidding and mobile access for frontline teams"
+  },
+  {
+    "company_name": "Oliver & Bonacini",
+    "company_domain": "oliverbonacini.com",
+    "employee_count": 2000,
+    "industry": "Hospitality - Restaurants",
+    "hq_location": "Toronto, Canada",
+    "source": "Dayforce official customer stories page",
+    "confidence": "high",
+    "evidence": "Uses Dayforce to manage restaurant staff, optimize scheduling, and gain insights"
+  },
+  {
+    "company_name": "Universal Business Team",
+    "company_domain": "universalbusinessteam.com",
+    "employee_count": 500,
+    "industry": "Professional Services",
+    "hq_location": "London, UK",
+    "source": "Dayforce official customer stories page",
+    "confidence": "high",
+    "evidence": "Featured on dayforce.com customer success stories"
+  },
+  {
+    "company_name": "Trojan Holdings",
+    "company_domain": "trojanholdings.com",
+    "employee_count": 1000,
+    "industry": "Construction & Infrastructure",
+    "hq_location": "Edmonton, Canada",
+    "source": "Dayforce official customer stories page",
+    "confidence": "high",
+    "evidence": "Transformed recruitment and onboarding to paperless system with 15-min system access"
+  },
+  {
+    "company_name": "CHT Group",
+    "company_domain": "cht.com",
+    "employee_count": 2200,
+    "industry": "Manufacturing - Specialty Chemicals",
+    "hq_location": "Tübingen, Germany",
+    "source": "Dayforce official customer stories page",
+    "confidence": "high",
+    "evidence": "Featured on dayforce.com customer success stories"
+  },
+  {
+    "company_name": "Trident Seafoods",
+    "company_domain": "tridentseafoods.com",
+    "employee_count": 9000,
+    "industry": "Food & Beverage - Seafood",
+    "hq_location": "Seattle, WA",
+    "source": "Dayforce customer story / Dayforce award winner",
+    "confidence": "high",
+    "evidence": "Implemented Dayforce for complex seasonal workforce management, from chaos to control"
+  },
+  {
+    "company_name": "Gannett",
+    "company_domain": "gannett.com",
+    "employee_count": 13000,
+    "industry": "Media & Publishing",
+    "hq_location": "McLean, VA",
+    "source": "Dayforce website / G2 industry reports",
+    "confidence": "high",
+    "evidence": "Publicly referenced as Dayforce customer on dayforce.com"
+  },
+  {
+    "company_name": "OTG Management",
+    "company_domain": "otgexp.com",
+    "employee_count": 5000,
+    "industry": "Hospitality - Airport F&B",
+    "hq_location": "New York, NY",
+    "source": "Dayforce website / customer story",
+    "confidence": "high",
+    "evidence": "Uses Dayforce to manage workforce across hundreds of airport restaurant locations"
+  },
+  {
+    "company_name": "The Second City",
+    "company_domain": "secondcity.com",
+    "employee_count": 500,
+    "industry": "Entertainment",
+    "hq_location": "Chicago, IL",
+    "source": "Dayforce website / G2 reports",
+    "confidence": "high",
+    "evidence": "Referenced as Dayforce customer on dayforce.com"
+  },
+  {
+    "company_name": "Viva Energy Group",
+    "company_domain": "vivaenergy.com.au",
+    "employee_count": 3000,
+    "industry": "Energy - Oil & Gas",
+    "hq_location": "Melbourne, Australia",
+    "source": "AppsRunTheWorld / Dayforce customer database",
+    "confidence": "high",
+    "evidence": "Identified as Dayforce HCM Core HR customer in AppsRunTheWorld database"
+  },
+  {
+    "company_name": "Amphenol Corporation",
+    "company_domain": "amphenol.com",
+    "employee_count": 90000,
+    "industry": "Manufacturing - Electronics",
+    "hq_location": "Wallingford, CT",
+    "source": "AppsRunTheWorld / 6sense technographic data",
+    "confidence": "high",
+    "evidence": "Listed in multiple industry databases as Dayforce customer"
+  },
+  {
+    "company_name": "Sevita",
+    "company_domain": "sevitahealth.com",
+    "employee_count": 45000,
+    "industry": "Healthcare - Home & Community Services",
+    "hq_location": "Boston, MA",
+    "source": "AppsRunTheWorld / 6sense",
+    "confidence": "high",
+    "evidence": "Identified in multiple databases as major Dayforce customer"
+  },
+  {
+    "company_name": "Expeditors International",
+    "company_domain": "expeditors.com",
+    "employee_count": 18000,
+    "industry": "Transportation & Logistics",
+    "hq_location": "Seattle, WA",
+    "source": "AppsRunTheWorld",
+    "confidence": "high",
+    "evidence": "Listed as Dayforce customer in AppsRunTheWorld database"
+  },
+  {
+    "company_name": "Scoular Company",
+    "company_domain": "scoular.com",
+    "employee_count": 1200,
+    "industry": "Agriculture & Food Processing",
+    "hq_location": "Omaha, NE",
+    "source": "AppsRunTheWorld",
+    "confidence": "high",
+    "evidence": "Listed as Dayforce customer in AppsRunTheWorld database"
+  },
+  {
+    "company_name": "David's Bridal",
+    "company_domain": "davidsbridal.com",
+    "employee_count": 8000,
+    "industry": "Retail - Bridal",
+    "hq_location": "Conshohocken, PA",
+    "source": "TheirStack technographic data",
+    "confidence": "high",
+    "evidence": "Identified as Dayforce user via technographic analysis"
+  },
+  {
+    "company_name": "Asbury Automotive Group",
+    "company_domain": "asburyauto.com",
+    "employee_count": 15000,
+    "industry": "Automotive - Dealerships",
+    "hq_location": "Duluth, GA",
+    "source": "TheirStack / industry reports",
+    "confidence": "high",
+    "evidence": "Listed as Dayforce customer in technographic databases"
+  },
+  {
+    "company_name": "Hubexo",
+    "company_domain": "hubexo.com",
+    "employee_count": 800,
+    "industry": "Technology - HR Solutions",
+    "hq_location": "Paris, France",
+    "source": "Dayforce press release / case study",
+    "confidence": "high",
+    "evidence": "Selected Dayforce to consolidate HR systems across 25 countries"
+  },
+  {
+    "company_name": "WHSmith",
+    "company_domain": "whsmith.co.uk",
+    "employee_count": 11000,
+    "industry": "Retail - Books & Convenience",
+    "hq_location": "Swindon, UK",
+    "source": "HRD Connect / press release",
+    "confidence": "high",
+    "evidence": "Consolidated people management and payroll across 500+ UK stores using Dayforce"
+  },
+  {
+    "company_name": "Bankstown Sports Club",
+    "company_domain": "bankstownsports.com",
+    "employee_count": 500,
+    "industry": "Hospitality - Sports & Leisure",
+    "hq_location": "Bankstown, Australia",
+    "source": "Dayforce case study",
+    "confidence": "high",
+    "evidence": "Implemented full Dayforce suite for real-time workforce data"
+  },
+  {
+    "company_name": "Veritex Community Bank",
+    "company_domain": "veritexbank.com",
+    "employee_count": 900,
+    "industry": "Financial Services - Banking",
+    "hq_location": "Dallas, TX",
+    "source": "Sendero Consulting case study",
+    "confidence": "high",
+    "evidence": "Implemented Dayforce for improved data accuracy and workforce performance visibility"
+  },
+  {
+    "company_name": "Swissport International",
+    "company_domain": "swissport.com",
+    "employee_count": 60000,
+    "industry": "Aviation - Ground Handling Services",
+    "hq_location": "Zurich, Switzerland",
+    "source": "Unleash.ai report / press release",
+    "confidence": "high",
+    "evidence": "Implemented Dayforce in UK and Ireland with plans for global expansion"
+  },
+  {
+    "company_name": "Rubio's Restaurants",
+    "company_domain": "rubios.com",
+    "employee_count": 3000,
+    "industry": "Food & Beverage - Quick Service",
+    "hq_location": "Carlsbad, CA",
+    "source": "NelsonHall report / press release",
+    "confidence": "high",
+    "evidence": "Selected Dayforce for its intuitive interface and unified platform capabilities"
+  },
+  {
+    "company_name": "Acclara Solutions",
+    "company_domain": "acclara.com",
+    "employee_count": 1200,
+    "industry": "Healthcare - Revenue Cycle Management",
+    "hq_location": "Pittsburgh, PA",
+    "source": "Seequelle case study",
+    "confidence": "high",
+    "evidence": "Migrated multiple businesses onto Dayforce within 10 weeks"
+  },
+  {
+    "company_name": "Spirit AeroSystems",
+    "company_domain": "spiritaero.com",
+    "employee_count": 18000,
+    "industry": "Aerospace & Defense",
+    "hq_location": "Wichita, KS",
+    "source": "Dayforce customer story",
+    "confidence": "high",
+    "evidence": "Uses Dayforce for global managed payroll and WFM across US, UK, France, Malaysia, Morocco"
+  },
+  {
+    "company_name": "Nashville Predators",
+    "company_domain": "nhl.com/predators",
+    "employee_count": 500,
+    "industry": "Sports & Entertainment",
+    "hq_location": "Nashville, TN",
+    "source": "Dayforce customer story",
+    "confidence": "high",
+    "evidence": "Uses Dayforce as single cloud-based system for consistent data and processing"
+  },
+  {
+    "company_name": "UL Solutions (Underwriters Laboratories)",
+    "company_domain": "ul.com",
+    "employee_count": 14000,
+    "industry": "Professional Services - Safety Science",
+    "hq_location": "Northbrook, IL",
+    "source": "Dayforce customer story",
+    "confidence": "high",
+    "evidence": "Manages multiple entities, tax compliance, and acquisitions with Dayforce"
+  },
+  {
+    "company_name": "AdminaHealth",
+    "company_domain": "adminahealth.com",
+    "employee_count": 200,
+    "industry": "Healthcare - Benefits Administration",
+    "hq_location": "Wayne, PA",
+    "source": "AdminaHealth integration partnership",
+    "confidence": "high",
+    "evidence": "Uses Dayforce for benefits enrollment data and billing accuracy"
+  },
+  {
+    "company_name": "Swire Coca-Cola",
+    "company_domain": "swirecocacola.com",
+    "employee_count": 8000,
+    "industry": "Food & Beverage - Distribution",
+    "hq_location": "Draper, UT",
+    "source": "TheirStack / industry reports",
+    "confidence": "high",
+    "evidence": "Identified as large enterprise Dayforce user in manufacturing sector"
+  },
+  {
+    "company_name": "Creative Solutions in Healthcare",
+    "company_domain": "creativesolutionshealthcare.com",
+    "employee_count": 3000,
+    "industry": "Healthcare - Long-term Care",
+    "hq_location": "Plano, TX",
+    "source": "Nucleus Research case study",
+    "confidence": "high",
+    "evidence": "Deployed Dayforce to standardize processes across multiple locations"
+  },
+  {
+    "company_name": "Hosparus Health",
+    "company_domain": "hosparushealth.org",
+    "employee_count": 700,
+    "industry": "Healthcare - Hospice & Palliative",
+    "hq_location": "Louisville, KY",
+    "source": "3sixty Insights case study / Dayforce",
+    "confidence": "high",
+    "evidence": "Used Dayforce with on-demand pay for recruitment and retention improvement"
+  },
+  {
+    "company_name": "Compass Group",
+    "company_domain": "compass-group.com",
+    "employee_count": 500000,
+    "industry": "Food Service & Support Services",
+    "hq_location": "Chertsey, UK",
+    "source": "ReadyContacts / industry reports",
+    "confidence": "high",
+    "evidence": "Identified as major Dayforce customer in food service sector"
+  },
+  {
+    "company_name": "DHL",
+    "company_domain": "dhl.com",
+    "employee_count": 380000,
+    "industry": "Logistics & Transportation",
+    "hq_location": "Bonn, Germany",
+    "source": "ReadyContacts / industry reports",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in logistics sector by third-party data providers"
+  },
+  {
+    "company_name": "IKEA",
+    "company_domain": "ikea.com",
+    "employee_count": 231000,
+    "industry": "Retail - Home Furnishings",
+    "hq_location": "Delft, Netherlands",
+    "source": "ReadyContacts / 6sense reports",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in industry data aggregator reports"
+  },
+  {
+    "company_name": "Dubai Holding",
+    "company_domain": "dubaiholding.com",
+    "employee_count": 20000,
+    "industry": "Conglomerate - Investment",
+    "hq_location": "Dubai, UAE",
+    "source": "ReadyContacts / industry reports",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in market intelligence reports"
+  },
+  {
+    "company_name": "VCA Animal Hospitals",
+    "company_domain": "vcahospitals.com",
+    "employee_count": 30000,
+    "industry": "Healthcare - Veterinary",
+    "hq_location": "Los Angeles, CA",
+    "source": "6sense technographic data",
+    "confidence": "high",
+    "evidence": "Listed as Dayforce customer in 6sense database"
+  },
+  {
+    "company_name": "Red Bull",
+    "company_domain": "redbull.com",
+    "employee_count": 16000,
+    "industry": "Food & Beverage - Energy Drinks",
+    "hq_location": "Fuschl am See, Austria",
+    "source": "6sense technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce user in 6sense technographic reports"
+  },
+  {
+    "company_name": "Vail Resorts",
+    "company_domain": "vailresorts.com",
+    "employee_count": 55000,
+    "industry": "Hospitality - Ski Resorts",
+    "hq_location": "Broomfield, CO",
+    "source": "6sense technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in 6sense reports"
+  },
+  {
+    "company_name": "BlackRock",
+    "company_domain": "blackrock.com",
+    "employee_count": 19000,
+    "industry": "Financial Services - Investment Management",
+    "hq_location": "New York, NY",
+    "source": "6sense / FeaturedCustomers",
+    "confidence": "high",
+    "evidence": "Recognized as user of Dayforce for payroll management"
+  },
+  {
+    "company_name": "TD Bank",
+    "company_domain": "td.com",
+    "employee_count": 95000,
+    "industry": "Financial Services - Banking",
+    "hq_location": "Toronto, Canada",
+    "source": "FeaturedCustomers testimonials",
+    "confidence": "high",
+    "evidence": "Testimonial provided on FeaturedCustomers platform for Dayforce"
+  },
+  {
+    "company_name": "Michelin",
+    "company_domain": "michelin.com",
+    "employee_count": 132000,
+    "industry": "Manufacturing - Tires",
+    "hq_location": "Clermont-Ferrand, France",
+    "source": "6sense / AppsRunTheWorld",
+    "confidence": "high",
+    "evidence": "Listed as Dayforce customer in multiple technographic databases"
+  },
+  {
+    "company_name": "AGCO Corporation",
+    "company_domain": "agcocorp.com",
+    "employee_count": 26000,
+    "industry": "Manufacturing - Agricultural Equipment",
+    "hq_location": "Duluth, GA",
+    "source": "6sense technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce user in 6sense industrial manufacturing segment"
+  },
+  {
+    "company_name": "Flex-N-Gate",
+    "company_domain": "flex-n-gate.com",
+    "employee_count": 26000,
+    "industry": "Manufacturing - Automotive Parts",
+    "hq_location": "Urbana, IL",
+    "source": "6sense technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in 6sense database"
+  },
+  {
+    "company_name": "Illinois Tool Works (ITW)",
+    "company_domain": "itw.com",
+    "employee_count": 46000,
+    "industry": "Manufacturing - Diversified",
+    "hq_location": "Glenview, IL",
+    "source": "6sense technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce user in manufacturing sector by 6sense"
+  },
+  {
+    "company_name": "HellermannTyton",
+    "company_domain": "hellermanntyton.com",
+    "employee_count": 7500,
+    "industry": "Manufacturing - Cable Management",
+    "hq_location": "Milwaukee, WI",
+    "source": "6sense technographic data",
+    "confidence": "medium",
+    "evidence": "Listed in 6sense as Dayforce customer in manufacturing"
+  },
+  {
+    "company_name": "Atlas Copco",
+    "company_domain": "atlascopco.com",
+    "employee_count": 49000,
+    "industry": "Manufacturing - Industrial Equipment",
+    "hq_location": "Stockholm, Sweden",
+    "source": "6sense technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce user in 6sense technographic reports"
+  },
+  {
+    "company_name": "Alliant Insurance Services",
+    "company_domain": "alliant.com",
+    "employee_count": 3500,
+    "industry": "Financial Services - Insurance",
+    "hq_location": "Newport Beach, CA",
+    "source": "6sense technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in 6sense database"
+  },
+  {
+    "company_name": "SPARC Group",
+    "company_domain": "sparcgroup.com",
+    "employee_count": 10000,
+    "industry": "Retail - Fashion",
+    "hq_location": "New York, NY",
+    "source": "6sense technographic data",
+    "confidence": "high",
+    "evidence": "Owner of Forever 21, Aeropostale, Reebok - listed as Dayforce customer"
+  },
+  {
+    "company_name": "The Salvation Army",
+    "company_domain": "salvationarmyusa.org",
+    "employee_count": 60000,
+    "industry": "Non-Profit - Social Services",
+    "hq_location": "Alexandria, VA",
+    "source": "6sense / benefits documentation evidence",
+    "confidence": "high",
+    "evidence": "Southern Territory uses Ceridian Dayforce for benefits website and retirement plans"
+  },
+  {
+    "company_name": "TFE Hotels",
+    "company_domain": "tfehotels.com",
+    "employee_count": 3000,
+    "industry": "Hospitality - Hotels",
+    "hq_location": "Sydney, Australia",
+    "source": "Glisk consulting case study",
+    "confidence": "high",
+    "evidence": "Implemented Dayforce for payroll and workforce management with consulting partner"
+  },
+  {
+    "company_name": "Tampa Bay Buccaneers",
+    "company_domain": "buccaneers.com",
+    "employee_count": 500,
+    "industry": "Sports & Entertainment",
+    "hq_location": "Tampa, FL",
+    "source": "Morningstar / PR Newswire reports",
+    "confidence": "high",
+    "evidence": "Publicly documented use of Dayforce in industry contexts"
+  },
+  {
+    "company_name": "Finsbury Food Group",
+    "company_domain": "finsburyfoods.co.uk",
+    "employee_count": 3500,
+    "industry": "Food & Beverage - Bakery Manufacturing",
+    "hq_location": "Cardiff, UK",
+    "source": "SilverCloud HR case study",
+    "confidence": "high",
+    "evidence": "Implemented Dayforce as centralized HR and payroll system"
+  },
+  {
+    "company_name": "JD Sports Fashion",
+    "company_domain": "jdsports.co.uk",
+    "employee_count": 60000,
+    "industry": "Retail - Sportswear",
+    "hq_location": "Bury, UK",
+    "source": "AppsRunTheWorld customer database",
+    "confidence": "high",
+    "evidence": "Listed as Dayforce customer in AppsRunTheWorld database"
+  },
+  {
+    "company_name": "Marks & Spencer",
+    "company_domain": "marksandspencer.com",
+    "employee_count": 65000,
+    "industry": "Retail - Department Store",
+    "hq_location": "London, UK",
+    "source": "AppsRunTheWorld customer database",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer by third-party data aggregator"
+  },
+  {
+    "company_name": "Kraft Foods",
+    "company_domain": "kraftheinzcompany.com",
+    "employee_count": 36000,
+    "industry": "Food & Beverage - Consumer Goods",
+    "hq_location": "Chicago, IL",
+    "source": "AppsRunTheWorld customer database",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in AppsRunTheWorld reports"
+  },
+  {
+    "company_name": "CorePower Yoga",
+    "company_domain": "corepoweryoga.com",
+    "employee_count": 5000,
+    "industry": "Fitness & Wellness",
+    "hq_location": "Denver, CO",
+    "source": "Job postings / AppsRunTheWorld",
+    "confidence": "medium",
+    "evidence": "Job postings list Dayforce as required/preferred skill, indicating active use"
+  },
+  {
+    "company_name": "Schneider Electric",
+    "company_domain": "se.com",
+    "employee_count": 150000,
+    "industry": "Manufacturing - Energy Management",
+    "hq_location": "Rueil-Malmaison, France",
+    "source": "AppsRunTheWorld / TheirStack",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in multiple technographic databases"
+  },
+  {
+    "company_name": "Nordson Corporation",
+    "company_domain": "nordson.com",
+    "employee_count": 7600,
+    "industry": "Manufacturing - Precision Dispensing",
+    "hq_location": "Westlake, OH",
+    "source": "6sense / AppsRunTheWorld",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce user in manufacturing sector reports"
+  },
+  {
+    "company_name": "Owens-Illinois (O-I Glass)",
+    "company_domain": "o-i.com",
+    "employee_count": 24000,
+    "industry": "Manufacturing - Glass Containers",
+    "hq_location": "Perrysburg, OH",
+    "source": "6sense / AppsRunTheWorld",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in technographic databases"
+  },
+  {
+    "company_name": "Galderma",
+    "company_domain": "galderma.com",
+    "employee_count": 6000,
+    "industry": "Healthcare - Dermatology",
+    "hq_location": "Lausanne, Switzerland",
+    "source": "TheirStack / 6sense",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce user in healthcare/life sciences sector"
+  },
+  {
+    "company_name": "Fresenius Kabi",
+    "company_domain": "fresenius-kabi.com",
+    "employee_count": 42000,
+    "industry": "Healthcare - Medical Devices & Pharmaceuticals",
+    "hq_location": "Bad Homburg, Germany",
+    "source": "6sense / AppsRunTheWorld",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in healthcare technographic data"
+  },
+  {
+    "company_name": "Western Digital",
+    "company_domain": "westerndigital.com",
+    "employee_count": 50000,
+    "industry": "Technology - Data Storage",
+    "hq_location": "San Jose, CA",
+    "source": "AppsRunTheWorld / Dayforce",
+    "confidence": "medium",
+    "evidence": "Listed as notable Dayforce user in technology sector"
+  },
+  {
+    "company_name": "Subaru of America",
+    "company_domain": "subaru.com",
+    "employee_count": 5000,
+    "industry": "Automotive",
+    "hq_location": "Camden, NJ",
+    "source": "6sense / industry reports",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in automotive sector reports"
+  },
+  {
+    "company_name": "JTEKT North America",
+    "company_domain": "jtekt-na.com",
+    "employee_count": 3000,
+    "industry": "Manufacturing - Automotive Parts",
+    "hq_location": "Greenville, SC",
+    "source": "FeaturedCustomers / AppsRunTheWorld",
+    "confidence": "high",
+    "evidence": "Featured in public case studies and FeaturedCustomers for Dayforce core HR and communication"
+  },
+  {
+    "company_name": "Marriott International",
+    "company_domain": "marriott.com",
+    "employee_count": 400000,
+    "industry": "Hospitality - Hotels",
+    "hq_location": "Bethesda, MD",
+    "source": "Industry reports / 6sense",
+    "confidence": "medium",
+    "evidence": "Frequently cited in industry reports as Dayforce WFM and HCM user"
+  },
+  {
+    "company_name": "Sobeys",
+    "company_domain": "sobeys.com",
+    "employee_count": 45000,
+    "industry": "Retail - Grocery",
+    "hq_location": "Stellarton, Canada",
+    "source": "Industry reports / Dayforce retail sector data",
+    "confidence": "high",
+    "evidence": "Prominent Canadian grocer using Dayforce to optimize workforce and employee experience"
+  },
+  {
+    "company_name": "Buehler's Fresh Foods",
+    "company_domain": "buehlers.com",
+    "employee_count": 2500,
+    "industry": "Retail - Grocery",
+    "hq_location": "Wooster, OH",
+    "source": "Dayforce case study / Dayforce Wallet",
+    "confidence": "high",
+    "evidence": "Leveraged Dayforce for recruiting, onboarding, and Dayforce Wallet implementation"
+  },
+  {
+    "company_name": "Asda",
+    "company_domain": "asda.com",
+    "employee_count": 145000,
+    "industry": "Retail - Grocery",
+    "hq_location": "Leeds, UK",
+    "source": "Industry reports / retail sector data",
+    "confidence": "medium",
+    "evidence": "Major UK retailer listed as Dayforce customer in industry reports"
+  },
+  {
+    "company_name": "Harley-Davidson",
+    "company_domain": "harley-davidson.com",
+    "employee_count": 6000,
+    "industry": "Manufacturing - Motorcycles",
+    "hq_location": "Milwaukee, WI",
+    "source": "Getknit.dev / industry reports",
+    "confidence": "high",
+    "evidence": "Listed as prominent Dayforce customer in manufacturing sector"
+  },
+  {
+    "company_name": "HSBC",
+    "company_domain": "hsbc.com",
+    "employee_count": 220000,
+    "industry": "Financial Services - Banking",
+    "hq_location": "London, UK",
+    "source": "AppsRunTheWorld",
+    "confidence": "medium",
+    "evidence": "HSBC Hong Kong cited as Dayforce user for workforce management"
+  },
+  {
+    "company_name": "Mastercard",
+    "company_domain": "mastercard.com",
+    "employee_count": 33000,
+    "industry": "Financial Services - Payments",
+    "hq_location": "Purchase, NY",
+    "source": "AppsRunTheWorld",
+    "confidence": "medium",
+    "evidence": "Identified in AppsRunTheWorld as utilizing Dayforce Payroll services"
+  },
+  {
+    "company_name": "Access Community Health Network",
+    "company_domain": "achn.net",
+    "employee_count": 1200,
+    "industry": "Healthcare - Community Health Centers",
+    "hq_location": "Chicago, IL",
+    "source": "AppsRunTheWorld customer database",
+    "confidence": "high",
+    "evidence": "Implemented Dayforce Onboarding to centralize hiring workflows"
+  },
+  {
+    "company_name": "MHC Healthcare",
+    "company_domain": "mhchealthcare.org",
+    "employee_count": 800,
+    "industry": "Healthcare - Community Health Centers",
+    "hq_location": "Marana, AZ",
+    "source": "Dayforce healthcare customer references",
+    "confidence": "high",
+    "evidence": "Noted as Dayforce user in healthcare sector documentation"
+  },
+  {
+    "company_name": "Advanced Call Center Technologies",
+    "company_domain": "acttoday.com",
+    "employee_count": 5000,
+    "industry": "Business Services - Call Center",
+    "hq_location": "West Chester, PA",
+    "source": "Indeed forums / employee discussions",
+    "confidence": "medium",
+    "evidence": "Employees report using Dayforce Wallet, indicating company uses Dayforce platform"
+  },
+  {
+    "company_name": "Coca-Cola Beverages Florida",
+    "company_domain": "cokeflorida.com",
+    "employee_count": 8000,
+    "industry": "Food & Beverage - Distribution",
+    "hq_location": "Tampa, FL",
+    "source": "Career page redirect to dayforcehcm.com",
+    "confidence": "medium",
+    "evidence": "Career page uses Dayforce HCM infrastructure for job applications"
+  },
+  {
+    "company_name": "Trident Foods",
+    "company_domain": "tridentfoods.com.au",
+    "employee_count": 500,
+    "industry": "Food & Beverage - Frozen Foods",
+    "hq_location": "Melbourne, Australia",
+    "source": "Dayforce customer award winner",
+    "confidence": "high",
+    "evidence": "Won Makes Work Life Better Customer Award from Dayforce"
+  },
+  {
+    "company_name": "Meridian Capital Advisors",
+    "company_domain": "meridiancapitaladvisors.com",
+    "employee_count": 200,
+    "industry": "Financial Services - Advisory",
+    "hq_location": "New York, NY",
+    "source": "ELP Data verified database",
+    "confidence": "medium",
+    "evidence": "Noted in ELP Data as Dayforce platform user in financial services"
+  },
+  {
+    "company_name": "Deloitte",
+    "company_domain": "deloitte.com",
+    "employee_count": 415000,
+    "industry": "Professional Services - Consulting",
+    "hq_location": "London, UK",
+    "source": "Dayforce Partner Network / implementation partner",
+    "confidence": "medium",
+    "evidence": "Both an implementation partner and reported user of Dayforce in certain regions"
+  },
+  {
+    "company_name": "CGI Group",
+    "company_domain": "cgi.com",
+    "employee_count": 90000,
+    "industry": "Technology - IT Services",
+    "hq_location": "Montreal, Canada",
+    "source": "Dayforce Partner Network",
+    "confidence": "medium",
+    "evidence": "Major Dayforce implementation partner, also reported to use Dayforce internally"
+  },
+  {
+    "company_name": "RSM US",
+    "company_domain": "rsmus.com",
+    "employee_count": 17000,
+    "industry": "Professional Services - Accounting",
+    "hq_location": "Chicago, IL",
+    "source": "Dayforce Partner Network / customer reference",
+    "confidence": "medium",
+    "evidence": "Dayforce implementation partner with internal usage of the platform"
+  },
+  {
+    "company_name": "Align HCM",
+    "company_domain": "alignhcm.com",
+    "employee_count": 200,
+    "industry": "Technology - HCM Consulting",
+    "hq_location": "Minneapolis, MN",
+    "source": "Dayforce Partner Network",
+    "confidence": "high",
+    "evidence": "Certified Dayforce consulting partner that also uses the platform"
+  },
+  {
+    "company_name": "PayTech",
+    "company_domain": "paytech.com",
+    "employee_count": 100,
+    "industry": "Technology - Payroll Consulting",
+    "hq_location": "Bloomington, MN",
+    "source": "Dayforce Partner Network",
+    "confidence": "high",
+    "evidence": "Certified Dayforce consulting partner"
+  },
+  {
+    "company_name": "HRchitect",
+    "company_domain": "hrchitect.com",
+    "employee_count": 100,
+    "industry": "Technology - HR Consulting",
+    "hq_location": "Roswell, GA",
+    "source": "Dayforce Partner Network / case studies",
+    "confidence": "high",
+    "evidence": "Prominent Dayforce consulting partner publishing client case studies"
+  },
+  {
+    "company_name": "Rockcrest",
+    "company_domain": "rockcrest.com",
+    "employee_count": 50,
+    "industry": "Technology - HCM Implementation",
+    "hq_location": "Toronto, Canada",
+    "source": "Dayforce Partner Network",
+    "confidence": "high",
+    "evidence": "Certified Dayforce System Integrator partner"
+  },
+  {
+    "company_name": "ProCom Services",
+    "company_domain": "procomservices.com",
+    "employee_count": 3000,
+    "industry": "Technology - Staffing & Consulting",
+    "hq_location": "Toronto, Canada",
+    "source": "Dayforce Partner Network",
+    "confidence": "medium",
+    "evidence": "Dayforce certified partner for implementation services"
+  },
+  {
+    "company_name": "Nordstrom",
+    "company_domain": "nordstrom.com",
+    "employee_count": 60000,
+    "industry": "Retail - Department Store",
+    "hq_location": "Seattle, WA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified in retail sector Dayforce customer reports"
+  },
+  {
+    "company_name": "Dollar General",
+    "company_domain": "dollargeneral.com",
+    "employee_count": 180000,
+    "industry": "Retail - Discount Stores",
+    "hq_location": "Goodlettsville, TN",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified in retail sector Dayforce customer analysis"
+  },
+  {
+    "company_name": "Panda Restaurant Group",
+    "company_domain": "pandarg.com",
+    "employee_count": 47000,
+    "industry": "Food & Beverage - Quick Service",
+    "hq_location": "Rosemead, CA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed in QSR sector Dayforce customer data"
+  },
+  {
+    "company_name": "Cintas Corporation",
+    "company_domain": "cintas.com",
+    "employee_count": 45000,
+    "industry": "Business Services - Uniforms & Facilities",
+    "hq_location": "Cincinnati, OH",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in services sector analysis"
+  },
+  {
+    "company_name": "BJ's Wholesale Club",
+    "company_domain": "bjs.com",
+    "employee_count": 34000,
+    "industry": "Retail - Wholesale Club",
+    "hq_location": "Marlborough, MA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed in retail sector Dayforce customer analysis"
+  },
+  {
+    "company_name": "Rite Aid",
+    "company_domain": "riteaid.com",
+    "employee_count": 45000,
+    "industry": "Retail - Pharmacy",
+    "hq_location": "Philadelphia, PA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in retail pharmacy sector"
+  },
+  {
+    "company_name": "Jack in the Box",
+    "company_domain": "jackinthebox.com",
+    "employee_count": 45000,
+    "industry": "Food & Beverage - Quick Service",
+    "hq_location": "San Diego, CA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed in QSR sector Dayforce customer data"
+  },
+  {
+    "company_name": "Bob Evans Restaurants",
+    "company_domain": "bobevans.com",
+    "employee_count": 25000,
+    "industry": "Food & Beverage - Casual Dining",
+    "hq_location": "New Albany, OH",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in food service sector"
+  },
+  {
+    "company_name": "Cracker Barrel",
+    "company_domain": "crackerbarrel.com",
+    "employee_count": 70000,
+    "industry": "Food & Beverage - Restaurant & Retail",
+    "hq_location": "Lebanon, TN",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in restaurant sector analysis"
+  },
+  {
+    "company_name": "Meijer",
+    "company_domain": "meijer.com",
+    "employee_count": 70000,
+    "industry": "Retail - Grocery & General Merchandise",
+    "hq_location": "Grand Rapids, MI",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in retail grocery sector"
+  },
+  {
+    "company_name": "Wawa",
+    "company_domain": "wawa.com",
+    "employee_count": 40000,
+    "industry": "Retail - Convenience & Fuel",
+    "hq_location": "Wawa, PA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed in convenience retail Dayforce customer reports"
+  },
+  {
+    "company_name": "Hertz",
+    "company_domain": "hertz.com",
+    "employee_count": 25000,
+    "industry": "Transportation - Car Rental",
+    "hq_location": "Estero, FL",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in transportation sector"
+  },
+  {
+    "company_name": "Party City",
+    "company_domain": "partycity.com",
+    "employee_count": 16000,
+    "industry": "Retail - Party Supplies",
+    "hq_location": "Woodcliff Lake, NJ",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in specialty retail sector"
+  },
+  {
+    "company_name": "Stein Mart",
+    "company_domain": "steinmart.com",
+    "employee_count": 8000,
+    "industry": "Retail - Off-Price Department Store",
+    "hq_location": "Jacksonville, FL",
+    "source": "Industry reports / technographic data",
+    "confidence": "low",
+    "evidence": "Identified in technographic retail customer analysis"
+  },
+  {
+    "company_name": "Perry Ellis International",
+    "company_domain": "perryellis.com",
+    "employee_count": 2500,
+    "industry": "Retail - Fashion & Apparel",
+    "hq_location": "Miami, FL",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in fashion retail sector"
+  },
+  {
+    "company_name": "Academy Sports + Outdoors",
+    "company_domain": "academy.com",
+    "employee_count": 22000,
+    "industry": "Retail - Sporting Goods",
+    "hq_location": "Katy, TX",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in sporting goods retail"
+  },
+  {
+    "company_name": "Hibbett Sports",
+    "company_domain": "hibbett.com",
+    "employee_count": 10000,
+    "industry": "Retail - Sporting Goods",
+    "hq_location": "Birmingham, AL",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed in Dayforce retail customer analysis"
+  },
+  {
+    "company_name": "Savers (Value Village)",
+    "company_domain": "savers.com",
+    "employee_count": 22000,
+    "industry": "Retail - Thrift Stores",
+    "hq_location": "Bellevue, WA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in retail sector"
+  },
+  {
+    "company_name": "Batteries Plus",
+    "company_domain": "batteriesplus.com",
+    "employee_count": 5000,
+    "industry": "Retail - Specialty",
+    "hq_location": "Hartland, WI",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in specialty retail"
+  },
+  {
+    "company_name": "American Tire Distributors",
+    "company_domain": "atd.com",
+    "employee_count": 5000,
+    "industry": "Distribution - Automotive Parts",
+    "hq_location": "Huntersville, NC",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in automotive distribution"
+  },
+  {
+    "company_name": "Cornerstone Building Brands",
+    "company_domain": "cornerstonebuildingbrands.com",
+    "employee_count": 18000,
+    "industry": "Manufacturing - Building Products",
+    "hq_location": "Cary, NC",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in manufacturing sector"
+  },
+  {
+    "company_name": "Graham Packaging",
+    "company_domain": "grahampackaging.com",
+    "employee_count": 8000,
+    "industry": "Manufacturing - Packaging",
+    "hq_location": "Lancaster, PA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in packaging manufacturing"
+  },
+  {
+    "company_name": "Benihana",
+    "company_domain": "benihana.com",
+    "employee_count": 7000,
+    "industry": "Food & Beverage - Casual Dining",
+    "hq_location": "Aventura, FL",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in restaurant/hospitality sector"
+  },
+  {
+    "company_name": "Great Wolf Resorts",
+    "company_domain": "greatwolf.com",
+    "employee_count": 10000,
+    "industry": "Hospitality - Resorts & Entertainment",
+    "hq_location": "Chicago, IL",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in hospitality sector"
+  },
+  {
+    "company_name": "Extended Stay America",
+    "company_domain": "extendedstayamerica.com",
+    "employee_count": 9000,
+    "industry": "Hospitality - Hotels",
+    "hq_location": "Charlotte, NC",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in hotel/hospitality sector"
+  },
+  {
+    "company_name": "National Veterinary Associates",
+    "company_domain": "nva.com",
+    "employee_count": 20000,
+    "industry": "Healthcare - Veterinary",
+    "hq_location": "Agoura Hills, CA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in veterinary healthcare sector"
+  },
+  {
+    "company_name": "Kindred Healthcare",
+    "company_domain": "kindredhealthcare.com",
+    "employee_count": 35000,
+    "industry": "Healthcare - Post-Acute Care",
+    "hq_location": "Louisville, KY",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in healthcare sector"
+  },
+  {
+    "company_name": "Beacon Health Options",
+    "company_domain": "beaconhealthoptions.com",
+    "employee_count": 3000,
+    "industry": "Healthcare - Behavioral Health",
+    "hq_location": "Boston, MA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in behavioral healthcare"
+  },
+  {
+    "company_name": "AmeriCold Logistics",
+    "company_domain": "americold.com",
+    "employee_count": 13000,
+    "industry": "Logistics - Cold Chain",
+    "hq_location": "Atlanta, GA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in logistics/warehousing sector"
+  },
+  {
+    "company_name": "ABM Industries",
+    "company_domain": "abm.com",
+    "employee_count": 100000,
+    "industry": "Business Services - Facility Management",
+    "hq_location": "New York, NY",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in facility services sector"
+  },
+  {
+    "company_name": "Interface Inc.",
+    "company_domain": "interface.com",
+    "employee_count": 3500,
+    "industry": "Manufacturing - Flooring",
+    "hq_location": "Atlanta, GA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in manufacturing sector"
+  },
+  {
+    "company_name": "Global Partners LP",
+    "company_domain": "globalp.com",
+    "employee_count": 4000,
+    "industry": "Energy - Petroleum Distribution",
+    "hq_location": "Waltham, MA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in energy distribution"
+  },
+  {
+    "company_name": "New Balance",
+    "company_domain": "newbalance.com",
+    "employee_count": 8000,
+    "industry": "Manufacturing - Athletic Footwear",
+    "hq_location": "Boston, MA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in apparel manufacturing"
+  },
+  {
+    "company_name": "Tractor Supply Company",
+    "company_domain": "tractorsupply.com",
+    "employee_count": 50000,
+    "industry": "Retail - Farm & Ranch",
+    "hq_location": "Brentwood, TN",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in farm/ranch retail sector"
+  },
+  {
+    "company_name": "Five Below",
+    "company_domain": "fivebelow.com",
+    "employee_count": 20000,
+    "industry": "Retail - Discount",
+    "hq_location": "Philadelphia, PA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed in Dayforce retail customer analysis"
+  },
+  {
+    "company_name": "G4S (Allied Universal)",
+    "company_domain": "aus.com",
+    "employee_count": 300000,
+    "industry": "Business Services - Security",
+    "hq_location": "Conshohocken, PA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in security services sector"
+  },
+  {
+    "company_name": "Coborn's Inc.",
+    "company_domain": "coborns.com",
+    "employee_count": 9000,
+    "industry": "Retail - Grocery",
+    "hq_location": "St. Cloud, MN",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in grocery retail sector"
+  },
+  {
+    "company_name": "Schnuck Markets",
+    "company_domain": "schnucks.com",
+    "employee_count": 13000,
+    "industry": "Retail - Grocery",
+    "hq_location": "St. Louis, MO",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in grocery retail"
+  },
+  {
+    "company_name": "SpartanNash",
+    "company_domain": "spartannash.com",
+    "employee_count": 17000,
+    "industry": "Retail - Grocery & Distribution",
+    "hq_location": "Byron Center, MI",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in grocery distribution sector"
+  },
+  {
+    "company_name": "Restaurant Brands International",
+    "company_domain": "rbi.com",
+    "employee_count": 4000,
+    "industry": "Food & Beverage - QSR Parent",
+    "hq_location": "Toronto, Canada",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer (parent of Burger King, Tim Hortons, Popeyes)"
+  },
+  {
+    "company_name": "Dine Brands (IHOP/Applebees)",
+    "company_domain": "dinebrands.com",
+    "employee_count": 3000,
+    "industry": "Food & Beverage - Casual Dining",
+    "hq_location": "Glendale, CA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed in restaurant sector Dayforce customer analysis"
+  },
+  {
+    "company_name": "Sleep Number",
+    "company_domain": "sleepnumber.com",
+    "employee_count": 5000,
+    "industry": "Retail - Specialty Sleep",
+    "hq_location": "Minneapolis, MN",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in specialty retail"
+  },
+  {
+    "company_name": "Aramark",
+    "company_domain": "aramark.com",
+    "employee_count": 270000,
+    "industry": "Food Service & Facilities",
+    "hq_location": "Philadelphia, PA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in food service/facilities sector"
+  },
+  {
+    "company_name": "Denny's Corporation",
+    "company_domain": "dennys.com",
+    "employee_count": 7000,
+    "industry": "Food & Beverage - Casual Dining",
+    "hq_location": "Spartanburg, SC",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in restaurant sector"
+  },
+  {
+    "company_name": "White Castle",
+    "company_domain": "whitecastle.com",
+    "employee_count": 10000,
+    "industry": "Food & Beverage - Quick Service",
+    "hq_location": "Columbus, OH",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in QSR sector"
+  },
+  {
+    "company_name": "Scientific Games",
+    "company_domain": "scientificgames.com",
+    "employee_count": 7000,
+    "industry": "Technology - Gaming",
+    "hq_location": "Las Vegas, NV",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in gaming/entertainment technology"
+  },
+  {
+    "company_name": "Sodexo",
+    "company_domain": "sodexo.com",
+    "employee_count": 400000,
+    "industry": "Food Service & Facilities",
+    "hq_location": "Issy-les-Moulineaux, France",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Listed as Dayforce customer in food service/facilities sector"
+  },
+  {
+    "company_name": "Sonesta International Hotels",
+    "company_domain": "sonesta.com",
+    "employee_count": 12000,
+    "industry": "Hospitality - Hotels",
+    "hq_location": "Newton, MA",
+    "source": "Industry reports / technographic data",
+    "confidence": "medium",
+    "evidence": "Identified as Dayforce customer in hospitality sector"
+  }
+]

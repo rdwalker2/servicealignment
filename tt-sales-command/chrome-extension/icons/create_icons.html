@@ -1,0 +1,32 @@
+<canvas id="c16" width="16" height="16"></canvas>
+<canvas id="c48" width="48" height="48"></canvas>
+<canvas id="c128" width="128" height="128"></canvas>
+<script>
+function drawIcon(canvas) {
+  const ctx = canvas.getContext('2d');
+  const s = canvas.width;
+  // Background gradient
+  const g = ctx.createLinearGradient(0, 0, s, s);
+  g.addColorStop(0, '#6366f1');
+  g.addColorStop(1, '#a78bfa');
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  ctx.roundRect(0, 0, s, s, s * 0.2);
+  ctx.fill();
+  // Lightning bolt
+  ctx.fillStyle = 'white';
+  ctx.beginPath();
+  const cx = s / 2, cy = s / 2;
+  const scale = s / 24;
+  ctx.moveTo(13 * scale, 2 * scale);
+  ctx.lineTo(3 * scale, 14 * scale);
+  ctx.lineTo(12 * scale, 14 * scale);
+  ctx.lineTo(11 * scale, 22 * scale);
+  ctx.lineTo(21 * scale, 10 * scale);
+  ctx.lineTo(12 * scale, 10 * scale);
+  ctx.lineTo(13 * scale, 2 * scale);
+  ctx.closePath();
+  ctx.fill();
+}
+['c16','c48','c128'].forEach(id => drawIcon(document.getElementById(id)));
+</script>

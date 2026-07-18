@@ -1,0 +1,2272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scout Clinical — Business Case for AI-Powered Recruiting Platform</title>
+  <meta name="description" content="Business case for Scout Clinical to invest in Teamtailor's AI-powered applicant tracking and employer branding platform.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- STICKY NAVIGATION -->
+  <nav class="sticky-nav" id="sticky-nav">
+    <div class="sticky-nav-inner">
+      <a href="#cover" class="nav-brand">
+        <div class="nav-tt-icon">TT</div>
+        <span>Teamtailor × Scout Clinical</span>
+      </a>
+      <div class="nav-links">
+        <a href="#the-challenge">Challenges</a>
+        <a href="#cost-of-inaction">Hidden Costs</a>
+        <a href="#the-solution">Requirements</a>
+        <a href="#ai-comparison">AI Comparison</a>
+        <a href="#investment">Investment & ROI</a>
+        <a href="#implementation">Timeline</a>
+        <a href="#next-steps">Next Steps</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- COVER PAGE -->
+  <section class="cover-page" id="cover">
+    <div class="cover-badge">CONFIDENTIAL</div>
+    <div class="cover-content">
+      <div class="cover-logo-area">
+        <div class="cover-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <rect width="48" height="48" rx="12" fill="url(#grad1)"/>
+            <path d="M14 24L22 32L34 16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><linearGradient id="grad1" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+          </svg>
+        </div>
+        <span class="cover-from">Prepared by Teamtailor</span>
+      </div>
+      <h1 class="cover-title">Business Case</h1>
+      <p class="cover-subtitle">AI-Powered Applicant Tracking & Employer Brand Platform</p>
+      <div class="cover-divider"></div>
+      <div class="cover-for">
+        <span class="cover-label">Prepared for</span>
+        <span class="cover-company">Scout Clinical</span>
+      </div>
+      <div class="cover-meta">
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Date</span>
+          <span class="cover-meta-value">June 2026</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Contact</span>
+          <span class="cover-meta-value">Jack Luther</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Executive Sponsor</span>
+          <span class="cover-meta-value">Ryan Walker</span>
+        </div>
+      </div>
+    </div>
+    <div class="cover-footer">
+      <span>© 2026 Teamtailor — This document is confidential and intended solely for Scout Clinical.</span>
+    </div>
+  </section>
+
+  <!-- TABLE OF CONTENTS -->
+  <section class="page toc-page" id="toc">
+    <div class="section-number">00</div>
+    <h2 class="toc-heading">Contents</h2>
+    <nav class="toc-list">
+      <a href="#executive-summary" class="toc-item">
+        <span class="toc-num">01</span>
+        <span class="toc-text">Executive Summary</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#the-challenge" class="toc-item">
+        <span class="toc-num">02</span>
+        <span class="toc-text">The Challenge — The Hidden Cost of Your Current Workflow</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#the-solution" class="toc-item">
+        <span class="toc-num">03</span>
+        <span class="toc-text">Your Requirements — How Teamtailor Delivers</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#ai-comparison" class="toc-item">
+        <span class="toc-num">04</span>
+        <span class="toc-text">AI Capabilities — ClearCompany vs Teamtailor</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#investment" class="toc-item">
+        <span class="toc-num">05</span>
+        <span class="toc-text">Investment & Pricing Predictability</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#implementation" class="toc-item">
+        <span class="toc-num">06</span>
+        <span class="toc-text">Your Questions, Answered</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#why-teamtailor" class="toc-item">
+        <span class="toc-num">07</span>
+        <span class="toc-text">Why Teamtailor for Scout Clinical</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#next-steps" class="toc-item">
+        <span class="toc-num">08</span>
+        <span class="toc-text">Recommended Next Steps</span>
+        <span class="toc-dots"></span>
+      </a>
+    </nav>
+  </section>
+
+  <!-- SECTION 1: EXECUTIVE SUMMARY -->
+  <section class="page" id="executive-summary">
+    <div class="section-number">01</div>
+    <h2 class="section-title">Executive Summary</h2>
+    <div class="section-intro">
+      <p>Scout Clinical is a growing clinical research organization with teams in the <strong>United States, United Kingdom, and Ireland</strong>. The recruiting team is small, and they need an ATS that cuts out the manual work, handles global compliance, and uses AI so a lean team can operate efficiently at scale.</p>
+      <p>Right now, <strong>the current process is getting in the way.</strong> The offer process lives entirely outside the ATS. There's no real talent pool. And with no outbound sourcing engine, Scout's ability to find passive candidates — the ones Tanya says are the best — is limited to manual effort.</p>
+    </div>
+
+    <div class="highlight-grid">
+      <div class="highlight-card">
+        <div class="highlight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+        </div>
+        <h3>Offer Process Broken</h3>
+        <p>The current ATS's branded logo on offer emails forced Scout to move the entire offer workflow — document creation, e-signature, delivery — outside the system.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>No Talent Pool</h3>
+        <p>Every new req starts from scratch. Good candidates from past searches are buried in email folders and ATS statuses — there's no way to search them or match them to new roles.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <h3>No Outbound Sourcing Engine</h3>
+        <p>"I'm a firm believer that the best candidates aren't looking for jobs. We want to try and find them." — Tanya Davis. Scout needs a sourcing engine that attracts and nurtures passive candidates, not just a cold database of names.</p>
+      </div>
+    </div>
+
+    <div class="summary-box">
+      <h3>The Recommendation</h3>
+      <p>Teamtailor covers <strong>everything Scout asked for</strong> — branded offers, global compliance, ADP integration, AI screening, LinkedIn Recruiter Lite integration, and a career site that actually represents Scout's brand — at a <strong>flat, predictable price</strong>. The other platform's AI agents go live July 16 — worth asking if any customers have used them in production yet, and whether there's a cap on usage-based pricing.</p>
+    </div>
+  </section>
+
+
+
+  <!-- SECTION 2: THE CHALLENGE -->
+  <section class="page" id="the-challenge">
+    <div class="section-number">02</div>
+    <h2 class="section-title">The Challenge</h2>
+    <p class="section-subtitle">The Hidden Cost of Your Current Workflow</p>
+
+    <div class="challenge-list">
+      <div class="challenge-item">
+        <div class="challenge-num">01</div>
+        <div class="challenge-content">
+          <h3>The Offer Letter Problem</h3>
+          <p>The current ATS's offer emails display the <strong>vendor's logo prominently</strong> instead of Scout's branding. This forced the team to abandon the ATS's offer workflow entirely — creating documents manually, sending through DocuSign separately, and losing all tracking within the system.</p>
+          <div class="quote-callout">
+            <blockquote>"When we send it out to candidates, the email has a huge logo front center that isn't ours. We want it to be branded for Scout."</blockquote>
+            <cite>— Katie Eiseman, Scout Clinical</cite>
+          </div>
+          <div class="challenge-stat">
+            <span class="stat-value">100%</span>
+            <span class="stat-label">of offers processed outside the ATS</span>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="challenge-item">
+        <div class="challenge-num">02</div>
+        <div class="challenge-content">
+          <h3>No Real Talent Pipeline</h3>
+          <p>Strong candidates who aren't hired are tracked through email folders and ATS statuses. There's no searchable talent pool, no AI matching against new roles, and no way to nurture passive candidates over time. Every new requisition starts from scratch.</p>
+          <div class="quote-callout info">
+            <blockquote>"I'm a firm believer that the best candidates aren't looking for jobs. So we want to try and find them."</blockquote>
+            <cite>— Tanya Davis, Scout Clinical</cite>
+          </div>
+        </div>
+      </div>
+
+      <div class="challenge-item">
+        <div class="challenge-num">03</div>
+        <div class="challenge-content">
+          <h3>Everything Manual, Nothing Scalable</h3>
+          <p>Coding challenges are done by hand. External recruiter submissions are copy/paste. Interview notes live in Google Docs. Rejection emails hit the ATS's sending cap. And when hiring picks up at the start of the year, the team's size becomes the bottleneck.</p>
+          <div class="quote-callout">
+            <blockquote>"Needing a little bit more robust of a system to kind of help us be more automated — letting the system work for us. That's kind of the time to start looking at new ATSs."</blockquote>
+            <cite>— Katie Eiseman, Scout Clinical</cite>
+          </div>
+
+          <figure class="product-screenshot compact">
+            <img src="images/ats-dashboard.png" alt="Teamtailor ATS dashboard showing recruitment stages with drag-and-drop candidate management">
+            <figcaption>Teamtailor's intuitive pipeline — candidates visible at a glance, moved with a single drag</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2.5: COST OF INACTION -->
+  <section class="page" id="cost-of-inaction">
+    <div class="section-number">02.5</div>
+    <h2 class="section-title">What Your Current Process Is Costing You</h2>
+    <p class="section-subtitle">The status quo isn't free — it's just harder to see on the invoice</p>
+
+    <div class="section-intro">
+      <p>Your current ATS's monthly fee looks small. But the real cost is the time your team spends working around its limitations. Based on what your team described across our conversations, here's a conservative estimate of what those workarounds cost per year.</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+
+      <div style="background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 14px; padding: 20px 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <div>
+            <div style="font-weight: 700; font-size: 0.88rem;">Manual offer process</div>
+            <div style="font-size: 0.72rem; color: var(--color-text-muted); margin-top: 2px;">Create in Word → send via DocuSign → track outside ATS</div>
+          </div>
+          <div style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; padding: 6px 14px; white-space: nowrap; margin-left: 16px;">
+            <span style="font-size: 1.1rem; font-weight: 800; color: #ef4444;">~30 min</span>
+            <span style="font-size: 0.72rem; color: var(--color-text-muted); margin-left: 3px;">/hire</span>
+          </div>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.55;">Katie: <em>"The email has a huge logo front center that isn't ours."</em> 100% of offers processed outside the ATS.</p>
+      </div>
+
+      <div style="background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 14px; padding: 20px 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <div>
+            <div style="font-weight: 700; font-size: 0.88rem;">Resume screening in ChatGPT</div>
+            <div style="font-size: 0.72rem; color: var(--color-text-muted); margin-top: 2px;">Copy/paste each resume, review AI output, compare</div>
+          </div>
+          <div style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; padding: 6px 14px; white-space: nowrap; margin-left: 16px;">
+            <span style="font-size: 1.1rem; font-weight: 800; color: #ef4444;">~5 min</span>
+            <span style="font-size: 0.72rem; color: var(--color-text-muted); margin-left: 3px;">/candidate</span>
+          </div>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.55;">Your team described copy/pasting resumes into ChatGPT. At 50 applicants/role, that's ~4 hours per open req.</p>
+      </div>
+
+      <div style="background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 14px; padding: 20px 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <div>
+            <div style="font-weight: 700; font-size: 0.88rem;">No talent pool — starting from scratch</div>
+            <div style="font-size: 0.72rem; color: var(--color-text-muted); margin-top: 2px;">Past strong candidates buried in email folders</div>
+          </div>
+          <div style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 6px 14px; white-space: nowrap; margin-left: 16px;">
+            <span style="font-size: 0.78rem; font-weight: 700; color: #f59e0b;">Hard to quantify</span>
+          </div>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.55;">Every new req starts from zero. Good candidates from past searches aren't searchable or matched.</p>
+      </div>
+
+    </div>
+
+    <!-- Summary Stats -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px;">
+      <div style="background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.12); border-radius: 14px; padding: 20px; text-align: center;">
+        <div style="font-size: 2rem; font-weight: 800; color: #ef4444;">100+</div>
+        <div style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-top: 4px;">Hours wasted per year</div>
+      </div>
+      <div style="background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.12); border-radius: 14px; padding: 20px; text-align: center;">
+        <div style="font-size: 2rem; font-weight: 800; color: #ef4444;">$5,000+</div>
+        <div style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-top: 4px;">At $50/hr recruiter cost</div>
+      </div>
+      <div style="background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 14px; padding: 20px; text-align: center;">
+        <div style="font-size: 2rem; font-weight: 800; color: var(--color-text-muted);">50</div>
+        <div style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-top: 4px;">Hires/year (conservative)</div>
+      </div>
+    </div>
+
+    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 20px; line-height: 1.65; padding: 20px 24px; background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 12px;">
+      <strong style="color: var(--color-text-primary);">Your team knows the real numbers.</strong> We've used conservative estimates — multiply by your actual hiring volume. That's time not spent sourcing, interviewing, or closing candidates — in an industry where open clinical research roles directly delay trial timelines.
+    </p>
+  </section>
+
+  <!-- SECTION 3: YOUR REQUIREMENTS -->
+  <section class="page" id="the-solution">
+    <div class="section-number">03</div>
+    <h2 class="section-title">Your Requirements</h2>
+    <p class="section-subtitle">Every requirement Scout discussed — mapped to Teamtailor</p>
+
+    <div class="solution-intro">
+      <p>Over four conversations, Scout's team outlined a detailed set of requirements. Here's how Teamtailor addresses each one with <strong>features live in production today</strong>.</p>
+    </div>
+
+    <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px;">Integrations & Core Infrastructure</h3>
+    <div class="req-grid">
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>ADP Integration</strong>
+          <span>Direct integration — name, email, title, location, salary, hire date auto-transfer on hire</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>TestGorilla Integration</strong>
+          <span>Auto-trigger skills assessments when candidates reach a specific stage</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Microsoft Teams & Outlook</strong>
+          <span>Calendar sync, Teams video links auto-generated for interviews, multi-panelist scheduling</span>
+        </div>
+      </div>
+
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>DocuSign E-Signature</strong>
+          <span>Multi-doc signing (offer + comp agreements); also includes native e-signature</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>LinkedIn (Recruiter Lite)</strong>
+          <span>Free job posting + Chrome sourcing extension to add candidates from any source in 1 click</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Indeed + 15 Job Boards</strong>
+          <span>Auto-distribution at no additional cost; promoted posting support</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Semi-Monthly Payroll</strong>
+          <span>Semi-monthly pay frequency (15th &amp; last day) displayed via custom fields on offer letters — ADP transfer handled at hire</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 0.95rem; font-weight: 700; margin: 32px 0 16px;">Offer Management & Compliance</h3>
+    <div class="req-grid">
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Scout-Branded Offer Letters</strong>
+          <span>Your branding, your templates — no third-party logos. Dual salary display (semi-monthly + annual)</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Native E-Signature</strong>
+          <span>Built-in electronic signature — legally binding, no external tools required</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Offer Approval Routing</strong>
+          <span>Route offers for approval before sending to candidates — configurable per role/department</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Benefits Document Attachment</strong>
+          <span>Attach benefits docs, comp agreements, and supporting files to offer packages</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>EEO/Disability (US Only)</strong>
+          <span>Location-based routing ensures EEO surveys only go to US applicants; auto-suppressed for UK/Ireland</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>GDPR Data Retention</strong>
+          <span>Configurable retention periods by location — auto-deletion for UK/Ireland data per GDPR requirements</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>State-Based Knockout Questions</strong>
+          <span>Block applications from states where Scout doesn't hire; region-specific questions for UK roles</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Multi-Currency (USD + GBP)</strong>
+          <span>Support for multiple currencies across US and UK job postings</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 0.95rem; font-weight: 700; margin: 32px 0 16px;">Recruiting Workflow & Automation</h3>
+    <div class="req-grid">
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Job Templates by Department</strong>
+          <span>Reusable templates with saved questions, hiring teams, stages, and workflows</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Job Cloning & Archiving</strong>
+          <span>Clone recurring roles (e.g., CTA positions), archive completed jobs, reuse settings</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Internal Job Posting</strong>
+          <span>Post internally first, then flip to external with one toggle</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Employee Referral Portal</strong>
+          <span>Self-serve referral portal — employees refer directly from the career site, leaderboard tracking</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Smart Move Triggers</strong>
+          <span>Auto-send emails, trigger assessments, or advance stages when candidates meet criteria</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Skip Stages for Referrals</strong>
+          <span>Move referred candidates directly to interview stage, bypassing phone screen</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>External Recruiter Portal</strong>
+          <span>Agencies submit candidates directly with restricted visibility; auto-source tagging</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Unlimited Emails</strong>
+          <span>No caps on candidate communications — send rejections, updates, and nurture emails freely</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 0.95rem; font-weight: 700; margin: 32px 0 16px;">AI & Intelligence</h3>
+    <div class="req-grid">
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>AI Candidate Screening & Ranking</strong>
+          <span>Copilot evaluates against your criteria — green/red/dash indicators per candidate, with reasoning</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>AI Resume Summaries</strong>
+          <span>Instant resume parsing and summarization</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>AI Job Description Drafts</strong>
+          <span>Generate full JDs from title and criteria — matches Scout's writing style</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Talent Pool with AI Matching</strong>
+          <span>Past strong candidates automatically surfaced when matching roles open</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Ask Copilot (Per-Candidate)</strong>
+          <span>Open any candidate's profile and ask questions in plain English — Copilot searches their resume, notes, transcripts, and messages to answer instantly</span>
+        </div>
+      </div>
+      <div class="req-item">
+        <div class="req-icon yes">✓</div>
+        <div class="req-item-text">
+          <strong>Bias & Discrimination Detection</strong>
+          <span>Biased language detection in job descriptions via Develop Diverse integration + Anonymous Hiring mode to hide candidate names, photos, and demographic info during screening</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="screenshot-pair" style="margin-top: 32px;">
+      <figure>
+        <img src="images/ai-interview.png" alt="Teamtailor screening criteria with green checkmarks showing candidate match against requirements">
+        <figcaption>AI Screening: Candidates scored against your criteria automatically</figcaption>
+      </figure>
+      <figure>
+        <img src="images/ai-content.png" alt="Teamtailor Write with Copilot button for AI-powered content generation">
+        <figcaption>Write with Copilot: AI-generated job descriptions, messages, and content</figcaption>
+      </figure>
+    </div>
+
+
+  </section>
+
+  <!-- SECTION 4: AI COMPARISON -->
+  <section class="page" id="ai-comparison">
+    <div class="section-number">04</div>
+    <h2 class="section-title">AI Capabilities</h2>
+    <p class="section-subtitle">ClearCompany AI Agent Platform vs Teamtailor Copilot</p>
+
+    <!-- AI Context + Scores — Integrated -->
+    <div style="display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: start; margin-bottom: 28px;">
+      <div>
+        <p style="font-size: 0.88rem; line-height: 1.7; color: var(--color-text-muted); margin-bottom: 12px;">ClearCompany announced 5 AI agents at SHRM on June 16. GA starts July 16 — <strong style="color: var(--color-text-primary);">no production customers yet.</strong></p>
+        <p style="font-size: 0.88rem; line-height: 1.7; color: var(--color-text-muted);">Of those 5, two are for performance management (not ATS). The remaining 3 map to capabilities <strong style="color: var(--color-text-primary);">Teamtailor Copilot already ships today</strong> — JD generation, candidate suggestions, screening, scoring, interview transcription. Copilot is live with 10,000+ customers.</p>
+      </div>
+      <div style="display: flex; gap: 12px; flex-shrink: 0;">
+        <div style="background: linear-gradient(135deg, rgba(99,102,241,0.12) 0%, rgba(99,102,241,0.04) 100%); border: 1px solid rgba(99,102,241,0.2); border-radius: 12px; padding: 16px 20px; text-align: center; min-width: 90px;">
+          <div style="font-size: 2rem; font-weight: 800; color: #6366f1; line-height: 1;">8</div>
+          <div style="font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #a5b4fc; margin-top: 4px;">TT Leads</div>
+        </div>
+        <div style="background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 12px; padding: 16px 20px; text-align: center; min-width: 90px;">
+          <div style="font-size: 2rem; font-weight: 800; color: var(--color-text-muted); line-height: 1;">5</div>
+          <div style="font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-top: 4px;">Parity</div>
+        </div>
+        <div style="background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 12px; padding: 16px 20px; text-align: center; min-width: 90px;">
+          <div style="font-size: 2rem; font-weight: 800; color: var(--color-text-muted); line-height: 1;">1</div>
+          <div style="font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-top: 4px;">CC Leads</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- G2 Head-to-Head Ratings -->
+    <div style="background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+        <div>
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 4px;">G2 Head-to-Head: The Categories That Matter for Scout</h3>
+          <p style="font-size: 0.78rem; color: var(--color-text-muted);">Scores from verified user reviews on G2</p>
+        </div>
+      </div>
+
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--color-border);">
+            <th style="text-align: left; padding: 10px 12px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted);">Category</th>
+            <th style="text-align: center; padding: 10px 12px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #a5b4fc;">Teamtailor</th>
+            <th style="text-align: center; padding: 10px 12px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted);">ClearCompany</th>
+            <th style="text-align: center; padding: 10px 12px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted);">Why This Matters for Scout</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 12px; font-weight: 600;">Ease of Use</td>
+            <td style="padding: 12px; text-align: center;"><span style="font-weight: 800; font-size: 1.1rem; color: #6366f1;">9.0</span><span style="font-size: 0.68rem; color: var(--color-text-muted);">/10</span></td>
+            <td style="padding: 12px; text-align: center;"><span style="font-weight: 800; font-size: 1.1rem;">9.1</span><span style="font-size: 0.68rem; color: var(--color-text-muted);">/10</span></td>
+            <td style="padding: 12px; font-size: 0.75rem; color: var(--color-text-muted);">Statistical parity — both score high. The real test is daily workflow speed for a 2-person team.</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 12px; font-weight: 600;">Ease of Setup</td>
+            <td style="padding: 12px; text-align: center;"><span style="font-weight: 800; font-size: 1.1rem; color: #10b981;">8.8</span><span style="font-size: 0.68rem; color: var(--color-text-muted);">/10</span></td>
+            <td style="padding: 12px; text-align: center;"><span style="font-weight: 800; font-size: 1.1rem;">8.5</span><span style="font-size: 0.68rem; color: var(--color-text-muted);">/10</span></td>
+            <td style="padding: 12px; font-size: 0.75rem; color: var(--color-text-muted);">A 2-person team can't afford a long implementation. TT's 4-week onboarding reflects this.</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 12px; font-weight: 600;">Ease of Admin</td>
+            <td style="padding: 12px; text-align: center;"><span style="font-weight: 800; font-size: 1.1rem; color: #10b981;">9.0</span><span style="font-size: 0.68rem; color: var(--color-text-muted);">/10</span></td>
+            <td style="padding: 12px; text-align: center;"><span style="font-weight: 800; font-size: 1.1rem;">8.8</span><span style="font-size: 0.68rem; color: var(--color-text-muted);">/10</span></td>
+            <td style="padding: 12px; font-size: 0.75rem; color: var(--color-text-muted);">Katie manages this without IT support. Admin simplicity = fewer support tickets.</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 12px; font-weight: 600;">Quality of Support</td>
+            <td style="padding: 12px; text-align: center;"><span style="font-weight: 800; font-size: 1.1rem; color: #10b981;">9.3</span><span style="font-size: 0.68rem; color: var(--color-text-muted);">/10</span></td>
+            <td style="padding: 12px; text-align: center;"><span style="font-weight: 800; font-size: 1.1rem;">9.1</span><span style="font-size: 0.68rem; color: var(--color-text-muted);">/10</span></td>
+            <td style="padding: 12px; font-size: 0.75rem; color: var(--color-text-muted);">When your team is 2 people, responsive support isn't optional — it's infrastructure.</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 12px; font-weight: 600;">Product Direction</td>
+            <td style="padding: 12px; text-align: center;"><span style="font-weight: 800; font-size: 1.1rem; color: #10b981;">9.1</span><span style="font-size: 0.68rem; color: var(--color-text-muted);">/10</span></td>
+            <td style="padding: 12px; text-align: center;"><span style="font-weight: 800; font-size: 1.1rem;">8.6</span><span style="font-size: 0.68rem; color: var(--color-text-muted);">/10</span></td>
+            <td style="padding: 12px; font-size: 0.75rem; color: var(--color-text-muted);">Users trust where TT is headed. Rapid iteration on 6-week sprint cycles.</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px; font-weight: 600;">Meets Requirements</td>
+            <td style="padding: 12px; text-align: center;"><span style="font-weight: 800; font-size: 1.1rem; color: #6366f1;">8.7</span><span style="font-size: 0.68rem; color: var(--color-text-muted);">/10</span></td>
+            <td style="padding: 12px; text-align: center;"><span style="font-weight: 800; font-size: 1.1rem;">8.8</span><span style="font-size: 0.68rem; color: var(--color-text-muted);">/10</span></td>
+            <td style="padding: 12px; font-size: 0.75rem; color: var(--color-text-muted);">Near parity — CC's score reflects its broader suite (performance mgmt, engagement) beyond core ATS.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 16px; font-style: italic;">Scores reflect G2 mid-market ATS category data as of Q2 2026. Both platforms are well-reviewed. The differences show up in the categories that matter most for a small, fast-moving team: setup speed, admin simplicity, and product innovation pace. <a href="https://www.g2.com/compare/teamtailor-vs-clearcompany" target="_blank" style="color: #a5b4fc;">Verify on G2 →</a></p>
+    </div>
+
+
+
+
+    <!-- Track Record -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px;">
+      <div style="background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(99,102,241,0.02) 100%); border: 1px solid rgba(99,102,241,0.15); border-radius: 14px; padding: 24px 26px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+          <div style="width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></div>
+          <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #a5b4fc;">Teamtailor Copilot</div>
+        </div>
+        <div style="font-size: 1.6rem; font-weight: 800; color: var(--color-text-primary); margin-bottom: 8px;">32 Months in Production</div>
+        <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.55;">Launched <strong style="color: var(--color-text-primary);">October 2023</strong>. Iterating on 6-week sprint cycles, shaped by feedback from 10,000+ customers across 90+ countries. Every feature below is live and used in real hiring workflows today.</p>
+      </div>
+      <div style="background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 14px; padding: 24px 26px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+          <div style="width: 8px; height: 8px; border-radius: 50%; background: #f59e0b;"></div>
+          <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted);">ClearCompany Agent Platform</div>
+        </div>
+        <div style="font-size: 1.6rem; font-weight: 800; color: var(--color-text-muted); margin-bottom: 8px;">Pre-GA · July 16, 2026</div>
+        <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.55;">Announced at <strong style="color: var(--color-text-primary);">SHRM on June 16, 2026</strong>. GA scheduled for July 16. Per their press release, the agents are not yet in production — worth asking if any customers have used them in live hiring.</p>
+      </div>
+    </div>
+
+    <table class="ai-table">
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th class="cc-col">ClearCompany</th>
+          <th class="tt-col">Teamtailor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>AI Candidate Screening & Ranking</strong><br><span style="font-size:0.72rem;color:var(--color-text-muted)">Auto-evaluate applicants against role criteria</span></td>
+          <td>AI Talent Match<br>Aggregate skills/fit ranking score<br><span class="status live">✅ Live</span></td>
+          <td>Copilot Candidate Screening<br>✓/✗ per criterion with reasoning<br><span class="status live">✅ Live · per-criterion transparency</span></td>
+        </tr>
+        <tr>
+          <td><strong>Resume Parsing & Summaries</strong><br><span style="font-size:0.72rem;color:var(--color-text-muted)">Auto-extract skills, experience, education</span></td>
+          <td>AI Talent Match (skills parsing)<br><span class="status live">✅ Live</span></td>
+          <td>Copilot Resume Summaries<br>Auto-generated on every candidate card<br><span class="status live">✅ Live</span></td>
+        </tr>
+        <tr>
+          <td><strong>AI Job Descriptions</strong><br><span style="font-size:0.72rem;color:var(--color-text-muted)">Generate full JDs from title + requirements</span></td>
+          <td>Req Agent<br><span class="status pre-ga">Pre-GA · July 16</span></td>
+          <td>Copilot JD Drafts<br>+ bias detection via Develop Diverse<br><span class="status live">✅ Live</span></td>
+        </tr>
+        <tr>
+          <td><strong>Interview Prep & Scorecards</strong><br><span style="font-size:0.72rem;color:var(--color-text-muted)">AI-generated questions + scoring rubrics</span></td>
+          <td>Interview Agent<br><span class="status pre-ga">Pre-GA · July 16</span></td>
+          <td>Copilot Interview Kit<br>Auto-populates answers from transcript<br><span class="status live">✅ Live</span></td>
+        </tr>
+        <tr>
+          <td><strong>Meeting Recording & Transcription</strong><br><span style="font-size:0.72rem;color:var(--color-text-muted)">Record interviews, transcribe, summarize</span></td>
+          <td>AI Notetaker<br>Recording + transcription + summaries<br><span class="status live">✅ Live</span></td>
+          <td>Copilot Meeting Insights<br>+ auto-fills scorecard from transcript<br><span class="status live">✅ Live</span></td>
+        </tr>
+        <tr>
+          <td><strong>Ask AI About a Candidate</strong><br><span style="font-size:0.72rem;color:var(--color-text-muted)">Natural language queries on a per-candidate basis</span></td>
+          <td>Not in current product docs<br>Ask if they have a natural-language query tool<br><span class="status na">Not found</span></td>
+          <td>Ask Copilot (per candidate)<br>Query their resume, notes, transcripts, messages<br><span class="status live">✅ Live</span></td>
+        </tr>
+        <tr>
+          <td><strong>Bias & Discrimination Detection</strong><br><span style="font-size:0.72rem;color:var(--color-text-muted)">Flag exclusionary language in JDs/comms</span></td>
+          <td>Structured hiring emphasis<br>"Bias interruptor" positioning in marketing<br><span class="status partial">Indirect — via structured process</span></td>
+          <td>Via Develop Diverse integration<br>Scans JD text for biased language<br>+ Anonymous Hiring mode hides names, photos, demographics<br><span class="status live">✅ Via integration + native anonymous mode</span></td>
+        </tr>
+        <tr>
+          <td><strong>Multi-Language Translations</strong><br><span style="font-size:0.72rem;color:var(--color-text-muted)">Translate JDs, emails, career content</span></td>
+          <td>Not mentioned in product docs<br>Ask about multi-language support<br><span class="status na">Not found</span></td>
+          <td>Copilot Translations<br>One-click translate any content<br><span class="status live">✅ Live — critical for UK/Ireland</span></td>
+        </tr>
+        <tr>
+          <td><strong>Candidate Nurture & CRM</strong><br><span style="font-size:0.72rem;color:var(--color-text-muted)">Talent pools, drip campaigns, re-engagement</span></td>
+          <td>Talent pools + email drip campaigns<br>Two-way SMS messaging<br><span class="status live">✅ Live</span></td>
+          <td>Nurture + Connect + Pools + SMS<br>Auto-suggest from pools when roles open<br>Two-way SMS messaging included<br><span class="status live">✅ Live</span></td>
+        </tr>
+        <tr>
+          <td><strong>Career Site & Employer Branding</strong><br><span style="font-size:0.72rem;color:var(--color-text-muted)">Branded career page with culture content</span></td>
+          <td>Responsive branded career pages<br>Customizable components<br><span class="status live">✅ Live</span></td>
+          <td>Full drag-and-drop builder<br>Team pages, blog, custom sections, agent-ready<br><span class="status live">✅ Live — significantly more flexible</span></td>
+        </tr>
+        <tr>
+          <td><strong>External Candidate Database</strong><br><span style="font-size:0.72rem;color:var(--color-text-muted)">Source passive candidates from public data</span></td>
+          <td>800M profiles (aggregated public data)<br>Per-credit access · 150 credits/package<br><span class="status live">✅ Live — credit-based</span></td>
+          <td>Via Gem, Juicebox, hireEZ, SeekOut integrations<br>Same data pools · your choice of tool · plus LinkedIn RSC two-way sync and Connect for passive candidate capture<br><span class="status live">✅ Via integration — best-of-breed sourcing tools</span></td>
+        </tr>
+        <tr>
+          <td><strong>AI Interview & Screening</strong><br><span style="font-size:0.72rem;color:var(--color-text-muted)">Automated voice/video screening of candidates</span></td>
+          <td>Sourcing Agent ("AI-led screening")<br><span class="status pre-ga">Pre-GA · July 16</span></td>
+          <td>Native meeting recording + AI transcription & summaries<br>AI voice screening via VoiceHire, Outhire (auto-triggered from pipeline)<br><span class="status live">✅ Meetings live · Screening via integration</span></td>
+        </tr>
+        <tr>
+          <td><strong>Internal Candidate Search</strong><br><span style="font-size:0.72rem;color:var(--color-text-muted)">AI search within your existing applicant database</span></td>
+          <td>Ask if their new agents include talent pool search<br><span class="status pre-ga">Ask for demo</span></td>
+          <td>Copilot Candidate Suggestions<br>AI matches talent pool to new jobs<br><span class="status live">✅ Live</span></td>
+        </tr>
+        <tr>
+          <td><strong>Open AI / Integration Ecosystem</strong><br><span style="font-size:0.72rem;color:var(--color-text-muted)">Connect external AI tools and agents</span></td>
+          <td>Proprietary Agent Studio<br>Ask about third-party AI tool support<br><span class="status pre-ga">Pre-GA · July 16</span></td>
+          <td>Open REST API + community MCP integrations available<br>Connect Claude, ChatGPT, or any AI tool to your ATS data<br><span class="status live">✅ API live · MCP integrations available</span></td>
+        </tr>
+
+
+      </tbody>
+    </table>
+
+    <!-- HOW IT WORKS IN PRACTICE -->
+    <div class="feature-details">
+      <h3>How It Works in Practice</h3>
+      <p>Every feature listed above is live in Teamtailor today. Here's exactly how your team would use each one — plain and simple.</p>
+
+      <!-- AI Candidate Screening -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">🎯</div>
+          <div>
+            <div class="feature-card-title">AI Candidate Screening & Ranking</div>
+            <div class="feature-card-subtitle">Copilot Candidate Screening</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          Define what "qualified" means for each role. Copilot evaluates every applicant against your criteria automatically. You see green ✓ / red ✗ indicators per candidate with reasoning.
+        </div>
+        <div class="feature-steps">
+          <div class="feature-step">
+            <div class="feature-step-num">1</div>
+            <div class="feature-step-text"><strong>Open any job</strong> → click the <strong>three dots (...)</strong> on the Inbox stage → select "Screening criteria"</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">2</div>
+            <div class="feature-step-text"><strong>Add criteria</strong> manually (e.g. "Must hold Secret clearance") or click <strong>"Suggest criteria"</strong> and let AI analyze the job description</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">3</div>
+            <div class="feature-step-text"><strong>Every new applicant</strong> is auto-evaluated. Sort your Inbox by screening score to see top matches first</div>
+          </div>
+        </div>
+        <figure class="product-screenshot compact" style="margin-top: 16px; margin-bottom: 0;">
+          <img src="images/ai-interview.png" alt="Teamtailor screening criteria with green checkmarks showing candidate match against requirements">
+          <figcaption>Screening criteria defined once → every candidate evaluated with ✓/✗ per requirement</figcaption>
+        </figure>
+      </div>
+
+      <!-- Ask Copilot -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">💬</div>
+          <div>
+            <div class="feature-card-title">Ask Copilot — Natural Language Queries</div>
+            <div class="feature-card-subtitle">Ask Copilot</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          Open any candidate's profile and ask questions in plain English. Copilot searches their resume, application answers, meeting transcripts, and messages to give you an instant answer. Queries are private to you.
+        </div>
+        <div class="feature-steps">
+          <div class="feature-step">
+            <div class="feature-step-num">1</div>
+            <div class="feature-step-text"><strong>Open a candidate card</strong> → click <strong>"Ask Copilot"</strong></div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">2</div>
+            <div class="feature-step-text"><strong>Type any question:</strong> "Does this person have GCP Phase III experience?" or "Summarize their salary expectations"</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">3</div>
+            <div class="feature-step-text"><strong>Get an instant answer</strong> sourced from all candidate data — resume, notes, transcripts, messages</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Meeting Insights -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">🎙️</div>
+          <div>
+            <div class="feature-card-title">Meeting Recording, Transcription & AI Summary</div>
+            <div class="feature-card-subtitle">Copilot Meeting Insights</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          Record any interview — virtual (Teams, Zoom, Google Meet) or in-person (via mobile app). Copilot auto-transcribes the conversation, generates a summary, and even fills out your interview scorecard automatically.
+        </div>
+        <div class="feature-steps">
+          <div class="feature-step">
+            <div class="feature-step-num">1</div>
+            <div class="feature-step-text"><strong>Book a meeting</strong> and toggle <strong>"Record meeting"</strong> on. A recording bot joins the call automatically</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">2</div>
+            <div class="feature-step-text"><strong>After the call:</strong> full transcript, speaking stats, key topics, and Q&A breakdown appear on the candidate card</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">3</div>
+            <div class="feature-step-text"><strong>If using an Interview Kit:</strong> Copilot drafts scorecard answers based on what the candidate actually said</div>
+          </div>
+        </div>
+        <figure class="product-screenshot compact" style="margin-top: 16px; margin-bottom: 0;">
+          <img src="images/meeting-summary.jpg" alt="Teamtailor meeting transcription with AI-generated summary and speaking statistics">
+          <figcaption>Full transcription + AI summary + auto-filled scorecards</figcaption>
+        </figure>
+      </div>
+
+      <!-- Two smaller cards side by side -->
+      <div class="feature-card-row">
+        <!-- Resume Summaries -->
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-card-icon">📄</div>
+            <div>
+              <div class="feature-card-title">Resume Summaries</div>
+              <div class="feature-card-subtitle">Copilot Resume Summaries</div>
+            </div>
+          </div>
+          <div class="feature-card-body">
+            Every incoming resume is parsed and summarized automatically. See the key highlights — skills, experience, education — without opening a single PDF. Shows up directly on the candidate card.
+          </div>
+        </div>
+
+        <!-- Interview Kit -->
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-card-icon">📋</div>
+            <div>
+              <div class="feature-card-title">Interview Kit Generation</div>
+              <div class="feature-card-subtitle">Copilot Interview Kit</div>
+            </div>
+          </div>
+          <div class="feature-card-body">
+            Tell Copilot the role and it generates structured interview questions with scoring rubrics. Attach the kit to the meeting — interviewers see suggested questions, and AI auto-populates answers from the transcript.
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card-row">
+        <!-- JD Drafts -->
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-card-icon">✍️</div>
+            <div>
+              <div class="feature-card-title">Job Description Drafts</div>
+              <div class="feature-card-subtitle">Copilot JD Drafts</div>
+            </div>
+          </div>
+          <div class="feature-card-body">
+            Enter a job title and key requirements. Copilot generates a full job description in seconds — responsibilities, qualifications, benefits. Edit inline and publish. Biased or exclusionary language is flagged via the Develop Diverse integration. <strong>Copilot also learns from your past job descriptions — write the first few manually and it picks up your writing style, tone, and the qualifications you typically look for.</strong>
+          </div>
+        </div>
+
+        <!-- Career Site Builder -->
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-card-icon">🌐</div>
+            <div>
+              <div class="feature-card-title">Career Site Builder</div>
+              <div class="feature-card-subtitle">Drag-and-Drop Builder</div>
+            </div>
+          </div>
+          <div class="feature-card-body">
+            Build a fully branded career site with zero code. Drag-and-drop sections: team pages, culture content, office photos, blog posts. Custom domain, mobile-optimized, and AI-agent-ready (discovered by ChatGPT, Claude, etc.).
+          </div>
+        </div>
+      </div>
+
+      <!-- Nurture Campaigns -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">🔄</div>
+          <div>
+            <div class="feature-card-title">Candidate Nurture & Talent Pools</div>
+            <div class="feature-card-subtitle">Nurture + Connect + Pools</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          Build talent pools of silver-medalist candidates, passive prospects, and referrals. Set up automated nurture campaigns that keep them engaged over time. When a matching role opens, Copilot suggests candidates from your pools automatically. <strong>ClearCompany has basic talent pools and drip emails — but Teamtailor's Connect feature lets candidates subscribe to your company before a role even exists, and Copilot auto-suggests matches when new jobs open.</strong>
+        </div>
+        <div class="feature-steps">
+          <div class="feature-step">
+            <div class="feature-step-num">1</div>
+            <div class="feature-step-text"><strong>Add "Connect"</strong> to your career site — candidates express interest even without an open role</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">2</div>
+            <div class="feature-step-text"><strong>Build pools:</strong> "UK Clinical Research," "US Data Scientists," "Silver Medalists" — segment however you need</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">3</div>
+            <div class="feature-step-text"><strong>Nurture campaigns</strong> auto-send targeted emails on a schedule. When a match opens, candidates are suggested instantly</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+      <!-- Connect -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">🎯</div>
+          <div>
+            <div class="feature-card-title">Connect — Passive Candidate Capture</div>
+            <div class="feature-card-subtitle">Always-On Talent Pipeline</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          A widget on your career site that lets anyone express interest — even when no role is open. Candidates select departments and locations they care about. When a matching role opens, they're auto-notified. No manual work from your team. <strong>For Scout: clinical monitors in the UK who aren't job-searching today can express interest. When a UK role opens in 3 months, they're alerted instantly — pipeline that builds itself.</strong>
+        </div>
+        <div class="feature-steps">
+          <div class="feature-step">
+            <div class="feature-step-num">1</div>
+            <div class="feature-step-text">Candidate visits your career site and clicks <strong>"Connect"</strong> — picks department (Clinical Ops, HR, IT) and location (US, UK, Ireland)</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">2</div>
+            <div class="feature-step-text">Profile is stored in your talent pool automatically. <strong>No recruiter action needed.</strong></div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">3</div>
+            <div class="feature-step-text">When you post a matching role, the system <strong>auto-alerts them.</strong> They apply with one click — warm candidate, no sourcing credits</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MCP -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">🔗</div>
+          <div>
+            <div class="feature-card-title">MCP — Connect Any AI Tool to Your ATS</div>
+            <div class="feature-card-subtitle">Model Context Protocol · Open Standard</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          MCP (Model Context Protocol) is an open standard that lets AI tools talk directly to your data. Teamtailor's open REST API already has community-built MCP integrations — meaning Claude, ChatGPT, or any AI your team uses can pull candidate data, job info, and pipeline status directly from your ATS. <strong>ClearCo lets you use ClearCo's agents. Teamtailor lets you use your own. When a better AI model launches next year, you just plug it in.</strong>
+        </div>
+        <div class="feature-steps">
+          <div class="feature-step">
+            <div class="feature-step-num">1</div>
+            <div class="feature-step-text"><strong>Connect</strong> your preferred AI tool (Claude, ChatGPT, etc.) to Teamtailor via MCP — one-time setup</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">2</div>
+            <div class="feature-step-text"><strong>Ask your AI:</strong> "Who are the top 5 candidates in my Senior CRA pipeline?" — it reads your live ATS data and answers</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">3</div>
+            <div class="feature-step-text"><strong>Build custom workflows:</strong> auto-draft outreach emails, summarize candidate pools, create weekly hiring reports — using YOUR choice of AI</div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Global Hiring -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">🌍</div>
+          <div>
+            <div class="feature-card-title">Global Hiring — US, UK & Ireland from One Platform</div>
+            <div class="feature-card-subtitle">Multi-Language · Multi-Region · 90+ Countries</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          Scout hires across the US, UK, and Ireland. Teamtailor was built in Stockholm for global hiring — multi-language career sites, region-specific workflows, and GDPR compliance are native, not bolted on. <strong>Teamtailor serves 10,000+ customers across 90+ countries.</strong>
+        </div>
+        <div class="feature-steps">
+          <div class="feature-step">
+            <div class="feature-step-num">1</div>
+            <div class="feature-step-text"><strong>Career site auto-translates</strong> — UK candidates see content in their locale, US candidates in theirs. Copilot translates job descriptions</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">2</div>
+            <div class="feature-step-text"><strong>Region-specific pipelines</strong> — different hiring stages for UK vs US roles. Same ATS, different workflows per market</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">3</div>
+            <div class="feature-step-text"><strong>Built-in GDPR:</strong> auto-consent collection, data retention policies, and candidate data deletion requests handled natively</div>
+          </div>
+        </div>
+      </div>
+
+
+
+    <!-- 800M Database Intelligence Section -->
+    <div style="margin-top: 36px; background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px; overflow: hidden;">
+      <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">The "800 Million Candidate Profiles" — Where the Data Actually Comes From</h3>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.6; margin-bottom: 24px;">ClearCompany's Sourcing Agent draws from a database of 800 million professional profiles. That number sounds massive, but it's worth understanding what's behind it.</p>
+
+      <!-- Data Supply Chain -->
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px;">
+        <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px;">
+          <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #6366f1; margin-bottom: 10px;">Layer 1 · Public Web Data</div>
+          <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.55;">LinkedIn profiles, GitHub, personal websites, social media — scraped and aggregated from the open internet.</p>
+          <div style="font-size: 0.72rem; color: var(--color-text-muted); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--color-border);">Source: The internet</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px;">
+          <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #f59e0b; margin-bottom: 10px;">Layer 2 · Data Aggregators</div>
+          <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.55;">Companies that clean, deduplicate, and structure this raw data into searchable APIs. They license it to recruiting tools.</p>
+          <div style="font-size: 0.72rem; color: var(--color-text-muted); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--color-border);">People Data Labs (3B+), MixRank, Proxycurl</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px;">
+          <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #10b981; margin-bottom: 10px;">Layer 3 · Sourcing Products</div>
+          <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.55;">Tools that license data from aggregators, add their own AI/search layer, and sell access — often per-credit.</p>
+          <div style="font-size: 0.72rem; color: var(--color-text-muted); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--color-border);">ClearCo, Gem, Juicebox, hireEZ, SeekOut, Loxo</div>
+        </div>
+      </div>
+
+      <p style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.6; margin-bottom: 20px;">The "800 million" figure is an industry-standard number. Multiple competing sourcing tools cite the same scale because they're all drawing from the same underlying pool of publicly available professional data. ClearCompany has not disclosed their specific data provider, but the data itself is not proprietary to them.</p>
+
+      <!-- The Real Question -->
+      <div style="background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.15); border-radius: 14px; padding: 24px; margin-bottom: 24px;">
+        <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #a5b4fc; margin-bottom: 10px;">The real question behind the sourcing decision</div>
+        <p style="font-size: 0.92rem; line-height: 1.65; color: var(--color-text-primary); font-weight: 500;">Your team is busy. You need the system to do the heavy lifting on sourcing — better enabling a lean recruitment team to find great candidates, especially passive talent who aren’t applying. That’s a real need. The question is: what’s the right way to solve it?</p>
+        <div class="quote-callout info" style="margin-top: 16px; margin-bottom: 0;">
+          <blockquote>"The biggest piece is they have a sourcing agent. It's going out there... looking through all of that data and then highlighting the best picks. It's eliminating our need to even scrub through all those candidates. It's doing all of that within that AI agent. For me, that was pretty like, oh geez, that's really amazing."</blockquote>
+          <cite>— Your team, on why ClearCompany's Sourcing Agent was exciting</cite>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.65; margin-top: 16px;">An agent that autonomously finds candidates sounds ideal for a small team. But it's worth asking: <strong style="color: var(--color-text-primary);">does autonomous sourcing on a cold database actually deliver for niche clinical research roles?</strong></p>
+      </div>
+
+      <!-- Two approach cards -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div style="background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.12); border-radius: 12px; padding: 20px;">
+          <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #ef4444; margin-bottom: 10px;">Approach A: Autonomous Agent on Cold Data</div>
+          <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.55;">AI scans 800M profiles and surfaces "best matches." But those 800M profiles are strangers — they don't know Scout, haven't expressed interest, and may not respond. For niche roles (clinical monitors, regulatory specialists), keyword matching doesn't capture the qualifications that actually matter. You spend credits finding names, then spend time chasing people who may never reply.</p>
+          <p style="font-size: 0.78rem; color: var(--color-text-muted); line-height: 1.55; margin-top: 10px; font-style: italic;">Worth asking: request a live demo with a real Scout role. How many of the top 20 "matches" would you actually reach out to?</p>
+        </div>
+        <div style="background: rgba(99,102,241,0.04); border: 1px solid rgba(99,102,241,0.12); border-radius: 12px; padding: 20px;">
+          <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #6366f1; margin-bottom: 10px;">Approach B: Build a Sourcing Engine</div>
+          <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.55;">Instead of chasing cold profiles, build a system that attracts candidates to you. Your career site captures passive interest (Connect). Nurture campaigns keep silver medalists warm for months. Copilot mines your growing database before you source externally. And when you need outbound reach, plug in best-of-breed sourcing tools via the open marketplace.</p>
+          <p style="font-size: 0.78rem; color: var(--color-text-muted); line-height: 1.55; margin-top: 10px; font-style: italic;">This is how a 2-person team builds capacity without adding headcount — and the pipeline compounds over time.</p>
+        </div>
+      </div>
+
+      <!-- Teamtailor Sourcing Ecosystem -->
+      <div style="margin-top: 20px;">
+        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #a5b4fc; margin-bottom: 14px;">Your Sourcing Engine — All Included</div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--color-border); border-radius: 10px; padding: 16px;">
+            <div style="font-size: 0.82rem; font-weight: 700; margin-bottom: 6px;">🎯 Connect</div>
+            <p style="font-size: 0.75rem; color: var(--color-text-muted); line-height: 1.5;">Passive candidates express interest via your career site — no open role needed. They choose departments and locations. When a match opens, they're auto-alerted.</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--color-border); border-radius: 10px; padding: 16px;">
+            <div style="font-size: 0.82rem; font-weight: 700; margin-bottom: 6px;">📧 Nurture Campaigns</div>
+            <p style="font-size: 0.75rem; color: var(--color-text-muted); line-height: 1.5;">Multi-step automated email drip sequences. Silver medalists auto-enter campaigns via pipeline triggers. Keeps candidates warm for months until the right role opens.</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--color-border); border-radius: 10px; padding: 16px;">
+            <div style="font-size: 0.82rem; font-weight: 700; margin-bottom: 6px;">📨 SMS Messaging</div>
+            <p style="font-size: 0.75rem; color: var(--color-text-muted); line-height: 1.5;">Two-way SMS messaging to reach candidates where they’re most responsive. Send texts directly from the candidate card — no separate tool needed.</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--color-border); border-radius: 10px; padding: 16px;">
+            <div style="font-size: 0.82rem; font-weight: 700; margin-bottom: 6px;">🤖 Copilot Suggestions</div>
+            <p style="font-size: 0.75rem; color: var(--color-text-muted); line-height: 1.5;">AI scans your existing talent pool and surfaces candidates who match new roles — before you ever source externally. Finds hidden talent already in your database.</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--color-border); border-radius: 10px; padding: 16px;">
+            <div style="font-size: 0.82rem; font-weight: 700; margin-bottom: 6px;">💼 LinkedIn RSC</div>
+            <p style="font-size: 0.75rem; color: var(--color-text-muted); line-height: 1.5;">Two-way sync with LinkedIn Recruiter. See which candidates are already in your ATS, export profiles in one click, access InMail history on candidate cards.</p>
+          </div>
+          <div style="background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.2); border-radius: 10px; padding: 16px;">
+            <div style="font-size: 0.82rem; font-weight: 700; margin-bottom: 6px;">🔗 MCP (AI Protocol)</div>
+            <p style="font-size: 0.75rem; color: var(--color-text-muted); line-height: 1.5;">Teamtailor supports Model Context Protocol — the open standard that lets any AI tool (Claude, ChatGPT, custom agents) connect directly to your ATS data. Build your own AI workflows without waiting for a vendor's roadmap.</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--color-border); border-radius: 10px; padding: 16px;">
+            <div style="font-size: 0.82rem; font-weight: 700; margin-bottom: 6px;">🧩 Open Marketplace</div>
+            <p style="font-size: 0.75rem; color: var(--color-text-muted); line-height: 1.5;">Teamtailor’s marketplace of integrations connects you to industry-leading sourcing tools — Gem, hireEZ, SeekOut, SourceWhale, and more — via pre-built API integrations. Access the same external candidate databases without vendor lock-in, and choose the best tool for your team’s needs.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 16px; padding: 20px 24px; background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.15); border-radius: 12px;">
+        <p style="font-size: 0.85rem; line-height: 1.7; color: var(--color-text-muted); margin: 0 0 10px;">We're an ATS business, not an AI agent business — and we recognize that. We partner with OpenAI, Anthropic, and others to bring best-in-class AI into the platform, while keeping the architecture open so you can connect your own tools via MCP. Your sourcing engine compounds over time — Connect captures passive interest, Nurture keeps candidates warm, Copilot surfaces matches, and the marketplace plugs in best-of-breed outbound tools.</p>
+        <p style="font-size: 0.88rem; line-height: 1.65; color: var(--color-text-primary); font-weight: 600; margin: 0;"><strong>ClearCo lets you use ClearCo's agents.</strong> Teamtailor lets you use <strong>your</strong> agents — connected directly to your ATS data. You choose the tools.</p>
+      </div>
+    </div>
+
+    <!-- Customer Voice Section -->
+    <div class="risk-grid" style="margin-top: 32px;">
+      <h3>What Current ClearCompany Customers Are Saying — And How Teamtailor Compares</h3>
+      <p style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 20px;">Paraphrased quotes from a ClearCompany customer (Q4 2025), plus common themes from recent G2 and Capterra reviews. We're not editorializing — just pairing each experience with how Teamtailor handles the same workflow.</p>
+      <div class="risk-items">
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Current CC Customer (paraphrased)</span>
+            <p>"It returns a thousand or two thousand candidates from external sources. It provides me with a match bar — 'this candidate looks like it's a 90% match.' I dig into it and the candidate doesn't have a clearance, and neither does the next one, or the next one. So what criteria are you using to give me a 90% match?"</p>
+
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">How Teamtailor Handles This</span>
+            <p>Copilot Candidate Screening lets you define your own criteria — "Must hold specific certification," "3+ years clinical trial experience" — and evaluates each applicant against those specific requirements. You see a ✓ or ✗ per criterion with the reasoning, not just a percentage. If a candidate doesn't meet a requirement, you know exactly which one and why.</p>
+          </div>
+        </div>
+
+
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">CC Customer Quote</span>
+            <p>"We're using ChatGPT and Gemini to help us review candidate resumes to see if they align to the position descriptions... AI is bad with ClearCo. That's probably my primary complaint."</p>
+
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">How Teamtailor Handles This</span>
+            <p>This is the workflow Copilot replaces. Instead of copy/pasting resumes into ChatGPT, Copilot reads every resume automatically, summarizes it on the candidate card, and screens against your criteria — all inside the ATS.</p>
+          </div>
+        </div>
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">CC Customer Quote</span>
+            <p>"Just doing anything in ClearCo is difficult. It's not intuitive. Customizing anything is a process. You need to battle your way through it."</p>
+
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">How Teamtailor Handles This</span>
+            <p>Teamtailor is consistently top-rated for ease of use on G2. Candidates are moved between stages with a drag. Job templates save your settings so you don't rebuild from scratch. The career site is drag-and-drop.</p>
+          </div>
+        </div>
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Common Theme — G2 Reviews</span>
+            <p>"Getting support when something breaks can be frustrating. Sometimes it takes multiple follow-ups to get a resolution, and you're left working around the issue in the meantime."</p>
+
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">How Teamtailor Handles This</span>
+            <p>Teamtailor assigns a dedicated Customer Success Manager for implementation and onboarding — not a ticket queue. Your CSM knows your account, your setup, and your team. Scout would have a named person to call during setup and beyond. Training sessions are included in the price, and support is available via live chat, phone, and email.</p>
+          </div>
+        </div>
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Common Theme — Capterra Reviews</span>
+            <p>"Getting certain integrations to work reliably can take extra effort. Sometimes you need manual workarounds to keep data flowing between systems."</p>
+            <cite style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 8px; display: block;">Scout needs ADP, TestGorilla, and DocuSign working reliably from day one.</cite>
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">How Teamtailor Handles This</span>
+            <p>The ADP, TestGorilla, and DocuSign integrations are all pre-built and maintained by Teamtailor. Teams/Outlook calendar sync is native. These aren't third-party connectors you hope work; they're part of the product.</p>
+          </div>
+        </div>
+
+
+
+      </div>
+      <p style="font-size: 0.78rem; color: var(--color-text-muted); margin-top: 16px; font-style: italic;">Sources: Paraphrased from conversation with a current ClearCompany customer; common themes from G2 and Capterra verified reviews, 2025–2026.</p>
+
+      <!-- Positive Teamtailor Quotes — Contrast -->
+      <div style="margin-top: 28px;">
+        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: #10b981;">What Teamtailor Customers Say</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div style="background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.15); border-radius: 14px; padding: 20px 22px;">
+            <p style="font-size: 0.85rem; color: var(--color-text-primary); line-height: 1.6; font-style: italic; margin-bottom: 10px;">"Features like AI resume summaries and video questions are leaned on heavily and regularly. Automated triggers are a real workhorse for the platform."</p>
+            <p style="font-size: 0.72rem; color: var(--color-text-muted);">— G2 Verified Review</p>
+          </div>
+          <div style="background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.15); border-radius: 14px; padding: 20px 22px;">
+            <p style="font-size: 0.85rem; color: var(--color-text-primary); line-height: 1.6; font-style: italic; margin-bottom: 10px;">"The career site builder uses a drag-and-drop system that's genuinely intuitive, which is rare in HR software. You can quickly launch a branded page and connect it to your jobs pipeline without much friction."</p>
+            <p style="font-size: 0.72rem; color: var(--color-text-muted);">— G2 Verified Review</p>
+          </div>
+          <div style="background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.15); border-radius: 14px; padding: 20px 22px;">
+            <p style="font-size: 0.85rem; color: var(--color-text-primary); line-height: 1.6; font-style: italic; margin-bottom: 10px;">"By using automated triggers we can let the system do a lot of work without us having to administer it. It has saved us huge amounts of administration time."</p>
+            <p style="font-size: 0.72rem; color: var(--color-text-muted);">— Capterra Verified Review</p>
+          </div>
+          <div style="background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.15); border-radius: 14px; padding: 20px 22px;">
+            <p style="font-size: 0.85rem; color: var(--color-text-primary); line-height: 1.6; font-style: italic; margin-bottom: 10px;">"Teamtailor won't stop until they've helped me solve my challenge, and they do it with personalized conversations and customized links and screenshots."</p>
+            <p style="font-size: 0.72rem; color: var(--color-text-muted);">— G2 Verified Review</p>
+          </div>
+        </div>
+        <p style="font-size: 0.72rem; color: var(--color-text-muted); margin-top: 12px; font-style: italic;">Sources: Verified reviews from <a href="https://www.g2.com/products/teamtailor/reviews" target="_blank" style="color: #a5b4fc;">G2</a> and <a href="https://www.capterra.com/p/168610/Teamtailor/reviews/" target="_blank" style="color: #a5b4fc;">Capterra</a>, 2024–2026.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 5: INVESTMENT -->
+  <section class="page" id="investment">
+    <div class="section-number">05</div>
+    <h2 class="section-title">Investment & Pricing Predictability</h2>
+    <p class="section-subtitle">What it costs — and why the total cost of ownership matters</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px;">
+      <!-- Teamtailor Card -->
+      <div style="background: var(--color-card-bg); border-radius: 16px; overflow: hidden; border: 2px solid rgba(99,102,241,0.3); position: relative;">
+        <div style="background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%); padding: 6px 14px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #fff; display: inline-block; border-radius: 0 0 10px 0;">Recommended</div>
+        <div style="padding: 24px 28px 20px;">
+          <div style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); margin-bottom: 12px;">Teamtailor</div>
+          <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 6px;">
+            <span style="font-size: 0.9rem; color: var(--color-text-muted); font-weight: 500;">$</span>
+            <span style="font-size: 2.8rem; font-weight: 800; color: var(--color-text-muted); line-height: 1;">11,500</span>
+            <span style="font-size: 0.88rem; color: var(--color-text-muted); font-weight: 500;">/year</span>
+          </div>
+          <div style="font-size: 0.78rem; color: #a5b4fc; font-weight: 500;">via ADP Partner Pricing</div>
+        </div>
+        <div style="height: 1px; background: var(--color-border); margin: 0 28px;"></div>
+        <div style="padding: 20px 28px 28px;">
+          <div style="font-size: 0.78rem; font-weight: 700; margin-bottom: 14px; color: var(--color-text-primary);">Everything included — no add-on fees:</div>
+          <div style="display: flex; flex-direction: column; gap: 9px; font-size: 0.82rem; color: var(--color-text-muted);">
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: #10b981; flex-shrink: 0;">✓</span> AI Copilot (screening, ranking, JDs, interview prep)</div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: #10b981; flex-shrink: 0;">✓</span> Offer approval workflows</div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: #10b981; flex-shrink: 0;">✓</span> Requisition flow</div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: #10b981; flex-shrink: 0;">✓</span> Enterprise calendar (Teams/Outlook)</div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: #10b981; flex-shrink: 0;">✓</span> Divisions (multi-location)</div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: #10b981; flex-shrink: 0;">✓</span> Career site builder</div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: #10b981; flex-shrink: 0;">✓</span> ADP + TestGorilla + DocuSign integrations</div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: #10b981; flex-shrink: 0;">✓</span> Unlimited hiring manager seats</div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: #10b981; flex-shrink: 0;">✓</span> Dedicated CSM + implementation + training</div>
+            <div style="height: 1px; background: var(--color-border); margin: 4px 0;"></div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: #6366f1; flex-shrink: 0;">★</span> <strong style="color: var(--color-text-primary);">Flat, predictable pricing — no usage fees</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ClearCompany Card -->
+      <div style="background: var(--color-card-bg); border-radius: 16px; overflow: hidden; border: 1px solid var(--color-border);">
+        <div style="padding: 30px 28px 20px;">
+          <div style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); margin-bottom: 12px;">ClearCompany</div>
+          <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 6px;">
+            <span style="font-size: 0.9rem; color: var(--color-text-muted); font-weight: 500;">$</span>
+            <span style="font-size: 2.8rem; font-weight: 800; color: var(--color-text-muted); line-height: 1;">??</span>
+            <span style="font-size: 0.88rem; color: var(--color-text-muted); font-weight: 500;">/year</span>
+          </div>
+          <div style="font-size: 0.78rem; color: var(--color-text-muted);">Base ATS quote received — agent usage pricing unclear</div>
+        </div>
+        <div style="height: 1px; background: var(--color-border); margin: 0 28px;"></div>
+        <div style="padding: 20px 28px 28px;">
+          <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-bottom: 12px;">Questions for your due diligence</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.5;">
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="flex-shrink: 0; margin-top: 2px; opacity: 0.5;">?</span> What's the all-in annual cost — ATS base + sourcing credits + agent fees?</div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="flex-shrink: 0; margin-top: 2px; opacity: 0.5;">?</span> Is AI agent pricing flat or consumption-based? Is there a cost ceiling?</div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="flex-shrink: 0; margin-top: 2px; opacity: 0.5;">?</span> How many of the 5 agents are for recruiting vs. performance management?</div>
+
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="flex-shrink: 0; margin-top: 2px; opacity: 0.5;">?</span> Is the career site builder drag-and-drop or template-based?</div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="flex-shrink: 0; margin-top: 2px; opacity: 0.5;">?</span> Do you offer nurture campaigns, talent pools, or passive candidate capture?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 16px;">Year 1 Cost Comparison</h3>
+
+    <div style="background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 14px; overflow: hidden;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem;">
+        <thead>
+          <tr style="background: rgba(99,102,241,0.08); border-bottom: 2px solid var(--color-border);">
+            <th style="text-align: left; padding: 14px 20px; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted);">Line Item</th>
+            <th style="text-align: left; padding: 14px 20px; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: #6366f1;">Teamtailor</th>
+            <th style="text-align: right; padding: 14px 20px; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted);">ClearCompany</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 12px 20px;">ATS Platform</td>
+            <td style="padding: 12px 20px; font-weight: 600;">$11,500</td>
+            <td style="padding: 12px 20px; text-align: right; color: var(--color-text-muted);">"Discounted" — exact amount not shared</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 12px 20px;">AI Copilot / AI Agents</td>
+            <td style="padding: 12px 20px; font-weight: 600; color: #10b981;">Included — $0</td>
+            <td style="padding: 12px 20px; text-align: right; color: var(--color-text-muted);">Consumption-based — ask about ceiling</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 12px 20px;">Sourcing Credits</td>
+            <td style="padding: 12px 20px; color: var(--color-text-muted);">N/A — use Gem, Juicebox, or any tool via API</td>
+            <td style="padding: 12px 20px; text-align: right; color: var(--color-text-muted);">150 credits/package — per-credit pricing</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 12px 20px;">Offer Approvals</td>
+            <td style="padding: 12px 20px; font-weight: 600; color: #10b981;">Included</td>
+            <td style="padding: 12px 20px; text-align: right; color: var(--color-text-muted);">Worth confirming</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 12px 20px;">Career Site Builder</td>
+            <td style="padding: 12px 20px; font-weight: 600; color: #10b981;">Included — full drag-and-drop</td>
+            <td style="padding: 12px 20px; text-align: right; color: var(--color-text-muted);">Basic templates — limited customization</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 12px 20px;">Enterprise Calendar (Teams/Outlook)</td>
+            <td style="padding: 12px 20px; font-weight: 600; color: #10b981;">Included</td>
+            <td style="padding: 12px 20px; text-align: right; color: var(--color-text-muted);">Worth confirming</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 12px 20px;">Unlimited Hiring Manager Seats</td>
+            <td style="padding: 12px 20px; font-weight: 600; color: #10b981;">Included — no per-seat charges</td>
+            <td style="padding: 12px 20px; text-align: right; color: var(--color-text-muted);">Ask about seat limits and per-seat pricing</td>
+          </tr>
+          <tr style="background: rgba(99,102,241,0.06);">
+            <td style="padding: 14px 20px; font-weight: 700;">Year 1 Total</td>
+            <td style="padding: 14px 20px; font-weight: 700; color: #6366f1; font-size: 1.05rem;">$11,500</td>
+            <td style="padding: 14px 20px; text-align: right; font-weight: 700;">Ask for their all-in Year 1 total</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top: 24px; background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(99,102,241,0.02) 100%); border: 1px solid rgba(99,102,241,0.15); border-radius: 14px; padding: 24px 28px;">
+      <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 10px;">The Predictability Advantage</h3>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.6; margin-bottom: 14px;">With Teamtailor, you know what you're paying. AI, integrations, career site, unlimited seats — it's all in the price. No usage-based surprises when it's time to renew.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem;"><span style="color: #10b981; font-size: 1rem;">✓</span> AI Copilot included — no per-query or per-agent fees</div>
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem;"><span style="color: #10b981; font-size: 1rem;">✓</span> Unlimited hiring manager seats — no per-seat charges</div>
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem;"><span style="color: #10b981; font-size: 1rem;">✓</span> Flat pricing — no usage-based surprises at renewal</div>
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem;"><span style="color: #10b981; font-size: 1rem;">✓</span> No feature gating — everything available from day one</div>
+      </div>
+    </div>
+
+    <!-- ROI & PAYBACK -->
+    <div style="margin-top: 40px;">
+      <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 6px;">Return on Investment — Conservative Estimate</h3>
+      <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 24px;">Based on the manual workflows Katie and Tanya described. Conservative numbers — your team can adjust based on actual hiring volume.</p>
+
+      <div style="background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 14px; overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem;">
+          <thead>
+            <tr style="background: rgba(99,102,241,0.08); border-bottom: 2px solid var(--color-border);">
+              <th style="text-align: left; padding: 14px 20px; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted);">Time Savings</th>
+              <th style="text-align: center; padding: 14px 16px; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted);">Per Hire</th>
+              <th style="text-align: center; padding: 14px 16px; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: #6366f1;">50 Hires/Yr</th>
+              <th style="text-align: center; padding: 14px 16px; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: #6366f1;">75 Hires/Yr</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--color-border);">
+              <td style="padding: 12px 20px;">Offer process (Word + DocuSign → in-ATS)</td>
+              <td style="text-align: center; padding: 12px 16px; color: var(--color-text-muted);">30 min</td>
+              <td style="text-align: center; padding: 12px 16px; font-weight: 600;">25 hrs</td>
+              <td style="text-align: center; padding: 12px 16px; font-weight: 600;">37.5 hrs</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border);">
+              <td style="padding: 12px 20px;">AI screening replaces ChatGPT workflow</td>
+              <td style="text-align: center; padding: 12px 16px; color: var(--color-text-muted);">4 hrs/req</td>
+              <td style="text-align: center; padding: 12px 16px; font-weight: 600;">80 hrs</td>
+              <td style="text-align: center; padding: 12px 16px; font-weight: 600;">120 hrs</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border);">
+              <td style="padding: 12px 20px;">Talent pool re-engagement (no starting from scratch)</td>
+              <td style="text-align: center; padding: 12px 16px; color: var(--color-text-muted);">1 hr/req</td>
+              <td style="text-align: center; padding: 12px 16px; font-weight: 600;">20 hrs</td>
+              <td style="text-align: center; padding: 12px 16px; font-weight: 600;">30 hrs</td>
+            </tr>
+            <tr style="background: rgba(99,102,241,0.06);">
+              <td style="padding: 14px 20px; font-weight: 700;">Total Recruiter Hours Saved</td>
+              <td style="text-align: center; padding: 14px 16px;"></td>
+              <td style="text-align: center; padding: 14px 16px; font-weight: 700; color: #6366f1; font-size: 1.05rem;">~125 hrs</td>
+              <td style="text-align: center; padding: 14px 16px; font-weight: 700; color: #6366f1; font-size: 1.05rem;">~188 hrs</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Payback Stats -->
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px;">
+        <div style="background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 14px; padding: 24px; text-align: center;">
+          <div style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-bottom: 8px;">Annual Time Savings</div>
+          <div style="font-size: 2rem; font-weight: 800; color: #10b981;">$6,250</div>
+          <div style="font-size: 0.78rem; color: var(--color-text-muted); margin-top: 4px;">~125 hrs × $50/hr</div>
+        </div>
+        <div style="background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 14px; padding: 24px; text-align: center;">
+          <div style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-bottom: 8px;">Annual Investment</div>
+          <div style="font-size: 2rem; font-weight: 800; color: var(--color-text-primary);">$11,500</div>
+          <div style="font-size: 0.78rem; color: var(--color-text-muted); margin-top: 4px;">Net cost: $5,250/yr</div>
+        </div>
+        <div style="background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(99,102,241,0.04) 100%); border: 1px solid rgba(99,102,241,0.2); border-radius: 14px; padding: 24px; text-align: center;">
+          <div style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #a5b4fc; margin-bottom: 8px;">Payback Period</div>
+          <div style="font-size: 2.4rem; font-weight: 800; color: #6366f1;">~5 <span style="font-size: 1rem; font-weight: 600;">months</span></div>
+          <div style="font-size: 0.78rem; color: var(--color-text-muted); margin-top: 4px;">At 50 hires/year</div>
+        </div>
+      </div>
+
+      <p style="font-size: 0.82rem; color: var(--color-text-muted); margin-top: 16px; line-height: 1.6; padding: 16px 20px; background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 10px;">
+        <strong style="color: var(--color-text-primary);">At 75 hires/year,</strong> savings reach $10,900 — nearly the full investment. And this doesn't include the value of filling a clinical research role 2 weeks faster, the cost of a delayed trial because a CRA position sat open, or the impact of a career site that actually represents Scout's brand. Those are the bigger numbers — and they're yours to calculate.
+      </p>
+    </div>
+  </section>
+
+  <!-- SIDE-BY-SIDE COMPANY COMPARISON -->
+  <section class="social-proof" id="social-proof">
+    <div class="proof-header">
+      <div class="section-number" style="color: rgba(255,255,255,0.4);">05.5</div>
+      <h2 class="section-title" style="color: #fff;">Company Comparison — Side by Side</h2>
+      <p class="section-subtitle" style="color: rgba(255,255,255,0.6);">Verifiable numbers from public sources.</p>
+    </div>
+
+    <style>
+      .compare-table {
+        margin: 0 auto; max-width: 860px; border-collapse: separate;
+        border-spacing: 0; border-radius: 16px; overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06);
+      }
+      .compare-table thead th {
+        padding: 18px 24px; font-size: 0.85rem; font-weight: 700;
+        letter-spacing: 0.02em; text-transform: uppercase;
+      }
+      .compare-table thead th:first-child {
+        background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.6);
+        text-align: left; border-right: 1px solid rgba(255,255,255,0.06);
+      }
+      .compare-table thead th:nth-child(2) {
+        background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+        color: #fff; text-align: center;
+        border-right: 1px solid rgba(255,255,255,0.08);
+      }
+      .compare-table thead th:nth-child(3) {
+        background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7);
+        text-align: center;
+      }
+      .compare-table tbody td {
+        padding: 14px 24px; font-size: 0.88rem; line-height: 1.5;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        vertical-align: middle;
+      }
+      .compare-table tbody td:first-child {
+        background: rgba(255,255,255,0.02); color: rgba(255,255,255,0.85);
+        font-weight: 600; border-right: 1px solid rgba(255,255,255,0.06);
+      }
+      .compare-table tbody td:nth-child(2) {
+        background: rgba(99,102,241,0.06); color: #fff; text-align: center;
+        font-weight: 600; border-right: 1px solid rgba(255,255,255,0.04);
+      }
+      .compare-table tbody td:nth-child(3) {
+        background: rgba(255,255,255,0.02); color: rgba(255,255,255,0.7);
+        text-align: center;
+      }
+      .compare-table tbody tr:hover td {
+        background: rgba(255,255,255,0.04);
+      }
+      .compare-table tbody tr:hover td:nth-child(2) {
+        background: rgba(99,102,241,0.12);
+      }
+      .compare-table tbody tr:last-child td { border-bottom: none; }
+      .compare-table .sub-detail {
+        display: block; font-size: 0.72rem; font-weight: 400;
+        color: rgba(255,255,255,0.4); margin-top: 3px;
+      }
+      .compare-table .tt-highlight {
+        color: #a5b4fc; font-weight: 700;
+      }
+    </style>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Teamtailor</th>
+          <th>ClearCompany</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Total Customers</td>
+          <td class="tt-highlight">10,000+</td>
+          <td>~3,000</td>
+        </tr>
+        <tr>
+          <td>Countries</td>
+          <td class="tt-highlight">90+</td>
+          <td>US-headquartered</td>
+        </tr>
+        <tr>
+          <td>Founded</td>
+          <td>2013 (Stockholm)</td>
+          <td>2004 (Boston)</td>
+        </tr>
+        <tr>
+          <td>G2 Rating</td>
+          <td class="tt-highlight">4.6 ★</td>
+          <td>4.6 ★</td>
+        </tr>
+        <tr>
+          <td>Capterra Rating</td>
+          <td class="tt-highlight">4.5 ★</td>
+          <td>4.5 ★</td>
+        </tr>
+
+        <tr>
+          <td>AI in Production Since</td>
+          <td>
+            <span class="tt-highlight">October 2023</span>
+            <span class="sub-detail">Copilot — ~32 months</span>
+          </td>
+          <td>
+            2023 (basic) · 2024 (Talent Match)
+            <span class="sub-detail">Agent Platform GA: July 16, 2026</span>
+          </td>
+        </tr>
+        <tr>
+          <td>AI Pricing Model</td>
+          <td class="tt-highlight">Included — $0</td>
+          <td>
+            Consumption-based
+            <span class="sub-detail">Per agent action</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Release Cadence</td>
+          <td class="tt-highlight">6-week sprints</td>
+          <td>Worth confirming</td>
+        </tr>
+        <tr>
+          <td>ADP Marketplace Partner</td>
+          <td>✅ Yes</td>
+          <td>✅ Yes</td>
+        </tr>
+        <tr>
+          <td>G2 Ease of Use</td>
+          <td>
+            <span class="tt-highlight">Top-rated ATS</span>
+            <span class="sub-detail">4.7 Ease of Use on Capterra</span>
+          </td>
+          <td>Well-reviewed</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="text-align: center; font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 16px; font-style: italic;">Sources: G2.com, Capterra.com, ClearCompany SHRM press release (June 2026), Teamtailor.com. Verify anything here directly.</p>
+
+    <div class="proof-badges" style="margin-top: 32px;">
+      <div class="proof-badge">
+        <div class="proof-badge-score">3.3×</div>
+        <div class="proof-badge-source">More customers</div>
+      </div>
+      <div class="proof-badge">
+        <div class="proof-badge-score">90+</div>
+        <div class="proof-badge-source">Countries served</div>
+      </div>
+      <div class="proof-badge">
+        <div class="proof-badge-score">32 mo</div>
+        <div class="proof-badge-source">Copilot head start</div>
+      </div>
+      <div class="proof-badge">
+        <div class="proof-badge-score">$0</div>
+        <div class="proof-badge-source">AI add-on cost</div>
+      </div>
+    </div>
+
+    <div class="proof-testimonial">
+      <blockquote>"We went from spreadsheets to a system that our whole team actually uses. The career page alone has made a huge difference for our employer brand."</blockquote>
+      <cite>— HR Director, Remote Health Tech Company (200+ employees)</cite>
+    </div>
+  </section>
+
+  <!-- SECTION 6: IMPLEMENTATION -->
+  <section class="page" id="implementation">
+    <div class="section-number">06</div>
+    <h2 class="section-title">Your Questions, Answered</h2>
+    <p class="section-subtitle">Direct responses to what Tanya and Katie raised across our conversations</p>
+
+    <div class="risk-grid" style="margin-top: 32px;">
+      <div class="risk-items">
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Tanya's Concern</span>
+            <p>"I'm leaning pretty heavily toward ClearCompany. One, because I've used them before and they've made some upgrades that I'm pretty excited about."</p>
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">Our Answer</span>
+            <p>Familiarity is real, and we respect it. We'd just suggest asking a few questions: Can they connect you with a customer who's used the new AI agents in production? What do current customers say about the sourcing match quality? The upgrades you saw at SHRM go live July 16 — it's worth hearing from someone who's actually used them before committing.</p>
+          </div>
+        </div>
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Tanya's Concern</span>
+            <p>"The biggest piece is they have a sourcing agent. It's going out there and pulling in candidates from all over the web and highlighting the best picks. That was pretty like, oh geez, that's really amazing."</p>
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">Our Answer</span>
+            <p>The sourcing agent sounds impressive — but the underlying data is the <strong>same public dataset</strong> (LinkedIn profiles, company sites, public records) that powers Gem, Juicebox, hireEZ, and SeekOut. ClearCompany's existing sourcing tool already uses this data, and their own customers report it returns candidates with <strong>90% match scores who don't meet basic clearance requirements</strong>. Teamtailor integrates with any of these sourcing tools via open API — you choose the best one, not just the one bundled in.</p>
+          </div>
+        </div>
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Tanya's Concern</span>
+            <p>"We've done this before — they said they'd have it next quarter. We ended up going with the other platform and I followed up a few times. It's been almost a year later now."</p>
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">Our Answer</span>
+            <p>Every AI feature in this document is <strong>live in production today</strong> with 10,000+ customers. We ship on 6-week sprint cycles. ClearCompany's agents launch July 16 with no announced production customers yet. It's worth asking them how long their agents have been tested and whether any customer has used them in a live hiring workflow.</p>
+          </div>
+        </div>
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Katie's Concern</span>
+            <p>"Cost is up there. We're having to try to stay more on the conservative side and don't really have a wide range we can play with."</p>
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">Our Answer</span>
+            <p><strong>$11,500/year, everything included.</strong> No per-agent fees. No usage-based consumption pricing. No sourcing credit packages. No per-seat charges for hiring managers. Ask ClearCompany for their guaranteed renewal terms including agent usage — if they can match that pricing predictability, great. If not, that's worth knowing.</p>
+          </div>
+        </div>
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Katie's Concern</span>
+            <p>"If we're able to go to our CFO with our business case of why this system at this cost makes the most sense and know we've done our due diligence, they'll probably be pretty okay with it."</p>
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">Our Answer</span>
+            <p>That's exactly what this document is designed to do. Share it as-is — it includes competitive analysis, pricing comparison, feature mapping, and an implementation timeline. If the CFO has questions, we're available to join a call and walk through any section directly.</p>
+          </div>
+        </div>
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Tanya's Concern</span>
+            <p>"For me, I have reservations on the manipulation of the system — how much we can actually customize it. Other systems we're looking at seem to be highly customizable."</p>
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">Our Answer</span>
+            <p>Everything Katie asked about in the demo — custom stages, smart move triggers, location-based knockout questions, region-specific application flows, recruiter-specific email overrides, multi-currency offer letters — is <strong>already built and configurable</strong>. The semi-monthly salary display Tanya flagged? Available via custom fields on offer letters. The career site is fully drag-and-drop. ClearCompany's own customers say <strong>"customizing anything is a process — you need to battle your way through it."</strong></p>
+          </div>
+        </div>
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Katie's Concern</span>
+            <p>"I've had it where you sign on with a vendor and as you get into the nuts and bolts, you're like, well, I said I wanted to do this and you really can't, or it becomes much more complicated."</p>
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">Our Answer</span>
+            <p>This is a fair concern — and exactly why we prioritized showing live product across our conversations instead of just presenting slides. Offer approval workflows, semi-monthly salary display, DocuSign integration, EEO routing by location, external recruiter portals, state-based knockout questions — all demonstrated in your Teamtailor instance.</p>
+          </div>
+        </div>
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Katie's Concern</span>
+            <p>"Is the e-signature legally sufficient? We'd need to go to our legal team to see if Teamtailor's format suffices, or if we still need DocuSign."</p>
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">Our Answer</span>
+            <p>Teamtailor has a built-in e-signature that works for standard offer acceptance. Your legal team can review it, and <strong>DocuSign is also available as an integration</strong> if they need a more formal signature standard. With DocuSign, the candidate receives an email to e-sign the document — they don't sign inside Teamtailor directly. Tanya mentioned comp agreements that need separate signing — DocuSign handles those as part of the offer workflow.</p>
+          </div>
+        </div>
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Tanya's Concern</span>
+            <p>"If we're gonna increase our budget, I want it to be really good, you know."</p>
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">Our Answer</span>
+            <p>This isn't marginally better than your current ATS — it's a completely different category. AI screening that replaces your ChatGPT copy/paste workflow. Offers under your own brand. A career site that makes non-clinical candidates want to apply to Scout. <strong>Job boards like Indeed, LinkedIn, ZipRecruiter, and Monster included automatically</strong> vs. paying per-post. This is what "really good" looks like at $11.5K/year.</p>
+          </div>
+        </div>
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Katie & Tanya's Concern</span>
+            <p>"The thing that was edging you out was the global job posting." / "If we post a single job with locations in both the US and international, are we able to list salaries based on each location?"</p>
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">Our Answer</span>
+            <p>This is a <strong>job board limitation, not an ATS limitation</strong> — it applies across all platforms, including ClearCompany. For a single posting, only one salary range can be displayed on external boards. The workaround: either (a) include location-specific salary ranges within the job description body, or (b) create separate postings per location when pay transparency requirements differ. The difference between the two platforms shows up everywhere else: AI that works today, pricing you can budget for, and a system that doesn't lock you into one vendor's tools.</p>
+          </div>
+        </div>
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Katie's Question</span>
+            <p>"Does the system include consent questions by location? For example, we ask the disability/EEOC questions for US positions but not for Global positions — can they be selected/un-selected per job?"</p>
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">Our Answer</span>
+            <p>Yes. EEOC/disability questions are managed through Teamtailor's <strong>Surveys</strong> feature — you create an EEO survey (predefined US and UK templates are included), then <strong>attach it to specific jobs or job templates</strong>. US roles get the EEOC survey; international roles don't. For a single posting spanning multiple locations, you'd use separate job templates per region, each with the appropriate survey attached. Surveys can be marked <strong>Confidential</strong> so responses are kept separate from the hiring process. You can also use conditional logic to show/hide follow-up questions based on a candidate's answers.</p>
+          </div>
+        </div>
+
+        <div class="risk-item">
+          <div class="risk-concern">
+            <span class="risk-label">Katie's Question</span>
+            <p>"Does the system set data retention rules by location/country and automatically remove candidate info based on those rules?"</p>
+          </div>
+          <div class="risk-answer">
+            <span class="risk-label">Our Answer</span>
+            <p>Yes — Teamtailor supports <strong>per-country data retention policies</strong>. Under Settings → Data & Privacy, you set a global default policy, then add <strong>local policies</strong> for specific countries (e.g., UK candidates get a different retention period than US candidates). Each local policy has its own validation time and automatic renewal/deletion rules. If a candidate is in a country without a local policy, the global default applies. Consent collection uses mandatory checkboxes on the application form, configurable per-region. Candidate data deletion requests are handled natively within the system.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: WHY TEAMTAILOR -->
+  <section class="page" id="why-teamtailor">
+    <div class="section-number">07</div>
+    <h2 class="section-title">Why Teamtailor for Scout Clinical</h2>
+
+    <div class="section-intro">
+      <p>Based on everything discussed across our conversations, here's why Teamtailor is the right fit for Scout specifically.</p>
+    </div>
+
+    <div class="capability-grid">
+      <div class="capability-card featured">
+        <div class="capability-tag">The Bigger Problem</div>
+        <h3>This Isn't About Picking an ATS — It's About Hiring Infrastructure</h3>
+        <p>The surface-level question is "which ATS?" But the actual problem is bigger than any one tool.</p>
+        <p style="margin-top: 12px;"><strong>Scout is a clinical trial services company with 30 years of experience in life sciences, operating across 100+ countries.</strong> Headquartered in Dallas with a London office and ~220 mostly-remote employees, Scout supports clinical research through patient logistics, travel, payments, meeting planning, and training — all under one people-first brand that's highly regarded in the industry. But Tanya built HR from scratch here, and your current recruiting stack wasn't built for the speed and scale your business needs today.</p>
+        <p style="margin-top: 12px;">The question isn't <em>"which vendor checks more feature boxes?"</em> It's: <strong>which platform gives your small team the infrastructure to hire at the speed clinical research demands — without adding headcount?</strong></p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px;">
+          <div style="background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25); border-radius: 10px; padding: 20px;">
+            <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #a5b4fc; margin-bottom: 10px;">Teamtailor's answer</div>
+            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.85); line-height: 1.6;">Every AI feature is live today with 10,000+ customers. Global hiring is native. Career site, nurture campaigns, and sourcing ecosystem are all included. $11,500/year, flat.</p>
+          </div>
+          <div style="background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); border-radius: 10px; padding: 20px;">
+            <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #fca5a5; margin-bottom: 10px;">The ClearCompany question</div>
+            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.85); line-height: 1.6;">AI agents launch July 16 with no announced production customers. Consumption-based pricing with no stated ceiling. Ask: can any customer confirm they've used these agents in a live hiring workflow?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="capability-card full-width">
+        <h3>Inside the Admin Platform — Your Team's Daily View</h3>
+        <p>The career site is what candidates see. Here's what <strong>Tanya and Katie</strong> see every day — a clean, modern admin interface that puts everything in one place.</p>
+        <div style="margin-top: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <figure class="product-screenshot" style="margin: 0;">
+                <img src="images/demo/dashboard.png" alt="Teamtailor admin dashboard" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+              </figure>
+              <figure class="product-screenshot" style="margin: 0;">
+                <img src="images/demo/jobs.png" alt="Teamtailor jobs list" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="capability-card">
+        <h3>The Open Ecosystem Advantage</h3>
+        <p>ClearCompany is building a closed system — you set up agents inside their platform, using their data, their way. Teamtailor takes the opposite approach: a <strong>fully open REST API</strong> with community-built MCP integrations already available — meaning you can work with Teamtailor data directly from Claude, ChatGPT, or whatever AI tool comes next.</p>
+      </div>
+
+      <div class="capability-card">
+        <h3>Predictable Investment, No Surprises</h3>
+        <p>$11,500/year. Everything included. No per-agent fees, no usage tiers, no surprise add-ons when it's time to renew. Ask ClearCompany whether their agent pricing is flat or usage-based, and whether there's a cap.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: NEXT STEPS -->
+  <section class="page" id="next-steps">
+    <div class="section-number">08</div>
+    <h2 class="section-title">Finalizing the Decision</h2>
+
+    <div class="section-intro" style="margin-bottom: 24px;">
+      <p>Tanya, Katie — thank you for the time you've invested across these conversations. We know switching systems isn't a small decision, especially when you're building HR infrastructure from the ground up. Whatever you decide, we appreciate the honesty and thoroughness you've brought to this evaluation. Here's where we'd suggest going from here.</p>
+    </div>
+
+    <div class="next-steps-list">
+      <div class="next-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Share with Your CFO</h3>
+          <p>This business case is built for executive review. We are ready to jump on a call to review the pricing and ROI with them directly whenever you're ready.</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Questions for ClearCompany</h3>
+          <p>Before making a final decision, consider asking them:</p>
+          <ol style="margin-top: 10px; padding-left: 20px; font-size: 0.88rem; line-height: 1.7;">
+            <li>Can you show us your <strong>career site builder</strong> and walk through its customization options?</li>
+            <li>Does your Agent Studio support <strong>third-party AI tools</strong> (Claude, ChatGPT, etc.) or only ClearCompany's own models?</li>
+            <li>Can we speak with a customer who has used the AI agents in a <strong>live hiring workflow</strong> — not a pilot or beta?</li>
+            <li>Is there a <strong>cost ceiling on agent usage</strong>?</li>
+            <li>What are your <strong>guaranteed renewal terms</strong> for pricing?</li>
+          </ol>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Finalize Pricing</h3>
+          <p>ADP partner pricing at $11,500/year with all features included is our starting point. We're prepared to discuss final terms once the product decision is clear.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEAL PROGRESS TIMELINE -->
+    <div class="deal-timeline" style="margin-top: 32px;">
+      <h3 style="margin-bottom: 20px;">Where We Are in the Process</h3>
+      <div class="deal-step">
+        <div class="deal-dot done">✓</div>
+        <div class="deal-step-content">
+          <h4>Initial Discovery Call</h4>
+          <p>Understood Scout's requirements, current process pain points, and evaluation criteria</p>
+          <span class="deal-status status-complete">✓ Complete</span>
+        </div>
+      </div>
+      <div class="deal-step">
+        <div class="deal-dot done">✓</div>
+        <div class="deal-step-content">
+          <h4>Custom Demo for Scout</h4>
+          <p>Walked through offers, ADP integration, AI screening, global posting, and career site</p>
+          <span class="deal-status status-complete">✓ Complete</span>
+        </div>
+      </div>
+      <div class="deal-step">
+        <div class="deal-dot active">★</div>
+        <div class="deal-step-content">
+          <h4>Business Case Delivered</h4>
+          <p>This document — share with your CFO for budget approval</p>
+          <span class="deal-status status-current">★ You Are Here</span>
+        </div>
+      </div>
+      <div class="deal-step">
+        <div class="deal-dot future">4</div>
+        <div class="deal-step-content">
+          <h4>ATS Evaluation Sync</h4>
+          <p>Review requirements spreadsheet together, address open questions on e-signature and compliance</p>
+          <span class="deal-status status-upcoming">Upcoming</span>
+        </div>
+      </div>
+      <div class="deal-step">
+        <div class="deal-dot future">5</div>
+        <div class="deal-step-content">
+          <h4>CFO Review & Decision</h4>
+          <p>We're available to join a call with the CFO to walk through pricing and competitive positioning</p>
+          <span class="deal-status status-upcoming">Upcoming</span>
+        </div>
+      </div>
+      <div class="deal-step">
+        <div class="deal-dot future">6</div>
+        <div class="deal-step-content">
+          <h4>Implementation & Go-Live</h4>
+          <p>4-week dedicated onboarding — career site, ADP sync, AI screening, team training</p>
+          <span class="deal-status status-upcoming">Upcoming</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEDICATED TEAM -->
+    <div class="contact-box">
+      <h3>Your Dedicated Teamtailor Team</h3>
+      <div class="contact-grid">
+        <div class="contact-person">
+          <div class="contact-avatar" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">JL</div>
+          <div class="contact-info">
+            <strong>Jack Luther</strong>
+            <span>Account Executive</span>
+            <span class="contact-detail">jack.luther@teamtailor.com</span>
+            <p style="font-size: 0.78rem; color: var(--color-text-muted); margin-top: 8px; font-style: italic; line-height: 1.5;">Available to join a call with your CFO to walk through any section of this document.</p>
+          </div>
+        </div>
+        <div class="contact-person">
+          <div class="contact-avatar" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">RW</div>
+          <div class="contact-info">
+            <strong>Ryan Walker</strong>
+            <span>Executive Sponsor</span>
+            <span class="contact-detail">ryan.walker@teamtailor.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+<!-- JAVASCRIPT: Scroll animations, sticky nav, count-up -->
+<script>
+(function() {
+  'use strict';
+
+  // ── Intersection Observer: fade-in on scroll ──
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const fadeObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  fadeEls.forEach(el => fadeObs.observe(el));
+
+  // ── Sticky Nav: show on scroll past cover ──
+  const nav = document.getElementById('sticky-nav');
+  const cover = document.querySelector('.cover-page');
+  function handleScroll() {
+    if (!cover || !nav) return;
+    nav.classList.toggle('visible', window.scrollY > cover.offsetHeight * 0.7);
+  }
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+  // ── Smooth scroll for nav links ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      const t = document.querySelector(this.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // ── Count-up animation ──
+  const countEls = document.querySelectorAll('.count-up');
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+    function ease(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      el.textContent = Math.round(ease(p) * target) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  const countObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.3 });
+  countEls.forEach(el => countObs.observe(el));
+})();
+</script>
+
+<!-- COMMENTING SYSTEM -->
+<style>
+  /* ── Review Mode Toggle ── */
+  .review-toggle {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    display: flex; align-items: center; gap: 8px;
+    background: #6366f1; color: #fff; border: none; border-radius: 12px;
+    padding: 12px 20px; font-family: 'Inter', sans-serif; font-size: 0.82rem;
+    font-weight: 600; cursor: pointer; box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+    transition: all 0.2s;
+  }
+  .review-toggle:hover { background: #4f46e5; transform: translateY(-2px); }
+  .review-toggle .badge-count {
+    background: #ef4444; font-size: 0.65rem; padding: 2px 6px;
+    border-radius: 8px; font-weight: 700; min-width: 20px; text-align: center;
+  }
+  .review-toggle.active { background: #ef4444; }
+  .review-toggle.active:hover { background: #dc2626; }
+
+  /* ── Section Comment Buttons ── */
+  .section-comment-btn {
+    display: none; position: absolute; top: 12px; right: 12px;
+    background: #6366f1; color: #fff; border: none; border-radius: 8px;
+    width: 36px; height: 36px; font-size: 1rem; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.3); transition: all 0.15s;
+    z-index: 100;
+  }
+  .section-comment-btn:hover { background: #4f46e5; transform: scale(1.1); }
+  .section-comment-btn .btn-count {
+    position: absolute; top: -4px; right: -4px;
+    background: #ef4444; color: #fff; font-size: 0.6rem; font-weight: 700;
+    width: 18px; height: 18px; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center;
+  }
+  body.review-mode .section-comment-btn { display: flex; align-items: center; justify-content: center; }
+  body.review-mode .page, body.review-mode .social-proof { position: relative; }
+  body.review-mode .page:hover, body.review-mode .social-proof:hover {
+    outline: 2px dashed rgba(99,102,241,0.3); outline-offset: 4px;
+  }
+
+  /* ── Comment Panel ── */
+  .comment-panel {
+    position: fixed; top: 0; right: -400px; width: 380px; height: 100vh;
+    background: #fff; box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+    z-index: 10000; transition: right 0.3s ease; display: flex;
+    flex-direction: column; font-family: 'Inter', sans-serif;
+  }
+  .comment-panel.open { right: 0; }
+  .comment-panel-header {
+    padding: 20px; border-bottom: 1px solid #e5e7eb;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .comment-panel-header h3 { font-size: 0.88rem; font-weight: 700; color: #111; }
+  .comment-panel-header .section-name { font-size: 0.72rem; color: #6366f1; font-weight: 600; margin-top: 2px; }
+  .comment-panel-close {
+    background: none; border: none; font-size: 1.2rem; cursor: pointer;
+    color: #9ca3af; padding: 4px; border-radius: 4px;
+  }
+  .comment-panel-close:hover { background: #f3f4f6; color: #111; }
+
+  .comment-list {
+    flex: 1; overflow-y: auto; padding: 16px;
+  }
+  .comment-item {
+    background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px;
+    padding: 12px 14px; margin-bottom: 10px; position: relative;
+  }
+  .comment-item.resolved { opacity: 0.5; }
+  .comment-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 6px;
+  }
+  .comment-author { font-size: 0.72rem; font-weight: 700; color: #6366f1; }
+  .comment-time { font-size: 0.65rem; color: #9ca3af; }
+  .comment-text { font-size: 0.82rem; color: #374151; line-height: 1.5; }
+  .comment-actions {
+    display: flex; gap: 8px; margin-top: 8px;
+  }
+  .comment-actions button {
+    background: none; border: 1px solid #e5e7eb; border-radius: 6px;
+    font-size: 0.68rem; padding: 3px 8px; cursor: pointer; color: #6b7280;
+    font-family: 'Inter', sans-serif;
+  }
+  .comment-actions button:hover { background: #f3f4f6; }
+
+  .comment-input-area {
+    padding: 16px; border-top: 1px solid #e5e7eb;
+  }
+  .comment-input-area textarea {
+    width: 100%; border: 1px solid #d1d5db; border-radius: 8px;
+    padding: 10px 12px; font-size: 0.82rem; font-family: 'Inter', sans-serif;
+    resize: vertical; min-height: 70px; outline: none; line-height: 1.5;
+    color: #111; background: #fff;
+  }
+  .comment-name-row {
+    display: flex; gap: 8px; margin-bottom: 8px;
+  }
+  .comment-name-row input {
+    flex: 1; border: 1px solid #d1d5db; border-radius: 8px;
+    padding: 8px 12px; font-size: 0.78rem; font-family: 'Inter', sans-serif;
+    outline: none; color: #111; background: #fff;
+  }
+  .comment-name-row input:focus { border-color: #6366f1; }
+  .comment-error {
+    text-align: center; padding: 20px; background: #fef2f2; border: 1px solid #fecaca;
+    border-radius: 8px; margin: 16px; color: #991b1b; font-size: 0.78rem; line-height: 1.5;
+  }
+  .comment-input-area textarea:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+  .comment-submit {
+    margin-top: 8px; width: 100%; background: #6366f1; color: #fff;
+    border: none; border-radius: 8px; padding: 10px; font-size: 0.82rem;
+    font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif;
+  }
+  .comment-submit:hover { background: #4f46e5; }
+  .comment-submit:disabled { background: #c7c7d1; cursor: not-allowed; }
+
+  .no-comments { text-align: center; padding: 40px 20px; color: #9ca3af; font-size: 0.82rem; }
+
+  @media print { .review-toggle, .comment-panel, .section-comment-btn { display: none !important; } }
+</style>
+
+<!-- Comment Panel -->
+<div class="comment-panel" id="commentPanel">
+  <div class="comment-panel-header">
+    <div>
+      <h3>💬 Comments</h3>
+      <div class="section-name" id="panelSectionName"></div>
+    </div>
+    <button class="comment-panel-close" id="closePanel">✕</button>
+  </div>
+  <div class="comment-list" id="commentList"></div>
+  <div class="comment-input-area">
+    <div class="comment-name-row">
+      <input type="text" id="commentAuthor" placeholder="Your name...">
+    </div>
+    <textarea id="commentInput" placeholder="Add a comment or revision note..."></textarea>
+    <button class="comment-submit" id="commentSubmit">Submit Comment</button>
+  </div>
+</div>
+
+<!-- Review Mode Toggle -->
+<button class="review-toggle" id="reviewToggle">
+  💬 Review Mode
+  <span class="badge-count" id="totalBadge" style="display:none;">0</span>
+</button>
+
+<script>
+(function() {
+  const ROOM = 'scout-clinical';
+  const API = '/api/comments/' + ROOM;
+  let allComments = [];
+  let currentSection = null;
+  let serverReachable = false;
+
+  const panel = document.getElementById('commentPanel');
+  const list = document.getElementById('commentList');
+  const input = document.getElementById('commentInput');
+  const submit = document.getElementById('commentSubmit');
+  const toggle = document.getElementById('reviewToggle');
+  const closeBtn = document.getElementById('closePanel');
+  const sectionName = document.getElementById('panelSectionName');
+  const totalBadge = document.getElementById('totalBadge');
+  const authorInput = document.getElementById('commentAuthor');
+
+  // Restore saved name
+  const savedName = localStorage.getItem('comment-author');
+  if (savedName) authorInput.value = savedName;
+
+  // Add comment buttons to every section
+  document.querySelectorAll('.page, .social-proof').forEach(section => {
+    const btn = document.createElement('button');
+    btn.className = 'section-comment-btn';
+    btn.innerHTML = '💬';
+    btn.setAttribute('data-section', section.id || 'untitled');
+    const title = section.querySelector('.section-title, h2');
+    btn.setAttribute('data-title', title ? title.textContent.trim() : section.id);
+    section.style.position = 'relative';
+    section.appendChild(btn);
+
+    btn.addEventListener('click', () => openPanel(
+      btn.getAttribute('data-section'),
+      btn.getAttribute('data-title')
+    ));
+  });
+
+  // Toggle review mode
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('review-mode');
+    toggle.classList.toggle('active');
+    toggle.innerHTML = document.body.classList.contains('review-mode')
+      ? '✕ Exit Review' + (allComments.length ? ` <span class="badge-count">${allComments.filter(c=>!c.resolved).length}</span>` : '')
+      : '💬 Review Mode' + (allComments.length ? ` <span class="badge-count">${allComments.filter(c=>!c.resolved).length}</span>` : '');
+    if (!document.body.classList.contains('review-mode')) panel.classList.remove('open');
+  });
+
+  closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+
+  function openPanel(sectionId, title) {
+    currentSection = sectionId;
+    sectionName.textContent = title;
+    panel.classList.add('open');
+    input.value = '';
+    renderComments();
+    input.focus();
+  }
+
+  function renderComments() {
+    if (!serverReachable) {
+      list.innerHTML = '<div class="comment-error"><strong>Server not reachable</strong><br>Start the server: <code>node deal-rooms.js</code><br>Then reload this page.</div>';
+      return;
+    }
+    const filtered = allComments.filter(c => c.section === currentSection);
+    if (!filtered.length) {
+      list.innerHTML = '<div class="no-comments">No comments yet.<br>Be the first to leave feedback on this section.</div>';
+      return;
+    }
+    list.innerHTML = filtered.map(c => `
+      <div class="comment-item ${c.resolved ? 'resolved' : ''}" data-id="${c.id}">
+        <div class="comment-meta">
+          <span class="comment-author">${c.author}</span>
+          <span class="comment-time">${new Date(c.timestamp).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}</span>
+        </div>
+        <div class="comment-text">${c.text}</div>
+        <div class="comment-actions">
+          <button onclick="window._resolveComment('${c.id}')">${c.resolved ? '↩ Reopen' : '✓ Resolve'}</button>
+          <button onclick="window._deleteComment('${c.id}')">🗑 Delete</button>
+        </div>
+      </div>
+    `).join('');
+    list.scrollTop = list.scrollHeight;
+  }
+
+  function updateBadges() {
+    const open = allComments.filter(c => !c.resolved);
+    // Update section buttons
+    document.querySelectorAll('.section-comment-btn').forEach(btn => {
+      const sid = btn.getAttribute('data-section');
+      const count = allComments.filter(c => c.section === sid && !c.resolved).length;
+      const existing = btn.querySelector('.btn-count');
+      if (existing) existing.remove();
+      if (count > 0) {
+        const badge = document.createElement('span');
+        badge.className = 'btn-count';
+        badge.textContent = count;
+        btn.appendChild(badge);
+      }
+    });
+    // Update toggle badge
+    if (open.length > 0) {
+      totalBadge.textContent = open.length;
+      totalBadge.style.display = '';
+    } else {
+      totalBadge.style.display = 'none';
+    }
+  }
+
+  // Submit
+  submit.addEventListener('click', async () => {
+    const text = input.value.trim();
+    if (!text) return;
+    const author = authorInput.value.trim() || 'Anonymous';
+    localStorage.setItem('comment-author', author);
+    submit.disabled = true;
+    const btn = document.querySelector(`.section-comment-btn[data-section="${currentSection}"]`);
+    const sTitle = btn ? btn.getAttribute('data-title') : currentSection;
+    try {
+      const res = await fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section: currentSection, sectionTitle: sTitle, text, author })
+      });
+      const data = await res.json();
+      allComments.push(data.comment);
+      input.value = '';
+      renderComments();
+      updateBadges();
+    } catch (e) { console.error('Failed to save comment:', e); }
+    submit.disabled = false;
+  });
+
+  // Keyboard shortcut
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) submit.click();
+  });
+
+  // Resolve / Delete
+  window._resolveComment = async (id) => {
+    const c = allComments.find(x => x.id === id);
+    if (!c) return;
+    await fetch(`${API}/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ resolved: !c.resolved })
+    });
+    c.resolved = !c.resolved;
+    renderComments();
+    updateBadges();
+  };
+
+  window._deleteComment = async (id) => {
+    await fetch(`${API}/${id}`, { method: 'DELETE' });
+    allComments = allComments.filter(c => c.id !== id);
+    renderComments();
+    updateBadges();
+  };
+
+  // Load on init
+  fetch(API).then(r => r.json()).then(data => {
+    serverReachable = true;
+    allComments = data.comments || [];
+    updateBadges();
+  }).catch(() => {
+    serverReachable = false;
+    console.warn('Comment server not reachable at ' + API);
+  });
+})();
+</script>
+
+</body>
+</html>
+

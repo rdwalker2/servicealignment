@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teamtailor GTM Workspace — Technical Briefing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #18181f;
+    --surface: #222230;
+    --surface-2: #2a2a3a;
+    --border: #33334a;
+    --text: #e4e4ec;
+    --text-muted: #8888a0;
+    --accent: #7b8cde;
+    --accent-warm: #d4a24e;
+    --red: #c9555a;
+    --green: #5aab6e;
+    --teal: #4a9ea0;
+    --violet: #9b7dd4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    cursor: default;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .deck { position: relative; width: 100vw; height: 100vh; }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 100px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+  }
+  .slide.active { opacity: 1; pointer-events: auto; }
+
+  .slide-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: clamp(36px, 4.5vw, 64px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    text-align: center;
+    max-width: 900px;
+  }
+
+  h2 {
+    font-size: clamp(28px, 3.2vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    text-align: center;
+    max-width: 850px;
+  }
+
+  h3 {
+    font-size: clamp(18px, 1.8vw, 26px);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    font-size: clamp(16px, 1.6vw, 22px);
+    font-weight: 400;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 700px;
+    margin-top: 20px;
+    line-height: 1.55;
+  }
+
+  .big-stat {
+    font-size: clamp(72px, 10vw, 140px);
+    font-weight: 900;
+    letter-spacing: -4px;
+    line-height: 1;
+  }
+  .big-stat.accent { color: var(--accent); }
+  .big-stat.warm { color: var(--accent-warm); }
+  .big-stat.red { color: var(--red); }
+  .big-stat.green { color: var(--green); }
+  .big-stat.violet { color: var(--violet); }
+
+  .quote {
+    font-size: clamp(20px, 2.2vw, 32px);
+    font-weight: 400;
+    font-style: italic;
+    text-align: center;
+    max-width: 780px;
+    line-height: 1.5;
+    color: var(--text);
+    opacity: 0.9;
+  }
+
+  .accent-text { color: var(--accent); }
+  .warm-text { color: var(--accent-warm); }
+  .red-text { color: var(--red); }
+  .green-text { color: var(--green); }
+  .teal-text { color: var(--teal); }
+  .violet-text { color: var(--violet); }
+  .muted { color: var(--text-muted); }
+
+  .content-left {
+    align-items: flex-start;
+    text-align: left;
+    padding: 60px 100px;
+  }
+  .content-left h2, .content-left h1 { text-align: left; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 36px;
+  }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 28px;
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 36px;
+  }
+
+  .four-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 36px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .card h3 { font-size: 16px; margin-bottom: 12px; }
+  .card p, .card li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+  .card ul { padding-left: 18px; }
+  .card ul li { margin-bottom: 6px; }
+
+  .card-sm {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .card-sm .icon { font-size: 28px; margin-bottom: 10px; }
+  .card-sm h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .card-sm p {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  table {
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: collapse;
+    margin-top: 28px;
+    font-size: 14px;
+  }
+  th {
+    text-align: left;
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  td:first-child { color: var(--text); font-weight: 500; }
+  tr:last-child td { border-bottom: none; }
+
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .flow-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 24px;
+    text-align: center;
+    min-width: 130px;
+  }
+  .flow-step.highlight {
+    border-color: var(--accent);
+    background: rgba(123, 140, 222, 0.08);
+  }
+  .flow-step .step-num {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .flow-step .step-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .flow-step .step-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+  .flow-arrow {
+    font-size: 20px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .process-strip {
+    display: flex;
+    gap: 0;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 36px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .process-step {
+    flex: 1;
+    padding: 24px 16px;
+    text-align: center;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+  }
+  .process-step:last-child { border-right: none; }
+  .process-step .p-icon { font-size: 24px; margin-bottom: 8px; }
+  .process-step .p-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .process-step .p-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .process-step .p-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .bullet-list {
+    list-style: none;
+    max-width: 800px;
+    width: 100%;
+    margin-top: 24px;
+  }
+  .bullet-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+  .bullet-list li .b-icon {
+    flex-shrink: 0;
+    width: 24px;
+    text-align: center;
+    color: var(--accent);
+    font-size: 14px;
+    padding-top: 3px;
+  }
+  .bullet-list li strong { color: var(--text); font-weight: 600; }
+
+  .checklist {
+    list-style: none;
+    max-width: 700px;
+    width: 100%;
+    margin-top: 16px;
+  }
+  .checklist li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 15px;
+    color: var(--text-muted);
+  }
+  .checklist li .check {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--green);
+  }
+  .checklist li .check.done {
+    border-color: var(--green);
+    background: rgba(90, 171, 110, 0.15);
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin: 24px 0;
+    opacity: 0.6;
+  }
+
+  .section-break { background: var(--surface); }
+
+  /* ── Compliance grid ── */
+  .compliance-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    width: 100%;
+    max-width: 950px;
+    margin-top: 24px;
+  }
+  .compliance-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .compliance-item .c-status {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  .compliance-item .c-status.pass { background: rgba(90,171,110,0.15); color: var(--green); border: 1px solid rgba(90,171,110,0.3); }
+  .compliance-item .c-doc {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .compliance-item .c-detail {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── Navigation ── */
+  .nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    background: rgba(24, 24, 31, 0.85);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border);
+    z-index: 100;
+  }
+  .nav-counter {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+  .nav-progress {
+    position: fixed;
+    bottom: 47px;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.4s ease;
+    z-index: 101;
+  }
+  .nav-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    opacity: 0.5;
+  }
+  .nav-title {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* ── Screenshot slides ── */
+  .screenshot-slide {
+    padding: 40px 60px 60px;
+    justify-content: flex-start;
+  }
+  .screenshot-wrap {
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 16px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+    position: relative;
+  }
+  .screenshot-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .screenshot-caption {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 12px;
+    font-style: italic;
+  }
+  .screenshot-dots {
+    display: flex;
+    gap: 6px;
+    padding: 8px 12px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+  }
+  .screenshot-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .screenshot-dots span:nth-child(1) { background: #ff5f57; }
+  .screenshot-dots span:nth-child(2) { background: #febc2e; }
+  .screenshot-dots span:nth-child(3) { background: #28c840; }
+
+  @media (max-width: 900px) {
+    .slide { padding: 40px 32px; }
+    .two-col, .three-col, .four-col, .compliance-grid { grid-template-columns: 1fr; }
+    .process-strip { flex-direction: column; }
+    .flow { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- ═══════ SLIDE 1: Title ═══════ -->
+  <div class="slide active" data-slide="1">
+    <div class="slide-label">Technical Briefing</div>
+    <h1>Teamtailor GTM Workspace</h1>
+    <div class="subtitle">A standalone sales workspace built by Ryan Walker to help US sales reps find and reach the right prospects — without waiting for Salesforce.</div>
+    <div class="divider" style="margin-top:40px;"></div>
+    <p class="muted" style="font-size:13px; margin-top:12px;">Teamtailor US — Built by Ryan Walker</p>
+  </div>
+
+  <!-- ═══════ SLIDE 2: Agenda ═══════ -->
+  <div class="slide content-left" data-slide="2">
+    <div class="slide-label">Today's Session</div>
+    <h2>What We Cover</h2>
+    <ul class="bullet-list" style="margin-top:32px;">
+      <li><span class="b-icon">01</span><strong>The Problem</strong> — Why Salesforce bandwidth forced a workaround</li>
+      <li><span class="b-icon">02</span><strong>The Signal Board</strong> — How signals flow in, how reps see and act on them</li>
+      <li><span class="b-icon">03</span><strong>The Audience Flywheel</strong> — How audience lists feed Clay, which feeds the Signal Board</li>
+      <li><span class="b-icon">04</span><strong>The Full Pipeline</strong> — Clay → Supabase → Signal Board → Salesloft → Nooks</li>
+      <li><span class="b-icon">05</span><strong>The Daily Workflow</strong> — From signal to booked meeting in 60 seconds</li>
+      <li><span class="b-icon">06</span><strong>Configuration &amp; Oversight</strong> — Settings, team access, and admin tools</li>
+      <li><span class="b-icon">07</span><strong>Security &amp; Compliance</strong> — Policy alignment with every Teamtailor document</li>
+    </ul>
+  </div>
+
+  <!-- ═══════ SLIDE 3: The Problem ═══════ -->
+  <div class="slide" data-slide="3">
+    <div class="slide-label">The Constraint</div>
+    <h2>Why This Exists</h2>
+    <div class="two-col" style="margin-top:32px;max-width:900px;">
+      <div class="card" style="border-color:var(--red);">
+        <h3 style="color:var(--red);">The Reality</h3>
+        <ul>
+          <li>Salesforce admin bandwidth is shared across the global org</li>
+          <li>CRM customization is queued behind global priorities</li>
+          <li>Even with Salesforce, surfacing signals there doesn't help reps act fast</li>
+          <li>Reps need one screen where they see what's hot and can act immediately</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:var(--green);">
+        <h3 style="color:var(--green);">What We Built</h3>
+        <ul>
+          <li>A standalone workspace that runs alongside Salesforce — no CRM dependencies</li>
+          <li>Clay detects buying signals (e.g., job postings, ATS contracts expiring, new TA leadership) and enriches accounts</li>
+          <li>Reps see prioritized accounts with AI-generated research briefs</li>
+          <li>One-click push to Salesloft cadences → Nooks for power dialing</li>
+          <li>Jesper's ad audiences (LinkedIn, Meta) feed back into the same pipeline, creating a feedback loop</li>
+          <li>When Salesforce opens up, migration is a webhook URL swap</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 4: Section — Signal Board ═══════ -->
+  <div class="slide section-break" data-slide="4">
+    <div class="slide-label">Part 2</div>
+    <h1>The Signal Board</h1>
+    <p class="subtitle">The nerve center. Every account is scored, ranked, and assigned to a rep — automatically.</p>
+  </div>
+
+  <!-- ═══════ SLIDE 5: What Reps See & Do ═══════ -->
+  <div class="slide content-left" data-slide="5">
+    <div class="slide-label">Core Module</div>
+    <h2>What Reps See &amp; Do</h2>
+    <p class="muted" style="font-size:15px;margin-top:8px;margin-bottom:24px;">Every account ranked by composite intent score. Hot signals surface first.</p>
+    <div class="two-col" style="max-width:900px;">
+      <div class="card" style="border-color:var(--accent);">
+        <h3 style="color:var(--accent);">What Reps See</h3>
+        <ul>
+          <li>Accounts ranked by composite intent score — hottest signals first</li>
+          <li>ICP tier badges (🔴 Hot / 🟡 Warm / ⚪ Watch) with color-coded priority</li>
+          <li>Audience source badge showing origin (Rippling, K-12, etc.)</li>
+          <li>Key columns: employee count, open roles, current ATS, last signal date</li>
+          <li>Primary contact with title, email, and LinkedIn profile</li>
+          <li>Salesloft activity inline — emails sent, calls made, replies received</li>
+          <li>ISP Score (0–100) with AI-generated account intelligence on hover</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:var(--accent-warm);">
+        <h3 style="color:var(--accent-warm);">What Reps Can Do</h3>
+        <ul>
+          <li>Open the Account Drawer — full research brief, pain points, recommended approach</li>
+          <li>Generate AI LinkedIn message (GPT-4o) — personalized in one click</li>
+          <li>Push contacts to Salesloft cadences — real cadences pulled via API</li>
+          <li>Set dispositions: New → Working → Engaged → Meeting Set → DQ</li>
+          <li>Add team-visible notes to any account</li>
+          <li>Export signal data to CSV</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 6: Screenshot — Signal Board ═══════ -->
+  <div class="slide screenshot-slide" data-slide="6">
+    <div class="slide-label">Live System</div>
+    <h2 style="font-size:22px;">The Signal Board — Live</h2>
+    <p class="muted" style="font-size:14px;margin-top:4px;">Accounts ranked by composite intent score. ICP tiers, signal tags, and Salesloft status — all in one view.</p>
+    <div class="screenshot-wrap">
+      <div class="screenshot-dots"><span></span><span></span><span></span></div>
+      <img src="screenshots/01_signal_board.png" alt="Signal Board — Account view with ICP scoring, signal tags, and Salesloft status">
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 7: Signal Taxonomy ═══════ -->
+  <div class="slide content-left" data-slide="7">
+    <div class="slide-label">64 Signals</div>
+    <h2 style="font-size:22px;">The Signal Taxonomy</h2>
+    <p class="muted" style="font-size:14px;margin-top:4px;margin-bottom:16px;">A 64-signal framework across 28 categories defines what the system looks for. Each signal has a weight (1–10) indicating buying intent strength.</p>
+    <div class="four-col" style="max-width:1100px;gap:10px;">
+      <div class="card-sm" style="border-color:var(--red);">
+        <h4 style="font-size:12px;color:var(--red);">Weight 10 (Critical)</h4>
+        <ul style="font-size:11px;line-height:1.7;text-align:left;list-style:none;padding-left:0;">
+          <li>Legacy ATS (Taleo, iCIMS)</li>
+          <li>Recruiter Overload Stress</li>
+          <li>Broken Application UX</li>
+          <li>Manual Hiring Workflows</li>
+          <li>RFP / Vendor Review</li>
+        </ul>
+      </div>
+      <div class="card-sm" style="border-color:var(--accent-warm);">
+        <h4 style="font-size:12px;color:var(--accent-warm);">Weight 8–9 (Strong)</h4>
+        <ul style="font-size:11px;line-height:1.7;text-align:left;list-style:none;padding-left:0;">
+          <li>New Head of TA / CHRO</li>
+          <li>M&amp;A / Org Restructure</li>
+          <li>Multi-Location Hiring</li>
+          <li>Regulated Roles</li>
+          <li>High Job Volume Surge</li>
+        </ul>
+      </div>
+      <div class="card-sm" style="border-color:var(--accent);">
+        <h4 style="font-size:12px;color:var(--accent);">Weight 5–7 (Moderate)</h4>
+        <ul style="font-size:11px;line-height:1.7;text-align:left;list-style:none;padding-left:0;">
+          <li>External Recruiter Dependency</li>
+          <li>Contract Renewal Windows</li>
+          <li>Career Page Narrative Gap</li>
+          <li>Hiring Manager Enablement</li>
+        </ul>
+      </div>
+      <div class="card-sm" style="border-color:var(--border);">
+        <h4 style="font-size:12px;color:var(--text-muted);">Weight 1–4 (Soft)</h4>
+        <ul style="font-size:11px;line-height:1.7;text-align:left;list-style:none;padding-left:0;">
+          <li>Language Shift to Systems</li>
+          <li>ESG Workforce Emphasis</li>
+          <li>Public eNPS Mentions</li>
+          <li>DEI Claims Without UX</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:12px;max-width:1100px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+      <div style="background:rgba(201,85,90,0.08);border:1px solid rgba(201,85,90,0.2);border-radius:8px;padding:10px 14px;text-align:center;">
+        <p style="font-size:28px;font-weight:800;color:var(--red);">64</p>
+        <p style="font-size:11px;color:var(--text-muted);">Total Signals</p>
+      </div>
+      <div style="background:rgba(123,140,222,0.08);border:1px solid rgba(123,140,222,0.2);border-radius:8px;padding:10px 14px;text-align:center;">
+        <p style="font-size:28px;font-weight:800;color:var(--accent);">28</p>
+        <p style="font-size:11px;color:var(--text-muted);">Categories</p>
+      </div>
+      <div style="background:rgba(212,162,78,0.08);border:1px solid rgba(212,162,78,0.2);border-radius:8px;padding:10px 14px;text-align:center;">
+        <p style="font-size:28px;font-weight:800;color:var(--accent-warm);">4</p>
+        <p style="font-size:11px;color:var(--text-muted);">Weight Tiers</p>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:12px;max-width:1100px;">These signals map directly to Clay's detection columns. Clay identifies them automatically across the web — the Teamtailor GTM Workspace ranks and presents the results.</p>
+  </div>
+
+  <!-- ═══════ SLIDE 8: ISP Enrichment ═══════ -->
+  <div class="slide content-left" data-slide="8">
+    <div class="slide-label">Account Intelligence</div>
+    <h2 style="font-size:22px;">ISP Enrichment — The Account Drawer</h2>
+    <p class="muted" style="font-size:14px;margin-top:4px;margin-bottom:16px;">When Clay enriches an account, the system produces a full sales playbook. Reps see everything they need before picking up the phone.</p>
+    <div class="three-col" style="max-width:1000px;gap:14px;">
+      <div class="card" style="border-color:var(--violet);">
+        <h3 style="color:var(--violet);font-size:14px;">ISP Score (0–100)</h3>
+        <ul style="font-size:12px;">
+          <li>Clay's AI computes a holistic account-level score</li>
+          <li>Displayed as a color-coded gauge bar in the account drawer</li>
+          <li>≥60 = high priority (red), ≥40 = moderate (amber), &lt;40 = lower (green)</li>
+          <li>Signal category badge shows which cluster dominates</li>
+          <li>ISP explanation paragraph describes why the score is what it is</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:var(--accent-warm);">
+        <h3 style="color:var(--accent-warm);font-size:14px;">Pain Points + Account Intel</h3>
+        <ul style="font-size:12px;">
+          <li>5 intelligence bullets — company scale, infrastructure, market position</li>
+          <li>4 tailored discovery questions specific to this account</li>
+          <li>Example: <em>"With 47+ open roles and 155 schools, how much productivity is lost to slow time-to-fill?"</em></li>
+          <li>Reps read these before the call — instant research done for them</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:var(--green);">
+        <h3 style="color:var(--green);font-size:14px;">Recommended Approach</h3>
+        <ul style="font-size:12px;">
+          <li>How to position Teamtailor for this specific prospect</li>
+          <li>Who to target (stakeholder recommendation)</li>
+          <li>Specific CTA suggestion (e.g., "15-min Recruitment Process Audit")</li>
+          <li>Employer review scores (Glassdoor, Indeed, G2) at a glance</li>
+          <li>Everything is AI-generated by Clay — evolves as Clay learns</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 9: Screenshot — Account Drawer ═══════ -->
+  <div class="slide screenshot-slide" data-slide="9">
+    <div class="slide-label">Account Detail</div>
+    <h2 style="font-size:22px;">The Account Drawer — Live</h2>
+    <p class="muted" style="font-size:14px;margin-top:4px;">Click any account to open the full detail drawer — ISP score, account intelligence, pain points, recommended approach, and employer reviews.</p>
+    <div class="screenshot-wrap">
+      <div class="screenshot-dots"><span></span><span></span><span></span></div>
+      <img src="screenshots/02_account_drawer.png" alt="Account drawer showing ISP score, account intelligence, pain points, recommended approach, and employer reviews">
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 10: Built-In Intelligence ═══════ -->
+  <div class="slide" data-slide="10">
+    <div class="slide-label">Signal Intelligence</div>
+    <h2 style="font-size:24px;">Built-In Intelligence</h2>
+    <div class="four-col" style="max-width:1000px;margin-top:24px;">
+      <div class="card-sm" style="border-color:var(--accent);">
+        <div class="icon">📊</div>
+        <h4>Signal Funnel</h4>
+        <p>Signals → In Cadence → Engaged → Replied → Meetings</p>
+      </div>
+      <div class="card-sm" style="border-color:var(--teal);">
+        <div class="icon">🗺️</div>
+        <h4>Buying Committee</h4>
+        <p>Heatmap showing multi-contact penetration per account</p>
+      </div>
+      <div class="card-sm" style="border-color:var(--accent-warm);">
+        <div class="icon">⏱️</div>
+        <h4>Auto-Decay</h4>
+        <p>Working accounts with no activity for 60+ days auto-nurture</p>
+      </div>
+      <div class="card-sm" style="border-color:var(--violet);">
+        <div class="icon">🎯</div>
+        <h4>Custom Segments</h4>
+        <p>Build and save custom filters with field/operator/value conditions</p>
+      </div>
+      <div class="card-sm">
+        <div class="icon">📈</div>
+        <h4>Trend Arrows</h4>
+        <p>Signals heating up or cooling off per account</p>
+      </div>
+      <div class="card-sm">
+        <div class="icon">🔍</div>
+        <h4>Score Popovers</h4>
+        <p>Hover to see breakdown by source with plain-language insights</p>
+      </div>
+      <div class="card-sm">
+        <div class="icon">⚡</div>
+        <h4>Stale Alerts</h4>
+        <p>Red badges on accounts with no signal activity &gt; 3 days</p>
+      </div>
+      <div class="card-sm">
+        <div class="icon">📋</div>
+        <h4>Rep Action Rate</h4>
+        <p>Admin sees actioned/total % per rep across territories</p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- ═══════ SLIDE 11: Section — Audience Flywheel ═══════ -->
+  <div class="slide section-break" data-slide="11">
+    <span class="slide-label">Part 3</span>
+    <h1>The Audience Flywheel</h1>
+    <p class="subtitle">Audience lists feed Clay. Clay detects signals. Signals drive action. Action generates more signals.</p>
+  </div>
+
+  <!-- ═══════ SLIDE 12: Flywheel Overview ═══════ -->
+  <div class="slide" data-slide="12">
+    <div class="slide-label">How It Works</div>
+    <h2 style="font-size:24px;">How the Flywheel Works</h2>
+    <div class="flow" style="margin-top:32px;">
+      <div class="flow-step highlight" style="border-color:var(--violet);background:rgba(155,125,212,0.08);">
+        <div class="step-num" style="color:var(--violet);">1</div>
+        <div class="step-title">📋 Audience Lists</div>
+        <div class="step-sub">Rippling, K-12 — curated target lists built in Clay</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step highlight">
+        <div class="step-num">2</div>
+        <div class="step-title">🔬 Clay Enrichment</div>
+        <div class="step-sub">Clay watches for buying signals, enriches with AI intelligence</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step highlight" style="border-color:var(--green);background:rgba(90,171,110,0.06);">
+        <div class="step-num" style="color:var(--green);">3</div>
+        <div class="step-title">📊 Signal Board</div>
+        <div class="step-sub">Signals surface in the GTM Workspace, ranked and assigned</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:var(--accent-warm);background:rgba(212,162,78,0.06);">
+        <div class="step-num" style="color:var(--accent-warm);">4</div>
+        <div class="step-title">📧 Outreach</div>
+        <div class="step-sub">Reps push to Salesloft cadences, dial via Nooks</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:var(--red);background:rgba(201,85,90,0.06);">
+        <div class="step-num" style="color:var(--red);">5</div>
+        <div class="step-title">🎯 Ad Retargeting</div>
+        <div class="step-sub">Jesper runs ads against the same audience via LinkedIn/Meta</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:var(--teal);background:rgba(74,158,160,0.06);">
+        <div class="step-num" style="color:var(--teal);">6</div>
+        <div class="step-title">♻️ More Signals</div>
+        <div class="step-sub">Ad engagement + web visits create new signals → loop back</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:20px;">
+      <p style="color:var(--text-muted);font-size:13px;">Every audience table feeds into the same pipeline. The Signal Board shows signals from <strong>all</strong> audiences — tagged by source.</p>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 13: Rippling Displacement Audience ═══════ -->
+  <div class="slide screenshot-slide" data-slide="13">
+    <span class="slide-label">Audience: Rippling</span>
+    <h2 style="font-size:22px;font-weight:800;">Rippling Displacement — Target Audience</h2>
+    <p class="muted">45 companies currently using Rippling as their HR/ATS — a displacement play. Each company is scored, enriched via Clay, and piped into the Signal Board when intent signals fire.</p>
+    <div class="screenshot-wrap"><img src="screenshots/13_rippling_audience.png" alt="Rippling Displacement Audience" /></div>
+  </div>
+
+  <!-- ═══════ SLIDE 14: K-12 Power Table ═══════ -->
+  <div class="slide screenshot-slide" data-slide="14">
+    <span class="slide-label">Audience: K-12</span>
+    <h2 style="font-size:22px;font-weight:800;">K-12 District Power Table</h2>
+    <p class="muted">9,451 US school districts enriched with NCES data, current ATS detection, and staff growth trends. The largest audience table — built for the education vertical.</p>
+    <div class="screenshot-wrap"><img src="screenshots/10_k12_table.png" alt="K-12 Power Table" /></div>
+  </div>
+
+  <!-- ═══════ SLIDE 15: Section — Pipeline ═══════ -->
+  <div class="slide section-break" data-slide="15">
+    <div class="slide-label">Part 4</div>
+    <h1>The Full Pipeline</h1>
+    <p class="subtitle">From raw signal detection to booked meeting — end to end.</p>
+  </div>
+
+  <!-- ═══════ SLIDE 16: Pipeline Flow ═══════ -->
+  <div class="slide" data-slide="16">
+    <div class="slide-label">Architecture</div>
+    <h2 style="font-size:24px;">Technical Architecture</h2>
+    <div class="flow" style="margin-top:32px;">
+      <div class="flow-step highlight" style="border-color:var(--violet);background:rgba(155,125,212,0.08);">
+        <div class="step-num" style="color:var(--violet);">AUDIENCES</div>
+        <div class="step-title">📋 Lists</div>
+        <div class="step-sub">Rippling · K-12 · Future Audiences</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step highlight">
+        <div class="step-num">DETECT</div>
+        <div class="step-title">🧱 Clay</div>
+        <div class="step-sub">Enrichment + triggers</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step highlight">
+        <div class="step-num">STORE</div>
+        <div class="step-title">⚡ Supabase</div>
+        <div class="step-sub">clay_signals table</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step highlight">
+        <div class="step-num">TRIAGE</div>
+        <div class="step-title">📡 Signal Board</div>
+        <div class="step-sub">Score, rank, assign</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step highlight" style="border-color:var(--violet);background:rgba(155,125,212,0.08);">
+        <div class="step-num" style="color:var(--violet);">DRAFT</div>
+        <div class="step-title">🤖 AI LinkedIn</div>
+        <div class="step-sub">GPT-4o Edge Fn</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:var(--teal);background:rgba(74,158,160,0.06);">
+        <div class="step-num" style="color:var(--teal);">ENROLL</div>
+        <div class="step-title">📧 Salesloft</div>
+        <div class="step-sub">Cadence push</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:var(--green);background:rgba(90,171,110,0.06);">
+        <div class="step-num" style="color:var(--green);">DIAL</div>
+        <div class="step-title">📞 Nooks</div>
+        <div class="step-sub">Power dialing</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:var(--accent-warm);background:rgba(212,162,78,0.06);">
+        <div class="step-num" style="color:var(--accent-warm);">LOOP</div>
+        <div class="step-title">♻️ Back</div>
+        <div class="step-sub">New signals ↩</div>
+      </div>
+    </div>
+    <p class="subtitle" style="font-size:14px;margin-top:28px;">How data moves through the system — from webhook to phone call.</p>
+  </div>
+
+  <!-- ═══════ SLIDE 17: How Signals Flow In ═══════ -->
+  <div class="slide content-left" data-slide="17">
+    <div class="slide-label">Integration Detail</div>
+    <h2>How Signals Flow In</h2>
+    <p class="muted" style="font-size:15px;margin-top:8px;margin-bottom:24px;">Clay fires a webhook every time an enrichment table row completes. Here is exactly what flows into the system.</p>
+    <table style="max-width:850px;">
+      <tr><th>Field</th><th>Source</th><th>Example</th></tr>
+      <tr><td>company_name</td><td>Clay enrichment</td><td>Nuveen Investments</td></tr>
+      <tr><td>audience_source</td><td>Clay enrichment</td><td>Rippling / K-12 / etc.</td></tr>
+      <tr><td>full_name / email</td><td>Clay waterfall</td><td>Sarah Chen / s.chen@nuveen.com</td></tr>
+      <tr><td>current_ats</td><td>Clay enrichment</td><td>Greenhouse</td></tr>
+      <tr><td>signal_name / signal_score</td><td>Clay trigger</td><td>Pricing Page Visit / 10</td></tr>
+      <tr><td>icp_tier</td><td>Clay formula</td><td>hot / warm / watch</td></tr>
+      <tr><td>ai_research_brief</td><td>Clay AI column</td><td>"Actively evaluating ATS alternatives..."</td></tr>
+      <tr><td>assigned_rep_id</td><td>Clay round-robin</td><td>rep-jl (Jack Luther)</td></tr>
+      <tr><td>isp_score</td><td>Clay ISP model</td><td>67 (0–100 scale)</td></tr>
+      <tr><td>account_intel</td><td>Clay AI column</td><td>["5,000 employees", "Taleo user", ...]</td></tr>
+      <tr><td>pain_points</td><td>Clay AI column</td><td>["How is the current ATS handling volume..."]</td></tr>
+      <tr><td>recommended_approach</td><td>Clay AI column</td><td>["Position as modern replacement for Taleo..."]</td></tr>
+    </table>
+    <p style="font-size:13px;color:var(--accent);margin-top:16px;font-weight:500;">Webhook URL: https://[project].supabase.co/rest/v1/clay_signals</p>
+    <div style="margin-top:14px;max-width:850px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 20px;">
+      <p style="font-size:13px;color:var(--text);margin-bottom:6px;font-weight:600;">Key point: Clay does the intelligence, the app does the visualization</p>
+      <p style="font-size:12px;color:var(--text-muted);">ICP tier, signal name, signal score, and research briefs are all <strong>computed by Clay</strong> before reaching the app. The Signal Board groups, ranks, and presents that data. If Clay's scoring logic changes, the board reflects it automatically.</p>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 18: Salesloft + Nooks ═══════ -->
+  <div class="slide content-left" data-slide="18">
+    <div class="slide-label">Outreach Execution</div>
+    <h2>Signal Board → Salesloft → Nooks</h2>
+    <p class="muted" style="font-size:15px;margin-top:8px;margin-bottom:24px;">When a rep clicks "Push to Cadence," the system enrolls the contact and tracks all downstream activity.</p>
+    <div class="two-col" style="max-width:900px;">
+      <div class="card" style="border-color:var(--accent);">
+        <h3 style="color:var(--accent);">Salesloft Push Flow</h3>
+        <ul>
+          <li><strong>Step 1:</strong> Find or create the Person in Salesloft by email</li>
+          <li><strong>Step 2:</strong> Rep selects from their available cadences</li>
+          <li><strong>Step 3:</strong> API call to create a CadenceMembership</li>
+          <li><strong>Step 4:</strong> UI updates to show ✅ status</li>
+          <li><strong>Step 5:</strong> Action logged to audit trail</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:var(--teal);">
+        <h3 style="color:var(--teal);">Nooks Execution</h3>
+        <ul>
+          <li>Contacts in Salesloft cadences sync to Nooks for dialing</li>
+          <li>Reps power-dial from their Salesloft queue in Nooks</li>
+          <li>Activity flows back: emails sent, calls, replies, meetings</li>
+          <li>Signal Board shows Salesloft activity inline per contact</li>
+          <li>Disposition updates in real-time as reps work accounts</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:16px;">SFDC sync: Our App → Salesloft → Salesforce via Salesloft's native CRM sync. One-directional.</p>
+  </div>
+
+  <!-- ═══════ SLIDE 19: Push to Cadence — Live ═══════ -->
+  <div class="slide screenshot-slide" data-slide="19">
+    <div class="slide-label">Salesloft Integration</div>
+    <h2 style="font-size:22px;font-weight:800;">Push to Cadence — Live</h2>
+    <p class="muted" style="font-size:14px;margin-top:4px;">One click opens the cadence picker — real Salesloft cadences pulled via API. Select a cadence, confirm, and the contact is enrolled instantly.</p>
+    <div class="screenshot-wrap"><img src="screenshots/06_push_to_cadence.png" alt="Push to Cadence with Salesloft cadences" /></div>
+  </div>
+
+  <!-- ═══════ SLIDE 20: Salesloft API ═══════ -->
+  <div class="slide content-left" data-slide="20">
+    <div class="slide-label">API Transparency</div>
+    <h2 style="font-size:22px;">Salesloft API — Exactly What We Access</h2>
+    <p class="muted" style="font-size:14px;margin-top:4px;margin-bottom:16px;">Full transparency: every API endpoint, its method, and what data moves. No hidden access.</p>
+    <table style="max-width:950px;">
+      <tr><th>Endpoint</th><th>Method</th><th>Direction</th><th>Purpose</th></tr>
+      <tr>
+        <td><code>/v2/people.json?email=</code></td>
+        <td style="color:var(--green);font-weight:600;">GET</td>
+        <td>📥 READ</td>
+        <td>Look up a person by email — check if contact exists before creating</td>
+      </tr>
+      <tr>
+        <td><code>/v2/people.json</code></td>
+        <td style="color:var(--accent-warm);font-weight:600;">POST</td>
+        <td>📤 WRITE</td>
+        <td>Create new person (name, email, title, phone, company) if not found</td>
+      </tr>
+      <tr>
+        <td><code>/v2/people/{id}.json</code></td>
+        <td style="color:var(--accent-warm);font-weight:600;">PATCH</td>
+        <td>📤 WRITE</td>
+        <td>Update contact stage to "Working" after cadence enrollment</td>
+      </tr>
+      <tr>
+        <td><code>/v2/cadences.json</code></td>
+        <td style="color:var(--green);font-weight:600;">GET</td>
+        <td>📥 READ</td>
+        <td>List available cadences for the cadence picker dropdown</td>
+      </tr>
+      <tr>
+        <td><code>/v2/cadence_memberships.json</code></td>
+        <td style="color:var(--accent-warm);font-weight:600;">POST</td>
+        <td>📤 WRITE</td>
+        <td>Enroll a person into a selected cadence (the core "Push to Cadence" action)</td>
+      </tr>
+      <tr>
+        <td><code>/v2/activities/emails.json</code></td>
+        <td style="color:var(--green);font-weight:600;">GET</td>
+        <td>📥 READ</td>
+        <td>Pull email activity — sent count, opens, replies, bounces</td>
+      </tr>
+      <tr>
+        <td><code>/v2/activities/calls.json</code></td>
+        <td style="color:var(--green);font-weight:600;">GET</td>
+        <td>📥 READ</td>
+        <td>Pull call activity — dials, duration, disposition, sentiment</td>
+      </tr>
+      <tr>
+        <td><code>/v2/meetings.json</code></td>
+        <td style="color:var(--green);font-weight:600;">GET</td>
+        <td>📥 READ</td>
+        <td>Pull booked meetings per person (used for funnel metrics)</td>
+      </tr>
+    </table>
+    <div class="two-col" style="margin-top:16px;max-width:950px;gap:12px;">
+      <div style="background:rgba(90,171,110,0.06);border:1px solid rgba(90,171,110,0.2);border-radius:8px;padding:12px 16px;">
+        <p style="font-size:12px;font-weight:600;color:var(--green);margin-bottom:4px;">🔒 Security Model</p>
+        <p style="font-size:12px;color:var(--text-muted);">API key stored server-side only. Browser calls <code>/salesloft-api/*</code> → server proxy injects <code>Authorization: Bearer</code> header. <strong>Key never reaches the client.</strong></p>
+      </div>
+      <div style="background:rgba(123,140,222,0.06);border:1px solid rgba(123,140,222,0.2);border-radius:8px;padding:12px 16px;">
+        <p style="font-size:12px;font-weight:600;color:var(--accent);margin-bottom:4px;">📊 Summary: 5 READ / 3 WRITE</p>
+        <p style="font-size:12px;color:var(--text-muted);">Writes are limited to: create person, update stage, enroll in cadence. <strong>We never delete, modify cadence content, or access admin settings.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 21: Section — Daily Workflow ═══════ -->
+  <div class="slide section-break" data-slide="21">
+    <div class="slide-label">Part 5</div>
+    <h1>How Reps Work</h1>
+    <p class="subtitle">Signal → Research → Draft → Cadence → Nooks → Meeting.</p>
+  </div>
+
+  <!-- ═══════ SLIDE 22: 60-Second Workflow ═══════ -->
+  <div class="slide" data-slide="22">
+    <div class="slide-label">The Daily Workflow</div>
+    <h2 style="font-size:24px;margin-bottom:8px;">Signal → Research → Enroll → Dial</h2>
+    <p class="muted" style="font-size:14px;margin-bottom:8px;">Every morning. Under 60 seconds per account.</p>
+    <div class="process-strip">
+      <div class="process-step">
+        <div class="p-icon">📡</div>
+        <div class="p-label">STEP 1</div>
+        <div class="p-title">Open Signal Board</div>
+        <div class="p-sub">Filter to your territory</div>
+      </div>
+      <div class="process-step">
+        <div class="p-icon">🔍</div>
+        <div class="p-label">STEP 2</div>
+        <div class="p-title">Click Top Account</div>
+        <div class="p-sub">Read AI Research Brief + Pain Points</div>
+      </div>
+      <div class="process-step">
+        <div class="p-icon">📧</div>
+        <div class="p-label">STEP 3</div>
+        <div class="p-title">Push to Cadence</div>
+        <div class="p-sub">Enrolled in Salesloft</div>
+      </div>
+      <div class="process-step">
+        <div class="p-icon">📞</div>
+        <div class="p-label">STEP 4</div>
+        <div class="p-title">Power Dial in Nooks</div>
+        <div class="p-sub">Book the meeting</div>
+      </div>
+      <div class="process-step" style="opacity:0.6;border-style:dashed;">
+        <div class="p-icon">✨</div>
+        <div class="p-label">OPTIONAL</div>
+        <div class="p-title">AI LinkedIn Draft</div>
+        <div class="p-sub">Personalized connection message</div>
+      </div>
+    </div>
+    <div class="two-col" style="margin-top:28px;max-width:800px;">
+      <div style="text-align:center;">
+        <p class="red-text" style="font-size:12px;font-weight:600;letter-spacing:1px;">OLD WAY</p>
+        <p style="font-size:14px;color:var(--text-muted);margin-top:8px;">Manual research → write email → build Nooks list → hope for the best → <em>15+ min per prospect</em></p>
+      </div>
+      <div style="text-align:center;">
+        <p class="green-text" style="font-size:12px;font-weight:600;letter-spacing:1px;">WITH GTM WORKSPACE</p>
+        <p style="font-size:14px;color:var(--text-muted);margin-top:8px;">Open Signal Board → Read AI brief → Push to cadence → Power dial → <em>under 60 seconds</em></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 23: Screenshot — AI LinkedIn ═══════ -->
+  <div class="slide screenshot-slide" data-slide="23">
+    <div class="slide-label">AI in Action</div>
+    <h2 style="font-size:22px;">AI LinkedIn Message — Generated in Real-Time</h2>
+    <p class="muted" style="font-size:14px;margin-top:4px;">One click generates a personalized LinkedIn connection request using GPT-4o. References the prospect's ATS, signals, and company — under 300 characters, ready to paste.</p>
+    <div class="screenshot-wrap">
+      <div class="screenshot-dots"><span></span><span></span><span></span></div>
+      <img src="screenshots/03_ai_linkedin.png" alt="AI-generated LinkedIn message referencing prospect signals and ATS">
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 24: Section — Configuration ═══════ -->
+  <div class="slide section-break" data-slide="24">
+    <div class="slide-label">Part 6</div>
+    <h1>Configuration &amp; Oversight</h1>
+    <p class="subtitle">A full Settings dashboard for monitoring, troubleshooting, and team management.</p>
+  </div>
+
+  <!-- ═══════ SLIDE 25: Settings Dashboard ═══════ -->
+  <div class="slide screenshot-slide" data-slide="25">
+    <div class="slide-label">Admin Tools</div>
+    <h2 style="font-size:22px;">The Settings Dashboard</h2>
+    <p class="muted" style="font-size:14px;margin-top:4px;">Seven tabs covering everything from system health to role-based documentation. Exec users see all tabs in read-only mode.</p>
+    <div class="screenshot-wrap">
+      <div class="screenshot-dots"><span></span><span></span><span></span></div>
+      <img src="screenshots/04_settings.png" alt="Settings dashboard with system status, signal rules, and documentation tabs">
+    </div>
+    <div class="three-col" style="max-width:1000px;margin-top:16px;gap:12px;">
+      <div class="card" style="padding:16px 18px;">
+        <h3 style="font-size:13px;color:var(--accent);margin-bottom:6px;">System Status</h3>
+        <p style="font-size:12px;">Real-time health of every integration (Supabase, Salesloft, Clay, OpenAI). Activity metrics for last 24 hours.</p>
+      </div>
+      <div class="card" style="padding:16px 18px;">
+        <h3 style="font-size:13px;color:var(--accent-warm);margin-bottom:6px;">Signal Rules</h3>
+        <p style="font-size:12px;">Score thresholds, ISP scoring model, the full 64-signal taxonomy with weights, freshness indicators, and automation rules.</p>
+      </div>
+      <div class="card" style="padding:16px 18px;">
+        <h3 style="font-size:13px;color:var(--green);margin-bottom:6px;">How It Works</h3>
+        <p style="font-size:12px;">Role-specific documentation for each team member. Each role sees documentation tailored to their function — admins see technical details, execs see plain-English overviews.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 26: Team & Access ═══════ -->
+  <div class="slide content-left" data-slide="26">
+    <div class="slide-label">Who Has Access</div>
+    <h2 style="font-size:22px;">Team &amp; Access</h2>
+    <p class="muted" style="font-size:14px;margin-top:4px;margin-bottom:16px;">Eight authorized users across three roles. Every login uses a @teamtailor.com email via magic link (passwordless). No shared accounts.</p>
+    <table style="max-width:960px;font-size:13px;">
+      <tr><th>User</th><th>Role</th><th>Context</th><th>Visibility</th></tr>
+      <tr><td>Ryan Walker</td><td style="color:var(--accent);font-weight:600;">Admin</td><td>Platform Administrator</td><td>All territories · All features · Impersonate any rep</td></tr>
+      <tr><td>Brian McGarry</td><td style="color:var(--teal);font-weight:600;">Exec</td><td>GM, North America</td><td>Signal Board (all territories, read-only) · Settings</td></tr>
+      <tr><td>Daniel Mathisen</td><td style="color:var(--teal);font-weight:600;">Exec</td><td>Corporate Development, Clay Owner</td><td>Signal Board (all territories, read-only) · Settings</td></tr>
+      <tr><td>Gordon French</td><td style="color:var(--teal);font-weight:600;">Exec</td><td>RevOps, North America</td><td>Signal Board (all territories, read-only) · Settings</td></tr>
+      <tr><td>Jesper Åström</td><td style="color:var(--teal);font-weight:600;">Exec</td><td>Growth Marketing, Website &amp; Ads</td><td>Signal Board (all territories, read-only) · Settings</td></tr>
+      <tr><td>Jack Luther</td><td style="font-weight:600;">Rep</td><td>Sales Development</td><td>Own territory only · Push to cadence · Notes · Discovery</td></tr>
+      <tr><td>Moe Aqel</td><td style="font-weight:600;">Rep</td><td>Sales Development</td><td>Own territory only · Push to cadence · Notes · Discovery</td></tr>
+      <tr><td>Tyler Hanson</td><td style="font-weight:600;">Rep</td><td>Sales Development</td><td>Own territory only · Push to cadence · Notes · Discovery</td></tr>
+    </table>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:10px;">Every user is hardcoded to a whitelist — there is no self-registration. Adding a new user requires a code deploy.</p>
+  </div>
+
+  <!-- ═══════ SLIDE 27: Data Isolation & Impersonation ═══════ -->
+  <div class="slide" data-slide="27">
+    <div class="slide-label">How Data Is Isolated</div>
+    <h2 style="font-size:24px;">Data Isolation &amp; Admin Controls</h2>
+    <p class="muted" style="font-size:14px;margin-top:4px;margin-bottom:20px;">Every row of data is assigned to a specific rep. The system enforces who can see what at the code level — not just UI-level hiding.</p>
+    <div class="three-col" style="margin-top:16px;gap:14px;">
+      <div class="card" style="border-color:var(--accent);">
+        <h3 style="color:var(--accent);">🔑 Admin (Ryan)</h3>
+        <ul>
+          <li><strong>Sees all territories</strong> — every rep's accounts visible simultaneously</li>
+          <li><strong>Can impersonate any rep</strong> — view the board exactly as Jack, Moe, or Tyler sees it</li>
+          <li>Impersonation is <strong>audit-logged</strong> — who, when, and for how long</li>
+          <li>Can push to cadence, add notes, change dispositions on behalf of a rep</li>
+          <li>Only role that sees the rep switcher in the sidebar</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:var(--teal);">
+        <h3 style="color:var(--teal);">👁️ Exec (Brian, Daniel, Gordon, Jesper)</h3>
+        <ul>
+          <li><strong>Signal Board: read-only, all territories</strong> — can see every account and signal across the team</li>
+          <li><strong>Cannot push to cadence</strong> — no action buttons available</li>
+          <li><strong>Cannot impersonate reps</strong> — rep switcher is hidden</li>
+          <li><strong>Cannot access:</strong> Discovery Room, Pipeline Rigor, Goal Wizard, Weekly Tracker, Closed Lost Audit</li>
+          <li>Redirected to Signal Board if they try to navigate to restricted pages</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:var(--accent-warm);">
+        <h3 style="color:var(--accent-warm);">📋 Rep (Jack, Moe, Tyler)</h3>
+        <ul>
+          <li><strong>Sees only their own territory</strong> — filter applies at the data layer, not just UI</li>
+          <li>Jack cannot see Moe's accounts. Moe cannot see Tyler's. Period.</li>
+          <li><strong>Full operational access</strong> within their territory — push to cadence, notes, dispositions, AI drafts</li>
+          <li>Activity is attributed to the rep — audit trail knows who did what</li>
+          <li><strong>Cannot access:</strong> Admin View, Settings, rep switching</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:20px;max-width:900px;">
+      <div class="card" style="border-color:var(--green);padding:14px 20px;">
+        <h3 style="color:var(--green);font-size:13px;margin-bottom:6px;">🔒 How Isolation Works Under the Hood</h3>
+        <p style="font-size:12px;line-height:1.6;">Every signal row in the database has an <code>assigned_rep_id</code> field (e.g., <code>rep-jl</code> for Jack). When a rep logs in, the board filters to only show rows matching their ID. This happens in code <em>before rendering</em> — the data never reaches the browser for accounts that don't belong to them. Contact-level activity rolls up to the account level automatically, so the account drawer shows all signals from all contacts at that company.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 28: Section — Security ═══════ -->
+  <div class="slide section-break" data-slide="28">
+    <div class="slide-label">Part 7</div>
+    <h1>Security &amp; Compliance</h1>
+    <p class="subtitle">Policy-by-policy alignment with every Teamtailor internal security document.</p>
+  </div>
+
+  <!-- ═══════ SLIDE 29: Security Architecture ═══════ -->
+  <div class="slide" data-slide="29">
+    <div class="slide-label">What We Built</div>
+    <h2 style="font-size:24px;">Security Architecture</h2>
+    <div class="three-col" style="margin-top:28px;">
+      <div class="card" style="border-color:var(--green);">
+        <h3 style="color:var(--green);">🔐 Authentication</h3>
+        <ul>
+          <li>Supabase Auth with Magic Link login</li>
+          <li>Passwordless — no credentials stored</li>
+          <li>30-minute idle session timeout</li>
+          <li>24-hour max session expiry</li>
+          <li>Only @teamtailor.com emails whitelisted</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:var(--accent);">
+        <h3 style="color:var(--accent);">🛡️ Authorization (RBAC)</h3>
+        <ul>
+          <li>Row-Level Security on ALL database tables</li>
+          <li>Role-based policies: Admin / Exec / Rep</li>
+          <li>Reps can only see their own territory data</li>
+          <li>Insert-only audit logs (no tampering)</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:var(--accent-warm);">
+        <h3 style="color:var(--accent-warm);">📋 Audit Trail</h3>
+        <ul>
+          <li>Every action logged immutably</li>
+          <li>Login, logout, idle timeout tracked</li>
+          <li>Push-to-cadence events captured</li>
+          <li>Disposition changes timestamped</li>
+          <li>Viewable in Settings → Audit Trail tab</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 30: Policy Alignment ═══════ -->
+  <div class="slide content-left" data-slide="30">
+    <div class="slide-label">Compliance</div>
+    <h2 style="font-size:22px;">What Teamtailor Requires → What We Did</h2>
+    <p class="muted" style="font-size:14px;margin-top:4px;margin-bottom:16px;">Every internal policy requirement mapped to how it is addressed. No jargon — just what the rules say and what is built.</p>
+    <table style="max-width:960px;font-size:12px;">
+      <tr><th style="width:28%;">What Teamtailor asks</th><th style="width:22%;">Why it matters</th><th style="width:33%;">What we did</th><th style="width:17%;">Status</th></tr>
+      <tr>
+        <td><strong>"Get new vendors approved"</strong></td>
+        <td>Prevents unauthorized tools</td>
+        <td>Vendor forms ready for Cakewalk App Catalog</td>
+        <td style="color:var(--accent-warm);font-weight:600;">📝 Ready</td>
+      </tr>
+      <tr>
+        <td><strong>"Log who did what and when"</strong></td>
+        <td>Audit trail</td>
+        <td>Immutable <code>audit_logs</code> table</td>
+        <td style="color:var(--green);font-weight:600;">✅ Done</td>
+      </tr>
+      <tr>
+        <td><strong>"Only let people see data they need"</strong></td>
+        <td>Least-privilege</td>
+        <td>Row-Level Security on every table</td>
+        <td style="color:var(--green);font-weight:600;">✅ Done</td>
+      </tr>
+      <tr>
+        <td><strong>"Use unique logins, no shared passwords"</strong></td>
+        <td>Traceability</td>
+        <td>Magic link auth, unique @teamtailor.com</td>
+        <td style="color:var(--green);font-weight:600;">✅ Done</td>
+      </tr>
+      <tr>
+        <td><strong>"Store secrets securely"</strong></td>
+        <td>Prevents exposure</td>
+        <td>API keys server-side + Supabase Vault</td>
+        <td style="color:var(--green);font-weight:600;">✅ Done</td>
+      </tr>
+      <tr>
+        <td><strong>"Don't keep data longer than needed"</strong></td>
+        <td>Minimizes risk</td>
+        <td>90-day auto-purge on signal data</td>
+        <td style="color:var(--green);font-weight:600;">✅ Done</td>
+      </tr>
+      <tr>
+        <td><strong>"Disclose AI tool usage"</strong></td>
+        <td>Transparency</td>
+        <td>Disclosure drafted for CISO</td>
+        <td style="color:var(--accent-warm);font-weight:600;">📝 Ready</td>
+      </tr>
+      <tr>
+        <td><strong>"Register new systems"</strong></td>
+        <td>Company awareness</td>
+        <td>System register entry drafted</td>
+        <td style="color:var(--accent-warm);font-weight:600;">📝 Ready</td>
+      </tr>
+      <tr>
+        <td><strong>"Have a continuity plan"</strong></td>
+        <td>Business continuity</td>
+        <td>RPO 24h / RTO 1h, fallbacks defined</td>
+        <td style="color:var(--green);font-weight:600;">✅ Done</td>
+      </tr>
+      <tr>
+        <td><strong>"Assess and document risks"</strong></td>
+        <td>Risk management</td>
+        <td>10 risks scored, all ≤ 2.0 severity</td>
+        <td style="color:var(--green);font-weight:600;">✅ Done</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ═══════ SLIDE 31: Data & Ownership ═══════ -->
+  <div class="slide content-left" data-slide="31">
+    <div class="slide-label">Data &amp; Infrastructure</div>
+    <h2 style="font-size:22px;">Data Classification &amp; Account Ownership</h2>
+    <div class="two-col" style="margin-top:24px;max-width:960px;">
+      <div class="card" style="border-color:var(--accent);">
+        <h3 style="color:var(--accent);">What Data We Handle</h3>
+        <ul>
+          <li><strong>US business contact data only</strong> — name, email, title, company, phone</li>
+          <li><strong>No EU data subjects</strong> — US prospecting only</li>
+          <li><strong>No candidate PII</strong> — no job application data</li>
+          <li><strong>No financial data</strong> — no ARR, contract values</li>
+          <li>90-day auto-purge on all signal data</li>
+          <li>Classification: <strong>Internal</strong></li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:var(--teal);">
+        <h3 style="color:var(--teal);">Account Ownership</h3>
+        <table style="font-size:12px;margin-top:0;">
+          <tr><th style="padding:6px 8px;">Service</th><th style="padding:6px 8px;">Owner</th><th style="padding:6px 8px;">Auth</th><th style="padding:6px 8px;">Location</th></tr>
+          <tr><td style="padding:6px 8px;">Supabase</td><td style="padding:6px 8px;">ryan.walker@teamtailor.com</td><td style="padding:6px 8px;">Corp email</td><td style="padding:6px 8px;">AWS us-east (SOC 2)</td></tr>
+          <tr><td style="padding:6px 8px;">Railway</td><td style="padding:6px 8px;">ryan.walker@teamtailor.com</td><td style="padding:6px 8px;">Corp email</td><td style="padding:6px 8px;">SOC 2</td></tr>
+          <tr><td style="padding:6px 8px;">Clay</td><td style="padding:6px 8px;">Teamtailor license (Daniel)</td><td style="padding:6px 8px;">Corp SSO</td><td style="padding:6px 8px;">SOC 2</td></tr>
+          <tr><td style="padding:6px 8px;">Salesloft</td><td style="padding:6px 8px;">Teamtailor org</td><td style="padding:6px 8px;">Corp SSO</td><td style="padding:6px 8px;">Existing infra</td></tr>
+          <tr><td style="padding:6px 8px;">OpenAI</td><td style="padding:6px 8px;">API key in Supabase Vault</td><td style="padding:6px 8px;">Server-side</td><td style="padding:6px 8px;">Never reaches browser</td></tr>
+        </table>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--green);margin-top:16px;font-weight:500;">✅ Every service uses Teamtailor's existing org or a dedicated @teamtailor.com account. Zero personal accounts.</p>
+  </div>
+
+  <!-- ═══════ SLIDE 32: Section — Next Steps ═══════ -->
+  <div class="slide section-break" data-slide="32">
+    <div class="slide-label">Part 8</div>
+    <h1>Deployment &amp; Next Steps</h1>
+    <p class="subtitle">Everything needed to get fully operational.</p>
+  </div>
+
+  <!-- ═══════ SLIDE 33: Tech Stack ═══════ -->
+  <div class="slide" data-slide="33">
+    <div class="slide-label">Tech Stack</div>
+    <h2 style="font-size:24px;">The Full Stack</h2>
+    <div class="four-col" style="margin-top:28px;">
+      <div class="card" style="text-align:center;">
+        <h3 style="color:var(--accent);">Frontend</h3>
+        <p><strong>React + TypeScript</strong></p>
+        <p>Vite build system</p>
+        <p>Tailwind CSS</p>
+        <p>Framer Motion animations</p>
+        <p>Lucide icons</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <h3 style="color:var(--green);">Backend</h3>
+        <p><strong>Supabase</strong> (PostgreSQL)</p>
+        <p>Row-Level Security</p>
+        <p>Edge Functions (Deno)</p>
+        <p>Magic Link Auth</p>
+        <p>REST API</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <h3 style="color:var(--accent-warm);">Integrations</h3>
+        <p><strong>Clay</strong> — Enrichment + Webhooks</p>
+        <p><strong>Salesloft</strong> — Cadence API</p>
+        <p><strong>Nooks</strong> — Power Dialing (via Salesloft)</p>
+        <p><strong>OpenAI</strong> — GPT-4o via Edge Function</p>
+      </div>
+      <div class="card" style="text-align:center;border-color:var(--violet);">
+        <h3 style="color:var(--violet);">Hosting</h3>
+        <p><strong>Railway</strong> (SOC 2 Type II)</p>
+        <p>Auto-deploy from GitHub</p>
+        <p>Custom domain ready</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SLIDE 34: Brian's Checklist ═══════ -->
+  <div class="slide content-left" data-slide="34">
+    <div class="slide-label">Approval Checklist</div>
+    <h2 style="font-size:22px;">What Brian Needs to Submit — via Cakewalk</h2>
+    <p class="muted" style="font-size:14px;margin-top:4px;margin-bottom:12px;">Teamtailor uses <strong>Cakewalk</strong> (getcakewalk.io) for vendor/app approvals. Every request auto-routes to the right approver and creates a full audit trail.</p>
+    <table style="max-width:960px;font-size:12px;">
+      <tr><th style="width:30px;">#</th><th>What to Request</th><th>How</th><th>Status</th></tr>
+      <tr>
+        <td>1</td>
+        <td><strong>Supabase</strong><br><span class="muted" style="font-size:11px;">Database + auth — SOC 2 Type II certified</span></td>
+        <td>App Catalog → search "Supabase"</td>
+        <td style="color:var(--accent-warm);font-weight:600;">📝 Submit</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>Railway</strong><br><span class="muted" style="font-size:11px;">Hosting — SOC 2 Type II certified</span></td>
+        <td>App Catalog → search "Railway"</td>
+        <td style="color:var(--accent-warm);font-weight:600;">📝 Submit</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>OpenAI API</strong><br><span class="muted" style="font-size:11px;">GPT-4o for AI LinkedIn drafts — API access (server-side only)</span></td>
+        <td>App Catalog → search "OpenAI"</td>
+        <td style="color:var(--accent-warm);font-weight:600;">📝 Submit</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>CISO disclosure: AI usage</strong><br><span class="muted" style="font-size:11px;">Proactive notification to Johan</span></td>
+        <td>Direct message to Johan</td>
+        <td style="color:var(--accent-warm);font-weight:600;">📝 Draft ready</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>System register entry</strong><br><span class="muted" style="font-size:11px;">Register in Notion catalog</span></td>
+        <td>Notion catalog</td>
+        <td style="color:var(--accent-warm);font-weight:600;">📝 Doc ready</td>
+      </tr>
+    </table>
+    <div style="margin-top:16px;background:rgba(90,171,110,0.06);border:1px solid rgba(90,171,110,0.2);border-radius:8px;padding:12px 16px;max-width:960px;">
+      <p style="font-size:12px;color:var(--green);font-weight:500;">Clay, Salesloft, Nooks, and Google Workspace (Antigravity) are already approved or covered by existing Teamtailor vendor agreements.</p>
+    </div>
+  </div>
+
+
+
+</div>
+
+<!-- Navigation -->
+<div class="nav-progress" id="progress"></div>
+<div class="nav-bar">
+  <span class="nav-counter" id="counter">1 / 34</span>
+  <span class="nav-title" id="navTitle">Title</span>
+  <span class="nav-hint">← → Arrow Keys</span>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  const titles = {
+    0: 'Title',
+    1: 'Agenda',
+    2: 'Why This Exists',
+    3: 'The Signal Board',
+    4: 'What Reps See & Do',
+    5: 'Signal Board — Live',
+    6: 'Signal Taxonomy',
+    7: 'ISP Enrichment',
+    8: 'Account Drawer — Live',
+    9: 'Built-In Intelligence',
+    10: 'The Audience Flywheel',
+    11: 'How the Flywheel Works',
+    12: 'Rippling Displacement Audience',
+    13: 'K-12 District Power Table',
+    14: 'The Full Pipeline',
+    15: 'Technical Architecture',
+    16: 'How Signals Flow In',
+    17: 'Signal Board → Salesloft → Nooks',
+    18: 'Push to Cadence — Live',
+    19: 'Salesloft API Access',
+    20: 'How Reps Work',
+    21: 'Signal → Research → Enroll → Dial',
+    22: 'AI LinkedIn Draft — Live',
+    23: 'Configuration & Oversight',
+    24: 'Settings Dashboard',
+    25: 'Team & Access',
+    26: 'Data Isolation & Admin Controls',
+    27: 'Security & Compliance',
+    28: 'Security Architecture',
+    29: 'Policy Alignment',
+    30: 'Data & Account Ownership',
+    31: 'Deployment & Next Steps',
+    32: 'Tech Stack',
+    33: 'Brian\u2019s Approval Checklist'
+  };
+
+  function goTo(n) {
+    if (n < 0 || n >= total) return;
+    slides[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    document.getElementById('counter').textContent = `${current + 1} / ${total}`;
+    document.getElementById('progress').style.width = `${((current + 1) / total) * 100}%`;
+    document.getElementById('navTitle').textContent = titles[current] || '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    if (e.key === 'End') { e.preventDefault(); goTo(total - 1); }
+  });
+
+  document.addEventListener('click', e => {
+    if (e.clientX > window.innerWidth / 2) goTo(current + 1);
+    else goTo(current - 1);
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { diff > 0 ? goTo(current + 1) : goTo(current - 1); }
+  });
+
+  goTo(0);
+</script>
+
+</body>
+</html>

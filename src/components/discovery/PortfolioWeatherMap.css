@@ -1,0 +1,19 @@
+/* PortfolioWeatherMap.css */
+
+/* Apply border radius directly to the internal Maplibre canvas to avoid overflow: hidden clipping popups */
+.premium-map-container .maplibregl-map {
+  border-radius: 16px;
+}
+.premium-map-container .maplibregl-canvas {
+  border-radius: 16px;
+}
+.premium-map-container .maplibregl-canvas-container {
+  border-radius: 16px;
+}
+
+/* Ensure the popup itself isn't forced to crop if it hits an edge */
+.premium-map-popup .maplibregl-popup-content {
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+}

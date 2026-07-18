@@ -1,0 +1,31 @@
+# Logs
+logs
+*.log
+
+# Don't ignore dist - we include pre-built output
+# dist
+
+node_modules
+dist-ssr
+*.local
+
+.env
+.env.local
+.env.*.local
+
+.vscode/*
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+src/data/customerUniverse.ts
+linkedin_auth/
+test_*.js
+test_*.mjs
+*.py
+linkedin_login.mjs
+.cursor/

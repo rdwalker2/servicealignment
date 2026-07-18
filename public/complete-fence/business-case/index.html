@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete Fence × Teamtailor | Business Case</title>
+  <meta name="description" content="A dedicated ATS business case for Complete Fence. Addressing Lumber ATS gaps, integration requirements, and implementation planning.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── Color Override: Amber accent for Complete Fence ── */
+    :root {
+      --color-primary: #f59e0b;
+      --color-primary-light: #fbbf24;
+      --color-primary-dark: #d97706;
+      --color-primary-bg: #fffbeb;
+      --color-primary-bg-subtle: #fffef5;
+      --color-accent: #f59e0b;
+    }
+
+    /* Override cover page gradient to dark charcoal / warm navy */
+    .cover-page {
+      background: linear-gradient(160deg, #1a1a2e 0%, #16213e 35%, #0f3460 100%);
+    }
+    .cover-page::before {
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, transparent 70%);
+    }
+    .cover-page::after {
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, transparent 70%);
+    }
+    .cover-divider {
+      background: var(--color-primary-light);
+    }
+
+    /* Nav icon override */
+    .nav-tt-icon {
+      background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+    }
+    .nav-links a:hover {
+      background: rgba(245, 158, 11, 0.12);
+      color: #fbbf24;
+    }
+
+    /* Featured card gradient override */
+    .capability-card.featured {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+    }
+
+    /* Final note override */
+    .final-note {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+    }
+
+    /* Feature card left accent */
+    .feature-card::before {
+      background: var(--color-primary);
+    }
+
+    /* Feature card icon gradient */
+    .feature-card-icon {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    /* Feature step number */
+    .feature-step-num {
+      background: var(--color-primary);
+    }
+
+    /* Step number gradient override */
+    .step-num {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    /* Contact avatar gradient */
+    .contact-avatar {
+      background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    }
+
+    /* Timeline dot colors */
+    .deal-dot.active {
+      background: var(--color-primary);
+      box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
+    }
+    .status-current {
+      background: #fffbeb;
+      color: #d97706;
+    }
+
+    /* Quote callout info variant */
+    .quote-callout.info {
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      border-left-color: #f59e0b;
+    }
+
+    /* Summary box override */
+    .summary-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 1px solid rgba(245, 158, 11, 0.15);
+    }
+    .summary-box h3 {
+      color: #92400e;
+    }
+
+    /* Highlight icon override */
+    .highlight-icon {
+      background: #fffbeb;
+      color: #f59e0b;
+    }
+
+    /* Proof stats gradient */
+    .proof-stat-number {
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Timeline line gradient */
+    .timeline::before {
+      background: linear-gradient(180deg, #f59e0b, #d97706);
+    }
+    .timeline-item::before {
+      background: #f59e0b;
+      box-shadow: 0 0 0 2px #f59e0b;
+    }
+
+    /* Section number and TOC */
+    .section-number { color: #f59e0b; }
+    .toc-num { color: #f59e0b; }
+    .toc-item:hover { color: #f59e0b; }
+
+    /* Capability tag */
+    .capability-tag {
+      color: #fbbf24;
+      background: rgba(245, 158, 11, 0.2);
+    }
+
+    /* Capability list arrows */
+    .capability-list li::before { color: #fbbf24; }
+
+    /* Stat inline */
+    .capability-card:not(.featured) .stat-inline {
+      background: #fffbeb;
+      color: #92400e;
+    }
+
+    /* Req icon override */
+    .req-icon.yes {
+      background: #ecfdf5;
+      color: #10b981;
+    }
+
+    /* ROI pillar num */
+    .roi-pillar-num { background: #f59e0b; }
+
+    /* Pricing badge */
+    .pricing-badge { background: #f59e0b; }
+
+    /* Contact detail */
+    .contact-detail { color: #f59e0b !important; }
+
+    /* Feature subtitle */
+    .feature-card-subtitle { color: #d97706; }
+
+    /* Social proof section override */
+    .social-proof {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+    }
+
+    /* SVG gradient override for cover */
+    .cover-icon-gradient stop:first-child { stop-color: #f59e0b; }
+    .cover-icon-gradient stop:last-child { stop-color: #d97706; }
+
+    /* ── Integration section custom styles ── */
+    .integration-flow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 28px 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .integration-flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 20px;
+      background: var(--color-bg-subtle);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border-light);
+      min-width: 130px;
+      text-align: center;
+    }
+    .integration-flow-step .flow-icon {
+      font-size: 1.5rem;
+    }
+    .integration-flow-step .flow-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .integration-flow-step .flow-sub {
+      font-size: 0.68rem;
+      color: var(--color-text-muted);
+    }
+    .integration-flow-arrow {
+      font-size: 1.3rem;
+      color: var(--color-primary);
+      padding: 0 8px;
+      font-weight: 700;
+    }
+    .integration-flow-step.highlight-flow {
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    /* ── Deal-breaker Q&A styles ── */
+    .dealbreaker-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .dealbreaker-item {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1px;
+      background: var(--color-border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .dealbreaker-q, .dealbreaker-a {
+      padding: 18px 22px;
+      background: var(--color-bg);
+    }
+    .dealbreaker-q {
+      background: var(--color-bg-subtle);
+    }
+    .dealbreaker-q-label {
+      display: block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 6px;
+    }
+    .dealbreaker-q p {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+    .dealbreaker-a p {
+      font-size: 0.84rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+    .dealbreaker-status {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-top: 8px;
+    }
+    .dealbreaker-status.confirmed {
+      background: #ecfdf5;
+      color: #065f46;
+    }
+    .dealbreaker-status.investigating {
+      background: #fffbeb;
+      color: #92400e;
+    }
+
+    /* ── Implementation timeline custom ── */
+    .impl-timeline {
+      position: relative;
+      padding-left: 36px;
+      margin: 32px 0;
+    }
+    .impl-timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(180deg, #f59e0b, #d97706);
+      border-radius: 2px;
+    }
+    .impl-phase {
+      position: relative;
+      padding-bottom: 28px;
+    }
+    .impl-phase:last-child {
+      padding-bottom: 0;
+    }
+    .impl-phase::before {
+      content: '';
+      position: absolute;
+      left: -36px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #f59e0b;
+      border: 3px solid var(--color-bg);
+      box-shadow: 0 0 0 2px #f59e0b;
+      z-index: 1;
+    }
+    .impl-phase-week {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #d97706;
+      margin-bottom: 4px;
+    }
+    .impl-phase h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .impl-phase ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .impl-phase li {
+      font-size: 0.82rem;
+      color: var(--color-text-secondary);
+      padding: 3px 0 3px 18px;
+      position: relative;
+      line-height: 1.55;
+    }
+    .impl-phase li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--color-text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .dealbreaker-item {
+        grid-template-columns: 1fr;
+      }
+      .integration-flow {
+        flex-direction: column;
+      }
+      .integration-flow-arrow {
+        transform: rotate(90deg);
+      }
+    }
+
+    @media print {
+      .dealbreaker-item,
+      .integration-flow-step,
+      .impl-phase {
+        break-inside: avoid;
+      }
+      #integration { break-before: page; }
+      #implementation { break-before: page; }
+      #lumber-gaps { break-before: page; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY NAVIGATION -->
+  <nav class="sticky-nav" id="sticky-nav">
+    <div class="sticky-nav-inner">
+      <a href="#cover" class="nav-brand">
+        <div class="nav-tt-icon">TT</div>
+        <span>Teamtailor × Complete Fence</span>
+      </a>
+      <div class="nav-links">
+        <a href="#executive-summary">Summary</a>
+        <a href="#the-challenge">Challenges</a>
+        <a href="#lumber-gaps">Lumber Gaps</a>
+        <a href="#the-solution">Features</a>
+        <a href="#integration">Integration</a>
+        <a href="#implementation">Implementation</a>
+        <a href="#investment">Investment</a>
+        <a href="#next-steps">Next Steps</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- COVER PAGE -->
+  <section class="cover-page" id="cover">
+    <div class="cover-badge">CONFIDENTIAL</div>
+    <div class="cover-content">
+      <div class="cover-logo-area">
+        <div class="cover-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <rect width="48" height="48" rx="12" fill="url(#cfGrad)"/>
+            <path d="M14 24L22 32L34 16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><linearGradient id="cfGrad" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#f59e0b"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs>
+          </svg>
+        </div>
+        <span class="cover-from">Prepared by Teamtailor</span>
+      </div>
+      <h1 class="cover-title">Business Case</h1>
+      <p class="cover-subtitle">Why a Dedicated ATS Outperforms a Bundled Payroll Add-On</p>
+      <div class="cover-divider"></div>
+      <div class="cover-for">
+        <span class="cover-label">Prepared for</span>
+        <span class="cover-company">Complete Fence & Northern Illinois</span>
+      </div>
+      <div class="cover-meta">
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Date</span>
+          <span class="cover-meta-value">June 2026</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Contact</span>
+          <span class="cover-meta-value">Tyler Hanson</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Prepared for</span>
+          <span class="cover-meta-value">Complete Fence Leadership & HR Team</span>
+        </div>
+      </div>
+    </div>
+    <div class="cover-footer">
+      <span>© 2026 Teamtailor. This document is confidential and intended solely for Complete Fence.</span>
+    </div>
+  </section>
+
+  <!-- TABLE OF CONTENTS -->
+  <section class="page toc-page" id="toc">
+    <div class="section-number">00</div>
+    <h2 class="toc-heading">Contents</h2>
+    <nav class="toc-list">
+      <a href="#executive-summary" class="toc-item">
+        <span class="toc-num">01</span>
+        <span class="toc-text">Executive Summary</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#the-challenge" class="toc-item">
+        <span class="toc-num">02</span>
+        <span class="toc-text">What Your Current Process Is Missing</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#lumber-gaps" class="toc-item">
+        <span class="toc-num">03</span>
+        <span class="toc-text">Lumber ATS: Gap Analysis</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#the-solution" class="toc-item">
+        <span class="toc-num">04</span>
+        <span class="toc-text">How Teamtailor Works: Feature Deep-Dive</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#integration" class="toc-item">
+        <span class="toc-num">05</span>
+        <span class="toc-text">Integration & Onboarding Workflow</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#playbooks" class="toc-item">
+        <span class="toc-num">05b</span>
+        <span class="toc-text">How It Actually Works: Step-by-Step Playbooks</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#implementation" class="toc-item">
+        <span class="toc-num">06</span>
+        <span class="toc-text">Implementation Plan</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#why-dedicated" class="toc-item">
+        <span class="toc-num">07</span>
+        <span class="toc-text">Why a Dedicated ATS Wins</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#investment" class="toc-item">
+        <span class="toc-num">08</span>
+        <span class="toc-text">Investment & ROI</span>
+        <span class="toc-dots"></span>
+      </a>
+      <a href="#next-steps" class="toc-item">
+        <span class="toc-num">09</span>
+        <span class="toc-text">Recommended Next Steps</span>
+        <span class="toc-dots"></span>
+      </a>
+    </nav>
+  </section>
+
+  <!-- SECTION 01: EXECUTIVE SUMMARY -->
+  <section class="page" id="executive-summary">
+    <div class="section-number">01</div>
+    <h2 class="section-title">Executive Summary</h2>
+    <div class="section-intro">
+      <p>Complete Fence is a <strong>family-owned, veteran-owned</strong> fencing contractor founded in 1976 and now ranked <strong>#51 on Inc. Regionals 2026 Midwest</strong>. With 150+ employees across residential, commercial, and industrial operations and <strong>two business entities</strong> (Complete Fence and Northern Illinois), you're growing fast and need your hiring infrastructure to keep up.</p>
+      <p>Here's what we learned over our two discovery calls: the move from Paycom to <strong>Lumber for payroll</strong> is locked in. That ship has sailed and implementation is underway. But the ATS and onboarding side? <strong>It's not configured yet</strong>, and Complete Fence confirmed you're <strong>not contractually locked into Lumber for recruiting or onboarding</strong>. That matters. It means the real question is <strong>"is Lumber actually the right recruiting tool, or should we pair a dedicated ATS with Lumber's payroll?"</strong></p>
+      <p>It also helps that Complete Fence has <strong>used Teamtailor before</strong> and is already familiar with how the platform works. The one concern from back then was that TT didn't have onboarding. It does now.</p>
+    </div>
+
+    <div class="highlight-grid">
+      <div class="highlight-card">
+        <div class="highlight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+        </div>
+        <h3>Not Locked Into Lumber ATS</h3>
+        <p>Complete Fence confirmed this clearly: payroll is committed to Lumber, but ATS and onboarding are still open decisions. You have a choice here.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Go-Live Timeline</h3>
+        <p>Lumber's ATS target was end of July, but given the payroll delays and implementation experience so far, confidence isn't high. Teamtailor can realistically get you live in 3–4 weeks from kickoff.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+        </div>
+        <h3>Lumber Implementation Concerns</h3>
+        <p>No structured discovery, no project plan, no clear methodology. Complete Fence described weekly calls with little progress, and feeling like you're having to "drag" information out of Lumber just to keep things moving.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Candidate Experience Is #1</h3>
+        <p>Complete Fence was clear about this: candidate experience is the top priority. A smooth, professional application process with thoughtful communication. Not abrupt auto-rejections or silence.</p>
+      </div>
+    </div>
+
+    <div class="quote-callout info">
+      <blockquote>"If this is the customer experience during implementation, it raises questions about what the candidate experience will look like."</blockquote>
+      <cite>— On Lumber's implementation process</cite>
+    </div>
+
+    <div class="summary-box">
+      <h3>What This Document Covers</h3>
+      <p>This started as a benchmark, but after our second call it became clear: this is an <strong>active decision</strong>. So we built this as a real business case. It covers where Lumber's ATS falls short, how Teamtailor fills those gaps, answers to the deal-breaker integration questions Complete Fence raised, a concrete implementation plan, and the ROI framing leadership will need to approve this. The goal is simple: give you everything you need to make a confident call before going too far down the Lumber path.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 02: THE CHALLENGE -->
+  <section class="page" id="the-challenge">
+    <div class="section-number">02</div>
+    <h2 class="section-title">What Your Current Process Is Missing</h2>
+    <p class="section-subtitle">What we heard from Complete Fence about the current recruiting workflow</p>
+
+    <div class="challenge-list">
+      <div class="challenge-item">
+        <div class="challenge-num">01</div>
+        <div class="challenge-content">
+          <h3>Paycom's ATS Is Unusable</h3>
+          <p>This isn't just "we wish it were better." Paycom is actively getting in the way. Hiring managers can't navigate it. Candidate views are buried under layers of clicks. If a manager wasn't trained on day one, they're lost. Even finding applicants on an open req is harder than it should be. Every step creates friction, and that friction is costing the team time and candidates.</p>
+        </div>
+      </div>
+
+      <div class="challenge-item">
+        <div class="challenge-num">02</div>
+        <div class="challenge-content">
+          <h3>Candidate Experience Is Uncontrolled</h3>
+          <p>Complete Fence has been clear that this is the biggest frustration. Right now there's no clean application flow, no automated acknowledgements, and no control over communication. Candidates might get an abrupt auto-rejection with zero personalization, and the team can't even delay those emails, customize them, or see what's being sent. For a company that cares about its reputation, that matters. It directly affects who applies and whether good candidates stick around.</p>
+        </div>
+      </div>
+
+      <div class="challenge-item">
+        <div class="challenge-num">03</div>
+        <div class="challenge-content">
+          <h3>No Employer Brand / Career Site</h3>
+          <p>Complete Fence has a great story: family-owned since '76, veteran-owned, #51 on Inc. Regionals, but candidates never see any of that. There's no career site, no place to showcase culture, and no way for TA to own the employer brand without waiting on marketing (which doesn't have a big team right now anyway). Candidates find you on job boards and have zero reason to pick Complete Fence over the next posting.</p>
+        </div>
+      </div>
+
+      <div class="challenge-item">
+        <div class="challenge-num">04</div>
+        <div class="challenge-content">
+          <h3>Zero Reporting or Executive Visibility</h3>
+          <p>Complete Fence leadership is analytical. They want to see data, not just hear that "hiring is going fine." Time to hire, source tracking, pipeline conversion, ad spend ROI. None of that exists today. Everything is gut feel and manual Excel tracking. If leadership asks "where are our best candidates coming from?" or "what's our cost per hire?" right now, there's no good answer.</p>
+          <div class="quote-callout info">
+            <blockquote>"Leadership is analytical and will care strongly about both cost and visibility."</blockquote>
+            <cite>— On what matters for executive approval</cite>
+          </div>
+        </div>
+      </div>
+
+      <div class="challenge-item">
+        <div class="challenge-num">05</div>
+        <div class="challenge-content">
+          <h3>Hiring Managers Don't Want to Be in the System</h3>
+          <p>Complete Fence's hiring managers are out running crews and projects. They don't want to learn another platform, and they shouldn't have to. They need to see their roles, review candidates, and give feedback — and that's it. If the system is too clicky or confusing, they'll just stop using it. That's exactly what happened with Paycom, and it means HR ends up doing everyone's job on top of their own.</p>
+        </div>
+      </div>
+
+      <div class="challenge-item">
+        <div class="challenge-num">06</div>
+        <div class="challenge-content">
+          <h3>No Tracked Referral Process</h3>
+          <p>In the trades, referrals are gold, but right now yours come in through email or word of mouth with no tracking, no attribution, and no way to know who referred whom or what happened with the candidate. You can't build a referral culture if nobody can see whether their referrals actually got hired.</p>
+        </div>
+      </div>
+
+      <div class="challenge-item">
+        <div class="challenge-num">07</div>
+        <div class="challenge-content">
+          <h3>High-Volume Unqualified Applicants</h3>
+          <p>Complete Fence flagged this specifically: when office or remote roles go up, the team gets flooded with unqualified applicants. There's no AI screening, no smart filtering, and no way to separate signal from noise at scale. Every single application has to be reviewed by hand, and for a one-person TA function, that's hours lost on people who were never going to be a fit.</p>
+        </div>
+      </div>
+
+      <div class="challenge-item">
+        <div class="challenge-num">08</div>
+        <div class="challenge-content">
+          <h3>Two Business Entities, One Recruiting Need</h3>
+          <p>Complete Fence and Northern Illinois are different worlds when it comes to hiring. Complete Fence is more office-oriented. Northern Illinois is field-based and unionized. People come and go more frequently, and some installers bypass the normal recruiting process entirely (they just show up and get onboarded). Whatever ATS you choose has to handle <strong>both</strong> realities, or it's only solving half the problem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03: LUMBER ATS GAP ANALYSIS -->
+  <section class="page" id="lumber-gaps">
+    <div class="section-number">03</div>
+    <h2 class="section-title">Lumber ATS: Gap Analysis</h2>
+    <p class="section-subtitle">What we're seeing based on Complete Fence's experience so far</p>
+
+    <div class="section-intro">
+      <p>The concern with Lumber goes deeper than missing features. It comes down to what kind of product Lumber actually is. Lumber is <strong>primarily a payroll system with an ATS bolted on</strong>. In construction payroll, it's common for providers to specialize in payroll and compliance while partnering with or licensing ATS technology from a third party. Whether Lumber built their ATS in-house or not, what matters is <strong>the experience Complete Fence is having with it</strong>: the implementation quality, the product gaps, and the support pattern. Those are the signals worth weighing.</p>
+    </div>
+
+    <!-- Comparison Table: Lumber vs Teamtailor -->
+    <div class="comparison-table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th class="feature-col">Capability</th>
+            <th>Lumber ATS</th>
+            <th class="tt-col">Teamtailor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="feature-name">Candidate Experience</td>
+            <td><span class="check partial">Unknown</span></td>
+            <td class="tt-col"><span class="check full">✓ Slick, low-friction</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Career Site Customization</td>
+            <td><span class="check no">✗ Basic / Stock</span></td>
+            <td class="tt-col"><span class="check full">✓ Drag-and-drop builder</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Recruiter Dashboard</td>
+            <td><span class="check no">✗ No clear dashboard</span></td>
+            <td class="tt-col"><span class="check full">✓ Roles + candidates at a glance</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Hiring Manager Experience</td>
+            <td><span class="check partial">⚠ Click-heavy, unclear</span></td>
+            <td class="tt-col"><span class="check full">✓ Stage-level permissions</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Reporting & Analytics</td>
+            <td><span class="check partial">⚠ Limited / unclear</span></td>
+            <td class="tt-col"><span class="check full">✓ 15+ built-in reports</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Requisition Approval Flow</td>
+            <td><span class="check partial">⚠ Too direct to posting</span></td>
+            <td class="tt-col"><span class="check full">✓ Multi-step approval</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Automated Rejection Emails</td>
+            <td><span class="check partial">⚠ Manual / unclear</span></td>
+            <td class="tt-col"><span class="check full">✓ Delayed + customizable</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Calendar / Outlook Integration</td>
+            <td><span class="check partial">⚠ Unclear / missing</span></td>
+            <td class="tt-col"><span class="check full">✓ Google + Outlook sync</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Self-Scheduling</td>
+            <td><span class="check no">✗ Not available</span></td>
+            <td class="tt-col"><span class="check full">✓ Buffer times + auto-book</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">AI Screening</td>
+            <td><span class="check no">✗ Not available</span></td>
+            <td class="tt-col"><span class="check full">✓ Copilot screening criteria</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Talent Pool / AI Matching</td>
+            <td><span class="check partial">⚠ Manual / tag-based</span></td>
+            <td class="tt-col"><span class="check full">✓ AI-assisted resurfacing</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Interview Recording & Transcription</td>
+            <td><span class="check no">✗ Not available</span></td>
+            <td class="tt-col"><span class="check full">✓ Auto-transcribe + scorecard</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Referral Tracking</td>
+            <td><span class="check partial">⚠ Unknown</span></td>
+            <td class="tt-col"><span class="check full">✓ Tracked with leaderboards</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Open API / MCP</td>
+            <td><span class="check partial">⚠ Unknown</span></td>
+            <td class="tt-col"><span class="check full">✓ Full REST + MCP</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Implementation Methodology</td>
+            <td><span class="check no">✗ Unstructured</span></td>
+            <td class="tt-col"><span class="check full">✓ Defined sprints + PM</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-footnote">Lumber ratings based on team feedback during discovery calls. Teamtailor ratings based on current production capabilities.</p>
+
+    <!-- Implementation Concerns -->
+    <div style="margin-top: 40px;">
+      <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 20px;">Implementation Quality as a Selection Criterion</h3>
+      <p style="font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 20px;">Your biggest concern goes beyond the product. It's the <strong>implementation experience itself</strong>. You're not just buying software — you're buying execution confidence.</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="stack-card stack-before">
+          <div class="stack-badge">What You Expected</div>
+          <div class="stack-tool"><div class="stack-tool-icon">📋</div><div class="stack-tool-info"><span class="stack-tool-name">Project Kickoff</span><span class="stack-tool-desc">Clear methodology and ownership</span></div></div>
+          <div class="stack-tool"><div class="stack-tool-icon">🔍</div><div class="stack-tool-info"><span class="stack-tool-name">Discovery Sessions</span><span class="stack-tool-desc">Process mapping and requirements</span></div></div>
+          <div class="stack-tool"><div class="stack-tool-icon">📊</div><div class="stack-tool-info"><span class="stack-tool-name">Sprint Structure</span><span class="stack-tool-desc">Defined milestones and testing</span></div></div>
+          <div class="stack-tool"><div class="stack-tool-icon">✅</div><div class="stack-tool-info"><span class="stack-tool-name">Clear Outputs</span><span class="stack-tool-desc">Next steps after each meeting</span></div></div>
+        </div>
+        <div class="stack-card stack-before" style="background: #fef8f0; border-color: #fed7aa;">
+          <div class="stack-badge" style="background: #fed7aa; color: #9a3412;">What You're Getting</div>
+          <div class="stack-tool"><div class="stack-tool-icon">🔁</div><div class="stack-tool-info"><span class="stack-tool-name">Weekly Calls, No Progress</span><span class="stack-tool-desc">Repeated conversations, clicking through screens</span></div></div>
+          <div class="stack-tool"><div class="stack-tool-icon">❓</div><div class="stack-tool-info"><span class="stack-tool-name">No Discovery Process</span><span class="stack-tool-desc">ATS requirements not properly gathered</span></div></div>
+          <div class="stack-tool"><div class="stack-tool-icon">🤷</div><div class="stack-tool-info"><span class="stack-tool-name">No Clear Demo</span><span class="stack-tool-desc">No walkthrough of workflow requirements</span></div></div>
+          <div class="stack-tool"><div class="stack-tool-icon">📧</div><div class="stack-tool-info"><span class="stack-tool-name">Team Dragging Info Out</span><span class="stack-tool-desc">Templates, triggers, process details missing</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-box warning" style="margin-top: 24px;">
+      <span class="alert-icon">⚠️</span>
+      <p><strong>Key risk:</strong> The payroll cutover has taken longer than originally expected. Another messy rollout on the ATS side would compound organizational frustration and reduce confidence in the overall tech stack transition.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 04: HOW TEAMTAILOR WORKS -->
+  <section class="page" id="the-solution">
+    <div class="section-number">04</div>
+    <h2 class="section-title">How Teamtailor Works</h2>
+    <p class="section-subtitle">Capabilities that directly address Complete Fence's recruiting challenges</p>
+
+    <div class="feature-details">
+      <h3>Feature Deep-Dive</h3>
+      <p>Every capability below is <strong>live in production today</strong>, used by 12,000+ companies. Organized by the priorities Complete Fence identified.</p>
+
+      <!-- CANDIDATE EXPERIENCE BLOCK -->
+      <div style="margin: 32px 0 16px; padding: 6px 16px; background: rgba(245,158,11,0.08); border-radius: 8px; display: inline-block;">
+        <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #92400e;">Priority #1: Candidate Experience</span>
+      </div>
+
+      <!-- 1. Career Site Builder -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">🌐</div>
+          <div>
+            <div class="feature-card-title">Career Site Builder</div>
+            <div class="feature-card-subtitle">Drag-and-Drop · No Marketing Team Required</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          Build a fully branded career site with zero code and zero marketing team. Drag-and-drop sections: team pages, culture content, photo galleries, job listings. A career site can be built in under 30 minutes. Teamtailor includes <strong>built-in access to Unsplash's library of free stock photos</strong>, so you don't even need your own photography to get started. Custom domain, mobile-optimized, and designed to match the look and feel of your main company website. <strong>TA owns the brand directly, no dependency on marketing.</strong>
+        </div>
+      </div>
+
+      <!-- 2. AI Screening Criteria -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">🎯</div>
+          <div>
+            <div class="feature-card-title">AI Screening Criteria</div>
+            <div class="feature-card-subtitle">Copilot Candidate Screening</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          Define your requirements in plain English. "Must have CDL," "3+ years fencing experience," "Located within 50 miles of Batavia, IL." Copilot evaluates every applicant against those criteria automatically and shows a ✓ or ✗ per requirement with reasoning. For a one-person TA function running on part-time hours and getting flooded with remote applicants, this is the difference between drowning in unqualified resumes and focusing on the candidates who actually fit.
+        </div>
+      </div>
+
+      <!-- WORKFLOW & AUTOMATION BLOCK -->
+      <div style="margin: 32px 0 16px; padding: 6px 16px; background: rgba(245,158,11,0.08); border-radius: 8px; display: inline-block;">
+        <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #92400e;">Priority #2: Workflow & Automation</span>
+      </div>
+
+      <!-- 3. Smart Move -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">⚡</div>
+          <div>
+            <div class="feature-card-title">Smart Move: Automated Pipeline Actions</div>
+            <div class="feature-card-subtitle">Trigger-Based Automation</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          Set rules based on application answers: when a candidate answers your screening questions the right way, <strong>Smart Move auto-advances them to the next stage</strong>. For candidates who fail critical requirements, use <strong>Quick Reject with configurable delay so rejections don't feel abrupt</strong>. When a candidate reaches a specific stage, auto-trigger a background check, send a calendar link, or notify a hiring manager. Customizable communication at every stage, with full visibility into which emails are sent.
+        </div>
+        <div class="feature-steps">
+          <div class="feature-step">
+            <div class="feature-step-num">1</div>
+            <div class="feature-step-text"><strong>Define your rules:</strong> "If candidate answers 'Yes' to CDL question → move to Phone Screen"</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">2</div>
+            <div class="feature-step-text"><strong>Delayed rejection:</strong> "If candidate answers 'No' to required CDL → send professional rejection email after 48 hours"</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">3</div>
+            <div class="feature-step-text"><strong>Auto-notify:</strong> "If candidate reaches Interview → email hiring manager with candidate card"</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Requisition Approval Workflow -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">📝</div>
+          <div>
+            <div class="feature-card-title">Requisition Approval Workflow</div>
+            <div class="feature-card-subtitle">Manager → Approval → Recruiting → Posting</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          Managers submit a requisition. That requisition goes through a defined approval chain before recruiting picks it up. Only then does the job get posted. <strong>No roles jump directly from request to posting</strong>. The recruiting team maintains process control, and executives aren't burdened with unnecessary review at the wrong stage.
+        </div>
+      </div>
+
+      <!-- 5. Self-Scheduling -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">📅</div>
+          <div>
+            <div class="feature-card-title">Self-Scheduling + Calendar Integration</div>
+            <div class="feature-card-subtitle">Outlook · Google · Buffer Times</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          Connect hiring manager calendars (Google or Outlook). Candidates pick from available time slots, with configurable buffer times between meetings so managers aren't booked back-to-back. <strong>No more calendar ping-pong with field supervisors.</strong> See availability, book meetings, and manage the entire scheduling workflow from inside the ATS. The interview gets booked, everyone gets notified, and the admin burden drops.
+        </div>
+      </div>
+
+      <!-- REPORTING & VISIBILITY BLOCK -->
+      <div style="margin: 32px 0 16px; padding: 6px 16px; background: rgba(245,158,11,0.08); border-radius: 8px; display: inline-block;">
+        <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #92400e;">Priority #3: Reporting & Executive Visibility</span>
+      </div>
+
+      <!-- 6. Analytics & Reporting -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">📊</div>
+          <div>
+            <div class="feature-card-title">Built-In Analytics & Reporting</div>
+            <div class="feature-card-subtitle">No Manual Tracking · No Excel</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          Teamtailor provides a built-in analytics suite with reports across multiple dimensions. No custom builds, no manual tracking, no Excel. The reports Complete Fence leadership needs are already there.
+        </div>
+        <div class="feature-steps">
+          <div class="feature-step">
+            <div class="feature-step-num">📈</div>
+            <div class="feature-step-text"><strong>Time to hire</strong>: Track from application to offer acceptance by role, department, or entity</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">🎯</div>
+            <div class="feature-step-text"><strong>Source tracking</strong>: Which job boards, referrals, or career site pages drive the best candidates</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">📱</div>
+            <div class="feature-step-text"><strong>Device & channel</strong>: Mobile vs. web application rates, traffic sources, conversion funnels</div>
+          </div>
+        </div>
+        <div style="margin-top: 16px; padding: 14px 18px; background: var(--color-bg-subtle); border-radius: 8px; border: 1px solid var(--color-border-light);">
+          <p style="font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.6; margin: 0;"><strong>Why this matters:</strong> Data to justify ad spend, prove recruiting ROI, and give leadership visibility into pipeline health, without double-tracking in a spreadsheet.</p>
+        </div>
+      </div>
+
+      <!-- TALENT POOLING BLOCK -->
+      <div style="margin: 32px 0 16px; padding: 6px 16px; background: rgba(245,158,11,0.08); border-radius: 8px; display: inline-block;">
+        <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #92400e;">Priority #4: Talent Pooling & AI</span>
+      </div>
+
+      <!-- 7. Talent Pool + AI Matching -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">🧠</div>
+          <div>
+            <div class="feature-card-title">Talent Pools + AI-Assisted Matching</div>
+            <div class="feature-card-subtitle">Reduce Cold Sourcing · Reuse Existing Candidates</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          Don't start from zero every time a role opens. Teamtailor's talent pools are <strong>not entirely manual</strong>. When a new role opens, the platform can <strong>surface candidates who previously applied and may match</strong>, based on skills, experience, and role fit. Previous applicants, sourced candidates, and passive prospects all live in one searchable database. Bring sourced candidates from LinkedIn/headhunting workflows directly into the ATS, and reduce reliance on job boards and cold outbound sourcing.
+        </div>
+        <div class="feature-steps">
+          <div class="feature-step">
+            <div class="feature-step-num">1</div>
+            <div class="feature-step-text"><strong>Auto-suggest:</strong> When a new role opens, Copilot surfaces previously rejected or withdrawn candidates who may fit</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">2</div>
+            <div class="feature-step-text"><strong>Searchable database:</strong> Filter by skills, location, previous role, source, across all historical candidates</div>
+          </div>
+          <div class="feature-step">
+            <div class="feature-step-num">3</div>
+            <div class="feature-step-text"><strong>Connect widget:</strong> Passive candidates express interest on your career site and get notified when matching roles open</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HIRING MANAGER BLOCK -->
+      <div style="margin: 32px 0 16px; padding: 6px 16px; background: rgba(245,158,11,0.08); border-radius: 8px; display: inline-block;">
+        <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #92400e;">Priority #5: Hiring Manager Adoption</span>
+      </div>
+
+      <!-- Two cards side by side -->
+      <div class="feature-card-row">
+        <!-- 8. Hiring Manager Access Control -->
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-card-icon">🔒</div>
+            <div>
+              <div class="feature-card-title">Hiring Manager Access Control</div>
+              <div class="feature-card-subtitle">Stage-Level Permissions</div>
+            </div>
+          </div>
+          <div class="feature-card-body">
+            Give hiring managers access to <strong>only the pipeline stages that matter to them</strong>. A field supervisor doesn't need to see the sourcing funnel. They just need to review candidates who've reached the interview stage, leave feedback, and move on. Managers stay engaged without being overwhelmed. <strong>No extensive training required.</strong>
+          </div>
+        </div>
+
+        <!-- 9. Ask Copilot -->
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-card-icon">💬</div>
+            <div>
+              <div class="feature-card-title">Ask Copilot</div>
+              <div class="feature-card-subtitle">ChatGPT for Your Candidate Card</div>
+            </div>
+          </div>
+          <div class="feature-card-body">
+            Open any candidate's profile and ask questions in plain English: "What's this person's fencing experience?" or "Summarize their work history relevant to commercial construction." Copilot searches their resume, notes, transcripts, and messages to answer instantly. <strong>Interview prep goes from 30 minutes to 5 minutes.</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADDITIONAL CAPABILITIES -->
+      <div style="margin: 32px 0 16px; padding: 6px 16px; background: rgba(245,158,11,0.08); border-radius: 8px; display: inline-block;">
+        <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #92400e;">Additional Capabilities</span>
+      </div>
+
+      <div class="feature-card-row">
+        <!-- 10. Interview Recording -->
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-card-icon">🎙️</div>
+            <div>
+              <div class="feature-card-title">Interview Recording & Transcription</div>
+              <div class="feature-card-subtitle">Copilot Meeting Insights</div>
+            </div>
+          </div>
+          <div class="feature-card-body">
+            Record any interview, virtual or in-person via mobile app. Copilot auto-transcribes the entire conversation, identifies key topics, extracts Q&A pairs, auto-fills interview scorecards, and shows speaking percentages. No more scribbling notes during interviews.
+          </div>
+        </div>
+
+        <!-- 11. Internal Referrals -->
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-card-icon">👥</div>
+            <div>
+              <div class="feature-card-title">Internal Referrals</div>
+              <div class="feature-card-subtitle">Tracked · Tagged · Gamified</div>
+            </div>
+          </div>
+          <div class="feature-card-body">
+            Replace the untracked email referral process with a system that <strong>tracks every referral, tags the referring employee, and gamifies it with leaderboards</strong>. You see exactly who referred whom, how far they got, and who your top referral sources are.
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card-row">
+        <!-- 12. Video Questions -->
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-card-icon">🎥</div>
+            <div>
+              <div class="feature-card-title">Video Questions</div>
+              <div class="feature-card-subtitle">Asynchronous Screening</div>
+            </div>
+          </div>
+          <div class="feature-card-body">
+            Add video questions to the application process. Candidates record short responses on their own time. Screen for effort level, communication skills, and genuine interest before a single phone call.
+          </div>
+        </div>
+
+        <!-- 13. Connect Widget -->
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-card-icon">🔗</div>
+            <div>
+              <div class="feature-card-title">Connect (General Application)</div>
+              <div class="feature-card-subtitle">Passive Candidate Capture</div>
+            </div>
+          </div>
+          <div class="feature-card-body">
+            A widget on your career site that lets anyone express interest, even when no role is open. Candidates select departments and locations. When a matching role opens, they're auto-notified. Build a talent pool while you sleep.
+          </div>
+        </div>
+      </div>
+
+      <!-- 14. MCP / Open API -->
+      <div class="feature-card">
+        <div class="feature-card-header">
+          <div class="feature-card-icon">🧩</div>
+          <div>
+            <div class="feature-card-title">MCP / Open API</div>
+            <div class="feature-card-subtitle">Model Context Protocol · Open Standard</div>
+          </div>
+        </div>
+        <div class="feature-card-body">
+          MCP (Model Context Protocol) is an open standard that lets any AI tool (Claude, ChatGPT, custom models) talk directly to your ATS data. Teamtailor's fully open REST API already has community-built MCP integrations. The open API also opens the door for a <strong>Lumber payroll integration</strong>, a critical requirement for this evaluation.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 05: INTEGRATION & ONBOARDING -->
+  <section class="page" id="integration">
+    <div class="section-number">05</div>
+    <h2 class="section-title">Integration & Onboarding Workflow</h2>
+    <p class="section-subtitle">The questions that actually matter for this decision</p>
+
+    <div class="section-intro">
+      <p>None of the features above matter if Teamtailor breaks your payroll flow or creates an onboarding gap. Complete Fence raised the right questions: <strong>can this actually fit into the end-to-end process without creating problems?</strong> What about E-Verify? What about the Northern Illinois workers who skip recruiting entirely? We did the technical research and came back with <strong>one clean integration path</strong>. Here's how it works.</p>
+    </div>
+
+    <!-- RECOMMENDED INTEGRATION PATH -->
+    <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 16px;">The Integration Path</h3>
+    <p style="font-size: 0.88rem; color: var(--color-text-secondary); margin-bottom: 20px;">Teamtailor handles recruiting <em>and</em> onboarding. Lumber handles payroll. Clean separation, one branded experience from application to Day 1, and Lumber's contract restructures to payroll-only.</p>
+
+    <div style="max-width: 560px; margin: 0 auto 24px;">
+      <div style="background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 12px; padding: 28px;">
+        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #166534; margin-bottom: 16px;">Recommended: Teamtailor Handles Recruiting + Onboarding</div>
+        <div class="integration-flow" style="flex-direction: column; gap: 8px; align-items: stretch;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1rem;">🎯</span>
+            <div style="font-size: 0.82rem;"><strong>Teamtailor</strong> → ATS + Onboarding</div>
+          </div>
+          <div style="text-align: center; color: #86efac; font-size: 0.82rem;">↓ one seamless branded experience: apply → Day 1</div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1rem;">📋</span>
+            <div style="font-size: 0.82rem;"><strong>E-Verify</strong> → Tracked to-do task (~5 min per hire)</div>
+          </div>
+          <div style="text-align: center; color: #86efac; font-size: 0.82rem;">↓ webhook sends completed hire data</div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1rem;">💰</span>
+            <div style="font-size: 0.82rem;"><strong>Lumber</strong> → Payroll only</div>
+          </div>
+        </div>
+        <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid #bbf7d0;">
+          <div style="font-size: 0.78rem; color: #166534; margin-bottom: 4px;">✓ One seamless branded experience: apply → Day 1</div>
+          <div style="font-size: 0.78rem; color: #166534; margin-bottom: 4px;">✓ Candidate experience is fully controlled by Complete Fence</div>
+          <div style="font-size: 0.78rem; color: #166534; margin-bottom: 4px;">✓ Restructure Lumber contract to payroll-only pricing</div>
+          <div style="font-size: 0.78rem; color: #166534; margin-bottom: 4px;">✓ Northern Illinois walk-ons go through a simplified evergreen job → Hired → Onboarding (~2 min)</div>
+          <div style="font-size: 0.78rem; color: #92400e;">⚠ E-Verify stays in the government portal (~5 min per hire); TT tracks it with a reminder task and deadline</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Northern Illinois Note -->
+    <div class="alert-box info" style="margin: 0 0 24px 0;">
+      <span class="alert-icon">💡</span>
+      <p><strong>The Northern Illinois situation is covered.</strong> Those union workers and returning installers who just show up and need to get onboarded? You create a permanent "NI Walk-In Onboarding" job in Teamtailor with a simplified two-stage pipeline. HR adds the worker as a candidate, moves them straight to "Hired," and clicks "Start Onboarding" with the NI-specific template. The whole process takes about 2 minutes. Once onboarding is complete, their data flows to Lumber for payroll.</p>
+    </div>
+
+    <!-- Deal-Breaker Q&A -->
+    <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; margin-top: 32px;">Deal-Breaker Questions</h3>
+    <p style="font-size: 0.88rem; color: var(--color-text-secondary); margin-bottom: 20px;">After our last call, Teamtailor tested the live API and mapped out the integration path. These were the questions Complete Fence said would make or break the decision. Here's where we landed.</p>
+
+    <div class="dealbreaker-grid">
+      <div class="dealbreaker-item">
+        <div class="dealbreaker-q">
+          <span class="dealbreaker-q-label">Question</span>
+          <p>Can Teamtailor integrate seamlessly with Lumber payroll?</p>
+        </div>
+        <div class="dealbreaker-a">
+          <p><strong>Yes, and we've confirmed the core mechanics from both sides.</strong> Here's how it works: when a candidate is moved to the "Hired" stage in Teamtailor, a webhook fires automatically with the candidate's data: name, email, phone, resume, custom fields, start date, pay rate, and cost code. This is the same webhook + API pattern used to connect with payroll systems like ADP, Paylocity, and Gusto. On Lumber's side, their API supports inbound data from external systems — that's how they already connect with ERPs like Sage, Acumatica, and NetSuite. <strong>The one remaining step is confirming Lumber's API can accept new hire data from Teamtailor. We recommend validating this before making a final decision</strong> — not waiting until implementation. See the "What to Ask Lumber" checklist below for the exact questions to bring to your Lumber rep.</p>
+          <span class="dealbreaker-status" style="background: #fef3c7; color: #92400e;">⏳ Pending Lumber API Confirmation</span>
+        </div>
+      </div>
+
+      <div class="dealbreaker-item">
+        <div class="dealbreaker-q">
+          <span class="dealbreaker-q-label">Question</span>
+          <p>How would E-Verify and I-9 processes work?</p>
+        </div>
+        <div class="dealbreaker-a">
+          <p>I-9 and E-Verify are managed entirely in the E-Verify portal — that's where Complete Fence handles document verification and submission (~5 minutes per hire). Teamtailor doesn't replace that process. What it does is include a reminder task in the onboarding checklist — "Complete E-Verify for [Name]" — with a configurable deadline and reminders so nothing falls through the cracks. <em>See Playbook 2 below for the full step-by-step.</em></p>
+          <span class="dealbreaker-status confirmed">✓ Confirmed — Tracked Reminder</span>
+        </div>
+      </div>
+
+      <div class="dealbreaker-item">
+        <div class="dealbreaker-q">
+          <span class="dealbreaker-q-label">Question</span>
+          <p>Can Teamtailor support the Northern Illinois direct-to-onboarding use case?</p>
+        </div>
+        <div class="dealbreaker-a">
+          <p><strong>Yes.</strong> You set up a permanent "NI Walk-In Onboarding" evergreen job with a simplified two-stage pipeline (New → Hired). When a walk-on worker shows up, HR creates a candidate card, moves them straight to "Hired," and clicks "Start Onboarding" with the NI template. The worker gets a checklist on their phone, completes their docs, and once onboarding is done, data flows to Lumber for payroll. The whole process takes about 2 minutes. No full recruiting pipeline, no interviews, no screening steps. <em>See Playbook 3 below for the full step-by-step.</em></p>
+          <span class="dealbreaker-status confirmed">✓ Confirmed</span>
+        </div>
+      </div>
+
+      <div class="dealbreaker-item">
+        <div class="dealbreaker-q">
+          <span class="dealbreaker-q-label">Question</span>
+          <p>Can Teamtailor support both business entities?</p>
+        </div>
+        <div class="dealbreaker-a">
+          <p><strong>Yes.</strong> Teamtailor's <em>Departments</em> and custom <em>Pipeline Templates</em> handle this natively. Complete Fence and Northern Illinois would each be set up as a Department with their own pipeline stages, separate onboarding templates, and department-specific job postings — but they share one career site, one backend, one candidate database, and one set of integrations. Reporting can look at both departments together or filter by each one.</p>
+          <span class="dealbreaker-status confirmed">✓ Confirmed</span>
+        </div>
+      </div>
+
+
+      <div class="dealbreaker-item">
+        <div class="dealbreaker-q">
+          <span class="dealbreaker-q-label">Question</span>
+          <p>Can Teamtailor support a fast rollout?</p>
+        </div>
+        <div class="dealbreaker-a">
+          <p>Yes. For a company your size, Teamtailor typically goes live in 3–4 weeks with a structured sprint approach. A decision now means a late-July or early-August go-live is realistic — likely faster than where Lumber's ATS implementation is headed given the delays so far.</p>
+          <span class="dealbreaker-status confirmed">✓ Confirmed</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lumber Contract Simplification -->
+    <div style="margin-top: 40px;">
+      <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">What This Means for Your Lumber Contract</h3>
+      <p style="font-size: 0.88rem; color: var(--color-text-secondary); margin-bottom: 16px;">With Teamtailor handling both recruiting and onboarding, your Lumber relationship simplifies to what Lumber does best: payroll and compliance.</p>
+
+      <div style="background: linear-gradient(135deg, #fefce8, #fef9c3); border: 1.5px solid #fcd34d; border-radius: 12px; padding: 24px;">
+        <div style="font-size: 0.78rem; font-weight: 700; color: #92400e; margin-bottom: 8px;">The conversation with Lumber:</div>
+        <p style="font-size: 0.85rem; color: #78350f; line-height: 1.6; margin: 0;">"We're moving recruiting and onboarding to a dedicated platform. We'd like to restructure our Lumber contract to payroll-only pricing."</p>
+      </div>
+
+      <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-top: 16px;">
+        <div style="font-size: 0.78rem; font-weight: 700; color: #1e293b; margin-bottom: 12px;">📋 What to Ask Lumber About the API Integration</div>
+        <p style="font-size: 0.82rem; color: var(--color-text-secondary); margin-bottom: 14px;">When you're ready to validate the payroll data handoff, here are the exact questions to bring to your Lumber rep:</p>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; gap: 10px; align-items: flex-start; font-size: 0.82rem; color: #334155;">
+            <span style="color: #f59e0b; font-weight: 700; flex-shrink: 0;">1.</span>
+            <span><strong>"Does Lumber have an API endpoint that accepts new employee records from an external system?"</strong> — This confirms whether Lumber can receive hire data inbound (not just export it).</span>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: flex-start; font-size: 0.82rem; color: #334155;">
+            <span style="color: #f59e0b; font-weight: 700; flex-shrink: 0;">2.</span>
+            <span><strong>"What authentication method does the API use?"</strong> — Typically API key, OAuth, or token-based. We need this to configure the webhook on Teamtailor's side.</span>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: flex-start; font-size: 0.82rem; color: #334155;">
+            <span style="color: #f59e0b; font-weight: 700; flex-shrink: 0;">3.</span>
+            <span><strong>"What fields are required to create a new employee record?"</strong> — e.g., first name, last name, email, SSN, start date, pay rate, cost code, department. We need the field names and formats.</span>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: flex-start; font-size: 0.82rem; color: #334155;">
+            <span style="color: #f59e0b; font-weight: 700; flex-shrink: 0;">4.</span>
+            <span><strong>"Can we see the API documentation?"</strong> — If they have developer docs, Teamtailor can map the fields ahead of the implementation call.</span>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: flex-start; font-size: 0.82rem; color: #334155;">
+            <span style="color: #f59e0b; font-weight: 700; flex-shrink: 0;">5.</span>
+            <span><strong>"Is there a sandbox or test environment we can validate against?"</strong> — So we can test the data flow before go-live without affecting production payroll.</span>
+          </div>
+        </div>
+        <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid #e2e8f0; font-size: 0.78rem; color: var(--color-text-muted); line-height: 1.5;">
+          <strong>You don't need to solve any of this.</strong> Just get the answers and share them with Teamtailor. We handle the technical mapping and configuration during implementation.
+        </div>
+      </div>
+
+      <div class="alert-box" style="margin-top: 20px; background: #f0fdf4; border-color: #bbf7d0;">
+        <span class="alert-icon">💡</span>
+        <p><strong>Bottom line:</strong> Teamtailor handles recruiting and onboarding. Lumber handles payroll. Clean separation, one branded candidate experience, and a simpler Lumber contract. E-Verify stays in the government portal where it belongs (~5 minutes per hire) — Teamtailor tracks it with a reminder task and deadline so nothing gets missed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 05B: PLAYBOOKS -->
+  <section class="page" id="playbooks">
+    <div class="section-number">05b</div>
+    <h2 class="section-title">How It Actually Works</h2>
+    <p class="section-subtitle">Step-by-step playbooks for each non-negotiable</p>
+
+    <div class="section-intro">
+      <p>Saying "yes, it works" isn't enough. Here's exactly how each workflow runs, step by step, so there's no ambiguity about what happens, who does what, and where the data ends up.</p>
+    </div>
+
+    <!-- PLAYBOOK 1: LUMBER PAYROLL HANDOFF -->
+    <div style="background: var(--color-bg-card); border: 1px solid var(--color-border-light); border-radius: 14px; padding: 28px 32px; margin-bottom: 28px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+        <span style="background: #eff6ff; color: #1e40af; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 6px;">Playbook 1</span>
+        <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0;">Candidate Gets Hired: How Data Flows to Lumber Payroll</h3>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; background: #6366f1; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">1</div>
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 600; color: var(--color-text); margin-bottom: 3px;">The recruiter drags the candidate card to the "Hired" stage</div>
+            <div style="font-size: 0.8rem; color: var(--color-text-muted);">This is a single drag-and-drop action on the pipeline board. Same as moving any candidate between stages.</div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; background: #6366f1; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">2</div>
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 600; color: var(--color-text); margin-bottom: 3px;">Teamtailor automatically fires a webhook</div>
+            <div style="font-size: 0.8rem; color: var(--color-text-muted);">Behind the scenes, a pre-configured trigger sends all the candidate's data to an endpoint. Name, email, phone, resume, and any custom fields (start date, pay rate, cost code, etc.).</div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; background: #6366f1; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">3</div>
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 600; color: var(--color-text); margin-bottom: 3px;">A middleware layer (Zapier or custom) formats the data for Lumber</div>
+            <div style="font-size: 0.8rem; color: var(--color-text-muted);">This is a simple data mapping step. Teamtailor says "first_name," Lumber might say "employee_first_name." The middleware translates between the two. Takes about 30 minutes to configure, then it runs without intervention.</div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; background: #6366f1; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">4</div>
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 600; color: var(--color-text); margin-bottom: 3px;">Lumber receives the new hire and creates the employee record</div>
+            <div style="font-size: 0.8rem; color: var(--color-text-muted);">The person shows up in Lumber ready for payroll setup. No re-keying the data, no copy-pasting from one system to the other.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #f8fafc; border: 1px solid var(--color-border-light); border-radius: 10px; padding: 16px 20px; margin-top: 18px;">
+        <div style="font-size: 0.78rem; font-weight: 600; color: var(--color-text); margin-bottom: 6px;">What the recruiter sees:</div>
+        <div style="font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.6;">They drag a card. That's it. Everything after that happens automatically. No second system to log into, no data entry, no export/import.</div>
+      </div>
+
+      <div style="background: #fffbeb; border: 1px solid #fcd34d; border-radius: 10px; padding: 16px 20px; margin-top: 12px;">
+        <div style="font-size: 0.78rem; font-weight: 600; color: #92400e; margin-bottom: 6px;">What still needs to happen before go-live:</div>
+        <div style="font-size: 0.8rem; color: #78350f; line-height: 1.6;">One technical call with Lumber to confirm their API field names and authentication method for receiving new hire data from Teamtailor. We recommend doing this before making a final decision — see the "What to Ask Lumber" checklist below.</div>
+      </div>
+    </div>
+
+    <!-- PLAYBOOK 2: E-VERIFY / I-9 -->
+    <div style="background: var(--color-bg-card); border: 1px solid var(--color-border-light); border-radius: 14px; padding: 28px 32px; margin-bottom: 28px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+        <span style="background: #f0fdf4; color: #166534; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 6px;">Playbook 2</span>
+        <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0;">E-Verify and I-9: How It Works</h3>
+      </div>
+
+      <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 18px;">I-9 and E-Verify are managed in the E-Verify portal — that doesn't change. Teamtailor's role is to make sure the step doesn't get missed.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">1</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 600; color: var(--color-text);">Candidate is marked "Hired" in Teamtailor</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">2</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 600; color: var(--color-text);">TT Onboarding kicks in: new hire gets a welcome email with their task checklist</div>
+            <div style="font-size: 0.8rem; color: var(--color-text-muted);">Sign safety docs, watch orientation video, confirm emergency contacts, complete any company-specific paperwork.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">3</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 600; color: var(--color-text);">A reminder task is assigned to HR: "Complete E-Verify for [Name]"</div>
+            <div style="font-size: 0.8rem; color: var(--color-text-muted);">This is a tracked task in the onboarding checklist with a configurable deadline and reminders. It ensures the E-Verify step doesn't fall through the cracks.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">4</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 600; color: var(--color-text);">HR handles I-9 and E-Verify in the E-Verify portal (same as today)</div>
+            <div style="font-size: 0.8rem; color: var(--color-text-muted);">This is a manual step — ~5 minutes per hire. The I-9 document verification and E-Verify submission happen in the government portal, not in Teamtailor.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">5</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 600; color: var(--color-text);">HR marks the task complete in Teamtailor. Hire data flows to Lumber for payroll.</div>
+          </div>
+        </div>
+      </div>
+      <div style="background: #f0fdf4; border-radius: 8px; padding: 12px 16px; margin-top: 12px; font-size: 0.8rem; color: #14532d;">
+        <strong>Key point:</strong> Teamtailor doesn't replace your E-Verify process — it just makes sure it doesn't get missed. The I-9 and E-Verify workflow stays in the government portal where it belongs. TT provides the reminder, the deadline tracking, and the audit trail.
+      </div>
+    </div>
+
+    <!-- PLAYBOOK 3: NORTHERN ILLINOIS DIRECT-TO-ONBOARDING -->
+    <div style="background: var(--color-bg-card); border: 1px solid var(--color-border-light); border-radius: 14px; padding: 28px 32px; margin-bottom: 28px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+        <span style="background: #fef3c7; color: #92400e; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 6px;">Playbook 3</span>
+        <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0;">Northern Illinois: Someone Shows Up and Needs to Start Working</h3>
+      </div>
+
+      <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 18px;">A union installer or returning field worker shows up at Northern Illinois and needs to be onboarded and into payroll fast. They never applied for anything. They don't go through the normal recruiting process. Here's how it works using a permanent evergreen job with a simplified pipeline.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">1</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 600; color: var(--color-text);">Worker shows up. HR opens the "NI Walk-In Onboarding" evergreen job and clicks "Add Candidate"</div>
+            <div style="font-size: 0.8rem; color: var(--color-text-muted);">Enters name, email, and phone. This evergreen job is set up once during implementation with a simplified two-stage pipeline (New → Hired). It stays open permanently.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">2</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 600; color: var(--color-text);">HR moves the candidate straight to "Hired" and clicks "Start Onboarding"</div>
+            <div style="font-size: 0.8rem; color: var(--color-text-muted);">One drag on the pipeline board, then select the "NI Field Installer" onboarding template. No screening, no interviews — just straight to onboarding. The template is pre-built with all the NI-specific tasks.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">3</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 600; color: var(--color-text);">Worker gets an email with their onboarding checklist</div>
+            <div style="font-size: 0.8rem; color: var(--color-text-muted);">Upload ID, sign safety docs, confirm emergency contact. They can do this from their phone.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">4</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 600; color: var(--color-text);">HR submits E-Verify (manual step, tracked with deadline)</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="min-width: 28px; height: 28px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">5</div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 600; color: var(--color-text);">Hire data flows to Lumber for payroll via webhook</div>
+          </div>
+        </div>
+      </div>
+      <div style="background: #f0fdf4; border-radius: 8px; padding: 12px 16px; margin-top: 12px; font-size: 0.8rem; color: #14532d;">
+        <strong>Key point:</strong> The worker never sees a job posting or an "apply" button. From their perspective, they get an email with a checklist, they complete it on their phone, and they're set. From HR's perspective, it's about 2 minutes to add the candidate, move to Hired, and kick off onboarding.
+      </div>
+    </div>
+
+    <!-- PLAYBOOK 4: TWO ENTITIES -->
+    <div style="background: var(--color-bg-card); border: 1px solid var(--color-border-light); border-radius: 14px; padding: 28px 32px; margin-bottom: 28px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+        <span style="background: #fae8ff; color: #7e22ce; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 6px;">Playbook 4</span>
+        <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0;">Complete Fence + Northern Illinois: How Two Entities Work in One System</h3>
+      </div>
+
+      <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 18px;">These are two different worlds. Complete Fence is more office-oriented. Northern Illinois is field-based, unionized, and has a totally different hiring pattern. Here's how Teamtailor handles both without forcing them into the same box.</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+        <div style="background: #f8fafc; border-radius: 10px; padding: 18px 20px;">
+          <div style="font-size: 0.78rem; font-weight: 700; color: #6366f1; margin-bottom: 10px;">Complete Fence Department</div>
+          <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.8rem; color: var(--color-text-secondary);">
+            <div>✓ Its own pipeline stages (phone screen, in-person, background check)</div>
+            <div>✓ Its own approval chains for new job postings</div>
+            <div>✓ Office and project management roles</div>
+            <div>✓ Onboarding template for office employees</div>
+          </div>
+        </div>
+        <div style="background: #f8fafc; border-radius: 10px; padding: 18px 20px;">
+          <div style="font-size: 0.78rem; font-weight: 700; color: #16a34a; margin-bottom: 10px;">Northern Illinois Department</div>
+          <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.8rem; color: var(--color-text-secondary);">
+            <div>✓ Its own pipeline stages (simplified for field hires)</div>
+            <div>✓ Separate onboarding template with union-specific docs</div>
+            <div>✓ Field installer and seasonal roles</div>
+            <div>✓ Evergreen job for walk-on onboarding</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 18px;">
+        <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); margin-bottom: 4px;">What both entities share (one backend)</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+          <div style="background: #faf5ff; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #581c87; text-align: center;">One candidate database</div>
+          <div style="background: #faf5ff; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #581c87; text-align: center;">One set of integrations (Lumber, calendar)</div>
+          <div style="background: #faf5ff; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #581c87; text-align: center;">One reporting dashboard (filter by department)</div>
+        </div>
+      </div>
+
+      <div style="background: #f8fafc; border: 1px solid var(--color-border-light); border-radius: 10px; padding: 16px 20px;">
+        <div style="font-size: 0.78rem; font-weight: 600; color: var(--color-text); margin-bottom: 6px;">What this means for leadership:</div>
+        <div style="font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.6;">One dashboard, both departments. Source tracking, time-to-hire, pipeline conversion, cost per hire — broken out by department or viewed together.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECTION 06: IMPLEMENTATION PLAN -->
+  <section class="page" id="implementation">
+    <div class="section-number">06</div>
+    <h2 class="section-title">Implementation Plan</h2>
+    <p class="section-subtitle">Structured, collaborative, and designed to go live in 3–4 weeks</p>
+
+    <div class="section-intro">
+      <p>Here's the plan Teamtailor has built specifically for Complete Fence — addressing the two-department setup, Lumber payroll integration, NI walk-on onboarding, and E-Verify tracking. Every task has a time estimate, owner, and week assignment.</p>
+    </div>
+
+    <!-- COMPLETE FENCE-SPECIFIC IMPLEMENTATION PRIORITIES -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px;">
+      <div style="background: #fffbeb; border: 1.5px solid #fcd34d; border-radius: 12px; padding: 20px;">
+        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #92400e; margin-bottom: 12px;">Complete Fence–Specific Configuration</div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; gap: 8px; align-items: flex-start; font-size: 0.82rem; color: #78350f;">
+            <span style="color: #f59e0b; font-weight: 700; flex-shrink: 0;">→</span>
+            <span><strong>Two departments:</strong> Complete Fence + Northern Illinois with separate pipelines and onboarding templates</span>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: flex-start; font-size: 0.82rem; color: #78350f;">
+            <span style="color: #f59e0b; font-weight: 700; flex-shrink: 0;">→</span>
+            <span><strong>Lumber payroll webhook:</strong> API field mapping and authentication setup for new hire data transfer</span>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: flex-start; font-size: 0.82rem; color: #78350f;">
+            <span style="color: #f59e0b; font-weight: 700; flex-shrink: 0;">→</span>
+            <span><strong>NI walk-on onboarding template:</strong> Evergreen job with simplified pipeline (New → Hired → Start Onboarding)</span>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: flex-start; font-size: 0.82rem; color: #78350f;">
+            <span style="color: #f59e0b; font-weight: 700; flex-shrink: 0;">→</span>
+            <span><strong>E-Verify task workflow:</strong> Tracked to-do with 3-day deadline and reminders for every new hire</span>
+          </div>
+        </div>
+      </div>
+      <div style="background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 12px; padding: 20px;">
+        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #166534; margin-bottom: 12px;">Standard Configuration (Included)</div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; gap: 8px; align-items: flex-start; font-size: 0.82rem; color: #14532d;">
+            <span style="color: #16a34a; font-weight: 700; flex-shrink: 0;">✓</span>
+            <span>Career site with Complete Fence branding and Unsplash photo library</span>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: flex-start; font-size: 0.82rem; color: #14532d;">
+            <span style="color: #16a34a; font-weight: 700; flex-shrink: 0;">✓</span>
+            <span>AI screening criteria for CDL, experience, location radius</span>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: flex-start; font-size: 0.82rem; color: #14532d;">
+            <span style="color: #16a34a; font-weight: 700; flex-shrink: 0;">✓</span>
+            <span>Rejection email flows with configurable delays</span>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: flex-start; font-size: 0.82rem; color: #14532d;">
+            <span style="color: #16a34a; font-weight: 700; flex-shrink: 0;">✓</span>
+            <span>Hiring manager permissions, Outlook calendar sync, referral tracking</span>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: flex-start; font-size: 0.82rem; color: #14532d;">
+            <span style="color: #16a34a; font-weight: 700; flex-shrink: 0;">✓</span>
+            <span>Requisition approval workflow, reporting dashboards, GDPR/privacy setup</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impl-timeline">
+      <div class="impl-phase">
+        <div class="impl-phase-week">Week 1</div>
+        <h4>Kickoff & Discovery</h4>
+        <ul>
+          <li>Project kickoff: roles, responsibilities, and decision-makers defined</li>
+          <li>Discovery: map Complete Fence vs. Northern Illinois workflows and hiring differences</li>
+          <li>Content collection: logos, photos, brand colors for career site build</li>
+          <li>Document Lumber API requirements for payroll integration (field names, auth method)</li>
+          <li>Account setup: admin profiles, departments, locations, timezone, privacy/GDPR settings</li>
+        </ul>
+      </div>
+
+      <div class="impl-phase">
+        <div class="impl-phase-week">Week 2</div>
+        <h4>Build & Configure</h4>
+        <ul>
+          <li>Career site built with Complete Fence branding (drag-and-drop, separate pages per entity)</li>
+          <li>Pipeline stages configured for CF office roles and NI field installer roles</li>
+          <li>Onboarding templates created: standard hire template + NI walk-on template</li>
+          <li>E-Verify task workflow configured with 3-business-day deadline and reminders</li>
+          <li>Smart Move triggers, rejection email timing, message templates, requisition approvals</li>
+        </ul>
+      </div>
+
+      <div class="impl-phase">
+        <div class="impl-phase-week">Week 3</div>
+        <h4>Integration & Testing</h4>
+        <ul>
+          <li>Lumber payroll integration: technical call, API field mapping, webhook testing</li>
+          <li>End-to-end test: candidate apply → hired → onboarding → E-Verify task → Lumber payroll</li>
+          <li>NI walk-on test: direct-add → onboarding template → E-Verify → payroll</li>
+          <li>AI screening criteria configured and tested against active job descriptions</li>
+          <li>Hiring manager walkthrough and feedback session</li>
+        </ul>
+      </div>
+
+      <div class="impl-phase">
+        <div class="impl-phase-week">Week 4</div>
+        <h4>Go-Live & Hypercare</h4>
+        <ul>
+          <li>Go-live: active job postings migrated to Teamtailor</li>
+          <li>Job board distribution activated (Indeed + 15 boards)</li>
+          <li>Hypercare: dedicated point of contact for first 2 weeks post-launch</li>
+          <li>Reporting dashboards validated with leadership</li>
+          <li>Retrospective and optimization recommendations</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FULL IMPLEMENTATION TRACKER LINK -->
+    <div style="margin-top: 28px; background: linear-gradient(135deg, #1e1b4b, #312e81); border-radius: 12px; padding: 24px 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+      <div>
+        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); margin-bottom: 6px;">Full Implementation Tracker</div>
+        <div style="font-size: 0.92rem; font-weight: 600; color: white; line-height: 1.5;">Teamtailor has built a detailed project plan with 80+ tasks, time estimates, ownership assignments, and weekly milestones. This is the shared document Complete Fence will work from during implementation.</div>
+      </div>
+      <a href="https://docs.google.com/spreadsheets/d/1Y_HbpVIYqFIxN2pI9RRbwiPHpXicRxalu4PaF4U8yNU/edit?usp=sharing" target="_blank" rel="noopener" style="flex-shrink: 0; background: white; color: #312e81; font-size: 0.82rem; font-weight: 700; padding: 12px 24px; border-radius: 8px; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: opacity 0.2s;">View Full Tracker →</a>
+    </div>
+
+
+  </section>
+
+  <!-- SECTION 07: WHY A DEDICATED ATS WINS -->
+  <section class="page" id="why-dedicated">
+    <div class="section-number">07</div>
+    <h2 class="section-title">Why a Dedicated ATS Wins</h2>
+    <p class="section-subtitle">Why a purpose-built ATS outperforms a bundled HCM module</p>
+
+    <div class="section-intro">
+      <p>When an HCM system builds an ATS, it's never their core product. It's an add-on designed to check a box and keep you from buying elsewhere. The result: slower innovation, less flexibility, and features that are always 18 months behind dedicated platforms.</p>
+      <p>Teamtailor is <strong>purpose-built</strong> for recruiting, employer branding, and onboarding. It's the entire company's focus, and it shows.</p>
+    </div>
+
+    <div class="capability-grid">
+      <div class="capability-card">
+        <span class="capability-tag">Engineering</span>
+        <h3>50 Developers, 6-Week Cycles</h3>
+        <p>Teamtailor ships new features in 6–8 week cycles, with the roadmap heavily influenced by customer feedback. The platform evolves at startup speed with enterprise reliability.</p>
+      </div>
+
+      <div class="capability-card">
+        <span class="capability-tag">Heritage</span>
+        <h3>Founded 2013, Founder-Led</h3>
+        <p>The founders still run the company, and they never want to give it up. That means long-term product vision, not quarter-to-quarter feature pivots driven by PE investors.</p>
+      </div>
+
+      <div class="capability-card">
+        <span class="capability-tag">Platform</span>
+        <h3>Open API + MCP</h3>
+        <p>Fully open REST API and MCP support. Connect any tool, build any integration, while closed HCM ecosystems lock you in. Teamtailor lets you choose your own stack.</p>
+      </div>
+
+    </div>
+
+    <div class="quote-callout info" style="margin-top: 32px;">
+      <blockquote>"This seems super slick in terms of user experience and capability standpoint."</blockquote>
+      <cite>— On Teamtailor's platform after the initial walkthrough</cite>
+    </div>
+
+  </section>
+
+  <!-- SECTION 08: INVESTMENT -->
+  <section class="page" id="investment">
+      <div class="section-number">08</div>
+      <h2 class="section-title">Investment</h2>
+      <p class="section-subtitle">Simple, transparent pricing. Everything included.</p>
+
+      <!-- PRICING CARD -->
+      <div style="max-width: 640px; margin: 0 auto 40px; background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(99,102,241,0.03) 100%); border: 1.5px solid var(--color-border-light); border-radius: 20px; overflow: hidden;">
+
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #1e1b4b, #312e81); padding: 32px 36px; text-align: center;">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.6); margin-bottom: 8px;">101-200 Employees</div>
+          <div style="font-size: 2.8rem; font-weight: 900; color: white; letter-spacing: -1.5px; line-height: 1;">$8,000<span style="font-size: 1rem; font-weight: 500; color: rgba(255,255,255,0.5);">/yr</span></div>
+          <div style="font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 8px;">Billed annually</div>
+        </div>
+
+        <!-- Body -->
+        <div style="padding: 32px 36px;">
+          <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); margin-bottom: 16px;">Everything's Included</div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; margin-bottom: 24px;">
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 0.82rem; color: var(--color-text-secondary);"><span style="color: #10b981; font-weight: 700;">✓</span> Full ATS Platform</div>
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 0.82rem; color: var(--color-text-secondary);"><span style="color: #10b981; font-weight: 700;">✓</span> Career Site Builder</div>
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 0.82rem; color: var(--color-text-secondary);"><span style="color: #10b981; font-weight: 700;">✓</span> AI Copilot</div>
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 0.82rem; color: var(--color-text-secondary);"><span style="color: #10b981; font-weight: 700;">✓</span> Analytics Suite</div>
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 0.82rem; color: var(--color-text-secondary);"><span style="color: #10b981; font-weight: 700;">✓</span> Multi-Entity Support</div>
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 0.82rem; color: var(--color-text-secondary);"><span style="color: #10b981; font-weight: 700;">✓</span> Requisition Approvals</div>
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 0.82rem; color: var(--color-text-secondary);"><span style="color: #10b981; font-weight: 700;">✓</span> Smart Move Automation</div>
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 0.82rem; color: var(--color-text-secondary);"><span style="color: #10b981; font-weight: 700;">✓</span> 15+ Job Board Integrations</div>
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 0.82rem; color: var(--color-text-secondary);"><span style="color: #10b981; font-weight: 700;">✓</span> Unlimited Users</div>
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 0.82rem; color: var(--color-text-secondary);"><span style="color: #10b981; font-weight: 700;">✓</span> Calendar Sync (Outlook)</div>
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 0.82rem; color: var(--color-text-secondary);"><span style="color: #10b981; font-weight: 700;">✓</span> Open API + Webhooks</div>
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 0.82rem; color: var(--color-text-secondary);"><span style="color: #10b981; font-weight: 700;">✓</span> Implementation + Training</div>
+          </div>
+
+          <!-- Onboarding callout -->
+          <div style="background: linear-gradient(135deg, #f0fdf4, #ecfdf5); border: 1px solid #bbf7d0; border-radius: 12px; padding: 16px 20px; margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+              <span style="font-size: 0.82rem; font-weight: 700; color: #166534;">✓ Onboarding Module</span>
+              <span style="font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; background: #166534; color: white; padding: 2px 8px; border-radius: 4px;">Complimentary Year 1</span>
+            </div>
+            <div style="font-size: 0.78rem; color: #14532d; line-height: 1.5;">Task assignments, document collection, e-signatures, and welcome content. Included at no additional cost for your first year.</div>
+          </div>
+
+          <!-- No hidden fees -->
+          <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <span style="font-size: 0.72rem; font-weight: 600; color: var(--color-text-muted); background: var(--color-bg-subtle); padding: 4px 12px; border-radius: 20px;">✦ No per-seat charges</span>
+            <span style="font-size: 0.72rem; font-weight: 600; color: var(--color-text-muted); background: var(--color-bg-subtle); padding: 4px 12px; border-radius: 20px;">✦ No hidden fees</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPARISON -->
+      <div style="max-width: 640px; margin: 0 auto 32px; background: var(--color-bg-subtle); border: 1px solid var(--color-border-light); border-radius: 14px; padding: 24px 28px;">
+        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); margin-bottom: 14px;">How This Compares</div>
+        <div style="display: flex; align-items: center; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <div style="text-align: center;">
+            <div style="font-size: 0.72rem; font-weight: 600; color: #ef4444; margin-bottom: 4px;">Lumber ATS + Onboarding</div>
+            <div style="font-size: 1.3rem; font-weight: 800; color: var(--color-text);">~$7,000/yr</div>
+          </div>
+          <div style="font-size: 1.2rem; color: var(--color-text-muted);">→</div>
+          <div style="text-align: center;">
+            <div style="font-size: 0.72rem; font-weight: 600; color: #10b981; margin-bottom: 4px;">Teamtailor (everything above)</div>
+            <div style="font-size: 1.3rem; font-weight: 800; color: var(--color-text);">$8,000/yr</div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 14px; font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.6;">
+          $1,000 more per year for a purpose-built ATS with AI, career site, automation, calendar sync, analytics, and unlimited users. Lumber's ATS includes none of those.
+        </div>
+      </div>
+
+      <!-- ROI FRAMING -->
+      <div class="roi-summary-box" style="max-width: 640px; margin: 0 auto;">
+        <h3>What $8,000 Actually Gets You</h3>
+        <ul>
+          <li><strong>Recruiter efficiency:</strong> AI screening + automation = capacity multiplier for a one-person, part-time TA function</li>
+          <li><strong>Hiring manager adoption:</strong> Intuitive UI = less training, less friction, less recruiter admin</li>
+          <li><strong>Source tracking:</strong> Know which job boards and referrals actually produce quality hires, and stop overspending blind</li>
+          <li><strong>Employer brand:</strong> Career site that converts, reducing reliance on paid job boards over time</li>
+          <li><strong>Time savings:</strong> No manual Excel tracking, no double-entry, no workarounds for missing features</li>
+        </ul>
+      </div>
+
+    </section>
+
+  <!-- SECTION 09: RECOMMENDED NEXT STEPS -->
+  <section class="page" id="next-steps">
+    <div class="section-number">09</div>
+    <h2 class="section-title">Recommended Next Steps</h2>
+    <p class="section-subtitle">How we get from here to a confident decision</p>
+
+    <div class="next-steps-list">
+      <div class="next-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Step 1: Align on the Outstanding Questions</h3>
+          <p>Walk through the remaining deal-breaker: confirming Lumber's API can accept new hire data from Teamtailor for payroll. If that checks out — and we believe it will — the integration path is fully validated.</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Refine the Business Case Together</h3>
+          <p>Once the deal-breakers are settled, Teamtailor will collaborate with Complete Fence on any refinements — demo walkthrough, answering follow-up questions, adjusting any details — so this document is ready for leadership.</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Decision & Kickoff</h3>
+          <p>If it's the right fit, we kick off immediately. Structured 3–4 week implementation sprint, dedicated project manager, clear milestones every step of the way. No dragging information out of anyone.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEAL PROGRESS TIMELINE -->
+    <div class="deal-timeline" style="margin-top: 32px;">
+      <h3 style="margin-bottom: 20px;">Where We Are in the Process</h3>
+      <div class="deal-step">
+        <div class="deal-dot done">✓</div>
+        <div class="deal-step-content">
+          <h4>Initial Discovery Call</h4>
+          <p>Understood Complete Fence's needs, current pain points, and tech stack transition</p>
+          <span class="deal-status status-complete">✓ Complete</span>
+        </div>
+      </div>
+      <div class="deal-step">
+        <div class="deal-dot done">✓</div>
+        <div class="deal-step-content">
+          <h4>Business Case V1 Delivered</h4>
+          <p>Benchmark document comparing dedicated ATS capabilities to bundled modules</p>
+          <span class="deal-status status-complete">✓ Complete</span>
+        </div>
+      </div>
+      <div class="deal-step">
+        <div class="deal-dot done">✓</div>
+        <div class="deal-step-content">
+          <h4>Follow-Up Discovery Call</h4>
+          <p>Deep-dive into Lumber concerns, integration requirements, deal-breaker questions, and implementation expectations</p>
+          <span class="deal-status status-complete">✓ Complete</span>
+        </div>
+      </div>
+      <div class="deal-step">
+        <div class="deal-dot active">★</div>
+        <div class="deal-step-content">
+          <h4>Align on Deal-Breakers + Refine Together</h4>
+          <p>Confirm remaining integration questions, collaborate on any refinements, and finalize the business case for leadership</p>
+          <span class="deal-status status-current">★ You Are Here</span>
+        </div>
+      </div>
+      <div class="deal-step">
+        <div class="deal-dot future">5</div>
+        <div class="deal-step-content">
+          <h4>Decision & Kickoff</h4>
+          <p>Deploy Teamtailor as the dedicated ATS alongside Lumber payroll</p>
+          <span class="deal-status status-upcoming">Upcoming</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT BOX -->
+    <div class="contact-box">
+      <h3>Your Teamtailor Contacts</h3>
+      <div class="contact-grid">
+        <div class="contact-person">
+          <div class="contact-avatar">TH</div>
+          <div class="contact-info">
+            <strong>Tyler Hanson</strong>
+            <span>Account Executive</span>
+            <span class="contact-detail">tyler.hanson@teamtailor.com</span>
+          </div>
+        </div>
+        <div class="contact-person">
+          <div class="contact-avatar">RW</div>
+          <div class="contact-info">
+            <strong>Ryan Walker</strong>
+            <span>Sales Leader</span>
+            <span class="contact-detail">ryan.walker@teamtailor.com</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+<!-- JAVASCRIPT: Scroll animations, sticky nav -->
+<script>
+(function() {
+  'use strict';
+
+  // ── Intersection Observer: fade-in on scroll ──
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const fadeObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  fadeEls.forEach(el => fadeObs.observe(el));
+
+  // ── Sticky Nav: show on scroll past cover ──
+  const nav = document.getElementById('sticky-nav');
+  const cover = document.querySelector('.cover-page');
+  function handleScroll() {
+    if (!cover || !nav) return;
+    nav.classList.toggle('visible', window.scrollY > cover.offsetHeight * 0.7);
+  }
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+  // ── Smooth scroll for nav links ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      const t = document.querySelector(this.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // ── Count-up animation ──
+  const countEls = document.querySelectorAll('.count-up');
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+    function ease(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      el.textContent = Math.round(ease(p) * target) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  const countObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.3 });
+  countEls.forEach(el => countObs.observe(el));
+})();
+</script>
+
+</body>
+</html>

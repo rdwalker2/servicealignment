@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 320px;
+      min-height: 200px;
+      background: #111115;
+      color: #e8e8ea;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .header svg { color: #a78bfa; }
+
+    .header h1 {
+      font-size: 15px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a78bfa, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .status-text {
+      font-size: 12px;
+      color: #34d399;
+      font-weight: 500;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 12px;
+    }
+
+    .info-label { color: #6b7280; }
+    .info-value { color: #d1d5db; font-weight: 600; }
+
+    .help {
+      margin-top: 16px;
+      padding: 12px;
+      background: rgba(99, 102, 241, 0.06);
+      border-radius: 10px;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+    }
+
+    .help-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #a78bfa;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .help-item {
+      font-size: 11px;
+      color: #9ca3af;
+      padding: 3px 0;
+      display: flex;
+      gap: 6px;
+    }
+
+    .help-icon { font-size: 13px; }
+
+    a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .open-btn {
+      display: block;
+      text-align: center;
+      margin-top: 14px;
+      padding: 10px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .open-btn:hover {
+      opacity: 0.9;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+    </svg>
+    <h1>Signal Board</h1>
+  </div>
+
+  <div class="status">
+    <div class="status-dot"></div>
+    <div class="status-text">Connected & Active</div>
+  </div>
+
+  <div class="info-row">
+    <span class="info-label">Overlay</span>
+    <span class="info-value">LinkedIn</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Features</span>
+    <span class="info-value">Company Intel, Add Contacts</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Data Source</span>
+    <span class="info-value">Supabase + Salesloft</span>
+  </div>
+
+  <div class="help">
+    <div class="help-title">How it works</div>
+    <div class="help-item">
+      <span class="help-icon">🏢</span>
+      <span>Visit a <b>LinkedIn company page</b> to see Signal Board intel</span>
+    </div>
+    <div class="help-item">
+      <span class="help-icon">👤</span>
+      <span>Visit a <b>LinkedIn profile</b> to add them to a buying committee</span>
+    </div>
+    <div class="help-item">
+      <span class="help-icon">⭐</span>
+      <span>Red dots = <b>buying committee gaps</b> for that account</span>
+    </div>
+  </div>
+
+  <a href="https://teamtailor-gtm-workspace-production.up.railway.app" target="_blank" class="open-btn">
+    Open Signal Board →
+  </a>
+</body>
+</html>

@@ -1,0 +1,1122 @@
+[
+  {
+    "company_name": "Montu",
+    "company_domain": "montu.com.au",
+    "employee_count": 800,
+    "industry": "Healthcare / Cannabis",
+    "hq_location": "Melbourne, Australia",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Featured HiBob case study - scaled 1400% using Bob"
+  },
+  {
+    "company_name": "Fiverr",
+    "company_domain": "fiverr.com",
+    "employee_count": 900,
+    "industry": "Freelance Marketplace",
+    "hq_location": "Tel Aviv, Israel",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Featured case study using Bob for entire employee lifecycle"
+  },
+  {
+    "company_name": "Smartcat",
+    "company_domain": "smartcat.com",
+    "employee_count": 250,
+    "industry": "Translation Technology",
+    "hq_location": "Milpitas, CA",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study - scaled to 250+ people across 38 countries using Bob"
+  },
+  {
+    "company_name": "EcoOnline",
+    "company_domain": "ecoonline.com",
+    "employee_count": 600,
+    "industry": "EHS Software",
+    "hq_location": "Oslo, Norway",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study on unified culture across 14 M&A integrations using Bob"
+  },
+  {
+    "company_name": "Elation Health",
+    "company_domain": "elationhealth.com",
+    "employee_count": 350,
+    "industry": "Healthcare IT",
+    "hq_location": "San Francisco, CA",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study - grew 50%+ in one year using Bob Core HR and Performance"
+  },
+  {
+    "company_name": "Numan",
+    "company_domain": "numan.com",
+    "employee_count": 150,
+    "industry": "Health & Wellness",
+    "hq_location": "London, UK",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study on UK Payroll integration with Bob"
+  },
+  {
+    "company_name": "Rose Rocket",
+    "company_domain": "roserocket.com",
+    "employee_count": 200,
+    "industry": "Logistics / TMS",
+    "hq_location": "Toronto, Canada",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Featured case study using Bob Finance for workforce planning"
+  },
+  {
+    "company_name": "Salt",
+    "company_domain": "welovesalt.com",
+    "employee_count": 300,
+    "industry": "Recruitment",
+    "hq_location": "London, UK",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study - grew 600% while maintaining people-first culture with Bob"
+  },
+  {
+    "company_name": "Piab Group",
+    "company_domain": "piab.com",
+    "employee_count": 1000,
+    "industry": "Industrial Automation",
+    "hq_location": "Danderyd, Sweden",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Featured case study on platform flexibility for global industrial tech"
+  },
+  {
+    "company_name": "ecosio",
+    "company_domain": "ecosio.com",
+    "employee_count": 150,
+    "industry": "EDI / Supply Chain",
+    "hq_location": "Vienna, Austria",
+    "source": "hibob.com case study / Nucleus Research",
+    "confidence": "high",
+    "evidence": "ROI case study - 706% ROI, 7.7% improvement in retention"
+  },
+  {
+    "company_name": "Monzo",
+    "company_domain": "monzo.com",
+    "employee_count": 3000,
+    "industry": "Fintech / Banking",
+    "hq_location": "London, UK",
+    "source": "hibob.com customer page / G2",
+    "confidence": "high",
+    "evidence": "Featured on HiBob customer page and cited in multiple sources"
+  },
+  {
+    "company_name": "VaynerMedia",
+    "company_domain": "vaynermedia.com",
+    "employee_count": 1800,
+    "industry": "Digital Marketing Agency",
+    "hq_location": "New York, NY",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Uses Bob as one-stop-shop for employee experience, preboarding to performance"
+  },
+  {
+    "company_name": "Gong",
+    "company_domain": "gong.io",
+    "employee_count": 1500,
+    "industry": "Revenue Intelligence",
+    "hq_location": "San Francisco, CA",
+    "source": "hibob.com customer page / industry reports",
+    "confidence": "high",
+    "evidence": "Featured on HiBob customer logo wall and cited in multiple press"
+  },
+  {
+    "company_name": "Chili Piper",
+    "company_domain": "chilipiper.com",
+    "employee_count": 400,
+    "industry": "Sales Tech",
+    "hq_location": "New York, NY",
+    "source": "hibob.com customer page / reviews",
+    "confidence": "high",
+    "evidence": "Uses Bob for onboarding and HR workflows for global employees"
+  },
+  {
+    "company_name": "Happy Socks",
+    "company_domain": "happysocks.com",
+    "employee_count": 200,
+    "industry": "Fashion / Retail",
+    "hq_location": "Stockholm, Sweden",
+    "source": "G2 reviews / hibob.com",
+    "confidence": "high",
+    "evidence": "Listed as HiBob customer on G2 and company materials"
+  },
+  {
+    "company_name": "Clinch",
+    "company_domain": "clinch.co",
+    "employee_count": 200,
+    "industry": "Recruitment Marketing",
+    "hq_location": "Dublin, Ireland",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Featured on HiBob customer stories page"
+  },
+  {
+    "company_name": "GoCardless",
+    "company_domain": "gocardless.com",
+    "employee_count": 800,
+    "industry": "Fintech / Payments",
+    "hq_location": "London, UK",
+    "source": "appsruntheworld.com / hibob.com",
+    "confidence": "high",
+    "evidence": "Verified customer on AppsRunTheWorld and multiple industry sources"
+  },
+  {
+    "company_name": "Ual\u00e1",
+    "company_domain": "uala.com.ar",
+    "employee_count": 2000,
+    "industry": "Fintech",
+    "hq_location": "Buenos Aires, Argentina",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study on centralizing HR data, performance management, and analytics"
+  },
+  {
+    "company_name": "The&Partnership",
+    "company_domain": "theandpartnership.com",
+    "employee_count": 1500,
+    "industry": "Advertising Agency",
+    "hq_location": "London, UK",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Documented case study on automating HR and boosting engagement"
+  },
+  {
+    "company_name": "Gallagher",
+    "company_domain": "ajg.com",
+    "employee_count": 45000,
+    "industry": "Insurance / Risk Management",
+    "hq_location": "Rolling Meadows, IL",
+    "source": "hibob.com press release",
+    "confidence": "high",
+    "evidence": "Selected HiBob HCM to create a global single source of truth"
+  },
+  {
+    "company_name": "Fulham FC",
+    "company_domain": "fulhamfc.com",
+    "employee_count": 500,
+    "industry": "Sports / Football",
+    "hq_location": "London, UK",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Official HCM platform partner - uses Core HR, DE&I dashboards, compliance"
+  },
+  {
+    "company_name": "Vita Mojo",
+    "company_domain": "vitamojo.com",
+    "employee_count": 200,
+    "industry": "Restaurant Tech",
+    "hq_location": "London, UK",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Chose Bob for people-related strategic decision-making and performance reviews"
+  },
+  {
+    "company_name": "Nuvei",
+    "company_domain": "nuvei.com",
+    "employee_count": 1800,
+    "industry": "Fintech / Payments",
+    "hq_location": "Montreal, Canada",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Implemented Bob company-wide for paperless HR, centralized performance reviews"
+  },
+  {
+    "company_name": "Orbus Software",
+    "company_domain": "orbussoftware.com",
+    "employee_count": 200,
+    "industry": "Enterprise Architecture Software",
+    "hq_location": "London, UK",
+    "source": "hibob.com / Silver Cloud HR",
+    "confidence": "high",
+    "evidence": "Chose HiBob for automation and self-service capabilities"
+  },
+  {
+    "company_name": "Formula E",
+    "company_domain": "fiaformulae.com",
+    "employee_count": 300,
+    "industry": "Motorsport",
+    "hq_location": "London, UK",
+    "source": "hibob.com press release",
+    "confidence": "high",
+    "evidence": "Selected HiBob as Associate HR Management Race Partner"
+  },
+  {
+    "company_name": "ElevenLabs",
+    "company_domain": "elevenlabs.io",
+    "employee_count": 200,
+    "industry": "AI / Voice Technology",
+    "hq_location": "New York, NY",
+    "source": "hibob.com customer page",
+    "confidence": "high",
+    "evidence": "Listed on HiBob customer page"
+  },
+  {
+    "company_name": "Airtasker",
+    "company_domain": "airtasker.com",
+    "employee_count": 200,
+    "industry": "Gig Economy / Marketplace",
+    "hq_location": "Sydney, Australia",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study - automated onboarding/offboarding, reduced admin time"
+  },
+  {
+    "company_name": "Acne Studios",
+    "company_domain": "acnestudios.com",
+    "employee_count": 900,
+    "industry": "Fashion / Luxury",
+    "hq_location": "Stockholm, Sweden",
+    "source": "hibob.com customer page",
+    "confidence": "high",
+    "evidence": "Listed on HiBob customer page"
+  },
+  {
+    "company_name": "Foris",
+    "company_domain": "crypto.com",
+    "employee_count": 4000,
+    "industry": "Cryptocurrency",
+    "hq_location": "Singapore",
+    "source": "hibob.com customer page",
+    "confidence": "medium",
+    "evidence": "Listed on HiBob customer page (parent company of Crypto.com)"
+  },
+  {
+    "company_name": "Tomorrowland",
+    "company_domain": "tomorrowland.com",
+    "employee_count": 300,
+    "industry": "Events / Entertainment",
+    "hq_location": "Boom, Belgium",
+    "source": "hibob.com customer page",
+    "confidence": "high",
+    "evidence": "Listed on HiBob customer page"
+  },
+  {
+    "company_name": "TourRadar",
+    "company_domain": "tourradar.com",
+    "employee_count": 200,
+    "industry": "Travel Technology",
+    "hq_location": "Vienna, Austria",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study - centralized people data, automated compensation and performance"
+  },
+  {
+    "company_name": "2degrees",
+    "company_domain": "2degrees.nz",
+    "employee_count": 1200,
+    "industry": "Telecommunications",
+    "hq_location": "Auckland, New Zealand",
+    "source": "bloomberry.com technographic data",
+    "confidence": "medium",
+    "evidence": "Identified via technographic tracking as HiBob user"
+  },
+  {
+    "company_name": "2Heads",
+    "company_domain": "2heads.com",
+    "employee_count": 100,
+    "industry": "Events / Experiential",
+    "hq_location": "London, UK",
+    "source": "bloomberry.com technographic data",
+    "confidence": "medium",
+    "evidence": "Identified via technographic tracking as HiBob user"
+  },
+  {
+    "company_name": "Alliants",
+    "company_domain": "alliants.com",
+    "employee_count": 100,
+    "industry": "Hospitality Technology",
+    "hq_location": "Cheltenham, UK",
+    "source": "bloomberry.com technographic data",
+    "confidence": "medium",
+    "evidence": "Identified via technographic tracking as HiBob user"
+  },
+  {
+    "company_name": "BigID",
+    "company_domain": "bigid.com",
+    "employee_count": 500,
+    "industry": "Data Security / Privacy",
+    "hq_location": "New York, NY",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study on improving employee engagement through analytics and surveys"
+  },
+  {
+    "company_name": "Defined.ai",
+    "company_domain": "defined.ai",
+    "employee_count": 200,
+    "industry": "AI / Data Training",
+    "hq_location": "Seattle, WA",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study - uses people analytics, 360 reviews, and self-service reporting"
+  },
+  {
+    "company_name": "Skroutz",
+    "company_domain": "skroutz.gr",
+    "employee_count": 600,
+    "industry": "E-commerce / Marketplace",
+    "hq_location": "Athens, Greece",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study - streamlined compensation management, saving admin time"
+  },
+  {
+    "company_name": "Payapps",
+    "company_domain": "payapps.com",
+    "employee_count": 150,
+    "industry": "Construction Tech",
+    "hq_location": "Melbourne, Australia",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study - automated HR processes previously managed manually"
+  },
+  {
+    "company_name": "Lunar",
+    "company_domain": "lunar.app",
+    "employee_count": 500,
+    "industry": "Fintech / Banking",
+    "hq_location": "Aarhus, Denmark",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study - adopted Bob for modern HR, integrates with Teamtailor ATS"
+  },
+  {
+    "company_name": "Kustomer",
+    "company_domain": "kustomer.com",
+    "employee_count": 500,
+    "industry": "Customer Service / CRM",
+    "hq_location": "New York, NY",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study - uses Bob for 360-degree performance reviews"
+  },
+  {
+    "company_name": "Cazoo",
+    "company_domain": "cazoo.co.uk",
+    "employee_count": 300,
+    "industry": "Automotive / E-commerce",
+    "hq_location": "London, UK",
+    "source": "hibob.com case study / cxtoday.com",
+    "confidence": "high",
+    "evidence": "Publicly identified as HiBob customer for distributed workforce management"
+  },
+  {
+    "company_name": "Paddle",
+    "company_domain": "paddle.com",
+    "employee_count": 300,
+    "industry": "SaaS / Payments",
+    "hq_location": "London, UK",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Featured in HiBob case study for internal HR and people operations"
+  },
+  {
+    "company_name": "TransferGo",
+    "company_domain": "transfergo.com",
+    "employee_count": 300,
+    "industry": "Fintech / Remittance",
+    "hq_location": "London, UK",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Case study detailing HR management during rapid global expansion"
+  },
+  {
+    "company_name": "AWI (Australian Wool Innovation)",
+    "company_domain": "wool.com",
+    "employee_count": 200,
+    "industry": "Agriculture / Wool Industry",
+    "hq_location": "Sydney, Australia",
+    "source": "hibob.com case study",
+    "confidence": "high",
+    "evidence": "Uses Bob to manage global time off and tailor performance reviews"
+  },
+  {
+    "company_name": "Lightricks",
+    "company_domain": "lightricks.com",
+    "employee_count": 600,
+    "industry": "Creative Technology / Apps",
+    "hq_location": "Jerusalem, Israel",
+    "source": "appsruntheworld.com / LinkedIn",
+    "confidence": "high",
+    "evidence": "Verified customer across multiple third-party sources"
+  },
+  {
+    "company_name": "myHomecare Group",
+    "company_domain": "myhomecaregroup.com.au",
+    "employee_count": 1000,
+    "industry": "Healthcare / Aged Care",
+    "hq_location": "Sydney, Australia",
+    "source": "appsruntheworld.com / hibob.com",
+    "confidence": "high",
+    "evidence": "Verified customer on AppsRunTheWorld and HiBob materials"
+  },
+  {
+    "company_name": "The Josh Bersin Company",
+    "company_domain": "joshbersin.com",
+    "employee_count": 50,
+    "industry": "HR Research / Advisory",
+    "hq_location": "Oakland, CA",
+    "source": "hibob.com customer page",
+    "confidence": "high",
+    "evidence": "Listed as HiBob customer on official website"
+  },
+  {
+    "company_name": "team.blue",
+    "company_domain": "team.blue",
+    "employee_count": 2000,
+    "industry": "Web Hosting / Digital Services",
+    "hq_location": "Ghent, Belgium",
+    "source": "hibob.com case study (2025)",
+    "confidence": "high",
+    "evidence": "2025 case study - unified HR across 60+ brands, LEAP program"
+  },
+  {
+    "company_name": "Taxfix",
+    "company_domain": "taxfix.de",
+    "employee_count": 500,
+    "industry": "Fintech / Tax",
+    "hq_location": "Berlin, Germany",
+    "source": "hibob.com marketing materials",
+    "confidence": "high",
+    "evidence": "Featured in HiBob marketing materials as a customer"
+  },
+  {
+    "company_name": "Jimdo",
+    "company_domain": "jimdo.com",
+    "employee_count": 200,
+    "industry": "Website Builder",
+    "hq_location": "Hamburg, Germany",
+    "source": "hibob.com customer testimonial",
+    "confidence": "high",
+    "evidence": "Transitioned from spreadsheets to HiBob for global remote-first workforce"
+  },
+  {
+    "company_name": "Octopus Energy",
+    "company_domain": "octopusenergy.com",
+    "employee_count": 6000,
+    "industry": "Energy / Utilities",
+    "hq_location": "London, UK",
+    "source": "hibob.com case study / award",
+    "confidence": "high",
+    "evidence": "Cited in HiBob case studies and marketing materials"
+  },
+  {
+    "company_name": "The Economist",
+    "company_domain": "economist.com",
+    "employee_count": 1500,
+    "industry": "Media / Publishing",
+    "hq_location": "London, UK",
+    "source": "theirstack.com / job postings",
+    "confidence": "high",
+    "evidence": "Job postings describe HiBob integration, confirmed via technographic data"
+  },
+  {
+    "company_name": "TryHackMe",
+    "company_domain": "tryhackme.com",
+    "employee_count": 100,
+    "industry": "Cybersecurity Education",
+    "hq_location": "London, UK",
+    "source": "theirstack.com technographic",
+    "confidence": "medium",
+    "evidence": "Identified via TheirStack technographic tracking as HiBob user"
+  },
+  {
+    "company_name": "Helsing",
+    "company_domain": "helsing.ai",
+    "employee_count": 400,
+    "industry": "Defense / AI",
+    "hq_location": "Munich, Germany",
+    "source": "job postings / theirstack.com",
+    "confidence": "high",
+    "evidence": "Multiple job descriptions explicitly mention using HiBob for people and payroll data"
+  },
+  {
+    "company_name": "Imagination",
+    "company_domain": "imagination.com",
+    "employee_count": 800,
+    "industry": "Experience Design Agency",
+    "hq_location": "London, UK",
+    "source": "job postings / webinars",
+    "confidence": "high",
+    "evidence": "Job descriptions and webinars featuring Head of Employee Experience confirm HiBob use"
+  },
+  {
+    "company_name": "WeTransfer",
+    "company_domain": "wetransfer.com",
+    "employee_count": 200,
+    "industry": "File Sharing / Creative Tools",
+    "hq_location": "Amsterdam, Netherlands",
+    "source": "lhra.io industry reports",
+    "confidence": "high",
+    "evidence": "Confirmed customer - implemented Bob in 2020 for hybrid/remote workforce"
+  },
+  {
+    "company_name": "Perion Network",
+    "company_domain": "perion.com",
+    "employee_count": 600,
+    "industry": "Digital Advertising",
+    "hq_location": "Holon, Israel",
+    "source": "job postings",
+    "confidence": "medium",
+    "evidence": "Job openings requiring experience administering HiBob"
+  },
+  {
+    "company_name": "SolarEdge",
+    "company_domain": "solaredge.com",
+    "employee_count": 5000,
+    "industry": "Solar Energy / Cleantech",
+    "hq_location": "Herzliya, Israel",
+    "source": "hibob.com login portal / Comeet",
+    "confidence": "high",
+    "evidence": "Maintains 'Login to your Bob account' portal - confirmed user"
+  },
+  {
+    "company_name": "Cellebrite",
+    "company_domain": "cellebrite.com",
+    "employee_count": 1000,
+    "industry": "Digital Intelligence / Forensics",
+    "hq_location": "Petah Tikva, Israel",
+    "source": "hibob.com login portal",
+    "confidence": "high",
+    "evidence": "Maintains 'Login to your Bob account' portal - confirmed user"
+  },
+  {
+    "company_name": "Cyera",
+    "company_domain": "cyera.io",
+    "employee_count": 500,
+    "industry": "Data Security",
+    "hq_location": "Tel Aviv, Israel",
+    "source": "hibob.com login portal / Comeet",
+    "confidence": "high",
+    "evidence": "Maintains 'Login to your Bob account' portal - confirmed user"
+  },
+  {
+    "company_name": "ZIM Integrated Shipping",
+    "company_domain": "zim.com",
+    "employee_count": 5000,
+    "industry": "Shipping / Logistics",
+    "hq_location": "Haifa, Israel",
+    "source": "hibob.com login portal / Comeet",
+    "confidence": "high",
+    "evidence": "Maintains 'Login to your Bob account' portal - confirmed user"
+  },
+  {
+    "company_name": "monday.com",
+    "company_domain": "monday.com",
+    "employee_count": 1800,
+    "industry": "Project Management / Work OS",
+    "hq_location": "Tel Aviv, Israel",
+    "source": "Comeet ATS user / integration",
+    "confidence": "medium",
+    "evidence": "Known Comeet ATS user (HiBob acquired Comeet); integration partner"
+  },
+  {
+    "company_name": "Papaya Global",
+    "company_domain": "papayaglobal.com",
+    "employee_count": 800,
+    "industry": "Global Payroll / HR",
+    "hq_location": "New York, NY",
+    "source": "Comeet ATS user / HiBob integration partner",
+    "confidence": "medium",
+    "evidence": "Known Comeet user; strategic HiBob integration partner with HiBob Connector"
+  },
+  {
+    "company_name": "Magma Math",
+    "company_domain": "magmamath.com",
+    "employee_count": 50,
+    "industry": "EdTech",
+    "hq_location": "Stockholm, Sweden",
+    "source": "hibob.com press release",
+    "confidence": "high",
+    "evidence": "Adopted HiBob payroll and benefits administration solution"
+  },
+  {
+    "company_name": "Sequoia Connect",
+    "company_domain": "sequoia.com",
+    "employee_count": 500,
+    "industry": "Benefits / HR Services",
+    "hq_location": "San Mateo, CA",
+    "source": "Comeet customers page",
+    "confidence": "medium",
+    "evidence": "Listed on Comeet customers page (HiBob acquired Comeet)"
+  },
+  {
+    "company_name": "Pentera",
+    "company_domain": "pentera.io",
+    "employee_count": 400,
+    "industry": "Cybersecurity",
+    "hq_location": "Petah Tikva, Israel",
+    "source": "Comeet ATS / prospeo.io",
+    "confidence": "medium",
+    "evidence": "Listed as Comeet ATS user on prospeo.io"
+  },
+  {
+    "company_name": "VAST Data",
+    "company_domain": "vastdata.com",
+    "employee_count": 500,
+    "industry": "Data Storage / Infrastructure",
+    "hq_location": "New York, NY",
+    "source": "Comeet ATS / fantastic.jobs",
+    "confidence": "medium",
+    "evidence": "Listed as Comeet ATS user on fantastic.jobs"
+  },
+  {
+    "company_name": "Madrona Venture Group",
+    "company_domain": "madrona.com",
+    "employee_count": 50,
+    "industry": "Venture Capital",
+    "hq_location": "Seattle, WA",
+    "source": "Comeet ATS",
+    "confidence": "low",
+    "evidence": "Listed as Comeet user in career page data"
+  },
+  {
+    "company_name": "Locaria",
+    "company_domain": "locaria.com",
+    "employee_count": 500,
+    "industry": "Marketing / Localization",
+    "hq_location": "London, UK",
+    "source": "hibob.com press release",
+    "confidence": "medium",
+    "evidence": "Partnered with HiBob to support international growth"
+  },
+  {
+    "company_name": "The Economist Group",
+    "company_domain": "economistgroup.com",
+    "employee_count": 1500,
+    "industry": "Media / Publishing",
+    "hq_location": "London, UK",
+    "source": "theirstack.com / job postings",
+    "confidence": "high",
+    "evidence": "Job postings confirm HiBob HRIS usage including IAM integration"
+  },
+  {
+    "company_name": "HubSpot",
+    "company_domain": "hubspot.com",
+    "employee_count": 7000,
+    "industry": "CRM / Marketing Software",
+    "hq_location": "Cambridge, MA",
+    "source": "6sense.com market intelligence",
+    "confidence": "low",
+    "evidence": "Cited in 6sense market intelligence as potential user"
+  },
+  {
+    "company_name": "Payhawk",
+    "company_domain": "payhawk.com",
+    "employee_count": 350,
+    "industry": "Fintech / Expense Management",
+    "hq_location": "London, UK",
+    "source": "payhawk.com HiBob integration",
+    "confidence": "medium",
+    "evidence": "Maintains HiBob integration for employee data sync"
+  },
+  {
+    "company_name": "Pleo",
+    "company_domain": "pleo.io",
+    "employee_count": 800,
+    "industry": "Fintech / Expense Management",
+    "hq_location": "Copenhagen, Denmark",
+    "source": "pleo.io integration page",
+    "confidence": "medium",
+    "evidence": "Formal HiBob integration for onboarding/offboarding data sync"
+  },
+  {
+    "company_name": "Spendesk",
+    "company_domain": "spendesk.com",
+    "employee_count": 400,
+    "industry": "Fintech / Spend Management",
+    "hq_location": "Paris, France",
+    "source": "spendesk.com integration page",
+    "confidence": "medium",
+    "evidence": "Formal HiBob integration for employee data syncing"
+  },
+  {
+    "company_name": "Leapsome",
+    "company_domain": "leapsome.com",
+    "employee_count": 300,
+    "industry": "HR Tech / Performance",
+    "hq_location": "Berlin, Germany",
+    "source": "hibob.com marketplace",
+    "confidence": "medium",
+    "evidence": "Integration partner in HiBob marketplace"
+  },
+  {
+    "company_name": "Remote",
+    "company_domain": "remote.com",
+    "employee_count": 1500,
+    "industry": "HR Tech / EOR",
+    "hq_location": "San Francisco, CA",
+    "source": "hibob.com marketplace / businesswire.com",
+    "confidence": "medium",
+    "evidence": "Formal integration partnership with HiBob announced via BusinessWire"
+  },
+  {
+    "company_name": "360Learning",
+    "company_domain": "360learning.com",
+    "employee_count": 400,
+    "industry": "EdTech / L&D",
+    "hq_location": "Paris, France",
+    "source": "360learning.com / hibob.com",
+    "confidence": "medium",
+    "evidence": "Partnered to integrate L&D journeys into Bob HRIS platform"
+  },
+  {
+    "company_name": "SmartRecruiters",
+    "company_domain": "smartrecruiters.com",
+    "employee_count": 600,
+    "industry": "HR Tech / ATS",
+    "hq_location": "San Francisco, CA",
+    "source": "hibob.com marketplace",
+    "confidence": "medium",
+    "evidence": "Integration partner to streamline talent acquisition with HiBob"
+  },
+  {
+    "company_name": "iiPay",
+    "company_domain": "iipay.com",
+    "employee_count": 200,
+    "industry": "Payroll Services",
+    "hq_location": "Manchester, UK",
+    "source": "iipay.com press release",
+    "confidence": "medium",
+    "evidence": "Partnered with HiBob for unified global payroll and HR solution"
+  },
+  {
+    "company_name": "Ashby",
+    "company_domain": "ashbyhq.com",
+    "employee_count": 200,
+    "industry": "HR Tech / ATS",
+    "hq_location": "San Francisco, CA",
+    "source": "ashbyhq.com integration",
+    "confidence": "medium",
+    "evidence": "Integrated data-driven hiring tools with HiBob people management"
+  },
+  {
+    "company_name": "Kolsquare",
+    "company_domain": "kolsquare.com",
+    "employee_count": 200,
+    "industry": "Influencer Marketing",
+    "hq_location": "Paris, France",
+    "source": "jaabz.com / team.blue group",
+    "confidence": "medium",
+    "evidence": "Part of team.blue group which uses HiBob across its brands"
+  },
+  {
+    "company_name": "Silver Cloud HR",
+    "company_domain": "silvercloudhr.co.uk",
+    "employee_count": 50,
+    "industry": "HR Consulting",
+    "hq_location": "London, UK",
+    "source": "silvercloudhr.co.uk",
+    "confidence": "high",
+    "evidence": "Certified HiBob implementation and service partner"
+  },
+  {
+    "company_name": "activpayroll",
+    "company_domain": "activpayroll.com",
+    "employee_count": 400,
+    "industry": "Payroll Services",
+    "hq_location": "Aberdeen, UK",
+    "source": "hibob.com marketplace",
+    "confidence": "medium",
+    "evidence": "Listed as HiBob payroll integration partner"
+  },
+  {
+    "company_name": "Celigo",
+    "company_domain": "celigo.com",
+    "employee_count": 400,
+    "industry": "iPaaS / Integration",
+    "hq_location": "Redwood City, CA",
+    "source": "celigo.com / hibob.com",
+    "confidence": "medium",
+    "evidence": "iPaaS integration partner enabling HiBob data flows"
+  },
+  {
+    "company_name": "Flexspring",
+    "company_domain": "flexspring.com",
+    "employee_count": 20,
+    "industry": "HR Integration",
+    "hq_location": "Natick, MA",
+    "source": "flexspring.com",
+    "confidence": "medium",
+    "evidence": "Custom connector partner for HiBob integrations"
+  },
+  {
+    "company_name": "BrynQ",
+    "company_domain": "brynq.com",
+    "employee_count": 20,
+    "industry": "HR Integration",
+    "hq_location": "Amsterdam, Netherlands",
+    "source": "brynq.com",
+    "confidence": "medium",
+    "evidence": "HiBob integration partner for payroll connectors"
+  },
+  {
+    "company_name": "Bindbee",
+    "company_domain": "bindbee.dev",
+    "employee_count": 20,
+    "industry": "HR Tech / API",
+    "hq_location": "Bengaluru, India",
+    "source": "bindbee.dev",
+    "confidence": "medium",
+    "evidence": "Unified API provider connecting ATS platforms to HiBob"
+  },
+  {
+    "company_name": "Manatal",
+    "company_domain": "manatal.com",
+    "employee_count": 200,
+    "industry": "HR Tech / ATS",
+    "hq_location": "Bangkok, Thailand",
+    "source": "hibob.com marketplace",
+    "confidence": "medium",
+    "evidence": "ATS integration listed in HiBob marketplace"
+  },
+  {
+    "company_name": "Pento",
+    "company_domain": "pento.io",
+    "employee_count": 50,
+    "industry": "Payroll Automation",
+    "hq_location": "London, UK",
+    "source": "hibob.com press release",
+    "confidence": "high",
+    "evidence": "Acquired by HiBob to strengthen payroll capabilities"
+  },
+  {
+    "company_name": "Mosaic",
+    "company_domain": "mosaic.tech",
+    "employee_count": 100,
+    "industry": "FP&A / Finance",
+    "hq_location": "San Francisco, CA",
+    "source": "hibob.com press release",
+    "confidence": "high",
+    "evidence": "Acquired by HiBob to bridge HR and finance data"
+  },
+  {
+    "company_name": "Revolut",
+    "company_domain": "revolut.com",
+    "employee_count": 8000,
+    "industry": "Fintech / Banking",
+    "hq_location": "London, UK",
+    "source": "revolut.com integration / 6sense.com",
+    "confidence": "low",
+    "evidence": "HiBob integration partner; cited in 6sense market intelligence"
+  },
+  {
+    "company_name": "Wolt",
+    "company_domain": "wolt.com",
+    "employee_count": 8000,
+    "industry": "Food Delivery / Commerce",
+    "hq_location": "Helsinki, Finland",
+    "source": "hibob.com careers / news",
+    "confidence": "medium",
+    "evidence": "HiBob lists Wolt Benefit as employee perk; corporate services partnership"
+  },
+  {
+    "company_name": "Deel",
+    "company_domain": "deel.com",
+    "employee_count": 4000,
+    "industry": "HR Tech / EOR",
+    "hq_location": "San Francisco, CA",
+    "source": "hibob.com marketplace",
+    "confidence": "medium",
+    "evidence": "Often used alongside HiBob for global payroll integration"
+  },
+  {
+    "company_name": "Culture Amp",
+    "company_domain": "cultureamp.com",
+    "employee_count": 1000,
+    "industry": "HR Tech / Engagement",
+    "hq_location": "Melbourne, Australia",
+    "source": "hibob.com marketplace",
+    "confidence": "medium",
+    "evidence": "Integration partner commonly used alongside HiBob"
+  },
+  {
+    "company_name": "Lattice",
+    "company_domain": "lattice.com",
+    "employee_count": 600,
+    "industry": "HR Tech / Performance",
+    "hq_location": "San Francisco, CA",
+    "source": "hibob.com marketplace",
+    "confidence": "medium",
+    "evidence": "Integration partner commonly used alongside HiBob"
+  },
+  {
+    "company_name": "Mercer",
+    "company_domain": "mercer.com",
+    "employee_count": 25000,
+    "industry": "HR Consulting",
+    "hq_location": "New York, NY",
+    "source": "hibob.com partner page",
+    "confidence": "medium",
+    "evidence": "Certified HiBob implementation partner"
+  },
+  {
+    "company_name": "Alliantis",
+    "company_domain": "alliantis.com",
+    "employee_count": 20,
+    "industry": "HR Consulting",
+    "hq_location": "London, UK",
+    "source": "hibob.com partner page",
+    "confidence": "medium",
+    "evidence": "Certified HiBob service partner for implementation"
+  },
+  {
+    "company_name": "Phase 3",
+    "company_domain": "introphase3.com",
+    "employee_count": 30,
+    "industry": "HR Consulting",
+    "hq_location": "London, UK",
+    "source": "hibob.com partner page",
+    "confidence": "medium",
+    "evidence": "Certified HiBob service partner"
+  },
+  {
+    "company_name": "Xero",
+    "company_domain": "xero.com",
+    "employee_count": 4500,
+    "industry": "Accounting Software",
+    "hq_location": "Wellington, New Zealand",
+    "source": "hibob.com marketplace",
+    "confidence": "medium",
+    "evidence": "Major payroll integration partner in HiBob marketplace"
+  },
+  {
+    "company_name": "ADP",
+    "company_domain": "adp.com",
+    "employee_count": 60000,
+    "industry": "Payroll / HR Services",
+    "hq_location": "Roseland, NJ",
+    "source": "hibob.com marketplace",
+    "confidence": "medium",
+    "evidence": "ADP Workforce Now integration partner with HiBob"
+  },
+  {
+    "company_name": "Paylocity",
+    "company_domain": "paylocity.com",
+    "employee_count": 6000,
+    "industry": "Payroll / HCM",
+    "hq_location": "Schaumburg, IL",
+    "source": "hibob.com marketplace",
+    "confidence": "medium",
+    "evidence": "Payroll integration listed in HiBob marketplace"
+  },
+  {
+    "company_name": "TriNet",
+    "company_domain": "trinet.com",
+    "employee_count": 4000,
+    "industry": "PEO / HR Services",
+    "hq_location": "Dublin, CA",
+    "source": "hibob.com marketplace",
+    "confidence": "medium",
+    "evidence": "Payroll integration listed in HiBob marketplace"
+  },
+  {
+    "company_name": "Siit",
+    "company_domain": "siit.io",
+    "employee_count": 30,
+    "industry": "IT Service Management",
+    "hq_location": "Paris, France",
+    "source": "siit.io integration page",
+    "confidence": "medium",
+    "evidence": "Maintains HiBob integration for internal ticketing workflows"
+  },
+  {
+    "company_name": "Truto",
+    "company_domain": "truto.one",
+    "employee_count": 30,
+    "industry": "Unified API",
+    "hq_location": "Bengaluru, India",
+    "source": "truto.one integration",
+    "confidence": "medium",
+    "evidence": "Unified API integration with HiBob"
+  },
+  {
+    "company_name": "Vanta",
+    "company_domain": "vanta.com",
+    "employee_count": 600,
+    "industry": "Security Compliance",
+    "hq_location": "San Francisco, CA",
+    "source": "vanta.com integration",
+    "confidence": "medium",
+    "evidence": "HiBob integration for security compliance employee monitoring"
+  },
+  {
+    "company_name": "Spark Hire",
+    "company_domain": "sparkhire.com",
+    "employee_count": 100,
+    "industry": "HR Tech / Video Interviewing",
+    "hq_location": "Chicago, IL",
+    "source": "sparkhire.com (acquired Comeet)",
+    "confidence": "medium",
+    "evidence": "Acquired Comeet (HiBob ATS acquisition target); integration partner"
+  },
+  {
+    "company_name": "Sumble",
+    "company_domain": "sumble.com",
+    "employee_count": 20,
+    "industry": "HR Tech Intelligence",
+    "hq_location": "London, UK",
+    "source": "sumble.com / hibob.com",
+    "confidence": "medium",
+    "evidence": "Tracks HiBob customer data; partner in HR tech ecosystem"
+  },
+  {
+    "company_name": "Zapier",
+    "company_domain": "zapier.com",
+    "employee_count": 700,
+    "industry": "Automation / iPaaS",
+    "hq_location": "San Francisco, CA",
+    "source": "zapier.com integration page",
+    "confidence": "medium",
+    "evidence": "Major automation platform with native HiBob integration"
+  },
+  {
+    "company_name": "Atlassian",
+    "company_domain": "atlassian.com",
+    "employee_count": 11000,
+    "industry": "Collaboration Software",
+    "hq_location": "Sydney, Australia",
+    "source": "atlassian.com Jira integration",
+    "confidence": "medium",
+    "evidence": "Jira Service Management integration with HiBob documented"
+  },
+  {
+    "company_name": "Greenhouse",
+    "company_domain": "greenhouse.io",
+    "employee_count": 600,
+    "industry": "HR Tech / ATS",
+    "hq_location": "New York, NY",
+    "source": "hibob.com marketplace",
+    "confidence": "medium",
+    "evidence": "Major ATS integration partner in HiBob marketplace"
+  },
+  {
+    "company_name": "Slack (Salesforce)",
+    "company_domain": "slack.com",
+    "employee_count": 3000,
+    "industry": "Collaboration / Messaging",
+    "hq_location": "San Francisco, CA",
+    "source": "hibob.com marketplace",
+    "confidence": "medium",
+    "evidence": "HiBob integrates natively with Slack for notifications and workflows"
+  },
+  {
+    "company_name": "LinkedIn Learning",
+    "company_domain": "linkedin.com",
+    "employee_count": 20000,
+    "industry": "Professional Network / L&D",
+    "hq_location": "Sunnyvale, CA",
+    "source": "hibob.com marketplace",
+    "confidence": "medium",
+    "evidence": "HiBob integrates with LinkedIn Learning for employee development"
+  }
+]

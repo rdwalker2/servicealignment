@@ -1,0 +1,57 @@
+name: Security Checks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  security-audit:
+    name: Dependency Audit & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run npm audit
+        run: npm audit --audit-level=high
+      
+      - name: Type check
+        run: npx tsc --noEmit
+      
+      - name: Check for secrets in source
+        run: |
+          echo "Scanning for hardcoded secrets in src/..."
+          # Fail if real API keys or secrets found in source code
+          if grep -rn "v2_ak_\|sk_live_\|eyJhbGciOi" src/ --include="*.ts" --include="*.tsx" 2>/dev/null; then
+            echo "::error::Found potential secrets in source code!"
+            exit 1
+          fi
+          echo "✅ No secrets found in source code"
+      
+      - name: Verify .env not tracked
+        run: |
+          if git ls-files --error-unmatch .env 2>/dev/null; then
+            echo "::error::.env file is tracked by git!"
+            exit 1
+          fi
+          echo "✅ .env is not tracked"
+      
+      - name: Verify no large data files
+        run: |
+          # Flag any files over 1MB in src/ (customer data should be in DB)
+          large_files=$(find src/ -type f -size +1M 2>/dev/null)
+          if [ -n "$large_files" ]; then
+            echo "::error::Large files found in src/ (data should be in database):"
+            echo "$large_files"
+            exit 1
+          fi
+          echo "✅ No large data files in source"

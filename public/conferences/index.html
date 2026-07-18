@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conference Calendar — Teamtailor Sales</title>
+  <meta name="description" content="Browse upcoming HR and talent acquisition conferences and request to attend. Teamtailor sales team conference tracker.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════
+       DESIGN SYSTEM — matches workspace light theme
+       ═══════════════════════════════════════════ */
+    :root {
+      --bg-page: #fafaf9;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f5f5f4;
+      --bg-muted: #f5f5f4;
+      --border: #e7e5e4;
+      --border-hover: #d6d3d1;
+      --text-primary: #1c1917;
+      --text-secondary: #57534e;
+      --text-muted: #a8a29e;
+      --tt-pink: hsl(346, 87%, 61%);
+      --tt-pink-light: hsl(346, 87%, 95%);
+      --tt-pink-bg: hsl(346, 80%, 97%);
+      --accent-blue: #3b82f6;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --accent-cyan: #06b6d4;
+      --accent-red: #ef4444;
+      --gradient-tt: linear-gradient(135deg, hsl(346, 87%, 61%), hsl(346, 87%, 50%));
+      --gradient-1: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      --gradient-2: linear-gradient(135deg, #10b981, #06b6d4);
+      --gradient-3: linear-gradient(135deg, #f59e0b, #f97316);
+      --glass-bg: rgba(255,255,255,0.6);
+      --glass-border: rgba(255,255,255,0.4);
+      --glass-shadow: 0 8px 30px rgba(0,0,0,0.04);
+      --glass-shadow-hover: 0 8px 30px rgba(0,0,0,0.08);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --transition: 0.2s ease;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: "rlig" 1, "calt" 1;
+    }
+
+    /* Subtle noise texture (matching workspace) */
+    .noise {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    /* ═══════════════════════════════════════════
+       HEADER (matching workspace pattern)
+       ═══════════════════════════════════════════ */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: var(--gradient-tt);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: white;
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.2);
+    }
+    .header-title {
+      font-size: 24px;
+      font-weight: 800;
+      background: var(--gradient-tt);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header-subtitle {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ═══════════════════════════════════════════
+       VIEW TOGGLE
+       ═══════════════════════════════════════════ */
+    .view-toggle {
+      display: flex;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .view-toggle-btn {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+    .view-toggle-btn:hover { color: var(--text-primary); background: var(--bg-muted); }
+    .view-toggle-btn.active {
+      color: var(--tt-pink);
+      background: var(--tt-pink-bg);
+      font-weight: 600;
+    }
+    .view-toggle-btn svg { width: 16px; height: 16px; }
+
+    /* ═══════════════════════════════════════════
+       STATS BAR (matching workspace)
+       ═══════════════════════════════════════════ */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      transition: all var(--transition);
+    }
+    .stat-card:hover {
+      border-color: var(--tt-pink);
+      transform: translateY(-1px);
+    }
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .stat-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* ═══════════════════════════════════════════
+       FILTER BAR (matching workspace)
+       ═══════════════════════════════════════════ */
+    .filters-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .filters-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    .filter-btn {
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--bg-page);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+    .filter-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+      background: var(--bg-muted);
+    }
+    .filter-btn.active {
+      background: var(--tt-pink);
+      border-color: var(--tt-pink);
+      color: white;
+    }
+
+    /* ═══════════════════════════════════════════
+       LIST VIEW
+       ═══════════════════════════════════════════ */
+    .list-view { }
+
+    .month-group {
+      margin-bottom: 28px;
+    }
+    .month-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-left: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .month-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Conference Cards (glass-panel style) ── */
+    .conf-card {
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.4);
+      box-shadow: var(--glass-shadow);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .conf-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+    }
+    .conf-card.tier-1::before { background: var(--gradient-1); }
+    .conf-card.tier-2::before { background: var(--gradient-2); }
+    .conf-card.tier-3::before { background: var(--gradient-3); }
+    .conf-card.past::before { background: #d6d3d1; }
+
+    .conf-card:hover {
+      box-shadow: var(--glass-shadow-hover);
+      background: rgba(255,255,255,0.8);
+      transform: translateY(-2px);
+    }
+    .conf-card.past { opacity: 0.55; }
+    .conf-card.past:hover { opacity: 0.75; }
+
+    .conf-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .conf-date-badge {
+      flex-shrink: 0;
+      width: 52px;
+      text-align: center;
+      padding-top: 2px;
+    }
+    .conf-date-month {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--tt-pink);
+    }
+    .conf-date-day {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .conf-date-year {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .conf-card.past .conf-date-month { color: var(--text-muted); }
+
+    .conf-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .conf-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tier-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .tier-badge.t1 { background: #eff6ff; color: #3b82f6; }
+    .tier-badge.t2 { background: #ecfdf5; color: #10b981; }
+    .tier-badge.t3 { background: #fff7ed; color: #f97316; }
+    .tier-badge.past-badge { background: var(--bg-muted); color: var(--text-muted); }
+
+    .conf-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .conf-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .conf-meta-item svg { width: 13px; height: 13px; opacity: 0.5; flex-shrink: 0; }
+
+    .conf-description {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .conf-why {
+      font-size: 12px;
+      color: var(--tt-pink);
+      font-weight: 600;
+      display: flex;
+      align-items: flex-start;
+      gap: 4px;
+    }
+    .conf-why span {
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    .conf-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      font-family: inherit;
+      text-decoration: none;
+    }
+    .btn svg { width: 14px; height: 14px; }
+
+    .btn-primary {
+      background: var(--gradient-tt);
+      color: white;
+      box-shadow: 0 2px 8px rgba(225, 29, 72, 0.2);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 4px 16px rgba(225, 29, 72, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    .btn-ghost:hover {
+      background: var(--bg-muted);
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+
+    .btn-disabled {
+      background: var(--bg-muted);
+      color: var(--text-muted);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* ═══════════════════════════════════════════
+       CALENDAR VIEW
+       ═══════════════════════════════════════════ */
+    .calendar-view { display: none; }
+    .calendar-view.active { display: block; }
+    .list-view.active { display: block; }
+    .list-view { display: none; }
+
+    .calendar-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .calendar-nav-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .calendar-nav-btns {
+      display: flex;
+      gap: 4px;
+    }
+    .cal-nav-btn {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+    .cal-nav-btn:hover {
+      background: var(--bg-muted);
+      color: var(--text-primary);
+    }
+    .cal-nav-btn svg { width: 16px; height: 16px; }
+
+    .calendar-grid-header {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      margin-bottom: 4px;
+    }
+    .cal-day-header {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      padding: 8px 0;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+    }
+
+    .cal-cell {
+      min-height: 90px;
+      border-radius: var(--radius-sm);
+      padding: 6px;
+      position: relative;
+      transition: var(--transition);
+    }
+    .cal-cell.other-month {
+      opacity: 0.3;
+    }
+    .cal-cell.today {
+      background: var(--tt-pink-bg);
+      outline: 2px solid var(--tt-pink);
+      outline-offset: -2px;
+    }
+    .cal-cell:hover {
+      background: var(--bg-muted);
+    }
+
+    .cal-date {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+    .cal-cell.today .cal-date {
+      color: var(--tt-pink);
+      font-weight: 700;
+    }
+
+    .cal-event {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 6px;
+      border-radius: 4px;
+      margin-bottom: 3px;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
+    .cal-event:hover {
+      transform: scale(1.02);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .cal-event.t1 { background: #dbeafe; color: #1d4ed8; }
+    .cal-event.t2 { background: #d1fae5; color: #047857; }
+    .cal-event.t3 { background: #fef3c7; color: #b45309; }
+    .cal-event.past-ev { background: #f5f5f4; color: #a8a29e; }
+
+    .cal-event-multi {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 2px 4px;
+    }
+
+    /* Calendar event popup */
+    .cal-popup {
+      position: fixed;
+      z-index: 500;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+      padding: 16px;
+      width: 280px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(4px);
+      transition: var(--transition);
+    }
+    .cal-popup.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .cal-popup-name { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .cal-popup-meta { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; display: flex; align-items: center; gap: 4px; }
+    .cal-popup-meta svg { width: 12px; height: 12px; opacity: 0.5; }
+    .cal-popup-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; margin: 8px 0; }
+    .cal-popup-actions { display: flex; gap: 6px; margin-top: 10px; }
+
+    /* ═══════════════════════════════════════════
+       MODAL
+       ═══════════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.25s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 480px;
+      padding: 28px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.15);
+      transform: translateY(16px) scale(0.98);
+      transition: 0.25s ease;
+      position: relative;
+    }
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 18px;
+    }
+    .modal-close:hover {
+      background: var(--bg-muted);
+      color: var(--text-primary);
+    }
+
+    .modal h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .modal-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .form-input, .form-textarea {
+      width: 100%;
+      background: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 14px;
+      color: var(--text-primary);
+      font-family: inherit;
+      transition: var(--transition);
+      outline: none;
+    }
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--tt-pink);
+      box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.08);
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-textarea { resize: vertical; min-height: 72px; }
+    .form-hint { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+    .form-conference-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--tt-pink-bg);
+      border: 1px solid var(--tt-pink-light);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--tt-pink);
+    }
+    .form-conference-tag svg { width: 14px; height: 14px; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      background: var(--gradient-tt);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.2);
+    }
+    .btn-submit:hover {
+      box-shadow: 0 6px 20px rgba(225, 29, 72, 0.3);
+      transform: translateY(-1px);
+    }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* Success */
+    .form-success { text-align: center; padding: 20px 0; }
+    .form-success .check-circle {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #ecfdf5;
+      border: 2px solid var(--accent-green);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px;
+      animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .form-success .check-circle svg { width: 24px; height: 24px; color: var(--accent-green); }
+    .form-success h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .form-success p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+    @keyframes scaleIn {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ */
+    .footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+    .footer p { font-size: 12px; color: var(--text-muted); }
+    .footer a { color: var(--tt-pink); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--accent-green);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      font-size: 13px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 2000;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: 0.25s ease;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast svg { color: var(--accent-green); width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+    .empty-state svg { width: 40px; height: 40px; margin-bottom: 12px; opacity: 0.4; }
+    .empty-state p { font-size: 14px; }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .page-wrapper { padding: 16px; }
+      .header { flex-direction: column; align-items: flex-start; }
+      .conf-row { flex-direction: column; gap: 8px; }
+      .conf-date-badge { display: flex; align-items: center; gap: 8px; width: auto; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .calendar-grid { overflow-x: auto; }
+      .cal-cell { min-height: 70px; }
+      .cal-event { font-size: 9px; padding: 2px 4px; }
+    }
+    @media (max-width: 480px) {
+      .stats-bar { grid-template-columns: 1fr; }
+      .filters-section { gap: 6px; }
+    }
+
+    /* Animations */
+    .conf-card { animation: fadeUp 0.35s ease both; }
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════════════════════════════════════════
+       ADMIN PANEL
+       ═══════════════════════════════════════════ */
+    .admin-panel {
+      display: none;
+      margin-top: 40px;
+    }
+    .admin-panel.visible { display: block; }
+
+    .admin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .admin-header h2 {
+      font-size: 20px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .admin-header h2 svg { width: 20px; height: 20px; color: var(--tt-pink); }
+    .admin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--tt-pink-bg);
+      color: var(--tt-pink);
+      border: 1px solid var(--tt-pink-light);
+    }
+
+    .admin-section {
+      margin-bottom: 32px;
+    }
+    .admin-section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .admin-section-title .count {
+      background: var(--bg-muted);
+      padding: 2px 8px;
+      border-radius: 100px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .admin-table-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .admin-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      background: var(--bg-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .admin-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-primary);
+      vertical-align: top;
+    }
+    .admin-table tr:last-child td { border-bottom: none; }
+    .admin-table tr:hover td { background: rgba(0,0,0,0.015); }
+
+    .admin-table .conf-name-cell { font-weight: 600; }
+    .admin-table .email-cell { color: var(--accent-blue); }
+    .admin-table .date-cell {
+      color: var(--text-muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .admin-table .justification-cell {
+      max-width: 300px;
+      color: var(--text-secondary);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      padding: 2px 8px;
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .status-badge.pending { background: #fef3c7; color: #b45309; }
+    .status-badge.approved { background: #d1fae5; color: #047857; }
+    .status-badge.declined { background: #fee2e2; color: #dc2626; }
+
+    .admin-empty {
+      text-align: center;
+      padding: 32px 16px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .admin-delete-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .admin-delete-btn:hover {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #dc2626;
+    }
+
+    @media (max-width: 768px) {
+      .admin-table-wrap { overflow-x: auto; }
+      .admin-table { min-width: 600px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="noise"></div>
+
+  <div class="page-wrapper">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-left">
+        <div class="logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div>
+          <div class="header-title">Conference Calendar</div>
+          <div class="header-subtitle">HR & Talent Acquisition Events · 2026–2027</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="btn btn-ghost" id="btn-suggest" onclick="openSuggestModal()" style="border-style: dashed;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          Suggest a Conference
+        </button>
+        <div class="view-toggle" id="view-toggle">
+          <button class="view-toggle-btn active" data-view="list" id="btn-list-view">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            List
+          </button>
+          <button class="view-toggle-btn" data-view="calendar" id="btn-cal-view">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Calendar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-label">Upcoming Events</div>
+        <div class="stat-value" id="stat-upcoming">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Next Event In</div>
+        <div class="stat-value" id="stat-next">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Cities</div>
+        <div class="stat-value" id="stat-cities">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Requests Submitted</div>
+        <div class="stat-value" id="stat-requests">0</div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters-section" id="filter-bar">
+      <span class="filters-label">Filter</span>
+      <button class="filter-btn active" data-filter="all" id="filter-all">All Events</button>
+      <button class="filter-btn" data-filter="tier-1" id="filter-tier-1">🎯 Must-Attend</button>
+      <button class="filter-btn" data-filter="tier-2" id="filter-tier-2">⚡ High Value</button>
+      <button class="filter-btn" data-filter="tier-3" id="filter-tier-3">👀 Worth Watching</button>
+      <button class="filter-btn" data-filter="upcoming" id="filter-upcoming">Upcoming Only</button>
+    </div>
+
+    <!-- List View -->
+    <div class="list-view active" id="list-view"></div>
+
+    <!-- Calendar View -->
+    <div class="calendar-view" id="calendar-view">
+      <div class="calendar-nav">
+        <button class="cal-nav-btn" id="cal-prev">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="calendar-nav-title" id="cal-title">September 2026</div>
+        <button class="cal-nav-btn" id="cal-next">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      <div class="calendar-grid-header">
+        <div class="cal-day-header">Sun</div>
+        <div class="cal-day-header">Mon</div>
+        <div class="cal-day-header">Tue</div>
+        <div class="cal-day-header">Wed</div>
+        <div class="cal-day-header">Thu</div>
+        <div class="cal-day-header">Fri</div>
+        <div class="cal-day-header">Sat</div>
+      </div>
+      <div class="calendar-grid" id="cal-grid"></div>
+    </div>
+
+    <!-- Calendar popup -->
+    <div class="cal-popup" id="cal-popup">
+      <div class="cal-popup-name" id="popup-name"></div>
+      <div class="cal-popup-meta" id="popup-dates"></div>
+      <div class="cal-popup-meta" id="popup-location"></div>
+      <div class="cal-popup-meta" id="popup-cost"></div>
+      <div class="cal-popup-desc" id="popup-desc"></div>
+      <div class="cal-popup-actions" id="popup-actions"></div>
+    </div>
+
+    <!-- Admin Panel (visible when ?admin is in URL) -->
+    <div class="admin-panel" id="admin-panel">
+      <div class="admin-header">
+        <h2>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Admin Panel
+        </h2>
+        <span class="admin-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/></svg>
+          Live Data
+        </span>
+      </div>
+
+      <!-- Attendance Requests -->
+      <div class="admin-section">
+        <div class="admin-section-title">
+          Attendance Requests
+          <span class="count" id="admin-req-count">0</span>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="admin-requests-table">
+            <thead>
+              <tr>
+                <th>Rep</th>
+                <th>Email</th>
+                <th>Conference</th>
+                <th>Dates</th>
+                <th>Justification</th>
+                <th>Submitted</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="admin-requests-body">
+              <tr><td colspan="7" class="admin-empty">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Conference Suggestions -->
+      <div class="admin-section">
+        <div class="admin-section-title">
+          Conference Suggestions
+          <span class="count" id="admin-sug-count">0</span>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="admin-suggestions-table">
+            <thead>
+              <tr>
+                <th>Conference</th>
+                <th>Dates</th>
+                <th>Location</th>
+                <th>Why Attend</th>
+                <th>Submitted By</th>
+                <th>Status</th>
+                <th>Submitted</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="admin-suggestions-body">
+              <tr><td colspan="8" class="admin-empty">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Teamtailor Sales · Conference Tracker · Last updated July 2026</p>
+    </footer>
+  </div>
+
+  <!-- Request Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+      <div id="modal-form-view">
+        <h2>Request to Attend</h2>
+        <div class="modal-subtitle" id="modal-subtitle">Submit your interest and we'll loop you into planning.</div>
+
+        <form id="request-form">
+          <div class="form-group">
+            <label class="form-label">Conference</label>
+            <div class="form-conference-tag" id="form-conference-tag">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span id="form-conference-name"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="rep-name">Your Name *</label>
+            <input type="text" class="form-input" id="rep-name" name="rep_name" placeholder="e.g. Sarah Johnson" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="rep-email">Your Email *</label>
+            <input type="email" class="form-input" id="rep-email" name="rep_email" placeholder="you@teamtailor.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="justification">Why do you want to attend?</label>
+            <textarea class="form-textarea" id="justification" name="justification" placeholder="Key accounts in the area, specific sessions, networking goals..."></textarea>
+            <div class="form-hint">Optional — helps prioritize approvals</div>
+          </div>
+
+          <button type="submit" class="btn-submit" id="btn-submit">Submit Request</button>
+        </form>
+      </div>
+
+      <div id="modal-success-view" style="display: none;">
+        <div class="form-success">
+          <div class="check-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>You're on the list!</h3>
+          <p>Your request has been submitted. We'll review it and loop you into planning if approved.</p>
+        </div>
+      </div>
+
+      <div id="modal-duplicate-view" style="display: none;">
+        <div class="form-success">
+          <div class="check-circle" style="background: #eff6ff; border-color: var(--accent-blue);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3>You've already submitted!</h3>
+          <p id="duplicate-message">You already requested to attend this conference. We've got you covered.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Suggest Conference Modal -->
+  <div class="modal-overlay" id="suggest-overlay">
+    <div class="modal" id="suggest-modal" style="max-width: 520px;">
+      <button class="modal-close" id="suggest-close" aria-label="Close modal">&times;</button>
+      <div id="suggest-form-view">
+        <h2>Suggest a Conference</h2>
+        <div class="modal-subtitle">Know an event we should attend? Submit it for review.</div>
+
+        <form id="suggest-form">
+          <div class="form-group">
+            <label class="form-label" for="sg-name">Conference Name *</label>
+            <input type="text" class="form-input" id="sg-name" placeholder="e.g. Talent Connect 2027" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="sg-dates">Dates</label>
+              <input type="text" class="form-input" id="sg-dates" placeholder="e.g. Mar 10–12, 2027">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sg-location">Location</label>
+              <input type="text" class="form-input" id="sg-location" placeholder="e.g. Austin, TX">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="sg-url">Event Website</label>
+              <input type="url" class="form-input" id="sg-url" placeholder="https://...">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sg-cost">Estimated Cost</label>
+              <input type="text" class="form-input" id="sg-cost" placeholder="e.g. ~$500">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="sg-why">Why should we attend?</label>
+            <textarea class="form-textarea" id="sg-why" placeholder="Target buyers in attendance, relevant sessions, networking value..."></textarea>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="sg-your-name">Your Name *</label>
+              <input type="text" class="form-input" id="sg-your-name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sg-your-email">Your Email *</label>
+              <input type="email" class="form-input" id="sg-your-email" placeholder="you@teamtailor.com" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit" id="sg-submit">Submit Suggestion</button>
+          <div class="form-hint" style="text-align: center; margin-top: 8px;">Suggestions are reviewed before being added to the board.</div>
+        </form>
+      </div>
+
+      <div id="suggest-success-view" style="display: none;">
+        <div class="form-success">
+          <div class="check-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>Suggestion Submitted!</h3>
+          <p>Thanks for the recommendation. We'll review it and add it to the board if it's a good fit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <span id="toast-text">Request submitted!</span>
+  </div>
+
+  <script>
+    // ═══════════════════════════════════════════
+    // SUPABASE CONFIG
+    // ═══════════════════════════════════════════
+    const SUPABASE_URL = 'https://tqmpaaxocpwmziivxkym.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRxbXBhYXhvY3B3bXppaXZ4a3ltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExOTM4MTQsImV4cCI6MjA5Njc2OTgxNH0.HKzwSig37xAC-zv5HE34HEsJ7vk8wZqq6AxyeYxLq8Q';
+
+    // ═══════════════════════════════════════════
+    // CONFERENCE DATA
+    // ═══════════════════════════════════════════
+    const conferences = [
+      {
+        name: 'SHRM Annual Conference 2026',
+        dates: 'Jun 16–19, 2026',
+        startDate: '2026-06-16',
+        endDate: '2026-06-19',
+        location: 'Orlando, FL',
+        tier: 1,
+        cost: '~$2,595',
+        url: 'https://annual.shrm.org/',
+        past: true,
+        description: 'The largest HR conference globally — Orange County Convention Center. Massive TA & employer branding track. Flagged for 2027 planning.',
+        whyTT: 'Direct access to tens of thousands of HR buyers evaluating ATS platforms.'
+      },
+      {
+        name: 'Chicago SHRM Elevate',
+        dates: 'Sept 2, 2026',
+        startDate: '2026-09-02',
+        endDate: '2026-09-02',
+        location: 'Chicago, IL',
+        tier: 2,
+        cost: 'TBD',
+        url: 'https://www.chicagoshrm.org/',
+        past: false,
+        description: 'One-day local HR conference — "Leading in the New Reality of Work." Full day of sessions (8:15 AM–4:30 PM) plus networking happy hour. 🏠 Home turf advantage.',
+        whyTT: 'Zero travel cost. Local Chicago HR leaders = warm leads in our backyard. Easy team attendance.'
+      },
+      {
+        name: 'HRO Today TA Summit',
+        dates: 'Sept 15–16, 2026',
+        startDate: '2026-09-15',
+        endDate: '2026-09-16',
+        location: 'Atlanta, GA',
+        tier: 3,
+        cost: 'Invite-based',
+        url: 'https://www.hrotoday.com/hro-today-talent-acquisition-summit/',
+        past: false,
+        description: 'Intimate executive-level TA summit at the Loudermilk Conference Center. CHRO and VP Talent audience with focused networking.',
+        whyTT: 'Small group format = high-quality conversations with senior TA decision-makers.'
+      },
+      {
+        name: 'RecFest USA 2026',
+        dates: 'Sept 23–24, 2026',
+        startDate: '2026-09-23',
+        endDate: '2026-09-24',
+        location: 'Nashville, TN',
+        tier: 1,
+        cost: '$99/person',
+        url: 'https://recfest.com/',
+        past: false,
+        description: 'Festival-style TA event at The Fairgrounds Nashville. Multiple stages, interactive activations, thousands of in-house recruiters. Team packages at $55/person.',
+        whyTT: 'Perfect audience — in-house TA teams actively evaluating ATS & employer branding tools.'
+      },
+      {
+        name: 'LinkedIn Talent Connect 2026',
+        dates: 'Sept 28–30, 2026',
+        startDate: '2026-09-28',
+        endDate: '2026-09-30',
+        location: 'New York, NY',
+        tier: 1,
+        cost: 'Invite-only / Free virtual',
+        url: 'https://www.linkedintalentconnect.com/',
+        past: false,
+        description: 'LinkedIn\'s premier TA event at the Javits Center. In-person summit for senior leaders + massive global virtual broadcast. AI in TA, employer branding, talent strategy.',
+        whyTT: 'LinkedIn is the #1 sourcing channel — brings together the exact TA leaders who buy ATS tools.'
+      },
+      {
+        name: 'EDUCAUSE Annual Conference 2026',
+        dates: 'Sept 29–Oct 2, 2026',
+        startDate: '2026-09-29',
+        endDate: '2026-10-02',
+        location: 'Denver, CO',
+        tier: 2,
+        cost: 'TBD',
+        url: 'https://events.educause.edu/',
+        past: false,
+        description: 'The premier higher education technology conference at the Colorado Convention Center. IT leaders, CIOs, and admin from colleges & universities. Online component Oct 14–15.',
+        whyTT: 'Higher ed institutions are heavy ATS buyers — centralized HR hiring across campuses. Strong vertical for TT.'
+      },
+      {
+        name: 'HRO Today CHRO Forum',
+        dates: 'Oct 5, 2026',
+        startDate: '2026-10-05',
+        endDate: '2026-10-05',
+        location: 'Chicago, IL',
+        tier: 3,
+        cost: 'Invite-only',
+        url: 'https://www.hrotoday.com/events/',
+        past: false,
+        description: 'Regional CHRO forum — small, curated group of senior HR leaders in the Midwest. Invite-only format.',
+        whyTT: 'Executive-level access in a low-noise environment. Great for strategic account development.'
+      },
+      {
+        name: 'SPARK Talent 2026 (HCI)',
+        dates: 'Oct 6–8, 2026',
+        startDate: '2026-10-06',
+        endDate: '2026-10-08',
+        location: 'Orlando, FL',
+        tier: 3,
+        cost: '~$1,500–$2,500',
+        url: 'https://www.hci.org/',
+        past: false,
+        description: 'Human Capital Institute\'s flagship talent conference at Disney Springs. Hands-on workshops on talent management, internal mobility, and AI in workforce planning.',
+        whyTT: 'Attracts mid-to-senior level talent leaders actively building out their TA tech stacks.'
+      },
+      {
+        name: 'Wharton People Analytics Conference',
+        dates: 'Oct 9, 2026',
+        startDate: '2026-10-09',
+        endDate: '2026-10-09',
+        location: 'Philadelphia, PA',
+        tier: 3,
+        cost: '$150–$800',
+        url: 'https://wpa.wharton.upenn.edu/',
+        past: false,
+        description: 'Premier academic + industry gathering at Wharton School. Data scientists, HR leaders, and academics on workforce data, AI, and talent analytics.',
+        whyTT: 'Positions Teamtailor as a data-driven, analytics-first ATS. Innovative people leaders who value reporting.'
+      },
+      {
+        name: 'HR Tech Conference 2026',
+        dates: 'Oct 20–22, 2026',
+        startDate: '2026-10-20',
+        endDate: '2026-10-22',
+        location: 'Las Vegas, NV',
+        tier: 1,
+        cost: '$1,295–$1,995',
+        url: 'https://www.hrtechnologyconference.com/',
+        past: false,
+        description: 'The #1 HR technology event at Mandalay Bay. Massive expo floor, product demos, analyst briefings. ⚡ Super Saver pricing ($1,295) ends July 31.',
+        whyTT: 'Where HR tech buying decisions get made. Critical for competitive positioning and pipeline.'
+      },
+      {
+        name: 'RecOps Con 2026',
+        dates: 'Oct 22–23, 2026',
+        startDate: '2026-10-22',
+        endDate: '2026-10-23',
+        location: 'Chicago, IL',
+        tier: 1,
+        cost: 'TBD',
+        url: 'https://recopscon.com/',
+        past: false,
+        description: 'Recruiting operations conference at Convene (311 W Monroe). Tools, data, and processes for high-performing TA teams. Pre-conference hackathon at Palmer House Hilton. 🏠 Home turf.',
+        whyTT: 'RecOps practitioners are our power users. In our city = full team can attend. ATS tooling is core to the conversation.'
+      },
+      {
+        name: 'AASPA 88th Annual Conference',
+        dates: 'Oct 12–15, 2026',
+        startDate: '2026-10-12',
+        endDate: '2026-10-15',
+        location: 'Austin, TX',
+        tier: 1,
+        cost: '$775–$1,225',
+        url: 'https://www.aaspa.org/events/2026-annual-conference',
+        past: false,
+        description: 'American Association of School Personnel Administrators at the Austin Marriott Downtown. PK-12 HR leaders, superintendents, and recruiting professionals. Early bird ends Aug 3.',
+        whyTT: 'Directly targets K-12 school district HR — a core TT vertical. These buyers choose the ATS for entire districts.'
+      },
+      {
+        name: 'Gartner ReimagineHR 2026',
+        dates: 'Oct 26–28, 2026',
+        startDate: '2026-10-26',
+        endDate: '2026-10-28',
+        location: 'Orlando, FL',
+        tier: 2,
+        cost: '$4,875–$5,475',
+        url: 'https://www.gartner.com/en/conferences/na/human-resources-us',
+        past: false,
+        description: 'Gartner\'s flagship HR event at Walt Disney World Swan & Dolphin. Data-driven insights for CHROs on talent acquisition, HR tech, and workforce AI.',
+        whyTT: 'CHROs and Heads of TA are key ATS decision-makers. Very high-value audience, premium positioning.'
+      },
+      {
+        name: 'CultureCon 2026',
+        dates: 'Oct 27–29, 2026',
+        startDate: '2026-10-27',
+        endDate: '2026-10-29',
+        location: 'Las Vegas, NV',
+        tier: 3,
+        cost: '~$1,000–$1,800',
+        url: 'https://www.cultureconusa.org/',
+        past: false,
+        description: 'Dedicated workplace culture conference at Planet Hollywood. Culture strategy, engagement, and organizational development for HR leaders.',
+        whyTT: 'Culture and employer branding are deeply connected. Attendees care about how hiring reflects company culture.'
+      },
+      {
+        name: 'RallyFwd Virtual Conference',
+        dates: 'Nov 2026 (date TBA)',
+        startDate: '2026-11-01',
+        endDate: '2026-11-01',
+        location: 'Virtual (Free)',
+        tier: 3,
+        cost: 'Free',
+        url: 'https://rallyfwd.com/',
+        past: false,
+        description: 'Free bi-annual virtual conference by Rally Recruitment Marketing. Focused on recruitment marketing, employer branding, and candidate experience.',
+        whyTT: '100% aligned with TT positioning. Free speaking/sponsorship opportunity to reach 5,000–10,000 RM professionals.'
+      },
+      {
+        name: 'ERE Recruiting Innovation Summit',
+        dates: 'Nov 10–11, 2026',
+        startDate: '2026-11-10',
+        endDate: '2026-11-11',
+        location: 'San Diego, CA',
+        tier: 2,
+        cost: 'TBD',
+        url: 'https://ererecruitingconference.com/',
+        past: false,
+        description: 'Practitioner-led summit at Hyatt Regency La Jolla. Unique "Speaker Office Hours" for deep problem-solving conversations with TA leaders.',
+        whyTT: 'Intimate event focused on recruiting ops and AI-powered hiring — strong fit for TT product demos.'
+      },
+      {
+        name: 'TA Week 2027',
+        dates: 'Feb 1–4, 2027',
+        startDate: '2027-02-01',
+        endDate: '2027-02-04',
+        location: 'San Diego, CA',
+        tier: 1,
+        cost: '~$1,195–$2,670',
+        url: 'https://talentacquisitionweek.com/',
+        past: false,
+        description: 'The go-to event for sourcing, employer branding, and recruiting ops at Hyatt Regency Mission Bay. Highly tactical — focused on "what\'s working right now."',
+        whyTT: 'Perfect audience alignment. TA operators evaluating sourcing, employer brand, and ATS tooling.'
+      },
+      {
+        name: 'i4cp Next Practices Now 2027',
+        dates: 'Mar 23–25, 2027',
+        startDate: '2027-03-23',
+        endDate: '2027-03-25',
+        location: 'Scottsdale, AZ',
+        tier: 3,
+        cost: '$4,095–$4,895',
+        url: 'https://www.i4cp.com/',
+        past: false,
+        description: 'Research-backed HR leadership event at Fairmont Scottsdale Princess. ⚠️ Practitioner-only — vendors not permitted. Send internal HR team for market intelligence.',
+        whyTT: 'Market intelligence only — understand what senior HR leaders are prioritizing for ATS/TA decisions.'
+      },
+      {
+        name: 'SHRM Talent 2027',
+        dates: 'Apr 11–14, 2027',
+        startDate: '2027-04-11',
+        endDate: '2027-04-14',
+        location: 'Aurora, CO',
+        tier: 1,
+        cost: '$1,895–$2,695',
+        url: 'https://shrm.org/talent',
+        past: false,
+        description: 'SHRM\'s dedicated TA conference at Gaylord Rockies Resort. Hands-on workshops, labs, 100+ sessions. Early bird ends Dec 5, 2026.',
+        whyTT: 'Direct TA buyer audience under the SHRM umbrella — massive reach and credibility.'
+      },
+      {
+        name: 'Transform 2027',
+        dates: 'Apr 12–14, 2027',
+        startDate: '2027-04-12',
+        endDate: '2027-04-14',
+        location: 'Las Vegas, NV',
+        tier: 2,
+        cost: '~$2,000–$3,500',
+        url: 'https://transform.us/',
+        past: false,
+        description: 'Premier "future of work" conference at Fontainebleau Las Vegas. Known for startup energy and progressive approach. AI, culture, people leadership.',
+        whyTT: 'Attracts innovative, forward-thinking HR leaders who adopt modern ATS platforms. ~1,500–2,000 attendees.'
+      },
+      {
+        name: 'UNLEASH America 2027',
+        dates: 'Apr 13–15, 2027',
+        startDate: '2027-04-13',
+        endDate: '2027-04-15',
+        location: 'Miami, FL',
+        tier: 2,
+        cost: 'TBD',
+        url: 'https://unleash.ai/',
+        past: false,
+        description: 'Global HR tech showcase at Miami Beach Convention Center (first time in Miami). Connecting NA, LATAM, and European HR communities.',
+        whyTT: 'Strategic brand positioning with global HR leaders. Great for enterprise pipeline development.'
+      },
+      {
+        name: 'IAMPHENOM 2027',
+        dates: 'Apr 20–22, 2027',
+        startDate: '2027-04-20',
+        endDate: '2027-04-22',
+        location: 'Philadelphia, PA',
+        tier: 2,
+        cost: '~$500–$1,200',
+        url: 'https://www.iamphenom.com/',
+        past: false,
+        description: 'Phenom\'s annual conference on talent experience, AI, and automation. 3,000–5,000 attendees. Competitor event, but TA leaders evaluating their tech stack.',
+        whyTT: 'Competitive intelligence + attendees actively focused on talent experience platforms and ATS capabilities.'
+      },
+      {
+        name: 'DEAMcon27',
+        dates: 'Apr 21–23, 2027',
+        startDate: '2027-04-21',
+        endDate: '2027-04-23',
+        location: 'Newport, RI',
+        tier: 3,
+        cost: '~$800–$1,500',
+        url: 'https://deamcon.org/',
+        past: false,
+        description: 'DirectEmployers Association conference at Newport Harbor Island Resort. HR compliance, OFCCP, recruitment marketing, AI, and workforce inclusion.',
+        whyTT: 'Enterprise HR/TA professionals focused on the intersection of compliance and recruiting — core ATS territory.'
+      },
+      {
+        name: 'Workhuman Live 2027',
+        dates: 'Apr 26–29, 2027',
+        startDate: '2027-04-26',
+        endDate: '2027-04-29',
+        location: 'Nashville, TN',
+        tier: 2,
+        cost: '$1,195 early bird',
+        url: 'https://www.workhumanlive.com/',
+        past: false,
+        description: 'Major conference at Gaylord Opryland Resort on workplace culture, employee experience, and human-centered leadership. C-suite heavy. Full price $2,295.',
+        whyTT: 'Employer branding angle — connects TT career site capabilities to culture-first buyers.'
+      },
+      {
+        name: 'SHRM Annual Conference 2027',
+        dates: 'Jun 27–30, 2027',
+        startDate: '2027-06-27',
+        endDate: '2027-06-30',
+        location: 'Chicago, IL',
+        tier: 1,
+        cost: 'TBD',
+        url: 'https://annual.shrm.org/',
+        past: false,
+        description: 'Don\'t miss it again. The biggest HR event of the year returns to Chicago. Plan early for booth and team logistics.',
+        whyTT: 'Largest concentration of HR buyers anywhere. Essential for brand awareness and lead gen.'
+      },
+      {
+        name: 'HR Tech Conference 2027',
+        dates: 'Oct 25–28, 2027',
+        startDate: '2027-10-25',
+        endDate: '2027-10-28',
+        location: 'Las Vegas, NV',
+        tier: 2,
+        cost: 'TBD',
+        url: 'https://www.hrtechnologyconference.com/',
+        past: false,
+        description: 'Mandalay Bay again. Book early for the annual HR Tech presence. Plan for booth, demos, and analyst meetings.',
+        whyTT: 'Annual must-have presence. Start planning now for 2027 booth and demo strategy.'
+      },
+      {
+        name: 'HRPA Summit 2026',
+        dates: 'Oct 19, 2026',
+        startDate: '2026-10-19',
+        endDate: '2026-10-19',
+        location: 'Toronto, ON 🍁',
+        tier: 1,
+        cost: 'TBD',
+        url: 'https://www.hrpa.ca/',
+        past: false,
+        description: 'Ontario\'s premier HR leadership event at the Westin Harbour Castle — "Human Advantage" theme. AI in HR, compliance, talent strategy, employee experience. Hybrid format available.',
+        whyTT: '🍁 Toronto home turf. HRPA is the governing HR body in Ontario — direct access to the buyers who choose ATS for Ontario employers.'
+      },
+      {
+        name: 'Tech Talent North (West)',
+        dates: 'Nov 17, 2026',
+        startDate: '2026-11-17',
+        endDate: '2026-11-17',
+        location: 'Vancouver, BC 🍁',
+        tier: 3,
+        cost: 'TBD',
+        url: 'https://techtalentnorth.com/',
+        past: false,
+        description: 'Premier conference for People & Culture leaders in the Canadian tech sector. Western edition in Vancouver.',
+        whyTT: '🍁 Canadian tech companies are ideal TT customers. People & Culture leaders are the ATS buyers.'
+      },
+      {
+        name: 'Future of Work Canada',
+        dates: 'Mar 2–3, 2027',
+        startDate: '2027-03-02',
+        endDate: '2027-03-03',
+        location: 'Toronto, ON 🍁',
+        tier: 2,
+        cost: 'TBD',
+        url: 'https://futureworkseries.com/',
+        past: false,
+        description: 'Canada\'s premier HR, talent, and people leadership event at Metro Toronto Convention Centre. Three tracks: Change & Transformation, People & Experience, Learning & Leadership.',
+        whyTT: '🍁 Toronto home turf. Major Canadian HR event — strong for brand awareness and pipeline in the Canadian market.'
+      },
+      {
+        name: 'CPHR BC & Yukon HR Conference',
+        dates: 'May 3–5, 2027',
+        startDate: '2027-05-03',
+        endDate: '2027-05-05',
+        location: 'Vancouver, BC 🍁',
+        tier: 2,
+        cost: 'TBD',
+        url: 'https://cphrbc.ca/',
+        past: false,
+        description: 'Largest HR event in Western Canada at the Vancouver Convention Centre. AI transformation, human-centered change, and talent strategy.',
+        whyTT: '🍁 Biggest HR conference in Western Canada. Covers the entire BC/Yukon HR market in one event.'
+      },
+      {
+        name: 'Tech Talent North (East)',
+        dates: 'Spring 2027',
+        startDate: '2027-04-01',
+        endDate: '2027-04-01',
+        location: 'Toronto, ON 🍁',
+        tier: 2,
+        cost: 'TBD',
+        url: 'https://techtalentnorth.com/',
+        past: false,
+        description: 'Eastern edition of Canada\'s top People & Culture conference for tech companies. Exact dates TBA. 🍁 Home turf for the Toronto team.',
+        whyTT: '🍁 Toronto home turf. Canadian tech companies evaluating modern ATS platforms — our exact buyer profile.'
+      }
+    ];
+
+    // ═══════════════════════════════════════════
+    // SVG ICONS
+    // ═══════════════════════════════════════════
+    const icons = {
+      calendar: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+      pin: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+      dollar: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+      link: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>',
+      hand: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-4 0v4"/><path d="M14 10V4a2 2 0 0 0-4 0v7"/><path d="M10 10.5V2a2 2 0 0 0-4 0v9"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>',
+    };
+
+    const monthShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const monthFull = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0];
+
+    // Mark past
+    conferences.forEach(c => { if (c.startDate < todayStr) c.past = true; });
+
+    // ═══════════════════════════════════════════
+    // LIST VIEW
+    // ═══════════════════════════════════════════
+    function groupByMonth(confs) {
+      const months = {};
+      confs.forEach(c => {
+        const d = new Date(c.startDate + 'T00:00:00');
+        const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+        const label = `${monthFull[d.getMonth()]} ${d.getFullYear()}`;
+        if (!months[key]) months[key] = { label, conferences: [] };
+        months[key].conferences.push(c);
+      });
+      return Object.entries(months).sort(([a],[b]) => a.localeCompare(b));
+    }
+
+    function tierLabel(t) { return { 1:'Must-Attend', 2:'High Value', 3:'Worth Watching' }[t] || ''; }
+    function tierClass(t) { return `t${t}`; }
+
+    function renderCard(conf, i) {
+      const d = new Date(conf.startDate + 'T00:00:00');
+      const badgeCls = conf.past ? 'past-badge' : tierClass(conf.tier);
+      const badgeText = conf.past ? 'Past' : tierLabel(conf.tier);
+      const cardCls = conf.past ? `conf-card past tier-${conf.tier}` : `conf-card tier-${conf.tier}`;
+
+      return `
+        <div class="${cardCls}" data-tier="${conf.tier}" data-past="${conf.past}" style="animation-delay: ${i * 0.04}s">
+          <div class="conf-row">
+            <div class="conf-date-badge">
+              <div class="conf-date-month">${monthShort[d.getMonth()]}</div>
+              <div class="conf-date-day">${d.getDate()}</div>
+              <div class="conf-date-year">${d.getFullYear()}</div>
+            </div>
+            <div class="conf-main">
+              <div class="conf-name">
+                ${conf.name}
+                <span class="tier-badge ${badgeCls}">${badgeText}</span>
+              </div>
+              <div class="conf-meta">
+                <span class="conf-meta-item">${icons.calendar} ${conf.dates}</span>
+                <span class="conf-meta-item">${icons.pin} ${conf.location}</span>
+                <span class="conf-meta-item">${icons.dollar} ${conf.cost}</span>
+              </div>
+              <div class="conf-description">${conf.description}</div>
+              <div class="conf-why">TT Fit: <span>&nbsp;${conf.whyTT}</span></div>
+              <div class="conf-actions">
+                ${conf.past
+                  ? '<button class="btn btn-disabled">Event Has Passed</button>'
+                  : `<button class="btn btn-primary" onclick="openModal('${conf.name.replace(/'/g, "\\'")}', '${conf.dates}', '${conf.location}')">${icons.hand} Request to Attend</button>`
+                }
+                <a href="${conf.url}" target="_blank" rel="noopener" class="btn btn-ghost">${icons.link} Website</a>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function renderList(confs) {
+      const el = document.getElementById('list-view');
+      const grouped = groupByMonth(confs);
+      if (!grouped.length) {
+        el.innerHTML = '<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><p>No conferences match this filter.</p></div>';
+        return;
+      }
+      let idx = 0;
+      el.innerHTML = grouped.map(([, data]) => `
+        <div class="month-group">
+          <div class="month-label">${data.label}</div>
+          ${data.conferences.map(c => renderCard(c, idx++)).join('')}
+        </div>`).join('');
+    }
+
+    // ═══════════════════════════════════════════
+    // CALENDAR VIEW
+    // ═══════════════════════════════════════════
+    let calYear, calMonth;
+
+    function initCalendar() {
+      // Start at the first upcoming conference month
+      const upcoming = conferences.filter(c => !c.past).sort((a,b) => a.startDate.localeCompare(b.startDate));
+      if (upcoming.length) {
+        const d = new Date(upcoming[0].startDate + 'T00:00:00');
+        calYear = d.getFullYear();
+        calMonth = d.getMonth();
+      } else {
+        calYear = today.getFullYear();
+        calMonth = today.getMonth();
+      }
+      renderCalendar();
+    }
+
+    function renderCalendar() {
+      document.getElementById('cal-title').textContent = `${monthFull[calMonth]} ${calYear}`;
+      const grid = document.getElementById('cal-grid');
+
+      const firstDay = new Date(calYear, calMonth, 1).getDay();
+      const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+      const daysInPrev = new Date(calYear, calMonth, 0).getDate();
+
+      // Get events for this month
+      function eventsForDate(dateStr) {
+        return conferences.filter(c => {
+          return dateStr >= c.startDate && dateStr <= c.endDate;
+        });
+      }
+
+      let html = '';
+
+      // Prev month fill
+      for (let i = firstDay - 1; i >= 0; i--) {
+        const day = daysInPrev - i;
+        html += `<div class="cal-cell other-month"><div class="cal-date">${day}</div></div>`;
+      }
+
+      // Current month
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+        const isToday = dateStr === todayStr;
+        const events = eventsForDate(dateStr);
+
+        let eventsHtml = '';
+        events.forEach(ev => {
+          const cls = ev.past ? 'past-ev' : tierClass(ev.tier);
+          eventsHtml += `<div class="cal-event ${cls}" data-conf="${ev.name.replace(/"/g, '&quot;')}" onclick="showCalPopup(event, '${ev.name.replace(/'/g, "\\'")}')">${ev.name.length > 18 ? ev.name.slice(0,18) + '…' : ev.name}</div>`;
+        });
+
+        html += `<div class="cal-cell${isToday ? ' today' : ''}"><div class="cal-date">${d}</div>${eventsHtml}</div>`;
+      }
+
+      // Next month fill
+      const totalCells = firstDay + daysInMonth;
+      const remaining = (7 - (totalCells % 7)) % 7;
+      for (let i = 1; i <= remaining; i++) {
+        html += `<div class="cal-cell other-month"><div class="cal-date">${i}</div></div>`;
+      }
+
+      grid.innerHTML = html;
+    }
+
+    document.getElementById('cal-prev').addEventListener('click', () => {
+      calMonth--;
+      if (calMonth < 0) { calMonth = 11; calYear--; }
+      renderCalendar();
+    });
+    document.getElementById('cal-next').addEventListener('click', () => {
+      calMonth++;
+      if (calMonth > 11) { calMonth = 0; calYear++; }
+      renderCalendar();
+    });
+
+    // Calendar popup
+    function showCalPopup(evt, confName) {
+      evt.stopPropagation();
+      const conf = conferences.find(c => c.name === confName);
+      if (!conf) return;
+
+      const popup = document.getElementById('cal-popup');
+      document.getElementById('popup-name').textContent = conf.name;
+      document.getElementById('popup-dates').innerHTML = `${icons.calendar} ${conf.dates}`;
+      document.getElementById('popup-location').innerHTML = `${icons.pin} ${conf.location}`;
+      document.getElementById('popup-cost').innerHTML = `${icons.dollar} ${conf.cost}`;
+      document.getElementById('popup-desc').textContent = conf.description;
+
+      document.getElementById('popup-actions').innerHTML = conf.past
+        ? '<button class="btn btn-disabled" style="font-size:12px;padding:6px 12px;">Passed</button>'
+        : `<button class="btn btn-primary" style="font-size:12px;padding:6px 12px;" onclick="openModal('${conf.name.replace(/'/g, "\\'")}', '${conf.dates}', '${conf.location}')">${icons.hand} Request</button>
+           <a href="${conf.url}" target="_blank" class="btn btn-ghost" style="font-size:12px;padding:6px 12px;">${icons.link} Site</a>`;
+
+      // Position near the clicked element
+      const rect = evt.target.getBoundingClientRect();
+      popup.style.left = Math.min(rect.left, window.innerWidth - 300) + 'px';
+      popup.style.top = (rect.bottom + 8) + 'px';
+      popup.classList.add('visible');
+    }
+
+    // Close popup on outside click
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.cal-event') && !e.target.closest('.cal-popup')) {
+        document.getElementById('cal-popup').classList.remove('visible');
+      }
+    });
+
+    // ═══════════════════════════════════════════
+    // VIEW TOGGLE
+    // ═══════════════════════════════════════════
+    let currentView = 'list';
+
+    document.getElementById('view-toggle').addEventListener('click', e => {
+      const btn = e.target.closest('.view-toggle-btn');
+      if (!btn) return;
+      const view = btn.dataset.view;
+      if (view === currentView) return;
+      currentView = view;
+
+      document.querySelectorAll('.view-toggle-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.getElementById('list-view').classList.toggle('active', view === 'list');
+      document.getElementById('calendar-view').classList.toggle('active', view === 'calendar');
+
+      if (view === 'calendar' && !calYear) initCalendar();
+    });
+
+    // ═══════════════════════════════════════════
+    // STATS
+    // ═══════════════════════════════════════════
+    function updateStats() {
+      const upcoming = conferences.filter(c => !c.past);
+      document.getElementById('stat-upcoming').textContent = upcoming.length;
+
+      if (upcoming.length) {
+        const next = upcoming.sort((a,b) => a.startDate.localeCompare(b.startDate))[0];
+        const days = Math.ceil((new Date(next.startDate) - today) / (1000*60*60*24));
+        document.getElementById('stat-next').textContent = `${days}d`;
+      }
+
+      const cities = new Set(upcoming.map(c => c.location));
+      document.getElementById('stat-cities').textContent = cities.size;
+    }
+    updateStats();
+
+    // Fetch request count
+    async function fetchRequestCount() {
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/conference_attendance_requests?select=id`, {
+          headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, 'Prefer': 'count=exact' }
+        });
+        const count = res.headers.get('content-range')?.split('/')[1];
+        if (count) document.getElementById('stat-requests').textContent = count;
+      } catch(e) { /* table may not exist yet */ }
+    }
+    fetchRequestCount();
+
+    // ═══════════════════════════════════════════
+    // FILTERS
+    // ═══════════════════════════════════════════
+    document.getElementById('filter-bar').addEventListener('click', e => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const f = btn.dataset.filter;
+      let filtered = conferences;
+      switch(f) {
+        case 'tier-1': filtered = conferences.filter(c => c.tier === 1); break;
+        case 'tier-2': filtered = conferences.filter(c => c.tier === 2); break;
+        case 'tier-3': filtered = conferences.filter(c => c.tier === 3); break;
+        case 'upcoming': filtered = conferences.filter(c => !c.past); break;
+      }
+      renderList(filtered);
+    });
+
+    // ═══════════════════════════════════════════
+    // MODAL
+    // ═══════════════════════════════════════════
+    let selectedConference = {};
+
+    function openModal(name, dates, location) {
+      selectedConference = { name, dates, location };
+      document.getElementById('form-conference-name').textContent = name;
+      document.getElementById('modal-subtitle').textContent = `${dates} · ${location}`;
+      document.getElementById('request-form').reset();
+      document.getElementById('modal-form-view').style.display = 'block';
+      document.getElementById('modal-success-view').style.display = 'none';
+      document.getElementById('modal-duplicate-view').style.display = 'none';
+      document.getElementById('btn-submit').disabled = false;
+      document.getElementById('btn-submit').textContent = 'Submit Request';
+      document.getElementById('modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // Close any calendar popup
+      document.getElementById('cal-popup').classList.remove('visible');
+      setTimeout(() => document.getElementById('rep-name').focus(), 200);
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    document.getElementById('modal-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeSuggestModal(); } });
+
+    // ═══════════════════════════════════════════
+    // FORM SUBMISSION
+    // ═══════════════════════════════════════════
+    document.getElementById('request-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = document.getElementById('btn-submit');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Checking...';
+
+      const repEmail = document.getElementById('rep-email').value.trim();
+      const confName = selectedConference.name;
+
+      // Check for duplicate
+      try {
+        const checkRes = await fetch(
+          `${SUPABASE_URL}/rest/v1/conference_attendance_requests?rep_email=eq.${encodeURIComponent(repEmail)}&conference_name=eq.${encodeURIComponent(confName)}&select=submitted_at`,
+          { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+        );
+        if (checkRes.ok) {
+          const existing = await checkRes.json();
+          if (existing.length > 0) {
+            const when = new Date(existing[0].submitted_at);
+            const dateStr = `${monthShort[when.getMonth()]} ${when.getDate()}, ${when.getFullYear()}`;
+            document.getElementById('duplicate-message').textContent =
+              `You already requested to attend ${confName} on ${dateStr}. No need to submit again — we've got you covered!`;
+            document.getElementById('modal-form-view').style.display = 'none';
+            document.getElementById('modal-duplicate-view').style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Request';
+            setTimeout(closeModal, 4000);
+            return;
+          }
+        }
+      } catch(e) { /* continue with submission if check fails */ }
+
+      submitBtn.textContent = 'Submitting...';
+
+      const payload = {
+        conference_name: confName,
+        conference_dates: selectedConference.dates,
+        conference_location: selectedConference.location,
+        rep_name: document.getElementById('rep-name').value.trim(),
+        rep_email: repEmail,
+        justification: document.getElementById('justification').value.trim() || null
+      };
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/conference_attendance_requests`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok || res.status === 201) {
+          document.getElementById('modal-form-view').style.display = 'none';
+          document.getElementById('modal-success-view').style.display = 'block';
+          showToast(`Request submitted for ${confName}!`);
+          fetchRequestCount();
+          setTimeout(closeModal, 3000);
+        } else {
+          throw new Error(await res.text());
+        }
+      } catch(err) {
+        console.error('Submission error:', err);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Request';
+        showToast('Something went wrong — try again or reach out in #sales-enablement.');
+      }
+    });
+
+    function showToast(text) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-text').textContent = text;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+
+    // ═══════════════════════════════════════════
+    // SUGGEST CONFERENCE MODAL
+    // ═══════════════════════════════════════════
+    function openSuggestModal() {
+      document.getElementById('suggest-form').reset();
+      document.getElementById('suggest-form-view').style.display = 'block';
+      document.getElementById('suggest-success-view').style.display = 'none';
+      document.getElementById('sg-submit').disabled = false;
+      document.getElementById('sg-submit').textContent = 'Submit Suggestion';
+      document.getElementById('suggest-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => document.getElementById('sg-name').focus(), 200);
+    }
+
+    function closeSuggestModal() {
+      document.getElementById('suggest-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('suggest-close').addEventListener('click', closeSuggestModal);
+    document.getElementById('suggest-overlay').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeSuggestModal();
+    });
+
+    document.getElementById('suggest-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('sg-submit');
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      const payload = {
+        conference_name: document.getElementById('sg-name').value.trim(),
+        conference_url: document.getElementById('sg-url').value.trim() || null,
+        conference_dates: document.getElementById('sg-dates').value.trim() || null,
+        conference_location: document.getElementById('sg-location').value.trim() || null,
+        estimated_cost: document.getElementById('sg-cost').value.trim() || null,
+        submitted_by_name: document.getElementById('sg-your-name').value.trim(),
+        submitted_by_email: document.getElementById('sg-your-email').value.trim(),
+        why_relevant: document.getElementById('sg-why').value.trim() || null
+      };
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/conference_suggestions`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok || res.status === 201) {
+          document.getElementById('suggest-form-view').style.display = 'none';
+          document.getElementById('suggest-success-view').style.display = 'block';
+          showToast(`Suggestion submitted: ${payload.conference_name}`);
+          setTimeout(closeSuggestModal, 3000);
+        } else {
+          throw new Error(await res.text());
+        }
+      } catch(err) {
+        console.error('Suggest error:', err);
+        btn.disabled = false;
+        btn.textContent = 'Submit Suggestion';
+        showToast('Something went wrong — try again or reach out in #sales-enablement.');
+      }
+    });
+
+    // ═══════════════════════════════════════════
+    // ADMIN PANEL
+    // ═══════════════════════════════════════════
+    const isAdmin = new URLSearchParams(window.location.search).has('admin');
+
+    if (isAdmin) {
+      document.getElementById('admin-panel').classList.add('visible');
+      loadAdminData();
+    }
+
+    async function loadAdminData() {
+      // Load attendance requests
+      try {
+        const reqRes = await fetch(`${SUPABASE_URL}/rest/v1/conference_attendance_requests?select=*&order=submitted_at.desc`, {
+          headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+        });
+        if (reqRes.ok) {
+          const requests = await reqRes.json();
+          document.getElementById('admin-req-count').textContent = requests.length;
+          const tbody = document.getElementById('admin-requests-body');
+          if (!requests.length) {
+            tbody.innerHTML = '<tr><td colspan="7" class="admin-empty">No attendance requests yet.</td></tr>';
+          } else {
+            tbody.innerHTML = requests.map(r => `
+              <tr>
+                <td class="conf-name-cell">${esc(r.rep_name)}</td>
+                <td class="email-cell">${esc(r.rep_email)}</td>
+                <td>${esc(r.conference_name)}</td>
+                <td class="date-cell">${esc(r.conference_dates || '—')}</td>
+                <td class="justification-cell">${r.justification ? esc(r.justification) : '<span style="color:var(--text-muted)">—</span>'}</td>
+                <td class="date-cell">${formatDate(r.submitted_at)}</td>
+                <td><button class="admin-delete-btn" onclick="deleteRecord('conference_attendance_requests','${r.id}')">Delete</button></td>
+              </tr>`).join('');
+          }
+        }
+      } catch(e) { console.error('Failed to load requests:', e); }
+
+      // Load suggestions
+      try {
+        const sugRes = await fetch(`${SUPABASE_URL}/rest/v1/conference_suggestions?select=*&order=submitted_at.desc`, {
+          headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+        });
+        if (sugRes.ok) {
+          const suggestions = await sugRes.json();
+          document.getElementById('admin-sug-count').textContent = suggestions.length;
+          const tbody = document.getElementById('admin-suggestions-body');
+          if (!suggestions.length) {
+            tbody.innerHTML = '<tr><td colspan="8" class="admin-empty">No suggestions yet.</td></tr>';
+          } else {
+            tbody.innerHTML = suggestions.map(s => `
+              <tr>
+                <td class="conf-name-cell">${esc(s.conference_name)}${s.conference_url ? ` <a href="${esc(s.conference_url)}" target="_blank" style="color:var(--accent-blue);font-weight:400;">↗</a>` : ''}</td>
+                <td class="date-cell">${esc(s.conference_dates || 'TBD')}</td>
+                <td>${esc(s.conference_location || 'TBD')}</td>
+                <td class="justification-cell">${s.why_relevant ? esc(s.why_relevant) : '<span style="color:var(--text-muted)">—</span>'}</td>
+                <td>${esc(s.submitted_by_name)}<br><span class="email-cell" style="font-size:11px;">${esc(s.submitted_by_email)}</span></td>
+                <td><span class="status-badge ${s.status}">${s.status}</span></td>
+                <td class="date-cell">${formatDate(s.submitted_at)}</td>
+                <td><button class="admin-delete-btn" onclick="deleteRecord('conference_suggestions','${s.id}')">Delete</button></td>
+              </tr>`).join('');
+          }
+        }
+      } catch(e) { console.error('Failed to load suggestions:', e); }
+    }
+
+    async function deleteRecord(table, id) {
+      if (!confirm('Delete this record?')) return;
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, {
+          method: 'DELETE',
+          headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+        });
+        if (res.ok) {
+          loadAdminData();
+          fetchRequestCount();
+        } else {
+          alert('Failed to delete — check Supabase RLS policies.');
+        }
+      } catch(e) { alert('Delete failed: ' + e.message); }
+    }
+
+    function esc(str) {
+      if (!str) return '';
+      const d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    function formatDate(iso) {
+      if (!iso) return '—';
+      const d = new Date(iso);
+      return `${monthShort[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+    }
+
+    // ═══════════════════════════════════════════
+    // INIT
+    // ═══════════════════════════════════════════
+    renderList(conferences);
+    initCalendar();
+  </script>
+</body>
+</html>

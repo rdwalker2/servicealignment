@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 3 Checkpoints — Deep Dive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f17;
+    --surface: #1a1a28;
+    --surface-2: #222236;
+    --border: #2e2e48;
+    --text: #e8e8f0;
+    --text-muted: #7c7c98;
+    --text-dim: #55556e;
+    --cp1: #7b8cde;
+    --cp1-bg: rgba(123, 140, 222, 0.08);
+    --cp2: #4a9ea0;
+    --cp2-bg: rgba(74, 158, 160, 0.08);
+    --cp3: #5aab6e;
+    --cp3-bg: rgba(90, 171, 110, 0.08);
+    --warm: #d4a24e;
+    --warm-bg: rgba(212, 162, 78, 0.06);
+    --red: #c9555a;
+    --red-bg: rgba(201, 85, 90, 0.06);
+    --green: #5aab6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    -webkit-font-smoothing: antialiased;
+    cursor: default;
+  }
+
+  .deck { position: relative; width: 100vw; height: 100vh; }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 56px 100px 72px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .slide.active { opacity: 1; pointer-events: auto; }
+  .slide.active .anim { animation: fadeUp 0.6s ease both; }
+  .slide.active .anim-d1 { animation-delay: 0.1s; }
+  .slide.active .anim-d2 { animation-delay: 0.2s; }
+  .slide.active .anim-d3 { animation-delay: 0.3s; }
+  .slide.active .anim-d4 { animation-delay: 0.4s; }
+  .slide.active .anim-d5 { animation-delay: 0.5s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Typography */
+  .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0;
+  }
+  .label.cp1 { color: var(--cp1); }
+  .label.cp2 { color: var(--cp2); }
+  .label.cp3 { color: var(--cp3); }
+  .label.section { color: var(--warm); }
+  .label.neutral { color: var(--text-muted); }
+
+  h1 {
+    font-size: clamp(38px, 4.8vw, 68px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -2px;
+    text-align: center;
+    max-width: 950px;
+    opacity: 0;
+  }
+
+  h2 {
+    font-size: clamp(30px, 3.4vw, 52px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -1.2px;
+    max-width: 900px;
+    opacity: 0;
+  }
+  .centered { text-align: center; }
+  .left { text-align: left; align-self: flex-start; }
+
+  .subtitle {
+    font-size: clamp(15px, 1.5vw, 20px);
+    font-weight: 400;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 680px;
+    margin-top: 18px;
+    line-height: 1.6;
+    opacity: 0;
+  }
+
+  .big-num {
+    font-size: clamp(80px, 12vw, 160px);
+    font-weight: 900;
+    letter-spacing: -5px;
+    line-height: 1;
+    opacity: 0;
+  }
+
+  .quote {
+    font-size: clamp(17px, 1.8vw, 24px);
+    font-weight: 400;
+    font-style: italic;
+    text-align: center;
+    max-width: 720px;
+    line-height: 1.55;
+    color: var(--text);
+    opacity: 0.85;
+  }
+
+  /* Layout */
+  .content-left {
+    align-items: flex-start;
+    text-align: left;
+    padding: 56px 100px 72px;
+  }
+  .content-left h2 { text-align: left; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    width: 100%;
+    max-width: 1050px;
+    margin-top: 28px;
+    opacity: 0;
+  }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+    max-width: 1050px;
+    margin-top: 28px;
+    opacity: 0;
+  }
+
+  .five-col {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 28px;
+    opacity: 0;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+  }
+  .card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+  .card p, .card li {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+  .card ul { padding-left: 18px; list-style: disc; }
+  .card ul li { margin-bottom: 5px; }
+
+  .card-compact {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    text-align: center;
+  }
+  .card-compact .icon { font-size: 24px; margin-bottom: 8px; }
+  .card-compact h4 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: -0.2px;
+  }
+  .card-compact p {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Question slide layout */
+  .q-slide {
+    align-items: flex-start;
+    text-align: left;
+    padding: 56px 100px 72px;
+  }
+  .q-num {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0;
+  }
+  .q-question {
+    font-size: clamp(22px, 2.4vw, 34px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    max-width: 850px;
+    margin-bottom: 28px;
+    opacity: 0;
+  }
+  .q-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+    max-width: 950px;
+    opacity: 0;
+  }
+  .q-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .q-box h4 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .q-box p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+  .q-box p strong { color: var(--text); font-weight: 600; }
+
+  .q-insight {
+    margin-top: 20px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    max-width: 900px;
+    line-height: 1.6;
+    opacity: 0;
+  }
+  .q-insight strong { color: var(--text); }
+
+  /* Tables */
+  table {
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: collapse;
+    font-size: 14px;
+    opacity: 0;
+  }
+  th {
+    text-align: left;
+    padding: 11px 16px;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+  td:first-child { color: var(--text); font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+
+  /* Flow */
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+  }
+  .flow-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 28px;
+    text-align: center;
+    min-width: 155px;
+  }
+  .flow-step.active-step { border-color: var(--cp1); background: var(--cp1-bg); }
+  .flow-step .f-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .flow-step .f-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .flow-step .f-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 3px;
+  }
+  .flow-arrow { font-size: 18px; color: var(--text-dim); flex-shrink: 0; }
+
+  /* Bullet list */
+  .bullets {
+    list-style: none;
+    max-width: 850px;
+    width: 100%;
+    margin-top: 20px;
+    opacity: 0;
+  }
+  .bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 9px 0;
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+  .bullets li .bi {
+    flex-shrink: 0;
+    width: 22px;
+    text-align: center;
+    font-size: 13px;
+    padding-top: 3px;
+    font-weight: 700;
+  }
+  .bullets li strong { color: var(--text); font-weight: 600; }
+
+  /* Divider */
+  .divider {
+    width: 56px;
+    height: 3px;
+    border-radius: 2px;
+    margin: 22px 0;
+    opacity: 0.5;
+  }
+
+  /* Section break */
+  .section-break { background: var(--surface); }
+
+  /* DOA card */
+  .doa-card {
+    background: var(--surface);
+    border: 1px solid var(--red);
+    border-radius: 14px;
+    padding: 36px;
+    max-width: 780px;
+    text-align: left;
+    margin-top: 28px;
+    opacity: 0;
+  }
+  .doa-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--red);
+    margin-bottom: 14px;
+  }
+  .doa-card p {
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin-top: 12px;
+  }
+  .doa-card .rule {
+    font-weight: 700;
+    color: var(--text);
+    margin-top: 16px;
+  }
+
+  /* Wave table */
+  .wave-table {
+    max-width: 950px;
+  }
+  .wave-table td { font-size: 14px; }
+  .wave-table td:first-child { min-width: 100px; }
+
+  /* Navigation */
+  .nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    background: rgba(15, 15, 23, 0.9);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid var(--border);
+    z-index: 100;
+  }
+  .nav-counter {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    min-width: 60px;
+  }
+  .nav-title {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .nav-hint {
+    font-size: 10px;
+    color: var(--text-dim);
+    min-width: 100px;
+    text-align: right;
+  }
+  .nav-progress {
+    position: fixed;
+    bottom: 43px;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cp1), var(--cp2), var(--cp3));
+    transition: width 0.4s ease;
+    z-index: 101;
+  }
+
+  /* Pathway table */
+  .pathway-table td { font-size: 13.5px; }
+  .pathway-table td:nth-child(2) { font-style: italic; color: var(--text-dim); }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .slide, .q-slide, .content-left { padding: 36px 28px 64px; }
+    .two-col, .three-col, .five-col, .q-grid { grid-template-columns: 1fr; }
+    .flow { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- ═══════ 1: TITLE ═══════ -->
+  <div class="slide active" data-slide="1">
+    <div class="label neutral anim">Deep Dive Training — June 18, 2025</div>
+    <h1 class="anim anim-d1">The 3 Checkpoints</h1>
+    <p class="subtitle anim anim-d2">The exact questions. Why they're asked. What happens when you skip them.</p>
+    <div class="divider anim anim-d3" style="background:var(--cp1); margin-top:36px;"></div>
+    <p class="anim anim-d4" style="font-size:13px; color:var(--text-dim); margin-top:12px;">Teamtailor US · SMB Sales Team</p>
+  </div>
+
+  <!-- ═══════ 2: LAST TIME ═══════ -->
+  <div class="slide" data-slide="2">
+    <div class="label neutral anim">Last Session Recap</div>
+    <h2 class="centered anim anim-d1">What We Covered</h2>
+    <div class="three-col anim anim-d2" style="margin-top:32px;">
+      <div class="card" style="border-color:var(--cp1);">
+        <h3 style="color:var(--cp1);">Why Process > Leads</h3>
+        <p>68% of buyers don't want to talk to reps. 88% buy from trusted advisors. The Wall of Disconnect between buyer and seller.</p>
+      </div>
+      <div class="card" style="border-color:var(--red);">
+        <h3 style="color:var(--red);">The 5 Fatalities</h3>
+        <p>Timing, Competition, Price, Trust, Product Fit — the only 5 reasons deals die. Every lost deal traces to one of these.</p>
+      </div>
+      <div class="card" style="border-color:var(--warm);">
+        <h3 style="color:var(--warm);">The 4D Process</h3>
+        <p>Discovery → Diagnosis → Demonstrate → Decision. Not "1.5D." The doctor doesn't prescribe before diagnosing.</p>
+      </div>
+    </div>
+    <p class="anim anim-d3" style="font-size:14px; color:var(--text-muted); margin-top:24px; text-align:center;">Today we go deeper. From the <strong style="color:var(--text);">what</strong> to the <strong style="color:var(--text);">how</strong>.</p>
+  </div>
+
+  <!-- ═══════ 3: TODAY'S MISSION ═══════ -->
+  <div class="slide" data-slide="3">
+    <div class="label section anim">Today's Mission</div>
+    <h2 class="centered anim anim-d1">The Buyer's Action Plan</h2>
+    <p class="subtitle anim anim-d2">11 questions across 3 checkpoints. Each one exists for a reason. Today you learn every question, why it's asked, and what breaks when you skip it.</p>
+    <div class="flow anim anim-d3" style="margin-top:36px;">
+      <div class="flow-step" style="border-color:var(--cp1); background:var(--cp1-bg);">
+        <div class="f-label" style="color:var(--cp1);">Checkpoint 1</div>
+        <div class="f-title">Urgency Test</div>
+        <div class="f-sub">Do they need to act?</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:var(--cp2); background:var(--cp2-bg);">
+        <div class="f-label" style="color:var(--cp2);">Checkpoint 2</div>
+        <div class="f-title">Gap Test</div>
+        <div class="f-sub">Do they need outside help?</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:var(--cp3); background:var(--cp3-bg);">
+        <div class="f-label" style="color:var(--cp3);">Checkpoint 3</div>
+        <div class="f-title">Solution Test</div>
+        <div class="f-sub">Are we the best option?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ 4: BAP VISUAL MAP ═══════ -->
+  <div class="slide" data-slide="4" style="padding:40px 60px 64px;">
+    <div class="label neutral anim">The Framework</div>
+    <h2 class="centered anim anim-d1" style="font-size:clamp(24px, 2.8vw, 36px);">The Buyer's Action Plan</h2>
+    <p class="anim anim-d2" style="font-size:13px; color:var(--text-muted); margin-top:6px; text-align:center;">11 questions · 3 checkpoints · Deals cannot advance past a checkpoint unless it scores green.</p>
+
+    <div class="anim anim-d3" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; width:100%; max-width:1100px; margin-top:24px; opacity:0;">
+
+      <!-- CP1 -->
+      <div style="background:var(--surface); border:1px solid var(--cp1); border-radius:14px; padding:22px 20px; display:flex; flex-direction:column;">
+        <div style="text-align:center; margin-bottom:16px;">
+          <div style="font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--cp1); margin-bottom:4px;">Checkpoint 1</div>
+          <div style="font-size:16px; font-weight:700; color:var(--text);">Do They Need to Act?</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; flex:1;">
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px;">
+            <div style="font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--cp1); margin-bottom:3px;">Q1 · Their Objective</div>
+            <div style="font-size:12px; color:var(--text-muted); line-height:1.4;">What is the problem that has been identified?</div>
+          </div>
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px;">
+            <div style="font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--cp1); margin-bottom:3px;">Q2 · Decision Makers</div>
+            <div style="font-size:12px; color:var(--text-muted); line-height:1.4;">Who else cares about this?</div>
+          </div>
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px;">
+            <div style="font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--cp1); margin-bottom:3px;">Q3 · Current Reality</div>
+            <div style="font-size:12px; color:var(--text-muted); line-height:1.4;">What have they tried and why hasn't it worked?</div>
+          </div>
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px;">
+            <div style="font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--cp1); margin-bottom:3px;">Q4 · Priority & Urgency</div>
+            <div style="font-size:12px; color:var(--text-muted); line-height:1.4;">What's the worst outcome if not solved?</div>
+          </div>
+        </div>
+        <div style="margin-top:14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px; text-align:center;">
+          <div style="display:flex; justify-content:center; gap:4px; align-items:center;">
+            <div style="width:40px; height:6px; border-radius:3px; background:var(--green);"></div>
+            <div style="width:40px; height:6px; border-radius:3px; background:var(--warm);"></div>
+            <div style="width:40px; height:6px; border-radius:3px; background:var(--red);"></div>
+          </div>
+          <div style="font-size:9px; color:var(--text-dim); margin-top:5px; letter-spacing:1px;">8-10 YES · 5-7 MAYBE · 1-4 NO</div>
+        </div>
+      </div>
+
+      <!-- CP2 -->
+      <div style="background:var(--surface); border:1px solid var(--cp2); border-radius:14px; padding:22px 20px; display:flex; flex-direction:column;">
+        <div style="text-align:center; margin-bottom:16px;">
+          <div style="font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--cp2); margin-bottom:4px;">Checkpoint 2</div>
+          <div style="font-size:16px; font-weight:700; color:var(--text);">Do They Need Outside Help?</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; flex:1;">
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px;">
+            <div style="font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--cp2); margin-bottom:3px;">Q5 · Other Providers</div>
+            <div style="font-size:12px; color:var(--text-muted); line-height:1.4;">Are they currently using any providers you compete with?</div>
+          </div>
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px;">
+            <div style="font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--cp2); margin-bottom:3px;">Q6 · Problem Diagnosis</div>
+            <div style="font-size:12px; color:var(--text-muted); line-height:1.4;">Why haven't existing resources been able to fix it?</div>
+          </div>
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px;">
+            <div style="font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--cp2); margin-bottom:3px;">Q7 · Buying Process</div>
+            <div style="font-size:12px; color:var(--text-muted); line-height:1.4;">Who is involved in approving these purchases?</div>
+          </div>
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px;">
+            <div style="font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--cp2); margin-bottom:3px;">Q8 · Budget & Timelines</div>
+            <div style="font-size:12px; color:var(--text-muted); line-height:1.4;">Are they reactive or proactive buyers?</div>
+          </div>
+        </div>
+        <div style="margin-top:14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px; text-align:center;">
+          <div style="display:flex; justify-content:center; gap:4px; align-items:center;">
+            <div style="width:40px; height:6px; border-radius:3px; background:var(--green);"></div>
+            <div style="width:40px; height:6px; border-radius:3px; background:var(--warm);"></div>
+            <div style="width:40px; height:6px; border-radius:3px; background:var(--red);"></div>
+          </div>
+          <div style="font-size:9px; color:var(--text-dim); margin-top:5px; letter-spacing:1px;">8-10 YES · 5-7 MAYBE · 1-4 NO</div>
+        </div>
+      </div>
+
+      <!-- CP3 -->
+      <div style="background:var(--surface); border:1px solid var(--cp3); border-radius:14px; padding:22px 20px; display:flex; flex-direction:column;">
+        <div style="text-align:center; margin-bottom:16px;">
+          <div style="font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--cp3); margin-bottom:4px;">Checkpoint 3</div>
+          <div style="font-size:16px; font-weight:700; color:var(--text);">Do We Have the Best Solution?</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; flex:1;">
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px;">
+            <div style="font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--cp3); margin-bottom:3px;">Q9 · Proven Results</div>
+            <div style="font-size:12px; color:var(--text-muted); line-height:1.4;">Demonstrate a proven history of solving their problem.</div>
+          </div>
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px;">
+            <div style="font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--cp3); margin-bottom:3px;">Q10 · A Clear Solution</div>
+            <div style="font-size:12px; color:var(--text-muted); line-height:1.4;">Be clear on how our solution will solve their problems.</div>
+          </div>
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px;">
+            <div style="font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--cp3); margin-bottom:3px;">Q11 · Delivery & Timelines</div>
+            <div style="font-size:12px; color:var(--text-muted); line-height:1.4;">Align on key delivery milestones and deliverables.</div>
+          </div>
+        </div>
+        <div style="margin-top:14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px; text-align:center;">
+          <div style="display:flex; justify-content:center; gap:4px; align-items:center;">
+            <div style="width:40px; height:6px; border-radius:3px; background:var(--green);"></div>
+            <div style="width:40px; height:6px; border-radius:3px; background:var(--warm);"></div>
+            <div style="width:40px; height:6px; border-radius:3px; background:var(--red);"></div>
+          </div>
+          <div style="font-size:9px; color:var(--text-dim); margin-top:5px; letter-spacing:1px;">8-10 YES · 5-7 MAYBE · 1-4 NO</div>
+        </div>
+      </div>
+
+    </div>
+    <p class="anim anim-d4" style="font-size:12.5px; color:var(--text-dim); margin-top:16px; text-align:center;">Each question is scored Y/N/Maybe. Deals <strong style="color:var(--text-muted);">cannot advance</strong> past a checkpoint unless it scores in the green. Your unknowns tell you exactly what to ask on your next call.</p>
+  </div>
+
+  <!-- ═══════ 5: DOCTOR'S MINDSET ═══════ -->
+  <div class="slide" data-slide="5">
+    <div class="label neutral anim">The Psychology</div>
+    <h2 class="centered anim anim-d1">The Doctor's Mindset</h2>
+    <p class="subtitle anim anim-d2" style="font-size:15px;">How you ask is just as important as what you ask.</p>
+    <div class="two-col anim anim-d3" style="max-width:900px; margin-top:24px;">
+      <div class="card" style="border-color:var(--red);">
+        <h3 style="color:var(--red);">❌ The Pitcher</h3>
+        <ul>
+          <li>"We can fix that! Want a demo?"</li>
+          <li>Pitches before diagnosing</li>
+          <li>Talks 80%, listens 20%</li>
+          <li>Triggers sales resistance</li>
+          <li>Chases prospects</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:var(--green);">
+        <h3 style="color:var(--green);">✅ The Doctor</h3>
+        <ul>
+          <li>"I'm not sure we're the right fit. Help me understand..."</li>
+          <li>Diagnoses before prescribing</li>
+          <li>Talks 20%, listens 80%</li>
+          <li>Willing to disqualify</li>
+          <li>Prospects pull toward you</li>
+        </ul>
+      </div>
+    </div>
+    <p class="anim anim-d4 quote" style="font-size:14px; margin-top:24px;">"A doctor doesn't beg you to take medicine. They ask where it hurts. If you say 'nowhere,' they send you home. You should too."</p>
+  </div>
+
+  <!-- ═══════ 6: 3 WAVES — SETTING THE MEETING ═══════ -->
+  <div class="slide content-left" data-slide="6">
+    <div class="label cp1 anim">Pipeline Creation</div>
+    <h2 class="anim anim-d1">3 Waves — Setting the Meeting</h2>
+    <p class="anim anim-d2" style="font-size:15px; color:var(--text-muted); margin-top:6px; margin-bottom:16px;">Use when cold calling to overcome initial resistance and set a meeting.</p>
+    <table class="wave-table anim anim-d3" style="max-width:1050px;">
+      <tr><th style="width:100px;">Wave</th><th>What You Say</th><th style="width:280px;">The Psychology</th></tr>
+      <tr>
+        <td style="color:var(--cp1);">1. Direct</td>
+        <td>"Do you have a couple of minutes to talk about any existing goals or problems you have with your hiring process?"</td>
+        <td style="color:var(--text-muted);">Most say "No, we're fine." <strong style="color:var(--text);">This is expected.</strong></td>
+      </tr>
+      <tr>
+        <td style="color:var(--warm);">2. Disbelief</td>
+        <td>"Really? There aren't any future problems you're worried about or long-term goals you have for your recruiting team?"</td>
+        <td style="color:var(--text-muted);"><strong style="color:var(--text);">Surprise creates pause.</strong> They second-guess their "no" — if they continue to hold, go to Wave 3.</td>
+      </tr>
+      <tr>
+        <td style="color:var(--red);">3. Expose</td>
+        <td>"Oh ok... when was the last time you evaluated your hiring process or applied through your own careers page?"</td>
+        <td style="color:var(--text-muted);"><strong style="color:var(--text);">The trap.</strong> If it's been a while → they don't actually know the current state.</td>
+      </tr>
+    </table>
+    <p class="q-insight anim anim-d4" style="max-width:1050px;">
+      <span style="color:var(--cp1);">💡 The close:</span> "Understood. <strong>Would it be valuable to you if we did a free assessment so you know the current state of your candidate experience?</strong>" — You've taken their two "No" responses and challenged them with a question that reveals they don't know enough to hold those positions.
+    </p>
+  </div>
+
+  <!-- ═══════ 7: 3 WAVES — RUNNING THE MEETING ═══════ -->
+  <div class="slide content-left" data-slide="7">
+    <div class="label cp1 anim">Before Checkpoint 1</div>
+    <h2 class="anim anim-d1">3 Waves — Running the Meeting</h2>
+    <p class="anim anim-d2" style="font-size:15px; color:var(--text-muted); margin-top:6px; margin-bottom:16px;">They showed up but say "just want information." Break through before the BAP starts.</p>
+    <table class="wave-table anim anim-d3" style="max-width:1050px;">
+      <tr><th style="width:100px;">Wave</th><th>What You Say</th><th style="width:280px;">The Psychology</th></tr>
+      <tr>
+        <td style="color:var(--cp1);">1. Direct</td>
+        <td>"Typically when I meet with people like you, there's either a problem they're trying to solve or a goal they're trying to achieve — which is it for you?"</td>
+        <td style="color:var(--text-muted);">Most say "No, we're fine." <strong style="color:var(--text);">This is expected.</strong> Wave 1 is a warm-up — not a closer.</td>
+      </tr>
+      <tr>
+        <td style="color:var(--warm);">2. Disbelief</td>
+        <td>"Really? So there aren't any future problems you're worried about or long-term goals you have for your hiring process?"</td>
+        <td style="color:var(--text-muted);"><strong style="color:var(--text);">Social pressure through surprise.</strong> Act genuinely surprised. Creates a pause — makes them second-guess their "no."</td>
+      </tr>
+      <tr>
+        <td style="color:var(--red);">3. Expose</td>
+        <td>"Oh ok... when was the last time you applied for a job through your own careers page?"</td>
+        <td style="color:var(--text-muted);"><strong style="color:var(--text);">The trap.</strong> They said "we're fine" — but they haven't actually checked. They can't credibly hold that position.</td>
+      </tr>
+    </table>
+    <p class="q-insight anim anim-d4" style="max-width:1050px;">
+      <span style="color:var(--cp1);">💡 The key insight:</span> You've taken their two "No" responses and challenged them with a question that <strong>reveals whether or not they know enough to hold those positions.</strong> If they haven't looked, they don't know — and now they know they don't know.
+    </p>
+  </div>
+
+  <!-- ═══════ 7: CP1 SECTION BREAK ═══════ -->
+  <div class="slide section-break" data-slide="7">
+    <div class="label cp1 anim">Checkpoint 1</div>
+    <h1 class="anim anim-d1" style="color:var(--cp1);">Do They Need to Act?</h1>
+    <p class="subtitle anim anim-d2">The Urgency Test · Questions 1–4</p>
+    <p class="anim anim-d3" style="font-size:13px; color:var(--text-dim); margin-top:20px;">If you get this wrong, nothing else matters.</p>
+  </div>
+
+  <!-- ═══════ 8: Q1 ═══════ -->
+  <div class="slide q-slide" data-slide="8">
+    <div class="q-num anim" style="color:var(--cp1);">Question 1 · The Core Problem</div>
+    <div class="q-question anim anim-d1">"What is the exact problem they are trying to solve?"</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp1);">
+        <h4 style="color:var(--cp1);">Why It's Asked</h4>
+        <p>Prospects almost always open with a surface complaint. "Our ATS is clunky" isn't the real problem. You need to push past the symptom to the strategic initiative. <strong>If you can't state their problem in their own words, you cannot solve it.</strong></p>
+      </div>
+      <div class="q-box">
+        <h4 style="color:var(--text-muted);">What to Listen For</h4>
+        <p>Three categories of answers: <strong>current problem/pain</strong>, future goal, or potential problem they want to get ahead of. If they have a goal, that means they have a problem keeping them from achieving it — or they already would have gotten there.</p>
+      </div>
+    </div>
+    <p class="q-insight anim anim-d3">
+      <span style="color:var(--cp1);">💡 Bonus question:</span> <strong>"Walk me through what happens when you get a new application — start to finish."</strong> This reveals the real process breakdown behind the surface complaint.
+    </p>
+  </div>
+
+  <!-- ═══════ 9: Q1b ═══════ -->
+  <div class="slide q-slide" data-slide="9">
+    <div class="q-num anim" style="color:var(--cp1);">Question 1b · The Priority Scale</div>
+    <div class="q-question anim anim-d1">"On a scale of 1–10, how critical is this initiative right now?"</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp1);">
+        <h4 style="color:var(--cp1);">Why It's Asked</h4>
+        <p>Turns a vague feeling into a <strong>concrete number</strong> that commits them psychologically. It also gives you a baseline to reference later: "You said this was an 8 out of 10. Has anything changed?"</p>
+      </div>
+      <div class="q-box">
+        <h4 style="color:var(--text-muted);">How to Use It</h4>
+        <p>If they say <strong style="color:var(--red);">4 or below — pump the brakes.</strong> That's a signal to discover-and-disqualify, not push harder. If <strong style="color:var(--green);">8+, you have real urgency</strong> — document it and reference it throughout the deal.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ 10: Q2 ═══════ -->
+  <div class="slide q-slide" data-slide="10">
+    <div class="q-num anim" style="color:var(--cp1);">Question 2 · The Stakeholder Map</div>
+    <div class="q-question anim anim-d1">"Who actually owns this problem and makes the decision?"</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp1);">
+        <h4 style="color:var(--cp1);">Why It's Asked</h4>
+        <p><strong>Selling to someone who cannot buy is wasted time.</strong> You need the economic buyer identified — and ideally on the call — as early as possible. "Who else cares about this?" stays connected to THEIR objective.</p>
+      </div>
+      <div class="q-box">
+        <h4 style="color:var(--text-muted);">How to Deploy It</h4>
+        <p>Ask: <strong>"Can we bring them in — even for 15 minutes?"</strong> If key stakeholders aren't present, ask: "What does [decision-maker] think about that?" to get a well-rounded picture. <strong>Deals without a mapped decision-maker close at very low rates.</strong></p>
+      </div>
+    </div>
+    <p class="q-insight anim anim-d3">
+      <span style="color:var(--cp1);">💡 Bonus:</span> <strong>"Are you exploring other solutions? It helps me focus on what matters most to you."</strong> If they say "just you" — push back. That usually means they're not being honest about where they are in the process.
+    </p>
+  </div>
+
+  <!-- ═══════ 11: Q3 ═══════ -->
+  <div class="slide q-slide" data-slide="11">
+    <div class="q-num anim" style="color:var(--cp1);">Question 3 · The Cost of Inaction</div>
+    <div class="q-question anim anim-d1">"What happens if they do nothing?"</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp1);">
+        <h4 style="color:var(--cp1);">Why It's Asked</h4>
+        <p><strong>This is the highest-leverage question in CP1.</strong> Pain drives action. If doing nothing is acceptable, they will do nothing. You must make the status quo feel expensive and dangerous.</p>
+      </div>
+      <div class="q-box" style="border-color:var(--warm);">
+        <h4 style="color:var(--warm);">How to Amplify</h4>
+        <p>Push into categories of business disruption: <strong>Time/Productivity, Money/Revenue, Quality/Performance, Risk/Compliance, Growth.</strong> The "worst-case scenario" version is the most powerful — it forces them to imagine the disaster in their own words.</p>
+      </div>
+    </div>
+    <p class="q-insight anim anim-d3">
+      <span style="color:var(--cp1);">💡</span> If they downplay it: <strong>"True, you manage — but what toll is it taking? Is it causing overtime or lost clients?"</strong> If they truly can't identify impact → they may fail CP1 → consider disqualifying.
+    </p>
+  </div>
+
+  <!-- ═══════ 12: Q4 ═══════ -->
+  <div class="slide q-slide" data-slide="12">
+    <div class="q-num anim" style="color:var(--cp1);">Question 4 · Priority Level</div>
+    <div class="q-question anim anim-d1">"Is fixing this a top priority for them right now?"</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp1);">
+        <h4 style="color:var(--cp1);">Why It's Asked</h4>
+        <p>A real problem that isn't urgent isn't a deal. Even great solutions won't sell without urgency. <strong>"Why is this a priority now vs. 6 months from now?"</strong> forces them to articulate the trigger event.</p>
+      </div>
+      <div class="q-box">
+        <h4 style="color:var(--text-muted);">When You Skip This</h4>
+        <p>Without a trigger event, deals rot in pipeline. <strong>"Why is this a priority now vs. 6 months from now?"</strong> forces them to articulate the urgency. If they can't — they don't have it, and no amount of follow-up will create it.</p>
+      </div>
+    </div>
+    <p class="q-insight anim anim-d3">
+      <span style="color:var(--green);">✅ CP1 Prevents:</span> <strong>Timing</strong> and <strong>Competition</strong> fatalities. If you pass CP1, the prospect has confirmed: something is burning, the right people feel it, and they need to act NOW.
+    </p>
+  </div>
+
+  <!-- ═══════ 13: CP1 FAILS → TIMING ═══════ -->
+  <div class="slide" data-slide="13">
+    <div class="label neutral anim" style="color:var(--red);">When Checkpoint 1 Fails</div>
+    <h2 class="centered anim anim-d1" style="color:var(--red);">DOA: Wrong Timing</h2>
+    <div class="doa-card anim anim-d2">
+      <h3>"It's just not that bad right now."</h3>
+      <p>If they never fully agree they need to act now, they lose steam. Your proposal sits ignored. The deal rots.</p>
+      <p>Without urgency, even a great solution won't sell. You failed to uncover the pain or they rationalized it away.</p>
+      <p class="rule">Do not advance to D2 without explicit, documented urgency.</p>
+    </div>
+  </div>
+
+  <!-- ═══════ 14: CP2 SECTION BREAK ═══════ -->
+  <div class="slide section-break" data-slide="14">
+    <div class="label cp2 anim">Checkpoint 2</div>
+    <h1 class="anim anim-d1" style="color:var(--cp2);">Do They Need Outside Help?</h1>
+    <p class="subtitle anim anim-d2">The Gap Test · Questions 5–8</p>
+    <p class="anim anim-d3" style="font-size:13px; color:var(--text-dim); margin-top:20px;">Just because they have a problem doesn't mean they'll buy a solution.</p>
+  </div>
+
+  <!-- ═══════ 15: Q5 ═══════ -->
+  <div class="slide q-slide" data-slide="15">
+    <div class="q-num anim" style="color:var(--cp2);">Question 5 · Current Approach</div>
+    <div class="q-question anim anim-d1">"What are they currently doing to try and fix this?"</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp2);">
+        <h4 style="color:var(--cp2);">Why It's Asked</h4>
+        <p><strong>Understand the baseline.</strong> If they've invested before and it failed, you can leverage those specific failures. If it's their first time — understand what held them back. Every prior attempt = ammunition.</p>
+      </div>
+      <div class="q-box">
+        <h4 style="color:var(--text-muted);">Three Common Answers</h4>
+        <p><strong>1. Self-repair:</strong> They've tried to fix it internally. <strong>2. Another vendor:</strong> They're using a competitor that isn't working. <strong>3. New problem:</strong> They haven't tried anything yet. Each answer requires a different follow-up strategy.</p>
+      </div>
+    </div>
+    <p class="q-insight anim anim-d3">
+      <span style="color:var(--cp2);">💡 Bonus:</span> <strong>"How many separate tools are involved in your hiring process?"</strong> Let them name every tool — each one is a pain multiplier. <strong>"What if it were just 1?"</strong>
+    </p>
+  </div>
+
+  <!-- ═══════ 16: Q6 ═══════ -->
+  <div class="slide q-slide" data-slide="16">
+    <div class="q-num anim" style="color:var(--cp2);">Question 6 · The Capability Gap</div>
+    <div class="q-question anim anim-d1">"Why have their current efforts failed?"</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp2);">
+        <h4 style="color:var(--cp2);">Why It's Asked</h4>
+        <p>Establish that <strong>they cannot fix the problem on their own.</strong> Root causes matter. "Where does the problem BEGIN in your process?" Then: "What % of candidates make it to a first interview?"</p>
+      </div>
+      <div class="q-box">
+        <h4 style="color:var(--text-muted);">The Insanity Frame</h4>
+        <p><strong>"If your existing resources could have solved this, they would have. But it still isn't solved. So what are we going to do about it?"</strong> This is the logic that breaks the status quo trance and creates the gap.</p>
+      </div>
+    </div>
+    <p class="q-insight anim anim-d3">
+      <span style="color:var(--red);">⚠️ Critical:</span> <strong>"What HRIS or payroll system do you use? Does data need to flow into it?"</strong> Integration is the #1 deal-blocker AND #1 retention play. Ask in the first 10 minutes — don't discover it in D4.
+    </p>
+  </div>
+
+  <!-- ═══════ 17: Q6b — THE MOST CRITICAL QUESTION ═══════ -->
+  <div class="slide" data-slide="17">
+    <div class="label anim" style="color:var(--red); letter-spacing:4px;">The Most Critical Question in the Entire BAP</div>
+    <h2 class="centered anim anim-d1" style="font-size:clamp(24px, 2.8vw, 38px); max-width:860px; line-height:1.25;">"Based on what we've discussed, do you feel your team has the tools and bandwidth to solve this in the timeline you need?"</h2>
+    <div class="divider anim anim-d2" style="background:var(--red); margin-top:32px;"></div>
+    <div class="two-col anim anim-d3" style="max-width:860px; margin-top:24px;">
+      <div class="q-box" style="border-color:var(--red);">
+        <h4 style="color:var(--red);">Why It's The One</h4>
+        <p>They must <strong>explicitly admit they can't solve this alone.</strong> If they don't say it, the gap isn't real. Pitching before this admission leads to status quo losses — <strong style="color:var(--red);">they'll default to doing nothing because you never proved they need help.</strong></p>
+      </div>
+      <div class="q-box" style="border-color:var(--cp2);">
+        <h4 style="color:var(--cp2);">The Scale Version</h4>
+        <p>"On a scale of 1–10, how capable is your team of solving this alone?" Once they say <strong>"3 out of 10"</strong> — they've committed. If 8+, push back: <strong>"Then why are we talking?"</strong></p>
+      </div>
+    </div>
+    <p class="anim anim-d4" style="font-size:13px; color:var(--text-muted); margin-top:20px; text-align:center;">Deals die here when the prospect only needs a partial solution — not a full platform. <strong style="color:var(--red);">If the gap isn't real, disqualify. Don't force it.</strong></p>
+  </div>
+
+  <!-- ═══════ 18: Q7 ═══════ -->
+  <div class="slide q-slide" data-slide="18">
+    <div class="q-num anim" style="color:var(--cp2);">Question 7 · The Buying Process</div>
+    <div class="q-question anim anim-d1">"How exactly do they buy things like this?"</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp2);">
+        <h4 style="color:var(--cp2);">Why It's Asked</h4>
+        <p><strong>Knowing their process prevents late-stage surprises.</strong> Multi-step procurement can add 3–6 months. Ask for security questionnaires upfront. We're ISO 27001/SOC2 ready — use that as a weapon.</p>
+      </div>
+      <div class="q-box">
+        <h4 style="color:var(--text-muted);">How to Deploy It</h4>
+        <p>Ask for security questionnaires upfront. We're <strong>ISO 27001/SOC2 ready</strong> — use that as a weapon. Also ask: <strong>"Do you typically budget for improvements like this, or only allocate funds when something goes wrong?"</strong> — reactive vs. proactive tells you everything.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ 19: Q8 ═══════ -->
+  <div class="slide q-slide" data-slide="19">
+    <div class="q-num anim" style="color:var(--cp2);">Question 8 · Readiness</div>
+    <div class="q-question anim anim-d1">"Are they capable of implementing a solution now?"</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp2);">
+        <h4 style="color:var(--cp2);">Why It's Asked</h4>
+        <p><strong>Even if they want it, can they absorb it?</strong> Budget, bandwidth, timeline. Be radically honest: "I need you to be hiring 5+ people/year for this to save you money."</p>
+      </div>
+      <div class="q-box">
+        <h4 style="color:var(--text-muted);">The Honesty Play</h4>
+        <p>Be radically transparent: <strong>"Money loves speed. Time kills all deals."</strong> Ask when they want work completed → calculate when the contract needs to be signed → now you have a deadline tied to THEIR goals, not yours. <strong>Honesty about pricing builds trust faster than discounting.</strong></p>
+      </div>
+    </div>
+    <p class="q-insight anim anim-d3">
+      <span style="color:var(--green);">✅ CP2 Prevents:</span> <strong>Competition</strong> and <strong>Price</strong> fatalities. If you pass CP2, the prospect has confirmed: their internal resources are insufficient, and they know they need outside help.
+    </p>
+  </div>
+
+  <!-- ═══════ 20: PROBLEM REFRAME ═══════ -->
+  <div class="slide" data-slide="20">
+    <div class="label cp2 anim">Checkpoint 2 Strategy</div>
+    <h2 class="centered anim anim-d1">The Problem Reframe</h2>
+    <p class="subtitle anim anim-d2" style="font-size:15px;">Don't agree with their diagnosis. Reframe it into a bigger problem that only WE can solve.</p>
+    <div class="two-col anim anim-d3" style="max-width:880px; margin-top:24px;">
+      <div class="card" style="border-color:var(--red);">
+        <h3 style="color:var(--red);">❌ Their Diagnosis</h3>
+        <p style="font-size:15px; margin-top:8px;">"Our recruiters are spending too much time on manual screening and sourcing."</p>
+        <p style="font-size:12px; margin-top:14px; font-style:italic;">If you solve this at face value, any ATS vendor can win.</p>
+      </div>
+      <div class="card" style="border-color:var(--green);">
+        <h3 style="color:var(--green);">✅ The Reframe</h3>
+        <p style="font-size:15px; margin-top:8px;">"Your TA team spends 60% of their time on manual sourcing and screening instead of closing — that's a <strong>capacity crisis</strong> that compounds every quarter."</p>
+        <p style="font-size:12px; margin-top:14px; font-style:italic;">Cost frame: "recruiter capacity gap" → Reframed around TT's automation + AI.</p>
+      </div>
+    </div>
+    <p class="anim anim-d4" style="font-size:13px; color:var(--text-muted); margin-top:18px; text-align:center;"><strong style="color:var(--cp2);">Reveal Question:</strong> "If your recruiters could reclaim 15 hours per week from manual tasks, how many more hires would they close?" <span style="color:var(--text-dim);">— then let the silence work.</span></p>
+  </div>
+
+  <!-- ═══════ 21: PERSONA REFRAME TABLE ═══════ -->
+  <div class="slide content-left" data-slide="21" style="padding:40px 60px 64px;">
+    <div class="label cp2 anim">Checkpoint 2 Strategy</div>
+    <h2 class="anim anim-d1" style="font-size:clamp(22px, 2.4vw, 32px);">Reframe by Persona</h2>
+    <p class="anim anim-d2" style="font-size:13px; color:var(--text-muted); margin-top:4px; margin-bottom:16px;">Match the reframe to who you're talking to. Each one names a different disease and cost frame.</p>
+    <table class="anim anim-d3" style="max-width:1100px; font-size:13px;">
+      <tr><th style="width:130px;">Persona</th><th>The Bigger Problem</th><th style="width:260px;">Reveal Question</th><th style="width:100px;">Cost Frame</th></tr>
+      <tr>
+        <td style="color:var(--cp2);">VP of TA</td>
+        <td>"Your TA team spends 60% of their time on manual sourcing and screening instead of closing — that's a <strong>capacity crisis</strong> that compounds every quarter."</td>
+        <td>"If your recruiters could reclaim 15 hours/week from manual tasks, how many more hires would they close?"</td>
+        <td><strong>Recruiter Capacity Gap</strong></td>
+      </tr>
+      <tr>
+        <td style="color:var(--cp2);">CHRO / VP People</td>
+        <td>"You're losing the talent war to competitors who move 3× faster — <strong>speed IS your competitive advantage</strong>, and every day of delay costs you your best candidates."</td>
+        <td>"How many of your top-choice candidates accepted another offer before you made yours?"</td>
+        <td><strong>Competitive Speed Gap</strong></td>
+      </tr>
+      <tr>
+        <td style="color:var(--cp2);">Dir. Employer Brand</td>
+        <td>"You're invisible to the 70% of talent that's passive — every competitor with a stronger employer brand is <strong>winning candidates you never even see</strong>."</td>
+        <td>"When was the last time you measured how many qualified candidates abandoned your career site before applying?"</td>
+        <td><strong>Talent Brand Gap</strong></td>
+      </tr>
+      <tr>
+        <td style="color:var(--cp2);">Hiring Managers</td>
+        <td>"Every day a hiring manager can't self-serve in your system, you add 5 days to time-to-fill — and <strong>your best candidates are gone in 10</strong>."</td>
+        <td>"What % of your hiring managers actually log into your ATS more than once a month?"</td>
+        <td><strong>Manager Adoption Gap</strong></td>
+      </tr>
+      <tr>
+        <td style="color:var(--cp2);">Leadership / Execs</td>
+        <td>"Your hiring infrastructure wasn't built for the speed and scale your business needs today — <strong>you're solving symptoms instead of the root cause</strong>."</td>
+        <td>"If you could redesign your entire hiring process from scratch, what's the first thing you'd fix?"</td>
+        <td><strong>Infrastructure Gap</strong></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ═══════ 21: REVERSE TIMELINE TRAP ═══════ -->
+  <div class="slide content-left" data-slide="21">
+    <div class="label cp2 anim">Checkpoint 2 Strategy</div>
+    <h2 class="anim anim-d1">The Reverse Timeline Trap</h2>
+    <p class="anim anim-d2" style="font-size:15px; color:var(--text-muted); margin-top:6px; margin-bottom:20px;">Don't ask when they'll sign. Put the deadline entirely on them.</p>
+    <ul class="bullets anim anim-d3">
+      <li><span class="bi" style="color:var(--cp2);">01</span><strong>Get the Go-Live Date</strong> — "When do you need this fully rolled out and live for the team?"</li>
+      <li><span class="bi" style="color:var(--cp2);">02</span><strong>Inject Implementation Time</strong> — "Our implementation takes exactly 3 weeks to do it right."</li>
+      <li><span class="bi" style="color:var(--cp2);">03</span><strong>Set the Trap</strong> — "Working backward, to hit your goal, we need the contract signed by [date]. Can we meet that deadline?"</li>
+    </ul>
+    <p class="anim anim-d4 quote" style="font-size:15px; margin-top:28px; max-width:700px;">"You didn't set a deadline. They did. You just did the math for them."</p>
+  </div>
+
+  <!-- ═══════ 22: CP2 FAILS → COMPETITION ═══════ -->
+  <div class="slide" data-slide="22">
+    <div class="label neutral anim" style="color:var(--red);">When Checkpoint 2 Fails</div>
+    <h2 class="centered anim anim-d1" style="color:var(--red);">DOA: Competition</h2>
+    <div class="doa-card anim anim-d2">
+      <h3>"We can just handle this internally."</h3>
+      <p>If you don't prove their existing resources are insufficient, they default to status quo. "Our team can handle it."</p>
+      <p>The Dunning-Kruger effect — unskilled people overestimate their ability to solve complex problems. They think they're wise.</p>
+      <p class="rule">You MUST surface the gap before advancing to D3.</p>
+    </div>
+  </div>
+
+  <!-- ═══════ 23: CP3 SECTION BREAK ═══════ -->
+  <div class="slide section-break" data-slide="23">
+    <div class="label cp3 anim">Checkpoint 3</div>
+    <h1 class="anim anim-d1" style="color:var(--cp3);">Are We the Best Solution?</h1>
+    <p class="subtitle anim anim-d2">The Solution Test · Questions 9–11</p>
+    <p class="anim anim-d3" style="font-size:13px; color:var(--text-dim); margin-top:20px;">They need to act. They need outside help. Will they pick us?</p>
+  </div>
+
+  <!-- ═══════ 24: Q9 ═══════ -->
+  <div class="slide q-slide" data-slide="24">
+    <div class="q-num anim" style="color:var(--cp3);">Question 9 · Proven Results</div>
+    <div class="q-question anim anim-d1">"Have we proven we can solve this specific problem?"</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp3);">
+        <h4 style="color:var(--cp3);">Why It's Asked</h4>
+        <p><strong>Case studies eliminate risk.</strong> The prospect needs to see proof — not promises. If you can't show you've solved this exact problem for a similar company, you're asking them to take a leap of faith.</p>
+      </div>
+      <div class="q-box">
+        <h4 style="color:var(--text-muted);">How to Deploy It</h4>
+        <p>Lead with <strong>platform stats</strong> (97% see increase in qualified candidates, 89% say hiring is faster, 12,000+ companies). Then match a <strong>case study to their industry/size.</strong> Close with: "Would you like to speak directly with one of our clients?"</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ 25: Q10 ═══════ -->
+  <div class="slide q-slide" data-slide="25">
+    <div class="q-num anim" style="color:var(--cp3);">Question 10 · Solution Map</div>
+    <div class="q-question anim anim-d1">"Is it completely clear how our product fixes their problem?"</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp3);">
+        <h4 style="color:var(--cp3);">Why It's Asked</h4>
+        <p><strong>Connect the dots explicitly.</strong> Every click in the demo must tie to their specific pain. Generic demos lose. The formula: "You told me [THEIR WORDS]... Here's how we solve that... Here's what happened when [similar company] used this..."</p>
+      </div>
+      <div class="q-box">
+        <h4 style="color:var(--text-muted);">The Demo Formula</h4>
+        <p><strong>"You told me [THEIR WORDS]... Here's how we solve that... Here's what happened when [similar company] used this."</strong><br><br>Every click in the demo must tie to their specific pain. Generic demos lose. Structure around the cost frame from your diagnosis, not a feature tour.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ 26: Q11 ═══════ -->
+  <div class="slide q-slide" data-slide="26">
+    <div class="q-num anim" style="color:var(--cp3);">Question 11 · Success Metrics</div>
+    <div class="q-question anim anim-d1">"How will they measure if this was a success?"</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp3);">
+        <h4 style="color:var(--cp3);">Why It's Asked</h4>
+        <p><strong>Set clear ROI expectations before the proposal.</strong> This becomes the anchor for the Confirmation Close. If you can't quantify the win, they can't justify the investment internally.</p>
+      </div>
+      <div class="q-box">
+        <h4 style="color:var(--text-muted);">Common Success Metrics</h4>
+        <p>Time-to-fill ↓ · Cost-per-hire ↓ · Application volume ↑ · Agency spend ↓ · Hiring manager adoption · Career site traffic · Quality of applicants</p>
+      </div>
+    </div>
+    <p class="q-insight anim anim-d3">
+      <span style="color:var(--cp3);">✅ CP3 Prevents:</span> <strong>Price</strong>, <strong>Trust</strong>, and <strong>Product Fit</strong> fatalities. If you pass CP3, you've proven we're the best option, mapped the solution to their pain, and set measurable success criteria.
+    </p>
+  </div>
+
+  <!-- ═══════ 27: ARM THE CHAMPION ═══════ -->
+  <div class="slide" data-slide="27">
+    <div class="label cp3 anim">Checkpoint 3 Strategy</div>
+    <h2 class="centered anim anim-d1">Arming the Champion</h2>
+    <p class="subtitle anim anim-d2" style="font-size:15px;">The champion sells when you're not in the room.</p>
+    <div class="card anim anim-d3" style="border-color:var(--cp3); max-width:780px; margin-top:24px; text-align:left;">
+      <h3 style="color:var(--cp3);">Never let them walk in empty-handed.</h3>
+      <ul>
+        <li>If the champion can't articulate the solution internally, the deal dies in committee.</li>
+        <li>Share the Discovery Room link after your demo — it's their internal selling tool.</li>
+        <li>It gives them exactly what they need: ROI, case studies, and proof that we solve their specific pain.</li>
+      </ul>
+    </div>
+    <p class="anim anim-d4" style="font-size:14px; color:var(--text-muted); margin-top:20px; text-align:center;"><strong>"How can I help you build the internal case?"</strong> → "How can I show you that value so you can take it to [name] and say 'we want to spend this money'?"</p>
+  </div>
+
+  <!-- ═══════ 28: CP3 FAILS ═══════ -->
+  <div class="slide" data-slide="28">
+    <div class="label neutral anim" style="color:var(--red);">When Checkpoint 3 Fails</div>
+    <h2 class="centered anim anim-d1" style="color:var(--red); font-size:clamp(24px, 2.8vw, 38px);">DOA: Price · Trust · Product Fit</h2>
+    <div class="three-col anim anim-d2" style="margin-top:28px; max-width:1000px;">
+      <div class="card" style="border-color:var(--red);">
+        <h3 style="color:var(--red);">💰 Price</h3>
+        <p>"It's too expensive." — You failed to quantify ROI. No value frame = sticker shock = lost deal.</p>
+      </div>
+      <div class="card" style="border-color:var(--red);">
+        <h3 style="color:var(--red);">🤝 Trust</h3>
+        <p>"We're not sure about you." — Trust dies through pushy tactics and dodging hard questions. Credibility is earned through candor.</p>
+      </div>
+      <div class="card" style="border-color:var(--red);">
+        <h3 style="color:var(--red);">🧩 Product Fit</h3>
+        <p>"It doesn't do what we need." — No unique diagnosis = no differentiation. Generic demos lose to any competitor.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ 29: SECTION BREAK — PATHWAYS ═══════ -->
+  <div class="slide section-break" data-slide="29">
+    <div class="label section anim">Part 4</div>
+    <h1 class="anim anim-d1">Progression Pathways</h1>
+    <p class="subtitle anim anim-d2">The deal is dying. Here's how you fight back.<br>Every fatality has a countermeasure.</p>
+  </div>
+
+  <!-- ═══════ 30: PATHWAY MATRIX ═══════ -->
+  <div class="slide" data-slide="30">
+    <div class="label section anim">The Objection Map</div>
+    <h2 class="centered anim anim-d1" style="font-size:clamp(22px, 2.4vw, 32px);">Fatality → Missed Checkpoint → Countermeasure</h2>
+    <table class="pathway-table anim anim-d2" style="max-width:950px; margin-top:24px;">
+      <tr><th>Fatality</th><th>They Say...</th><th>Missed CP</th><th>Pathway</th></tr>
+      <tr>
+        <td>1. Timing</td>
+        <td>"Let's revisit next quarter"</td>
+        <td style="color:var(--cp1);">CP1 — Urgency</td>
+        <td style="color:var(--warm); font-weight:600;">Pain / Priority</td>
+      </tr>
+      <tr>
+        <td>2. Competition</td>
+        <td>"We went with someone else"</td>
+        <td style="color:var(--cp2);">CP2 — Gap</td>
+        <td style="color:var(--warm); font-weight:600;">Problem Reframe + Gap in Ability</td>
+      </tr>
+      <tr>
+        <td>3. Price</td>
+        <td>"It's too expensive"</td>
+        <td style="color:var(--cp3);">CP3 — Solution</td>
+        <td style="color:var(--warm); font-weight:600;">Quantifiable Outcomes (ROI)</td>
+      </tr>
+      <tr>
+        <td>4. Trust</td>
+        <td>"We're not sure about you"</td>
+        <td style="color:var(--cp3);">CP3 — Solution</td>
+        <td style="color:var(--warm); font-weight:600;">Proven Results</td>
+      </tr>
+      <tr>
+        <td>5. Product Fit</td>
+        <td>"It doesn't do what we need"</td>
+        <td style="color:var(--cp2);">CP2 — Gap</td>
+        <td style="color:var(--warm); font-weight:600;">Problem Reframe</td>
+      </tr>
+    </table>
+    <p class="anim anim-d3" style="font-size:14px; color:var(--cp1); margin-top:20px; font-weight:600; text-align:center;">Diagnose the fatality. Go back to the missed checkpoint. Apply the pathway. Advance.</p>
+  </div>
+
+  <!-- ═══════ 31: PATHWAY 1 — PAIN/PRIORITY ═══════ -->
+  <div class="slide q-slide" data-slide="31">
+    <div class="q-num anim" style="color:var(--cp1);">Pathway 1 · Kills: Timing → Go Back to CP1</div>
+    <div class="q-question anim anim-d1">Pain / Priority</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp1);">
+        <h4 style="color:var(--cp1);">The Psychology</h4>
+        <p><strong>Push/Pull Inversion:</strong> When you try to pull prospects toward you, they push away. Flip it — use "discover and disqualify" posture. Say: "This doesn't seem like it's causing that much of a problem. Should we just reconnect in 30 days?" They'll say: <strong>"No, actually, here's what's really going on."</strong></p>
+        <p style="margin-top:10px;"><strong>Rationalization Cycle:</strong> When pain isn't clear, prospects rationalize → justify → avoid → ghost. "First world problems" thinking kicks in and the deal slides down the priority list.</p>
+      </div>
+      <div class="q-box" style="border-color:var(--warm);">
+        <h4 style="color:var(--warm);">Tactical Execution</h4>
+        <p><strong>Step 1:</strong> Acknowledge — "I understand this might not seem like a top priority right now."</p>
+        <p style="margin-top:6px;"><strong>Step 2:</strong> Amplify — "What's the worst-case scenario if this doesn't get addressed?" (Most powerful question — forces them to imagine disaster in their own words)</p>
+        <p style="margin-top:6px;"><strong>Step 3:</strong> Quantify — "What does every unfilled role cost you per month?"</p>
+        <p style="margin-top:6px;"><strong>Step 4:</strong> Confirm — "Just to recap: you're dealing with [problem], which is causing [impacts]. Does that sound right?"</p>
+      </div>
+    </div>
+    <p class="q-insight anim anim-d3"><span style="color:var(--cp1);">💡</span> If they downplay: "True, you manage — but what toll is it taking? Is it causing overtime or lost clients?" If they truly can't identify impact → they may fail CP1 → <strong>disqualify.</strong></p>
+  </div>
+
+  <!-- ═══════ 32: PATHWAY 2 — PROBLEM REFRAME ═══════ -->
+  <div class="slide q-slide" data-slide="32">
+    <div class="q-num anim" style="color:var(--cp2);">Pathway 2 · Kills: Competition & Product Fit → Go Back to CP2</div>
+    <div class="q-question anim anim-d1">Problem Reframe</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp2);">
+        <h4 style="color:var(--cp2);">The Psychology</h4>
+        <p><strong>"If you're not diagnosing, you're just another vendor."</strong> When you solve the same surface-level problem anyone can solve, you commoditize yourself and win only through price.</p>
+        <p style="margin-top:10px;">The prospect's symptoms point to something larger. <strong>Your job: connect the dots between individual symptoms and the systemic disease.</strong> Then align that disease to Teamtailor's special sauce — the thing we do that nobody else can.</p>
+      </div>
+      <div class="q-box" style="border-color:var(--warm);">
+        <h4 style="color:var(--warm);">The 6-Step Reframe</h4>
+        <p><strong>1. Listen</strong> for surface symptoms they describe</p>
+        <p><strong>2. Acknowledge</strong> — show you heard and understood</p>
+        <p><strong>3. Deliver the bigger problem</strong> — use the reframe script</p>
+        <p><strong>4. Ask the reveal question</strong> — let the silence work</p>
+        <p><strong>5. Frame the demo</strong> around the cost frame, not features</p>
+        <p><strong>6. Build tailored agenda</strong> based on selected pains</p>
+        <p style="margin-top:8px; font-style:italic; color:var(--text-dim);">Example reframe: "Our ATS is clunky" → "The bigger issue is a clunky ATS destroys your Candidate Experience and Employer Brand — losing top talent before they even apply."</p>
+      </div>
+    </div>
+    <p class="q-insight anim anim-d3"><span style="color:var(--cp2);">💡 Reveal Question Example (VP of TA):</span> "If your recruiters could reclaim 15 hours/week from manual tasks, how many more hires would they close?" → Reframe: <strong>"recruiter capacity gap"</strong></p>
+  </div>
+
+  <!-- ═══════ 33: PATHWAY 3 — GAP IN ABILITY ═══════ -->
+  <div class="slide q-slide" data-slide="33">
+    <div class="q-num anim" style="color:var(--cp2);">Pathway 3 · Kills: Competition → Go Back to CP2</div>
+    <div class="q-question anim anim-d1">Gap in Ability</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp2);">
+        <h4 style="color:var(--cp2);">The Psychology</h4>
+        <p><strong>Dunning-Kruger Effect:</strong> "The unskilled person thinks they are wise, but the wise one knows themselves to be unskilled." If we don't help prospects see their resources are insufficient, we allow them to think they can fix this alone.</p>
+        <p style="margin-top:10px;"><strong>The Insanity Frame:</strong> "If your existing resources could have solved this, they would have. But it still isn't solved. So what are we going to do about it?"</p>
+        <p style="margin-top:10px;"><strong>Fear of Change:</strong> People stick with imperfect situations because they're familiar. You must break the "status quo trance" with gentle logic.</p>
+      </div>
+      <div class="q-box" style="border-color:var(--warm);">
+        <h4 style="color:var(--warm);">Tactical Execution</h4>
+        <p><strong>Step 1:</strong> Identify current solution — "Are you working with another provider?"</p>
+        <p style="margin-top:6px;"><strong>Step 2:</strong> Surface the contradiction — "If your current solution is doing a great job, why are you looking for another one?"</p>
+        <p style="margin-top:6px;"><strong>Step 3:</strong> Make the gap obvious — "It sounds like if you continue relying on the current approach that hasn't fixed this, it's unlikely things will change."</p>
+        <p style="margin-top:6px;"><strong>Step 4:</strong> Position the bridge — Share ONE specific story: "A client's in-house team kept missing underlying issues. We fixed in weeks a problem that lingered for a year."</p>
+      </div>
+    </div>
+    <p class="q-insight anim anim-d3"><span style="color:var(--cp2);">💡 Discover & Disqualify:</span> If they don't need outside help, they may be: getting compliance bids, leveraging your proposal to negotiate with current vendor, or planning to hand your bid to their maintenance team. <strong>Protect your time.</strong></p>
+  </div>
+
+  <!-- ═══════ 34: PATHWAY 4 — ROI ═══════ -->
+  <div class="slide q-slide" data-slide="34">
+    <div class="q-num anim" style="color:var(--cp3);">Pathway 4 · Kills: Price → Go Back to CP3</div>
+    <div class="q-question anim anim-d1">Quantifiable Outcomes (ROI)</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp3);">
+        <h4 style="color:var(--cp3);">The Psychology</h4>
+        <p><strong>Investment vs. Cost:</strong> When the prospect sets the baseline with THEIR numbers, the output feels credible and personal — not hypothetical. Let them adjust the sliders.</p>
+        <p style="margin-top:10px;"><strong>Speed = Money:</strong> "Every day a role sits empty costs real money." Vacancy cost is the largest value layer and creates urgency around faster time-to-hire.</p>
+        <p style="margin-top:10px;"><strong>The anchoring effect:</strong> Show $18K/year investment is a fraction of $351K projected value. The 19.5× multiplier reframes "expense" as "massive return."</p>
+      </div>
+      <div class="q-box" style="border-color:var(--warm);">
+        <h4 style="color:var(--warm);">The 3-Layer Value Stack</h4>
+        <p><strong>Layer 1 — Software Savings:</strong> HMs × $1,200/yr (legacy charges per seat — we don't)</p>
+        <p style="margin-top:6px;"><strong>Layer 2 — Agency Reduction:</strong> 25% organic shift × $15K per avoided placement</p>
+        <p style="margin-top:6px;"><strong>Layer 3 — Vacancy Recovery:</strong> Total hires × days saved × $400/day lost productivity</p>
+        <p style="margin-top:10px; border-top:1px solid var(--border); padding-top:10px;"><strong style="color:var(--green);">Example:</strong> 15 HMs + 60 hires/yr + 30-day TTH → $18K + $45K + $288K = <strong style="color:var(--green);">$351K value · 19.5× ROI</strong></p>
+      </div>
+    </div>
+    <p class="q-insight anim anim-d3"><span style="color:var(--cp3);">💡</span> Ask: "If I showed you that a $30K investment would save $200K in agency fees this year — <strong>what would you need to believe for that math to be credible?</strong>" Let them set the bar, then exceed it with their own numbers.</p>
+  </div>
+
+  <!-- ═══════ 35: PATHWAY 5 — PROVEN RESULTS ═══════ -->
+  <div class="slide q-slide" data-slide="35">
+    <div class="q-num anim" style="color:var(--cp3);">Pathway 5 · Kills: Trust → Go Back to CP3</div>
+    <div class="q-question anim anim-d1">Proven Results</div>
+    <div class="q-grid anim anim-d2">
+      <div class="q-box" style="border-color:var(--cp3);">
+        <h4 style="color:var(--cp3);">The Psychology</h4>
+        <p><strong>Amazon Reviews Analogy:</strong> "Think about your own behavior on Amazon — you pick the item with the highest reviews and highest stars. That's proven results. It doesn't matter how good the marketing is."</p>
+        <p style="margin-top:10px;"><strong>Credibility BEFORE solution:</strong> Don't start with solution details. Start with establishing why you exist. What gap existed that said this company can do something no other company can?</p>
+        <p style="margin-top:10px;"><strong>"We've been in business 30 years" is NOT proof.</strong> Follow up with real metrics: "30 years and over 500 successful implementations." Longevity alone doesn't close deals.</p>
+      </div>
+      <div class="q-box" style="border-color:var(--warm);">
+        <h4 style="color:var(--warm);">Tactical Execution</h4>
+        <p><strong>1. Origin Story:</strong> Why Teamtailor exists — the gap we fill</p>
+        <p style="margin-top:6px;"><strong>2. Battle-Tested Stats:</strong> 97% see increase in qualified candidates · 89% say hiring is faster · 94% collaborate better · 12,000+ companies</p>
+        <p style="margin-top:6px;"><strong>3. Matched Case Study:</strong> Nobu Hotel cut TTH by 40%. ESTO reduced to 21 days. Giacom got 70 referrals. Five Guys automated 100% of responses.</p>
+        <p style="margin-top:6px;"><strong>4. The Offer:</strong> "Would you like to speak directly with one of our clients in [their industry]?"</p>
+        <p style="margin-top:10px; font-style:italic; color:var(--text-dim);">Paint the dream-like vision: "Psychologically it's very powerful to put them there so they can see 'this is going to be a really good partnership.'"</p>
+      </div>
+    </div>
+    <p class="q-insight anim anim-d3"><span style="color:var(--cp3);">💡 The "No Maybes" rule:</span> After presenting proof — <strong>"A yes is fine. A no is fine. Maybe is never okay."</strong> Drive to a decision. Ambiguity kills deals.</p>
+  </div>
+
+  <!-- ═══════ 36: SCORING MATRIX ═══════ -->
+  <div class="slide" data-slide="36">
+    <div class="label neutral anim">The Rubric</div>
+    <h2 class="centered anim anim-d1">How the BAP Scores</h2>
+    <div class="three-col anim anim-d2" style="margin-top:32px; max-width:900px;">
+      <div class="card" style="text-align:center; border-color:var(--green);">
+        <h3 style="color:var(--green); font-size:36px; margin-bottom:6px;">8–10</h3>
+        <h3 style="color:var(--green);">YES</h3>
+        <p>Checkpoint passed. Buyer fully aligned. Green light to advance to next phase.</p>
+      </div>
+      <div class="card" style="text-align:center; border-color:var(--warm);">
+        <h3 style="color:var(--warm); font-size:36px; margin-bottom:6px;">5–7</h3>
+        <h3 style="color:var(--warm);">MAYBE</h3>
+        <p>You have gaps. Do NOT advance. Clarify the remaining BAP questions first.</p>
+      </div>
+      <div class="card" style="text-align:center; border-color:var(--red);">
+        <h3 style="color:var(--red); font-size:36px; margin-bottom:6px;">1–4</h3>
+        <h3 style="color:var(--red);">NO</h3>
+        <p>Deal is blocked. Disqualify or nurture. If you pitch here, you will lose.</p>
+      </div>
+    </div>
+    <p class="anim anim-d3 quote" style="font-size:14.5px; margin-top:28px;">"If a deal passes all 3 checkpoints, you have systematically eliminated every reason it could die. That's not hope. That's engineering."</p>
+  </div>
+
+  <!-- ═══════ 37: 5 ALIGNMENT CHECKS ═══════ -->
+  <div class="slide content-left" data-slide="37">
+    <div class="label cp3 anim">D4 — Before the Proposal</div>
+    <h2 class="anim anim-d1">The 5 Alignment Checks</h2>
+    <p class="anim anim-d2" style="font-size:15px; color:var(--text-muted); margin-top:6px; margin-bottom:20px;">Confirmation Close. Verify all 5 before sending any proposal. No exceptions.</p>
+    <table class="anim anim-d3" style="max-width:800px;">
+      <tr><th style="width:40px;">#</th><th>Alignment Check</th><th>What You Ask</th></tr>
+      <tr>
+        <td style="color:var(--green);">1</td>
+        <td>Urgent Priority?</td>
+        <td>"Do you agree this is urgent enough to act on now?"</td>
+      </tr>
+      <tr>
+        <td style="color:var(--green);">2</td>
+        <td>Resources Insufficient?</td>
+        <td>"Do you agree your current resources can't solve it?"</td>
+      </tr>
+      <tr>
+        <td style="color:var(--green);">3</td>
+        <td>Problems & Solutions Aligned?</td>
+        <td>"Are you clear on how we solve these problems?"</td>
+      </tr>
+      <tr>
+        <td style="color:var(--green);">4</td>
+        <td>ROI Sufficient?</td>
+        <td>"Does the ROI justify the investment?"</td>
+      </tr>
+      <tr>
+        <td style="color:var(--green);">5</td>
+        <td>Are We the Right Solution?</td>
+        <td>"Have you confirmed Teamtailor is your preferred option?"</td>
+      </tr>
+    </table>
+    <p class="anim anim-d4" style="font-size:13.5px; color:var(--text-muted); margin-top:20px; max-width:700px;">
+      <span style="color:var(--green);">If YES →</span> "We're looking forward to partnering with you."<br>
+      <span style="color:var(--red);">If HESITATION →</span> "We're aligned on the problems. What part of our solution is giving you pause?"
+    </p>
+  </div>
+
+  <!-- ═══════ 38: DISCOVERY ROOM ═══════ -->
+  <div class="slide content-left" data-slide="38">
+    <div class="label neutral anim">Command Center</div>
+    <h2 class="anim anim-d1">The Discovery Room</h2>
+    <p class="anim anim-d2" style="font-size:15px; color:var(--text-muted); margin-top:6px; margin-bottom:20px;">The BAP isn't a spreadsheet. It lives inside the Discovery Room for every active deal.</p>
+    <ul class="bullets anim anim-d3">
+      <li><span class="bi" style="color:var(--cp1);">01</span><strong>One Source of Truth</strong> — Use the Discovery Room for every active deal. No exceptions.</li>
+      <li><span class="bi" style="color:var(--cp2);">02</span><strong>BAP Scorecard</strong> — Houses your BAP answers, quantifies pain, enforces toll booths between stages.</li>
+      <li><span class="bi" style="color:var(--cp3);">03</span><strong>Solution Pillars</strong> — Mechanically maps their selected pain points to our Solution Pillars and ROI.</li>
+      <li><span class="bi" style="color:var(--warm);">04</span><strong>Champion's Weapon</strong> — Share the link after your demo. It's how they sell internally when you're not in the room.</li>
+    </ul>
+  </div>
+
+  <!-- ═══════ 39: THE LOGIC CHAIN ═══════ -->
+  <div class="slide" data-slide="39">
+    <div class="label section anim">The System</div>
+    <h2 class="centered anim anim-d1" style="font-size:clamp(22px, 2.4vw, 32px);">The Logic Chain</h2>
+    <div class="card anim anim-d2" style="border-color:var(--cp1); max-width:820px; margin-top:28px; text-align:center; padding:36px;">
+      <p style="font-size:16px; line-height:2.2; color:var(--text-muted);">
+        Every deal that dies traces to one of <strong style="color:var(--red);">5 fatalities</strong>.<br>
+        Every fatality traces to a <strong style="color:var(--warm);">missed checkpoint</strong>.<br>
+        Every missed checkpoint traces to <strong style="color:var(--cp1);">unanswered BAP questions</strong>.<br>
+        <span style="display:inline-block; margin-top:12px; padding-top:12px; border-top:1px solid var(--border); font-size:17px;">
+          Therefore: <strong style="color:var(--green);">Answer all 11 → Pass all 3 → Prevent all 5 → Close the deal.</strong>
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════ 40: SUMMARY ═══════ -->
+  <div class="slide" data-slide="40">
+    <div class="label neutral anim">Summary</div>
+    <h2 class="centered anim anim-d1" style="font-size:clamp(22px, 2.4vw, 30px);">The Playbook</h2>
+    <div class="flow anim anim-d2" style="margin-top:32px;">
+      <div class="flow-step" style="border-color:var(--cp1); background:var(--cp1-bg);">
+        <div class="f-label" style="color:var(--cp1);">Step 1</div>
+        <div class="f-title">Ask the Questions</div>
+        <div class="f-sub">Find the fire, expose the gap</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:var(--warm); background:var(--warm-bg);">
+        <div class="f-label" style="color:var(--warm);">Step 2</div>
+        <div class="f-title">Score the BAP</div>
+        <div class="f-sub">Red, yellow, or green?</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:var(--cp2); background:var(--cp2-bg);">
+        <div class="f-label" style="color:var(--cp2);">Step 3</div>
+        <div class="f-title">Arm the Champion</div>
+        <div class="f-sub">Send the Discovery Room</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:var(--cp3); background:var(--cp3-bg);">
+        <div class="f-label" style="color:var(--green);">Outcome</div>
+        <div class="f-title">✅ Deal Closes</div>
+        <div class="f-sub">Engineered, not hoped</div>
+      </div>
+    </div>
+    <p class="anim anim-d3 quote" style="font-size:15px; margin-top:36px;">"The Buyer's Action Plan removes guesswork from sales. It tells you where you stand, what you're missing, and what to do next."</p>
+    <div class="divider anim anim-d4" style="background:var(--cp3); margin-top:28px;"></div>
+    <p class="anim anim-d5" style="font-size:13px; color:var(--text-dim); margin-top:12px;">Now let's look at your deals and score them.</p>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav-progress" id="progress"></div>
+<div class="nav-bar">
+  <span class="nav-counter" id="counter">1 / 40</span>
+  <span class="nav-title" id="navTitle">The 3 Checkpoints — Deep Dive</span>
+  <span class="nav-hint">← → keys · click</span>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  const titles = {
+    0: 'Title',
+    1: 'Last Session Recap',
+    2: "Today's Mission",
+    3: 'The BAP Framework',
+    4: "Doctor's Mindset",
+    5: '3 Waves — Setting the Meeting',
+    6: '3 Waves — Running the Meeting',
+    7: 'CP1 — Urgency Test',
+    8: 'Q1 — The Core Problem',
+    9: 'Q1b — Priority Scale',
+    10: 'Q2 — Stakeholder Map',
+    11: 'Q3 — Cost of Inaction',
+    12: 'Q4 — Priority Level',
+    13: 'DOA: Wrong Timing',
+    14: 'CP2 — Gap Test',
+    15: 'Q5 — Current Approach',
+    16: 'Q6 — Capability Gap',
+    17: 'Q6b — The Critical Question',
+    18: 'Q7 — Buying Process',
+    19: 'Q8 — Readiness',
+    20: 'Problem Reframe',
+    21: 'Reframe by Persona',
+    22: 'Reverse Timeline Trap',
+    23: 'DOA: Competition',
+    24: 'CP3 — Solution Test',
+    25: 'Q9 — Proven Results',
+    26: 'Q10 — Solution Map',
+    27: 'Q11 — Success Metrics',
+    28: 'Arming the Champion',
+    29: 'DOA: Price · Trust · Product Fit',
+    30: 'Progression Pathways',
+    31: 'Fatality → Pathway Matrix',
+    32: 'Pain / Priority',
+    33: 'Problem Reframe',
+    34: 'Gap in Ability',
+    35: 'ROI — Value Stack',
+    36: 'Proven Results',
+    37: 'Scoring Matrix',
+    38: '5 Alignment Checks',
+    39: 'Discovery Room',
+    40: 'The Logic Chain',
+    41: 'Summary'
+  };
+
+  function goTo(n) {
+    if (n < 0 || n >= total) return;
+    slides[current].classList.remove('active');
+    // Reset animations
+    slides[current].querySelectorAll('.anim').forEach(el => {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = '';
+    });
+    current = n;
+    slides[current].classList.add('active');
+    document.getElementById('counter').textContent = `${current + 1} / ${total}`;
+    document.getElementById('progress').style.width = `${((current + 1) / total) * 100}%`;
+    document.getElementById('navTitle').textContent = titles[current] || '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    if (e.key === 'End') { e.preventDefault(); goTo(total - 1); }
+  });
+
+  document.addEventListener('click', e => {
+    if (e.target.closest('.nav-bar')) return;
+    if (e.clientX > window.innerWidth / 2) goTo(current + 1);
+    else goTo(current - 1);
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { diff > 0 ? goTo(current + 1) : goTo(current - 1); }
+  });
+
+  goTo(0);
+</script>
+
+</body>
+</html>

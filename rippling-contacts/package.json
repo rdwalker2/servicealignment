@@ -1,0 +1,18 @@
+{
+  "name": "rippling-contact-enricher",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Contact intelligence pipeline for Rippling ATS audience",
+  "scripts": {
+    "setup-linkedin": "node scraper/linkedin-setup.js",
+    "linkedin": "node scraper/linkedin-people-scraper.js",
+    "apollo": "node scraper/apollo-contact-enricher.js",
+    "g2": "node scraper/g2-review-miner.js",
+    "export": "node scraper/export-contacts-csv.js",
+    "pipeline": "npm run linkedin && npm run apollo && npm run export"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "playwright": "^1.44.0"
+  }
+}

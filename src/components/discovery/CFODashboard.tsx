@@ -53,9 +53,11 @@ export function CFODashboard({ predictiveData }: Props) {
     // 3-Year Forecasting logic
     if (score < 70 || hasHail) {
       year1Spend += (sqFt * 3.50);
-    } else if (age > 20) {
+    }
+    if (age > 20) {
       year3Spend += (sqFt * 15.00);
-    } else if (age > 15) {
+    }
+    if (age > 12 && age <= 20) {
       year2Spend += (sqFt * 7.20);
     }
   });
@@ -67,52 +69,52 @@ export function CFODashboard({ predictiveData }: Props) {
   };
 
   return (
-    <section className="page" id="cfo-dashboard" style={{ padding: '80px 40px', backgroundColor: '#fff', borderTop: '1px solid #e7e5e4', borderBottom: '1px solid #e7e5e4' }}>
+    <section className="page w-full" id="cfo-dashboard" style={{ padding: 'clamp(40px, 8vw, 80px) clamp(16px, 5vw, 40px)', backgroundColor: '#fff', borderTop: '1px solid #e7e5e4', borderBottom: '1px solid #e7e5e4' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
         
         <div style={{ marginBottom: 48, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
           <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#1c1917', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: 16, display: 'inline-flex', alignItems: 'center', gap: 6, border: '1px solid #e7e5e4', padding: '4px 12px' }}>
              <Briefcase size={14} /> Asset Management Intelligence
           </div>
-          <h2 style={{ fontSize: '2.25rem', fontWeight: 800, color: '#1c1917', marginBottom: 16, letterSpacing: '-0.02em' }}>
+          <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.25rem)', fontWeight: 900, color: '#1c1917', marginBottom: 16, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
             Portfolio CapEx & Liability Forecast
           </h2>
-          <p style={{ fontSize: '1.05rem', color: '#57534e', maxWidth: '700px', margin: '0 auto', lineHeight: 1.6 }}>
+          <p style={{ fontSize: 'clamp(0.95rem, 2vw, 1.05rem)', color: '#57534e', maxWidth: '700px', margin: '0 auto', lineHeight: 1.6 }}>
             Based on NOAA weather intersections and verified permit data across your {predictiveData.properties.length} properties, here is your 3-year capital exposure.
           </p>
         </div>
 
         {/* Macro Metrics */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, borderTop: '1px solid #1c1917', borderBottom: '1px solid #e7e5e4', marginBottom: 64 }}>
-          <div style={{ padding: '32px 24px', borderRight: '1px solid #e7e5e4', display: 'flex', flexDirection: 'column' }}>
+        <div className="flex flex-col md:grid md:grid-cols-3" style={{ borderTop: '1px solid #1c1917', borderBottom: '1px solid #e7e5e4', marginBottom: 64 }}>
+          <div className="p-6 md:p-8 border-b md:border-b-0 md:border-r border-zinc-200 flex flex-col">
             <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16, display: 'flex', alignItems: 'flex-start', gap: 8, minHeight: 36 }}>
                <AlertTriangle size={14} color="#ef4444" style={{ marginTop: 2, flexShrink: 0 }} /> 
                <span>Total Unfunded Liability</span>
             </div>
-            <div style={{ fontSize: 'clamp(2rem, 2.5vw, 3rem)', fontWeight: 700, color: '#ef4444', letterSpacing: '-0.03em', lineHeight: 1, whiteSpace: 'nowrap' }}>
+            <div style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 700, color: '#ef4444', letterSpacing: '-0.03em', lineHeight: 1, whiteSpace: 'nowrap' }}>
               {formatMoney(totalLiability)}
             </div>
             <div style={{ fontSize: '0.85rem', color: '#57534e', marginTop: 'auto', paddingTop: 16, lineHeight: 1.5 }}>Aggregated risk across {atRiskCount} critical properties showing severe degradation.</div>
           </div>
           
-          <div style={{ padding: '32px 24px', borderRight: '1px solid #e7e5e4', display: 'flex', flexDirection: 'column' }}>
+          <div className="p-6 md:p-8 border-b md:border-b-0 md:border-r border-zinc-200 flex flex-col">
             <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16, display: 'flex', alignItems: 'flex-start', gap: 8, minHeight: 36 }}>
                <ShieldAlert size={14} color="#1c1917" style={{ marginTop: 2, flexShrink: 0 }} /> 
                <span>Warranties at Risk</span>
             </div>
-            <div style={{ fontSize: 'clamp(2rem, 2.5vw, 3rem)', fontWeight: 700, color: '#1c1917', letterSpacing: '-0.03em', lineHeight: 1, whiteSpace: 'nowrap', display: 'flex', alignItems: 'baseline', gap: 8 }}>
-               {warrantiesAtRisk} <span style={{fontSize: '1.2rem', color: '#a8a29e', fontWeight: 500}}>Roofs</span>
+            <div style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 700, color: '#1c1917', letterSpacing: '-0.03em', lineHeight: 1, whiteSpace: 'nowrap', display: 'flex', alignItems: 'baseline', gap: 8 }}>
+               {warrantiesAtRisk} <span style={{fontSize: 'clamp(1rem, 1.5vw, 1.2rem)', color: '#a8a29e', fontWeight: 500}}>Roofs</span>
             </div>
             <div style={{ fontSize: '0.85rem', color: '#57534e', marginTop: 'auto', paddingTop: 16, lineHeight: 1.5 }}>Exceeding 15-year lifecycle window. Manufacturer compliance review required.</div>
           </div>
 
-          <div style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column' }}>
+          <div className="p-6 md:p-8 flex flex-col">
             <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16, display: 'flex', alignItems: 'flex-start', gap: 8, minHeight: 36 }}>
                <TrendingUp size={14} color="#1c1917" style={{ marginTop: 2, flexShrink: 0 }} /> 
                <span>Preventative Strategy ROI</span>
             </div>
-            <div style={{ fontSize: 'clamp(2rem, 2.5vw, 3rem)', fontWeight: 700, color: '#1c1917', letterSpacing: '-0.03em', lineHeight: 1, whiteSpace: 'nowrap', display: 'flex', alignItems: 'baseline', gap: 8 }}>
-               {formatMoney(proactiveCost)} <span style={{fontSize: '1.2rem', color: '#a8a29e', fontWeight: 500}}>/yr</span>
+            <div style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 700, color: '#1c1917', letterSpacing: '-0.03em', lineHeight: 1, whiteSpace: 'nowrap', display: 'flex', alignItems: 'baseline', gap: 8 }}>
+               {formatMoney(proactiveCost)} <span style={{fontSize: 'clamp(1rem, 1.5vw, 1.2rem)', color: '#a8a29e', fontWeight: 500}}>/yr</span>
             </div>
             <div style={{ fontSize: '0.85rem', color: '#57534e', marginTop: 'auto', paddingTop: 16, lineHeight: 1.5 }}>Cost to fully mitigate the {formatMoney(totalLiability)} total portfolio liability.</div>
           </div>
@@ -176,13 +178,13 @@ export function CFODashboard({ predictiveData }: Props) {
             </div>
           </div>
           
-          <div style={{ marginTop: 48, padding: '24px 32px', backgroundColor: '#fef2f2', borderRadius: 16, border: '1px solid #fecaca', display: 'flex', gap: 20, alignItems: 'flex-start', position: 'relative', zIndex: 1, animation: 'revealFade 0.6s ease 0.45s forwards', opacity: 0 }}>
-            <div style={{ backgroundColor: '#fff', padding: 12, borderRadius: '50%', boxShadow: '0 4px 12px rgba(220,38,38,0.1)' }}>
+          <div className="mt-12 p-6 md:p-8 bg-red-50 rounded-2xl border border-red-200 flex flex-col md:flex-row gap-5 items-start relative z-10" style={{ animation: 'revealFade 0.6s ease 0.45s forwards', opacity: 0 }}>
+            <div className="bg-white p-3 rounded-full shadow-[0_4px_12px_rgba(220,38,38,0.1)] flex-shrink-0">
               <Zap size={24} color="#dc2626" />
             </div>
             <div>
-              <strong style={{ color: '#dc2626', textTransform: 'uppercase', fontSize: '0.8rem', letterSpacing: '0.15em', display: 'block', marginBottom: 8, fontWeight: 900 }}>Strategic Recommendation</strong>
-              <div style={{ fontSize: '1.05rem', color: '#450a0a', lineHeight: 1.6, fontWeight: 500 }}>
+              <strong className="text-red-600 uppercase text-[0.8rem] tracking-[0.15em] block mb-2 font-black">Strategic Recommendation</strong>
+              <div className="text-[1.05rem] text-red-950 leading-relaxed font-medium">
                 Reallocate reactionary maintenance budgets toward a Year 1 preventative sweep to defer Year 2 and Year 3 capital expenditures by up to 60 months.
               </div>
             </div>

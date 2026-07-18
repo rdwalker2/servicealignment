@@ -215,7 +215,7 @@ export function AssetDrawer({ isOpen, onClose, property: incomingProperty }: Pro
               <DollarSign size={16} color="#09090b" /> CapEx Liability Forecast
             </h3>
             
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div style={{ borderTop: '3px solid #dc2626', borderBottom: '1px solid #e4e4e7', borderLeft: '1px solid #e4e4e7', borderRight: '1px solid #e4e4e7', backgroundColor: '#ffffff', padding: 16, borderRadius: 0 }}>
                 <div style={{ fontSize: '0.65rem', color: '#dc2626', fontWeight: 800, textTransform: 'uppercase', marginBottom: 8, letterSpacing: '0.1em' }}>Tear-Off Cost</div>
                 <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#09090b', fontFamily: 'monospace' }}>{hasSqFt ? formatMoney(sqFt * 15.00) : 'Pending Data'}</div>
@@ -228,7 +228,7 @@ export function AssetDrawer({ isOpen, onClose, property: incomingProperty }: Pro
               </div>
             </div>
 
-            <div style={{ borderTop: '1px solid #e4e4e7', borderBottom: '1px solid #e4e4e7', padding: '16px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
+            <div className="border-y border-zinc-200 py-4 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
                 <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#09090b', marginBottom: 4, letterSpacing: '0.05em' }}>Historical Reactive Spend</div>
                 <div style={{ fontSize: '0.75rem', color: '#52525b' }}>Estimated "Band-Aid" repairs to date</div>

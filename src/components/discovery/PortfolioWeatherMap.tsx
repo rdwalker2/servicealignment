@@ -74,33 +74,86 @@ export const PortfolioWeatherMap: React.FC<PortfolioWeatherMapProps> = ({ predic
   }, [markers]);
 
 
-  const [radarUrl, setRadarUrl] = useState<string | null>(null);
+  const [radarFrames, setRadarFrames] = useState<{url: string, time: number, type: 'past' | 'nowcast'}[]>([]);
+  const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  // Telemetry state
+  const [telemetryLogs, setTelemetryLogs] = useState<string[]>([]);
+  
+  useEffect(() => {
+    // Telemetry typewriter effect sequence
+    const sequence = [
+      { text: "> Uplink established.", delay: 500 },
+      { text: "> Syncing NOAA & RainViewer radar feeds...", delay: 1500 },
+      { text: "> SCANNING PORTFOLIO COORDINATES...", delay: 3000 },
+      { text: "> ⚠️ WARNING: High-density storm cell detected intersecting regional assets.", delay: 5000 },
+      { text: "> Activating predictive health score penalties.", delay: 7000 }
+    ];
+
+    let timeouts: NodeJS.Timeout[] = [];
+    sequence.forEach((item, index) => {
+      const t = setTimeout(() => {
+        setTelemetryLogs(prev => [...prev, item.text]);
+      }, item.delay);
+      timeouts.push(t);
+    });
+
+    return () => timeouts.forEach(clearTimeout);
+  }, []);
 
   useEffect(() => {
-    // Fetch RainViewer predictive radar (nowcast)
-    const fetchPredictiveRadar = async () => {
+    // Fetch RainViewer radar frames (past + nowcast)
+    const fetchRadar = async () => {
       try {
         const res = await fetch('https://api.rainviewer.com/public/weather-maps.json');
         if (!res.ok) return;
         const data = await res.json();
         
-        // Grab the latest predictive frame (nowcast)
-        if (data && data.radar && data.radar.nowcast && data.radar.nowcast.length > 0) {
-          const nowcastFrames = data.radar.nowcast;
-          const targetFrame = nowcastFrames[Math.min(2, nowcastFrames.length - 1)]; // 30 mins into future
-          
-          // Format: host + path + /size/z/x/y/color/smooth_0_1.png
-          // color 2 = classic radar colors, 1_1 = smooth overlay
-          const url = `${data.host}${targetFrame.path}/256/{z}/{x}/{y}/2/1_1.png`;
-          setRadarUrl(url);
+        let frames: {url: string, time: number, type: 'past' | 'nowcast'}[] = [];
+        
+        if (data && data.radar) {
+          if (data.radar.past) {
+            data.radar.past.forEach((f: any) => {
+              frames.push({
+                url: `${data.host}${f.path}/256/{z}/{x}/{y}/2/1_1.png`,
+                time: f.time,
+                type: 'past'
+              });
+            });
+          }
+          if (data.radar.nowcast) {
+            data.radar.nowcast.forEach((f: any) => {
+              frames.push({
+                url: `${data.host}${f.path}/256/{z}/{x}/{y}/2/1_1.png`,
+                time: f.time,
+                type: 'nowcast'
+              });
+            });
+          }
+          setRadarFrames(frames);
+          if (frames.length > 0) {
+            setCurrentFrameIndex(0);
+          }
         }
       } catch (e) {
-        console.error("Failed to load predictive radar", e);
+        console.error("Failed to load radar frames", e);
       }
     };
     
-    fetchPredictiveRadar();
+    fetchRadar();
   }, []);
+
+  // Radar playback loop
+  useEffect(() => {
+    if (!isPlaying || radarFrames.length === 0) return;
+    
+    const interval = setInterval(() => {
+      setCurrentFrameIndex(prev => (prev + 1) % radarFrames.length);
+    }, 700); // 700ms per frame
+    
+    return () => clearInterval(interval);
+  }, [isPlaying, radarFrames.length]);
 
   const satelliteStyle = useMemo(() => ({
     version: 8,
@@ -122,17 +175,69 @@ export const PortfolioWeatherMap: React.FC<PortfolioWeatherMapProps> = ({ predic
     ]
   }), []);
 
+  const currentFrame = radarFrames[currentFrameIndex];
+
   return (
     <div className="premium-map-container" style={{ width: '100%', height: '500px', borderRadius: '16px', border: '1px solid #e7e5e4', position: 'relative', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)' }}>
-      {/* HUD Overlay */}
-      <div className="absolute top-3 left-3 md:top-5 md:left-5 z-10 bg-black/80 text-white p-2.5 md:p-3 rounded-lg backdrop-blur-md border border-white/10 shadow-xl max-w-[calc(100%-24px)] pointer-events-none">
-        <div className="text-[0.55rem] md:text-[0.65rem] font-extrabold tracking-[0.15em] text-red-500 mb-1 flex items-center gap-1.5 uppercase">
-          <span className="inline-block w-1.5 h-1.5 bg-current rounded-full animate-pulse"></span>
+      {/* HUD Overlay - Title */}
+      <div className="absolute top-3 right-3 md:top-5 md:right-5 z-10 bg-black/80 text-white p-2.5 md:p-3 rounded-lg backdrop-blur-md border border-white/10 shadow-xl pointer-events-none text-right">
+        <div className="text-[0.55rem] md:text-[0.65rem] font-extrabold tracking-[0.15em] text-emerald-500 mb-1 flex items-center justify-end gap-1.5 uppercase">
           Live Satellite Uplink
+          <span className="inline-block w-1.5 h-1.5 bg-current rounded-full animate-pulse"></span>
         </div>
         <div className="text-sm md:text-[0.9rem] font-bold leading-tight">Property Portfolio Monitor</div>
-        <div className="text-[0.65rem] md:text-[0.75rem] text-white/60 mt-0.5">Predictive Doppler Radar Active (T+30m Forecast)</div>
       </div>
+
+      {/* Telemetry Log */}
+      <div className="absolute bottom-16 left-3 md:bottom-20 md:left-5 z-10 w-[280px] md:w-[320px] pointer-events-none">
+        <div className="flex flex-col gap-1">
+          {telemetryLogs.map((log, i) => (
+            <div 
+              key={i} 
+              className={`text-[0.65rem] md:text-[0.7rem] font-mono tracking-tight leading-relaxed px-2 py-1 rounded bg-black/70 backdrop-blur-md border border-white/5 shadow-lg
+                ${log.includes('WARNING') || log.includes('penalties') ? 'text-red-400' : 'text-emerald-400'}
+                animate-in slide-in-from-left-4 fade-in duration-300`}
+            >
+              {log}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Radar Timeline Overlay */}
+      {radarFrames.length > 0 && currentFrame && (
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 bg-black/80 text-white p-2 px-4 rounded-full backdrop-blur-md border border-white/10 shadow-xl flex items-center gap-3">
+          <button 
+            onClick={() => setIsPlaying(!isPlaying)}
+            className="text-white hover:text-emerald-400 transition-colors bg-transparent border-none cursor-pointer p-0"
+          >
+            {isPlaying ? (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            )}
+          </button>
+          <div className="w-px h-4 bg-white/20"></div>
+          <div className="text-[0.7rem] font-bold tracking-widest uppercase flex items-center gap-2">
+            {currentFrame.type === 'nowcast' ? (
+              <span className="text-orange-400">Predictive</span>
+            ) : (
+              <span className="text-emerald-400">Historical</span>
+            )}
+            <span className="font-mono bg-white/10 px-1.5 py-0.5 rounded text-[0.65rem]">
+              {new Date(currentFrame.time * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            </span>
+          </div>
+          <div className="flex items-center gap-0.5 ml-2">
+            {radarFrames.map((f, i) => (
+              <div 
+                key={i} 
+                className={`h-1.5 rounded-full transition-all duration-300 ${i === currentFrameIndex ? 'w-4 bg-white' : 'w-1.5 bg-white/30'}`}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       <MapGL
         ref={mapRef}
@@ -141,11 +246,11 @@ export const PortfolioWeatherMap: React.FC<PortfolioWeatherMapProps> = ({ predic
         interactive={true}
       >
         {/* Predictive Doppler Radar (RainViewer Nowcast) */}
-        {radarUrl && (
+        {currentFrame && (
           <Source
             id="predictive-radar"
             type="raster"
-            tiles={[radarUrl]}
+            tiles={[currentFrame.url]}
             tileSize={256}
           >
             <Layer
@@ -153,7 +258,7 @@ export const PortfolioWeatherMap: React.FC<PortfolioWeatherMapProps> = ({ predic
               type="raster"
               paint={{
                 'raster-opacity': 0.6,
-                'raster-fade-duration': 500
+                'raster-fade-duration': 0 // Set to 0 to prevent flickering during animation
               }}
             />
           </Source>
@@ -267,19 +372,7 @@ export const PortfolioWeatherMap: React.FC<PortfolioWeatherMapProps> = ({ predic
             className="premium-map-popup"
             style={{ padding: 0 }}
           >
-            <div style={{ 
-              background: 'rgba(9, 9, 11, 0.95)', 
-              color: '#f8fafc',
-              borderRadius: '12px',
-              border: '1px solid rgba(255,255,255,0.1)',
-              backdropFilter: 'blur(12px)',
-              boxShadow: '0 20px 40px -10px rgba(0,0,0,0.5)',
-              padding: '16px',
-              width: '260px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px'
-            }}>
+            <div className="bg-white/95 text-zinc-900 rounded-xl border border-zinc-200 backdrop-blur-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] p-4 w-[260px] flex flex-col gap-3">
               
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <h4 style={{ margin: 0, fontSize: '0.95rem', fontWeight: 700, lineHeight: 1.2 }}>
@@ -287,26 +380,18 @@ export const PortfolioWeatherMap: React.FC<PortfolioWeatherMapProps> = ({ predic
                 </h4>
               </div>
 
-              <div style={{ 
-                background: 'rgba(255,255,255,0.05)', 
-                borderRadius: '8px', 
-                padding: '10px 12px',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                border: '1px solid rgba(255,255,255,0.05)'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.75rem', fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <div className="bg-zinc-50 rounded-lg p-2.5 flex justify-between items-center border border-zinc-100">
+                <div className="flex items-center gap-1.5 text-[0.75rem] font-bold text-zinc-500 uppercase tracking-[0.05em]">
                   <Activity size={14} color={selectedMarker.color} />
                   Health Score
                 </div>
-                <div style={{ fontSize: '1.2rem', fontWeight: 800, color: selectedMarker.color }}>
+                <div className="text-[1.2rem] font-black" style={{ color: selectedMarker.color }}>
                   {selectedMarker.score}
                 </div>
               </div>
 
-              <div style={{ fontSize: '0.75rem', color: '#cbd5e1', display: 'flex', alignItems: 'flex-start', gap: 6 }}>
-                <Crosshair size={14} className="mt-0.5" style={{ color: selectedMarker.color }} />
+              <div className="text-[0.75rem] font-medium text-zinc-500 flex items-start gap-1.5">
+                <Crosshair size={14} className="mt-0.5 shrink-0" style={{ color: selectedMarker.color }} />
                 <span>Geospatial weather tracking actively monitoring this location.</span>
               </div>
 
@@ -315,25 +400,7 @@ export const PortfolioWeatherMap: React.FC<PortfolioWeatherMapProps> = ({ predic
                   const el = document.getElementById(`property-${selectedMarker.id}`);
                   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }}
-                style={{
-                  width: '100%',
-                  background: '#f8fafc',
-                  color: '#0f172a',
-                  border: 'none',
-                  padding: '10px 12px',
-                  borderRadius: '6px',
-                  fontSize: '0.8rem',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: '6px',
-                  marginTop: '4px',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-1px)'}
-                onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                className="w-full bg-zinc-900 text-white border-none py-2.5 px-3 rounded-lg text-[0.8rem] font-bold cursor-pointer flex justify-center items-center gap-1.5 mt-1 transition-all duration-200 hover:-translate-y-px hover:shadow-md hover:bg-black"
               >
                 View Full Diagnosis <ArrowRight size={14} />
               </button>
